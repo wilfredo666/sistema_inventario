@@ -52443,6 +52443,6 @@ color: aliceblue;
   background-image: radial-gradient(circle at 50% -4.5%, #2f4a76 0, #142137 50%, #000000 100%);
 } */
 
-[class*=sidebar-dark-] {
+/* [class*=sidebar-dark-] {
   background-image: radial-gradient(circle at 50% -4.5%, #0b7d89 0, #112952f2 50%, #000000 100%);
-}
+} */
