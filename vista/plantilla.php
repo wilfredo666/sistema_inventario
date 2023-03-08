@@ -62,6 +62,9 @@ if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
             || $_GET["ruta"] == "VCliente"
             || $_GET["ruta"] == "VCategoria"
             || $_GET["ruta"] == "VTalla"
+            || $_GET["ruta"] == "VColor"
+            || $_GET["ruta"] == "VMedida"
+            || $_GET["ruta"] == "VProducto"
         ) {
             include $_GET["ruta"] . ".php";
         }

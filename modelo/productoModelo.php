@@ -4,22 +4,25 @@ class ModeloProducto{
 
 
   static public function mdlInfoProductos(){
-    $stmt=Conexion::conectar()->prepare("select * from producto");
+    $stmt=Conexion::conectar()->prepare("select * from producto join talla on producto.id_talla=talla.id_talla");
     $stmt->execute();
-
     return $stmt->fetchAll();
-
     $stmt->close();
     $stmt->null;
   }
 
   static public function mdlRegProducto($data){
-
     $codProducto=$data["codProducto"];
-    $descProducto=$data["descProducto"];
+    $nomProducto=$data["nomProducto"];
+    $costoProducto=$data["costoProducto"];
+    $precioProducto=$data["precioProducto"];
+    $tallaProducto=$data["tallaProducto"];
+    $categoriaProducto=$data["categoriaProducto"];
+    $medidaProducto=$data["medidaProducto"];
+    $colorProducto=$data["colorProducto"];
     $imgProducto=$data["imgProducto"];
 
-    $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, nombre_producto, imagen_producto)values('$codProducto', '$descProducto', '$imgProducto')");
+    $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, nombre_producto, precio_costo, precio_venta, imagen_producto, id_categoria, id_medida, id_talla, id_color)values('$codProducto', '$nomProducto', '$costoProducto', '$precioProducto','$imgProducto','$categoriaProducto',' $medidaProducto','$tallaProducto','$colorProducto')");
 
     if($stmt->execute()){
       return "ok";

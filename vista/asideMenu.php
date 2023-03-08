@@ -130,7 +130,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="VUniMedida" class="nav-link">
+                                    <a href="VMedida" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Unidad de Medida</p>
                                     </a>

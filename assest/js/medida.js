@@ -1,10 +1,10 @@
-function MNuevoProducto() {
+function MNuevoMedida() {
   $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/producto/FNuevoProducto.php",
+    url: "vista/medida/FNuevoMedida.php",
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
@@ -12,24 +12,24 @@ function MNuevoProducto() {
   })
 }
 
-function RegProducto() {
+function RegMedida() {
 
-  var formData = new FormData($("#FormRegProducto")[0])
+  var formData = new FormData($("#FormRegMedida")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/productoControlador.php?ctrRegProducto",
+    url: "controlador/medidaControlador.php?ctrRegMedida",
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
     success: function (data) {
-      console.log(data)
+
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El Producto ha sido registrado',
+          title: 'La Unidad de Medida ha sido Registrada',
           timer: 1000
         })
         setTimeout(function () {
@@ -39,48 +39,45 @@ function RegProducto() {
         Swal.fire({
           icon: 'error',
           title: 'Error!',
-          text: 'Erro de registro!!!',
+          text: 'Error de registro!',
           showConfirmButton: false,
           timer: 1500
         })
       }
     }
   })
-
-
 }
-
-function MEditProducto(id) {
-  $("#modal-lg").modal("show")
+function MEditMedida(id) {
+  $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/producto/FEditProducto.php?id=" + id,
+    url: "vista/medida/FEditMedida.php?id=" + id,
     data: obj,
     success: function (data) {
-      $("#content-lg").html(data)
+      $("#content-default").html(data)
     }
   })
 }
 
-function EditProducto() {
-
-  var formData = new FormData($("#FormEditProducto")[0])
+function EditMedida() {
+  var formData = new FormData($("#FormEditMedida")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/productoControlador.php?ctrEditProducto",
+    url: "controlador/medidaControlador.php?ctrEditMedida",
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
     success: function (data) {
+      /* console.log(data) */
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El producto ha sido actualizado',
+          title: 'La Categoría ha sido actualizado',
           timer: 1000
         })
         setTimeout(function () {
@@ -97,30 +94,30 @@ function EditProducto() {
       }
     }
   })
-
 }
 
-function MVerProducto(id) {
-  $("#modal-lg").modal("show")
+
+function MVerMedida(id) {
+  $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/producto/MVerProducto.php?id=" + id,
+    url: "vista/Medida/MVerMedida.php?id=" + id,
     data: obj,
     success: function (data) {
-      $("#content-lg").html(data)
+      $("#content-default").html(data)
     }
   })
 }
 
-function MEliProducto(id) {
+function MEliMedida(id) {
   var obj = {
     id: id
   }
 
   Swal.fire({
-    title: 'Esta seguro de eliminar este Producto?',
+    title: '¿Esta seguro de eliminar este Medida?',
     showDenyButton: true,
     showCancelButton: false,
     confirmButtonText: 'Confirmar',
@@ -130,14 +127,14 @@ function MEliProducto(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/ProductoControlador.php?ctrEliProducto",
+        url: "controlador/MedidaControlador.php?ctrEliMedida",
         success: function (data) {
-          /* console.log(data) */
+
           if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'Producto eliminado',
+              title: 'Medida eliminado',
               timer: 1000
             })
             setTimeout(function () {
@@ -147,7 +144,7 @@ function MEliProducto(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El producto no puede ser eliminado, porque tiene registros',
+              text: 'El Medida no puede ser eliminado, porque esta en uso',
               showConfirmButton: false,
               timer: 1500
             })
@@ -155,38 +152,29 @@ function MEliProducto(id) {
         }
       })
 
-
-
     }
   })
 }
 
-function previsualizar() {
-  let imagen = document.getElementById("ImgProducto").files[0]
-
-  if (imagen["type"] != "image/png" && imagen["type"] != "image/jpeg" && imagen["type"] != "image/jpg") {
-    $("#ImgProducto").val("")
-    swal.fire({
-      icon: "error",
-      showConfirmButton: true,
-      title: "La imagen debe ser formato PNG, JPG o JPEG"
-    })
-  } else if (imagen["size"] > 10000000) {
-    $("#ImgProducto").val("")
-    Swal.fire({
-      icon: "error",
-      showConfirmButton: true,
-      title: "La imagen no debe superior a 10MB"
-    })
-
-  } else {
-    let datosImagen = new FileReader
-    datosImagen.readAsDataURL(imagen)
-
-    $(datosImagen).on("load", function (event) {
-      let rutaImagen = event.target.result
-      $(".previsualizar").attr("src", rutaImagen)
-
-    })
+function ComprobarMedida() {
+  let loginMedida = document.getElementById("loginMedida").value
+  var obj = {
+    login: loginMedida
   }
+  $.ajax({
+    type: "POST",
+    data: obj,
+    url: "controlador/MedidaControlador.php?ctrBusMedida",
+    success: function (data) {
+      if (data == "1") {
+        $("#error-login").addClass("text-danger")
+        document.getElementById("error-login").innerHTML = "Medida en uso, intente con otro"
+        $("#guardar").attr("disabled", true)
+      } else {
+        document.getElementById("error-login").innerHTML = ""
+        $("#guardar").removeAttr("disabled")
+      }
+    }
+
+  })
 }

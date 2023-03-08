@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2021-2022 <a href="https://ekesoft.es">Ekesoft</a>.</strong> Derechos reservados.
+    <strong>Copyright &copy; 2023 <a href="https://ekesoft.es">Ekesoft</a>.</strong> Derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->
@@ -53,6 +53,9 @@
 <script src="assest/js/cliente.js"></script>
 <script src="assest/js/producto.js"></script>
 <script src="assest/js/categoria.js"></script>
+<script src="assest/js/talla.js"></script>
+<script src="assest/js/color.js"></script>
+<script src="assest/js/medida.js"></script>
 
 <!--====================
 seccion de modals

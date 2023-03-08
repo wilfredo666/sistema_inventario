@@ -1,10 +1,10 @@
-function MNuevoProducto() {
+function MNuevoColor() {
   $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/producto/FNuevoProducto.php",
+    url: "vista/color/FNuevoColor.php",
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
@@ -12,24 +12,24 @@ function MNuevoProducto() {
   })
 }
 
-function RegProducto() {
+function RegColor() {
 
-  var formData = new FormData($("#FormRegProducto")[0])
+  var formData = new FormData($("#FormRegColor")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/productoControlador.php?ctrRegProducto",
+    url: "controlador/colorControlador.php?ctrRegColor",
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
     success: function (data) {
-      console.log(data)
+      /* console.log(data); */
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El Producto ha sido registrado',
+          title: 'El Color ha sido registrado',
           timer: 1000
         })
         setTimeout(function () {
@@ -39,48 +39,45 @@ function RegProducto() {
         Swal.fire({
           icon: 'error',
           title: 'Error!',
-          text: 'Erro de registro!!!',
+          text: 'Error de registro!',
           showConfirmButton: false,
           timer: 1500
         })
       }
     }
   })
-
-
 }
-
-function MEditProducto(id) {
-  $("#modal-lg").modal("show")
+function MEditColor(id) {
+  $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/producto/FEditProducto.php?id=" + id,
+    url: "vista/color/FEditColor.php?id=" + id,
     data: obj,
     success: function (data) {
-      $("#content-lg").html(data)
+      $("#content-default").html(data)
     }
   })
 }
 
-function EditProducto() {
-
-  var formData = new FormData($("#FormEditProducto")[0])
+function EditColor() {
+  var formData = new FormData($("#FormEditColor")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/productoControlador.php?ctrEditProducto",
+    url: "controlador/colorControlador.php?ctrEditColor",
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
     success: function (data) {
+      /* console.log(data) */
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El producto ha sido actualizado',
+          title: 'La Color ha sido actualizado',
           timer: 1000
         })
         setTimeout(function () {
@@ -97,30 +94,30 @@ function EditProducto() {
       }
     }
   })
-
 }
 
-function MVerProducto(id) {
-  $("#modal-lg").modal("show")
+
+function MVerColor(id) {
+  $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/producto/MVerProducto.php?id=" + id,
+    url: "vista/Color/MVerColor.php?id=" + id,
     data: obj,
     success: function (data) {
-      $("#content-lg").html(data)
+      $("#content-default").html(data)
     }
   })
 }
 
-function MEliProducto(id) {
+function MEliColor(id) {
   var obj = {
     id: id
   }
 
   Swal.fire({
-    title: 'Esta seguro de eliminar este Producto?',
+    title: '¿Esta seguro de eliminar este Color?',
     showDenyButton: true,
     showCancelButton: false,
     confirmButtonText: 'Confirmar',
@@ -130,14 +127,14 @@ function MEliProducto(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/ProductoControlador.php?ctrEliProducto",
+        url: "controlador/ColorControlador.php?ctrEliColor",
         success: function (data) {
-          /* console.log(data) */
+
           if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'Producto eliminado',
+              title: 'Color eliminado',
               timer: 1000
             })
             setTimeout(function () {
@@ -147,7 +144,7 @@ function MEliProducto(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El producto no puede ser eliminado, porque tiene registros',
+              text: 'El Color no puede ser eliminado, porque esta en uso',
               showConfirmButton: false,
               timer: 1500
             })
@@ -155,38 +152,29 @@ function MEliProducto(id) {
         }
       })
 
-
-
     }
   })
 }
 
-function previsualizar() {
-  let imagen = document.getElementById("ImgProducto").files[0]
-
-  if (imagen["type"] != "image/png" && imagen["type"] != "image/jpeg" && imagen["type"] != "image/jpg") {
-    $("#ImgProducto").val("")
-    swal.fire({
-      icon: "error",
-      showConfirmButton: true,
-      title: "La imagen debe ser formato PNG, JPG o JPEG"
-    })
-  } else if (imagen["size"] > 10000000) {
-    $("#ImgProducto").val("")
-    Swal.fire({
-      icon: "error",
-      showConfirmButton: true,
-      title: "La imagen no debe superior a 10MB"
-    })
-
-  } else {
-    let datosImagen = new FileReader
-    datosImagen.readAsDataURL(imagen)
-
-    $(datosImagen).on("load", function (event) {
-      let rutaImagen = event.target.result
-      $(".previsualizar").attr("src", rutaImagen)
-
-    })
+function ComprobarColor() {
+  let loginColor = document.getElementById("loginColor").value
+  var obj = {
+    login: loginColor
   }
+  $.ajax({
+    type: "POST",
+    data: obj,
+    url: "controlador/ColorControlador.php?ctrBusColor",
+    success: function (data) {
+      if (data == "1") {
+        $("#error-login").addClass("text-danger")
+        document.getElementById("error-login").innerHTML = "Color en uso, intente con otro"
+        $("#guardar").attr("disabled", true)
+      } else {
+        document.getElementById("error-login").innerHTML = ""
+        $("#guardar").removeAttr("disabled")
+      }
+    }
+
+  })
 }

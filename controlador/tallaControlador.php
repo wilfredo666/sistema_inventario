@@ -22,7 +22,7 @@ class ControladorTalla{
   }
 
   static public function ctrRegTalla(){
-    require "../modelo/TallaModelo.php";
+    require "../modelo/tallaModelo.php";
 
     $data=array(
       "desTalla"=>$_POST["desTalla"],
@@ -39,7 +39,7 @@ class ControladorTalla{
   }
 
   static public function ctrEditTalla(){
-    require "../modelo/TallaModelo.php";
+    require "../modelo/tallaModelo.php";
 
     $data=array(
       "desTalla"=>$_POST["desTalla"],

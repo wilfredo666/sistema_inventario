@@ -1,71 +1,52 @@
 <?php
-require "../../controlador/productoControlador.php";
-require "../../modelo/productoModelo.php";
+require "../../controlador/clienteControlador.php";
+require "../../modelo/clienteModelo.php";
 
-$id=$_GET["id"];
-$producto=ControladorProducto::ctrInfoProducto($id);
+$id = $_GET["id"];
+$cliente = ControladorCliente::ctrInfoCliente($id);
 
+$razonSocial = $cliente["razon_social_cliente"]; 
+
+$rzCliente = preg_replace('([^A-Za-z0-9])', '', $razonSocial);
 ?>
-<div class="modal-header encabezado">
-  <h4 class="modal-title font-weight-light">Información de producto</h4>
+<div class="modal-header bg-dark">
+  <h4 class="modal-title font-weight-light">Información de Cliente</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-
-
   <div class="row">
-
-    <div class="col-6">
+    <div class="col-sm-12">
       <table class="table">
         <tr>
-          <th>Cod. Producto</th>
-          <td><?php echo $producto["cod_producto"];?></td>
+          <th>Razon Social</th>
+          <td><?php echo $cliente["razon_social_cliente"]; ?></td>
         </tr>
 
         <tr>
-          <th>Descripción</th>
-          <td><?php echo $producto["nombre_producto"];?></td>
+          <th>Nit/Ci</th>
+          <td><?php echo $cliente["nit_ci_cliente"]; ?></td>
         </tr>
 
         <tr>
-          <th>Disponibilidad</th>
-          <?php 
-          if($producto["estado"]==1){
-          ?>
-          <td><span class="badge badge-success">Disponible</span></td>
-          <?php
-          }else{
-          ?>
-          <td><span class="badge badge-danger">No disponible</span></td>
-          <?php
-          }
-          ?>
+          <th>Dirección</th>
+          <td><?php echo $cliente["direccion_cliente"]; ?></td>
+        </tr>
 
+        <tr>
+          <th>Nombre(s)</th>
+          <td><?php echo $cliente["nombre_cliente"]; ?></td>
+        </tr>
+
+        <tr>
+          <th>Contactos</th>
+          <td><?php echo $cliente["telefono_cliente"]; ?></td>
         </tr>
 
       </table>
-    </div>
-    <div class="col-6">
-     
-     <?php 
-      if($producto["imagen_producto"]==""){
-        ?>
-        <img src="assest/dist/img/productos/product_default.png" alt="" width="300">
-        <?php
-      }else{
-        ?>
-        <img src="assest/dist/img/productos/<?php echo $producto["imagen_producto"];?>" alt="" width="300">
-        <?php
-      }
-      ?>
-      
-    </div>
 
+    </div>
   </div>
 
-
-
 </div>
-

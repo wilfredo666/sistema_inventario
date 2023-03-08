@@ -3,12 +3,13 @@ $ruta=parse_url($_SERVER['REQUEST_URI']);
 
 if(isset($ruta["query"])){
   if($ruta["query"]=="ctrRegProducto"||
+     $ruta["query"]=="ctrInfoProductos"||
      $ruta["query"]=="ctrEditProducto"||
      $ruta["query"]=="ctrEliProducto"||
      $ruta["query"]=="ctrBusProducto"){
     $metodo=$ruta["query"];
-    $Producto=new ControladorProducto();
-    $Producto->$metodo();
+    $producto=new ControladorProducto();
+    $producto->$metodo();
   }
 }
 
@@ -33,7 +34,13 @@ class ControladorProducto{
 
     $data=array(
       "codProducto"=>$_POST["codProducto"],
-      "descProducto"=>$_POST["descProducto"],
+      "nomProducto"=>$_POST["nomProducto"],
+      "costoProducto"=>$_POST["costoProducto"],
+      "precioProducto"=>$_POST["precioProducto"],
+      "tallaProducto"=>$_POST["tallaProducto"],
+      "categoriaProducto"=>$_POST["categoriaProducto"],
+      "medidaProducto"=>$_POST["medidaProducto"],
+      "colorProducto"=>$_POST["colorProducto"],
       "imgProducto"=>$nomImagen,
     );
 
