@@ -80,12 +80,13 @@
         $color = ControladorColor::ctrInfoColores();
         foreach ($color as $value) {
         ?>
-          <option value="<?php echo $value["id_color"]; ?>"><?php echo $value["desc_color"]; ?></option>
+          <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"];?>"><?php echo $value["desc_color"]; ?></option>
           <!-- <option value="<?php echo $value["id_color"]; ?>" type="button" style="background-color:<?php echo $value['img_color'] ?>; width: 60px;" ></option> -->
         <?php
         }
         ?>
       </select>
+      
     </div>
     <div class="form-group">
       <label for="">Imagen del Producto</label>
