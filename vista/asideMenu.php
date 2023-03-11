@@ -150,7 +150,7 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="VNotaVenta" class="nav-link">
+                                    <a href="FNotaVenta" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Nota de Venta</p>
                                     </a>
