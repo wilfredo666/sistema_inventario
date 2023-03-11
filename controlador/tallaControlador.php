@@ -25,7 +25,7 @@ class ControladorTalla{
     require "../modelo/tallaModelo.php";
 
     $data=array(
-      "desTalla"=>$_POST["desTalla"],
+      "descTalla"=>$_POST["descTalla"],
     );
 
     $respuesta=ModeloTalla::mdlRegTalla($data);
@@ -42,14 +42,13 @@ class ControladorTalla{
     require "../modelo/tallaModelo.php";
 
     $data=array(
-      "desTalla"=>$_POST["desTalla"],
+      "descTalla"=>$_POST["descTalla"],
       "idTalla"=>$_POST["idTalla"],
     );
 
     $respuesta=ModeloTalla::mdlEditTalla($data);
     echo $respuesta;
     /* var_dump($data) ; */
-
   }
 
   static public function ctrEliTalla(){

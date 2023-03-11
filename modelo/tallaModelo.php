@@ -17,7 +17,7 @@ class ModeloTalla{
 
     $descTalla=$data["descTalla"];
 
-    $stmt=Conexion::conectar()->prepare("insert into Talla(desc_Talla) values('$descTalla')");
+    $stmt=Conexion::conectar()->prepare("insert into Talla(desc_talla) values('$descTalla')");
 
     if($stmt->execute()){
       return "ok";
@@ -41,10 +41,10 @@ class ModeloTalla{
 
   static public function mdlEditTalla($data){
 
-    $desTalla=$data["desTalla"];
+    $descTalla=$data["descTalla"];
     $idTalla=$data["idTalla"];
 
-    $stmt=Conexion::conectar()->prepare("update Talla set desc_Talla='$desTalla' where id_Talla=$idTalla");
+    $stmt=Conexion::conectar()->prepare("update talla set desc_talla='$descTalla' where id_talla=$idTalla");
 
     if($stmt->execute()){
       return "ok";

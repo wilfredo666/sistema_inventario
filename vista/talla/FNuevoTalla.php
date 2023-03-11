@@ -1,15 +1,15 @@
 
 <div class="modal-header bg-dark">
-  <h4 class="modal-title font-weight-light">Registrar nuevo Categoría</h4>
+  <h4 class="modal-title font-weight-light">Registrar nueva Talla</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<form action="" id="FormRegCategoria">
+<form action="" id="FormRegTalla">
   <div class="modal-body">
     <div class="form-group">
-      <label for="">Descripción de Categoria</label>
-      <input type="text" class="form-control" id="desCategoria" name="desCategoria">
+      <label for="">Descripción de Talla</label>
+      <input type="text" class="form-control" id="descTalla" name="descTalla">
       <p id="error-login"></p>
     </div>
   </div>
@@ -25,15 +25,14 @@
     $.validator.setDefaults({
       
       submitHandler:function(){
-        RegCategoria()
+        RegTalla()
       }
     })
     $(document).ready(function(){
-      $("#FormRegCategoria").validate({
+      $("#FormRegTalla").validate({
       rules:{
-        desCategoria:{
+        descTalla:{
           required:true,
-          minlength:5
         }
       },
       errorElement:'span',

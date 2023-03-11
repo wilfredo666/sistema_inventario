@@ -1,10 +1,10 @@
-function MNuevoCategoria() {
+function MNuevoTalla() {
   $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/categoria/FNuevoCategoria.php",
+    url: "vista/talla/FNuevoTalla.php",
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
@@ -12,13 +12,13 @@ function MNuevoCategoria() {
   })
 }
 
-function RegCategoria() {
+function RegTalla() {
 
-  var formData = new FormData($("#FormRegCategoria")[0])
+  var formData = new FormData($("#FormRegTalla")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/categoriaControlador.php?ctrRegCategoria",
+    url: "controlador/tallaControlador.php?ctrRegTalla",
     data: formData,
     cache: false,
     contentType: false,
@@ -29,7 +29,7 @@ function RegCategoria() {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El Categoria ha sido registrado',
+          title: 'El Talla ha sido registrado',
           timer: 1000
         })
         setTimeout(function () {
@@ -47,13 +47,13 @@ function RegCategoria() {
     }
   })
 }
-function MEditCategoria(id) {
+function MEditTalla(id) {
   $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/categoria/FEditCategoria.php?id=" + id,
+    url: "vista/talla/FEditTalla.php?id=" + id,
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
@@ -61,12 +61,12 @@ function MEditCategoria(id) {
   })
 }
 
-function EditCategoria() {
-  var formData = new FormData($("#FormEditCategoria")[0])
+function EditTalla() {
+  var formData = new FormData($("#FormEditTalla")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/categoriaControlador.php?ctrEditCategoria",
+    url: "controlador/tallaControlador.php?ctrEditTalla",
     data: formData,
     cache: false,
     contentType: false,
@@ -77,7 +77,7 @@ function EditCategoria() {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'La Categoría ha sido actualizado',
+          title: 'La Talla ha sido actualizado',
           timer: 1000
         })
         setTimeout(function () {
@@ -97,13 +97,13 @@ function EditCategoria() {
 }
 
 
-function MVerCategoria(id) {
+function MVerTalla(id) {
   $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/Categoria/MVerCategoria.php?id=" + id,
+    url: "vista/Talla/MVerTalla.php?id=" + id,
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
@@ -111,13 +111,13 @@ function MVerCategoria(id) {
   })
 }
 
-function MEliCategoria(id) {
+function MEliTalla(id) {
   var obj = {
     id: id
   }
 
   Swal.fire({
-    title: '¿Esta seguro de eliminar este Categoria?',
+    title: '¿Esta seguro de eliminar este Talla?',
     showDenyButton: true,
     showCancelButton: false,
     confirmButtonText: 'Confirmar',
@@ -127,14 +127,14 @@ function MEliCategoria(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/CategoriaControlador.php?ctrEliCategoria",
+        url: "controlador/TallaControlador.php?ctrEliTalla",
         success: function (data) {
 
           if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'Categoria eliminado',
+              title: 'Talla eliminado',
               timer: 1000
             })
             setTimeout(function () {
@@ -144,7 +144,7 @@ function MEliCategoria(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El Categoria no puede ser eliminado, porque esta en uso',
+              text: 'El Talla no puede ser eliminado, porque esta en uso',
               showConfirmButton: false,
               timer: 1500
             })
@@ -156,19 +156,19 @@ function MEliCategoria(id) {
   })
 }
 
-function ComprobarCategoria() {
-  let loginCategoria = document.getElementById("loginCategoria").value
+function ComprobarTalla() {
+  let loginTalla = document.getElementById("loginTalla").value
   var obj = {
-    login: loginCategoria
+    login: loginTalla
   }
   $.ajax({
     type: "POST",
     data: obj,
-    url: "controlador/CategoriaControlador.php?ctrBusCategoria",
+    url: "controlador/TallaControlador.php?ctrBusTalla",
     success: function (data) {
       if (data == "1") {
         $("#error-login").addClass("text-danger")
-        document.getElementById("error-login").innerHTML = "Categoria en uso, intente con otro"
+        document.getElementById("error-login").innerHTML = "Talla en uso, intente con otro"
         $("#guardar").attr("disabled", true)
       } else {
         document.getElementById("error-login").innerHTML = ""
