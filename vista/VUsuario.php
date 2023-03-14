@@ -48,9 +48,20 @@
 
             <td>
               <div class="btn-group">
-                <button class="btn btn-sm btn-info" onclick="MVerUsuario(<?php echo $value["id_usuario"];?>)">
-                  <i class="fas fa-eye"></i>
-                </button>
+                
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
+
+                <ul class="dropdown-menu">
+
+                  <li>
+                    <a href="permisos?<?php echo $value["id_usuario"];?>" class="dropdown-item" target="_blank">Permisos</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="MVerUsuario(<?php echo $value["id_usuario"];?>)" class="dropdown-item">Información</a>
+                  </li>
+
+                </ul>
+                
                 <button class="btn btn-sm btn-secondary" onclick="MEditUsuario(<?php echo $value["id_usuario"];?>)">
                   <i class="fas fa-edit"></i>
                 </button>

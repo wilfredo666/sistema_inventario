@@ -1,0 +1,20 @@
+  ============
+  Pendientes
+  ============
+  -Implementar modulo de permisos personalizados
+  -Consisderar poner un apartado de configuracion donde se puedan poner registrar los datos de la empresa; podria servir para la emision de reportes en pdf
+  -Implementar codigos prefijos para ingresos y salidas
+    NI -Nota de Ingreso
+    NS -Nota de Salida
+    NV -Nota de venta
+  -agregar campo de stock en vista productos
+  -agregar marca?
+  -como hacer q se vea mas pequeño?  
+  -Como actualizar el inventario si hay anulacion de NV?
+  -nombre de usuario en vista permisos
+  
+  Observaciones
+  --------------
+  -quitar nombre de cliente obligatorio: registro y edicion
+  -fallo en el boton vista y eliminar de lista productos
+  -quitar las opciones de salida de reportes (pdf, excel,etc) de la tabla de nota de venta
