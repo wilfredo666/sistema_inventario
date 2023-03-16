@@ -156,7 +156,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="VNotaSalida" class="nav-link">
+                                    <a href="FNotaSalida" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Nota de Salida</p>
                                     </a>

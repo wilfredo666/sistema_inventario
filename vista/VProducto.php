@@ -40,7 +40,7 @@
               <?php
                 } else {
               ?>
-                <img src='assest/dist/img/productos/<?php echo $value["imagen_producto"]; ?>' width='100'>
+                <img src='assest/dist/img/productos/<?php echo $value["imagen_producto"]; ?>' width='100' height="100">
               <?php
                 }
               ?>
@@ -48,21 +48,21 @@
             <?php
             if ($value["estado"] == 1) {
             ?>
-              <td><span class="badge badge-success">Activo</span></td>
+              <td><span class="badge badge-success">Disponible</span></td>
             <?php
             } else {
             ?>
-              <td><span class="badge badge-danger">Inactivo</span></td>
+              <td><span class="badge badge-danger">No disponible</span></td>
             <?php
             }
             ?>
 
             <td>
               <div class="btn-group">
-                <button class="btn btn-sm btn-info" onclick="MVerProducto(<?php echo $value["id_Producto"]; ?>)">
+                <button class="btn btn-sm btn-info" onclick="MVerProducto(<?php echo $value["id_producto"]; ?>)">
                   <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn btn-sm btn-secondary" onclick="MEditProducto(<?php echo $value["id_Producto"]; ?>)">
+                <button class="btn btn-sm btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"]; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
                 <button class="btn btn-sm btn-danger">

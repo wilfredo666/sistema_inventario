@@ -35,7 +35,12 @@ class ModeloProducto{
   }
 
   static public function mdlInfoProducto($id){
-    $stmt=Conexion::conectar()->prepare("select * from producto where id_producto=$id");
+    $stmt=Conexion::conectar()->prepare(
+      "select * from producto 
+      left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
+      left join talla on talla.id_talla=producto.id_talla
+      left join color on color.id_color=producto.id_color
+      where id_producto=$id");
     $stmt->execute();
 
     return $stmt->fetch();
@@ -46,14 +51,20 @@ class ModeloProducto{
 
   static public function mdlEditProducto($data){
 
-    $descProducto=$data["descProducto"];
-    /* $UMProducto=$data["UMProducto"]; */
     $idProducto=$data["idProducto"];
+    $codProducto=$data["codProducto"];
+    $nomProducto=$data["nomProducto"];
+    $costoProducto=$data["costoProducto"];
+    $precioProducto=$data["precioProducto"];
+    $tallaProducto=$data["tallaProducto"];
+    $categoriaProducto=$data["categoriaProducto"];
+    $medidaProducto=$data["medidaProducto"];
+    $colorProducto=$data["colorProducto"];
     $ImgProducto=$data["ImgProducto"];
     $estadoProducto=$data["estadoProducto"];
 
 
-    $stmt=Conexion::conectar()->prepare("update producto set nombre_producto='$descProducto', imagen_producto='$ImgProducto', estado='$estadoProducto' where id_producto=$idProducto");
+    $stmt=Conexion::conectar()->prepare("update producto set cod_producto='$codProducto', nombre_producto='$nomProducto', precio_costo='$costoProducto', precio_venta='$precioProducto', imagen_producto='$ImgProducto', id_categoria='$categoriaProducto', id_medida='$medidaProducto', id_talla='$tallaProducto', id_color='$colorProducto', estado='$estadoProducto' where id_producto=$idProducto");
 
     if($stmt->execute()){
       return "ok";

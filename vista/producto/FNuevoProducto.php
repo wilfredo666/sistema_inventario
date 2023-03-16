@@ -16,11 +16,11 @@
     </div>
     <div class="form-group col-md-4">
       <label for="">Costo Producto</label>
-      <input type="number" class="form-control" id="costoProducto" name="costoProducto">
+      <input type="number" class="form-control" id="costoProducto" name="costoProducto" placeholder="0.00">
     </div>
     <div class="form-group col-md-4">
       <label for="">Precio Producto</label>
-      <input type="number" class="form-control" id="precioProducto" name="precioProducto">
+      <input type="number" class="form-control" id="precioProducto" name="precioProducto" placeholder="0.00">
     </div>
     <div class="form-group col-md-4">
       <label for="">Talla</label>

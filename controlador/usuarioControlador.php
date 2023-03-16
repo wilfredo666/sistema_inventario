@@ -29,6 +29,7 @@ class ControladorUsuario
                 $_SESSION["login_usuario"] = $respuesta["login_usuario"];
                 $_SESSION["nombre_usuario"] = $respuesta["nombre_usuario"];
                 $_SESSION["perfil"] = $respuesta["perfil"];
+                $_SESSION["idUsuario"]=$respuesta["id_usuario"];
 
                 date_default_timezone_set("America/La_Paz");
                 $fecha = date("Y-m-d");

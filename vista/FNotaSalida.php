@@ -3,9 +3,9 @@
   <section class="content">
 
     <!--encabezado-->
-    <form id="FNotaVenta" class="card card-primary card-outline">
+    <form id="FNotaSalida" class="card card-primary card-outline">
       <div class="card-header">
-        <h4 class="card-title" style="font-size:20px;">Nota de Venta</h4>
+        <h4 class="card-title" style="font-size:20px;">Nota de Salida</h4>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
             <i class="fas fa-minus"></i>
@@ -53,46 +53,20 @@
         <div class="col-md-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">#Factura</span>
+              <span class="input-group-text">Código de Salida</span>
             </div>
-            <input type="number" class="form-control" name="numFactura" id="numFactura" placeholder="Ingrese el Nro de factura">
+            <input type="text" class="form-control" name="codSalida" id="codSalida" placeholder="Ingrese el código de salida">
+            <p class="text-danger" id="error-numFactura"></p>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Concepto de Salida</span>
+            </div>
+            <input type="text" class="form-control" name="conceptoSalida" id="conceptoSalida" placeholder="Ingrese el concepto de salida">
             <p class="text-danger" id="error-numFactura"></p>
           </div>
 
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> NIT/CI </span>
-            </div>
-            <!-- <div class="input-group"> -->
-            <input list="listCliente" type="text" class="form-control" name="nitCliente" id="nitCliente" placeholder="Ingrese el Carnet o el Nit del cliente">
-            <input type="hidden" id="idCliente" name="idCliente">
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="button" onclick="busCliente()">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-
-            <datalist id="listCliente">
-              <?php
-              $cliente = ControladorCliente::ctrInfoClientes();
-
-              foreach ($cliente as $value) {
-              ?>
-                <option value="<?php echo $value["nit_ci_cliente"]; ?>"><?php echo $value["razon_social_cliente"]; ?></option>
-              <?php }
-              ?>
-            </datalist>
-            <!-- </div> -->
-          </div>
-
-
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Razon Social</span>
-            </div>
-            <input type="text" class="form-control" name="rsCliente" id="rsCliente">
-          </div>
 
           <table class="table">
             <thead>

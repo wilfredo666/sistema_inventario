@@ -71,9 +71,15 @@ class ControladorProducto{
     }
 
     $data=array(
-      "descProducto"=>$_POST["descProducto"],
-      /* "UMProducto"=>$_POST["UMProducto"], */
       "idProducto"=>$_POST["idProducto"],
+      "codProducto"=>$_POST["codProducto"],
+      "nomProducto"=>$_POST["nomProducto"],
+      "costoProducto"=>$_POST["costoProducto"],
+      "precioProducto"=>$_POST["precioProducto"],
+      "tallaProducto"=>$_POST["tallaProducto"],
+      "categoriaProducto"=>$_POST["categoriaProducto"],
+      "medidaProducto"=>$_POST["medidaProducto"],
+      "colorProducto"=>$_POST["colorProducto"],
       "ImgProducto"=>$imagen,
       "estadoProducto"=>$_POST["estadoProducto"]
     );

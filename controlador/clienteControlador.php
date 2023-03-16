@@ -72,7 +72,7 @@ class ControladorCliente{
   }
 
   static public function ctrBusCliente(){
-    require "../modelo/ClienteModelo.php";
+    require "../modelo/clienteModelo.php";
     $nitCliente=$_POST["nitCliente"];
 
     $respuesta=ModeloCliente::mdlBusCliente($nitCliente);

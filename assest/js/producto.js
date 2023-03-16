@@ -1,5 +1,5 @@
 function MNuevoProducto() {
-  $("#modal-default").modal("show")
+  $("#modal-lg").modal("show")
 
   var obj = ""
   $.ajax({
@@ -7,7 +7,7 @@ function MNuevoProducto() {
     url: "vista/producto/FNuevoProducto.php",
     data: obj,
     success: function (data) {
-      $("#content-default").html(data)
+      $("#content-lg").html(data)
     }
   })
 }
@@ -102,7 +102,6 @@ function EditProducto() {
 
 function MVerProducto(id) {
   $("#modal-lg").modal("show")
-
   var obj = ""
   $.ajax({
     type: "POST",
@@ -110,6 +109,7 @@ function MVerProducto(id) {
     data: obj,
     success: function (data) {
       $("#content-lg").html(data)
+      /* console.log(data); */
     }
   })
 }

@@ -8,6 +8,7 @@ require_once "controlador/categoriaControlador.php";
 require_once "controlador/tallaControlador.php";
 require_once "controlador/colorControlador.php";
 require_once "controlador/medidaControlador.php";
+require_once "controlador/ventaControlador.php";
 /* modelos */
 require_once "modelo/usuarioModelo.php";
 require_once "modelo/clienteModelo.php";
@@ -16,6 +17,7 @@ require_once "modelo/categoriaModelo.php";
 require_once "modelo/tallaModelo.php";
 require_once "modelo/colorModelo.php";
 require_once "modelo/medidaModelo.php";
+require_once "modelo/ventaModelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla->ctrPlantilla();

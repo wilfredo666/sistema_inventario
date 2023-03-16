@@ -56,6 +56,7 @@
 <script src="assest/js/talla.js"></script>
 <script src="assest/js/color.js"></script>
 <script src="assest/js/medida.js"></script>
+<script src="assest/js/factura.js"></script>
 
 <!--====================
 seccion de modals
@@ -149,7 +150,7 @@ seccion de modals
       "responsive": true, 
       "lengthChange": false, 
       "autoWidth": false,
-      "buttons": ["copy", "excel", "pdf", "print", "colvis"],
+      /* "buttons": ["excel", "pdf", "print", "colvis"], */
       language:{
         "decimal": "",
         "emptyTable": "No hay información",
@@ -179,5 +180,115 @@ seccion de modals
     theme: 'bootstrap4'
   }) 
 </script>
+
+<script>
+  //validacion para Nota de venta
+  $(function () {
+    $.validator.setDefaults({
+      submitHandler: function () {
+        emitirFactura()
+      }
+    });
+    $("#FNotaVenta").validate({
+      rules:{
+        numFactura:{
+          required:true,
+          minlength: 3
+        },
+        nitCliente:{
+          required:true
+        },
+        rsCliente:{
+          required:true
+        },
+      },
+      messages: {
+        numFactura: {
+          required: "El campo no puede estar vacio",
+          minlength: "El campo no puede tener menos de 3 caracteres"
+        },
+        nitCliente: {
+          required: "Inserte o seleccione un nit/ci"
+        },
+        rsCliente: {
+          required: "El campo no puede estar vacio"
+        },
+      },
+
+      //se crea el elemento span donde se escribira el mensaje
+      errorElement:"span",
+      errorPlacement: function(error, element){
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error) //cambiar a .imput-group ya que es el elemento padre del input
+      },
+      //destacar
+      highlight:function(element, errorClass, validClass){
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight:function(element, errorClass, validClass){
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+
+
+</script>
+
+<script>
+  //validacion para Nota de venta
+  $(function () {
+    $.validator.setDefaults({
+      submitHandler: function () {
+        emitirSalida()
+      }
+    });
+    $("#FNotaSalida").validate({
+      rules:{
+        codSalida:{
+          required:true,
+          minlength: 3
+        },
+        conceptoSalida:{
+          required:true,
+          minlength: 3
+        },
+      },
+      messages: {
+        codSalida: {
+          required: "El campo no puede estar vacio",
+          minlength: "El campo no puede tener menos de 3 caracteres"
+        },
+        conceptoSalida: {
+          required: "El campo no puede estar vacio",
+          minlength: "El campo no puede tener menos de 3 caracteres"
+        },
+
+      },
+
+      //se crea el elemento span donde se escribira el mensaje
+      errorElement:"span",
+      errorPlacement: function(error, element){
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error) //cambiar a .imput-group ya que es el elemento padre del input
+      },
+      //destacar
+      highlight:function(element, errorClass, validClass){
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight:function(element, errorClass, validClass){
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+
+
+</script>
+
 </body>
 </html>
