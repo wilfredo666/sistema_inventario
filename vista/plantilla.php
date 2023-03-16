@@ -54,30 +54,6 @@ session_start();
   <?php
   if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
     include "asideMenu.php";
-<<<<<<< HEAD
-    if (isset($_GET["ruta"])) {
-        if (
-            $_GET["ruta"] == "inicio"
-            || $_GET["ruta"] == "salir"
-            || $_GET["ruta"] == "VUsuario"
-            || $_GET["ruta"] == "VCliente"
-            || $_GET["ruta"] == "VCategoria"
-            || $_GET["ruta"] == "VTalla"
-            || $_GET["ruta"] == "VColor"
-            || $_GET["ruta"] == "VMedida"
-            || $_GET["ruta"] == "VProducto"
-            || $_GET["ruta"] == "FNotaVenta"
-            || $_GET["ruta"] == "FNotaSalida"
-        ) {
-            include $_GET["ruta"] . ".php";
-        }
-        include "vista/footer.php";
-    }
-} else {
-    include "vista/login.php";
-}
-=======
->>>>>>> 2869c15f60a89f1f510221436755d25d0f527d6e
 
     //usuario
     if($_GET["ruta"]=="permisos"){
@@ -96,6 +72,7 @@ session_start();
         || $_GET["ruta"] == "VMedida"
         || $_GET["ruta"] == "VProducto"
         || $_GET["ruta"] == "FNotaVenta"
+        || $_GET["ruta"] == "FNotaSalida"
       ) {
         $ruta=$_GET["ruta"].".php";
         

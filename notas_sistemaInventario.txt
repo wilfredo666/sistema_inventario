@@ -1,7 +1,6 @@
   ============
   Pendientes
   ============
-  -Implementar modulo de permisos personalizados
   -Consisderar poner un apartado de configuracion donde se puedan poner registrar los datos de la empresa; podria servir para la emision de reportes en pdf
   -Implementar codigos prefijos para ingresos y salidas
     NI -Nota de Ingreso
@@ -15,6 +14,3 @@
   
   Observaciones
   --------------
-  -quitar nombre de cliente obligatorio: registro y edicion
-  -fallo en el boton vista y eliminar de lista productos
-  -quitar las opciones de salida de reportes (pdf, excel,etc) de la tabla de nota de venta
