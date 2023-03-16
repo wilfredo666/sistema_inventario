@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema Inventario</title>
@@ -49,11 +49,12 @@ session_start();
     <link rel="stylesheet" href="assest/plugins/dropzone/min/dropzone.min.css">
     <!--icono-->
     <link rel="icon" href="assest/dist/img/logoHermen.png">
-</head>
+  </head>
 
-<?php
-if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
+  <?php
+  if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
     include "asideMenu.php";
+<<<<<<< HEAD
     if (isset($_GET["ruta"])) {
         if (
             $_GET["ruta"] == "inicio"
@@ -75,5 +76,35 @@ if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
 } else {
     include "vista/login.php";
 }
+=======
+>>>>>>> 2869c15f60a89f1f510221436755d25d0f527d6e
 
-?>
+    //usuario
+    if($_GET["ruta"]=="permisos"){
+      $ruta="usuario/permisos.php";
+    }
+
+    if (isset($_GET["ruta"])) {
+      if (
+        $_GET["ruta"] == "inicio"
+        || $_GET["ruta"] == "salir"
+        || $_GET["ruta"] == "VUsuario"
+        || $_GET["ruta"] == "VCliente"
+        || $_GET["ruta"] == "VCategoria"
+        || $_GET["ruta"] == "VTalla"
+        || $_GET["ruta"] == "VColor"
+        || $_GET["ruta"] == "VMedida"
+        || $_GET["ruta"] == "VProducto"
+        || $_GET["ruta"] == "FNotaVenta"
+      ) {
+        $ruta=$_GET["ruta"].".php";
+        
+      }
+      include $ruta;
+      include "vista/footer.php";
+    }
+  } else {
+    include "vista/login.php";
+  }
+
+  ?>
