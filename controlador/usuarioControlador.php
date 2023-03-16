@@ -101,4 +101,22 @@ class ControladorUsuario
         $respuesta = ModeloUsuario::mdlEditUsuario($data);
         echo $respuesta;
     }
+  
+  static public function ctrUsuarioPermiso($idUsuario,$idPermiso){
+    $respuesta = ModeloUsuario::mdlUsuarioPermiso($idUsuario,$idPermiso);
+    return $respuesta;
+  }
+
+  static public function ctrActualizarPermiso(){
+    require "../modelo/usuarioModelo.php";
+    
+    $data=array(
+    "idUsuario"=>$_POST["idUsuario"],
+    "idPermiso"=>$_POST["idPermiso"]
+    );
+    
+    $respuesta = ModeloUsuario::mdlActualizarPermiso( $data );
+    echo $respuesta;
+  }
+  
 }
