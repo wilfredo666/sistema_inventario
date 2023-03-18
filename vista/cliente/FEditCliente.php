@@ -46,7 +46,6 @@ $cliente = ControladorCliente::ctrInfoCliente($id);
 <script>
   $(function(){
     $.validator.setDefaults({
-      
       submitHandler:function(){
         EditCliente()
       }
@@ -60,10 +59,6 @@ $cliente = ControladorCliente::ctrInfoCliente($id);
         },
         nitCliente:{
           required: true,
-        },
-        nomCliente:{
-          required:true,
-          minlength:8
         },
         telCliente:{
           required:true,

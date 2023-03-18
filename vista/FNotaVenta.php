@@ -25,6 +25,7 @@
                 <tr>
                   <th>Cod. Producto</th>
                   <th>Descripción</th>
+                  <th>Precio U.</th>
                   <th>Acción</th>
                 </tr>
               </thead>
@@ -35,6 +36,7 @@
                 ?><tr>
                     <td class="pb-0 mb-0"><?php echo $value["cod_producto"]; ?></td>
                     <td class="pb-0 mb-0"><?php echo $value["nombre_producto"]; ?></td>
+                    <td class="pb-0 mb-0"><?php echo $value["precio_venta"]; ?></td>
                     <td class="align-items-center text-center ">
                       <div class="btn-group ">
                         <button type="button" class="btn btn-info btn-sm" onclick="agregarCarrito2(<?php echo $value["id_producto"]; ?>)">

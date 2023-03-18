@@ -5,7 +5,7 @@
     <!--encabezado-->
     <form id="FNotaSalida" class="card card-primary card-outline">
       <div class="card-header">
-        <h4 class="card-title" style="font-size:20px;">Nota de Salida</h4>
+        <h4 class="card-title" style="font-size:20px;">Nota de Otros Ingresos</h4>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
             <i class="fas fa-minus"></i>
@@ -53,16 +53,16 @@
         <div class="col-md-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">Código de Salida</span>
+              <span class="input-group-text">Código de Ingreso</span>
             </div>
-            <input type="text" class="form-control" name="codSalida" id="codSalida" placeholder="Ingrese el código de salida">
+            <input type="text" class="form-control" name="codSalida" id="codSalida" placeholder="Ingrese el código de ingreso">
             <p class="text-danger" id="error-numFactura"></p>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">Concepto de Salida</span>
+              <span class="input-group-text">Concepto de Ingreso</span>
             </div>
-            <input type="text" class="form-control" name="conceptoSalida" id="conceptoSalida" placeholder="Ingrese el concepto de salida">
+            <input type="text" class="form-control" name="conceptoSalida" id="conceptoSalida" placeholder="Ingrese el concepto de ingreso">
             <p class="text-danger" id="error-numFactura"></p>
           </div>
 

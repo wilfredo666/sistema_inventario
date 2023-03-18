@@ -15,6 +15,7 @@
           <th>Nombre del Producto</th>
           <th>Talla</th>
           <th>Precio Venta</th>
+          <th>Stock</th>
           <th>Imagen</th>
           <th>Estado</th>
           <td>
@@ -33,6 +34,7 @@
             <td><?php echo $value["nombre_producto"]; ?></td>
             <td><?php echo $value["desc_talla"]; ?></td>
             <td><?php echo $value["precio_venta"]; ?></td>
+            <td><span class="badge badge-warning"> 50 docenas </span></td>
             <td><?php
                 if ($value["imagen_producto"] == "") {
                 ?>

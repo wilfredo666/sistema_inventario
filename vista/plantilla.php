@@ -73,6 +73,8 @@ session_start();
         || $_GET["ruta"] == "VProducto"
         || $_GET["ruta"] == "FNotaVenta"
         || $_GET["ruta"] == "FNotaSalida"
+        || $_GET["ruta"] == "FNotaIngreso"
+        || $_GET["ruta"] == "FOtrosIngresos"
       ) {
         $ruta=$_GET["ruta"].".php";
         

@@ -37,7 +37,7 @@
                     <td class="pb-0 mb-0"><?php echo $value["nombre_producto"]; ?></td>
                     <td class="align-items-center text-center ">
                       <div class="btn-group ">
-                        <button type="button" class="btn btn-info btn-sm" onclick="agregarCarrito3(<?php echo $value["id_producto"]; ?>)">
+                        <button type="button" class="btn btn-info btn-sm" onclick="agregarCarrito2(<?php echo $value["id_producto"]; ?>)">
                           <i class="fas fa-plus"></i>
                         </button>
                       </div>
@@ -73,15 +73,17 @@
               <tr>
                 <th width=250px;>Descripción</th>
                 <th>Cantidad</th>
-                <!-- <th>P.Unitario</th>
-                <th width=100px;>Total</th> -->
+                <th>P.Unitario</th>
+                <th width=100px;>Total</th>
                 <td>&nbsp;</td>
               </tr>
             </thead>
-            <tbody id="listaDetalle3">
+            <tbody id="listaDetalle2">
             </tbody>
             <tfooter>
-              <!-- <tr>
+
+              <tr>
+
                 <td colspan="2"></td>
                 <td colspan="3">
                   <div class="input-group sm-3">
@@ -105,7 +107,9 @@
                     <input type="text" id="netoVenta" readonly class="form-control form-control-sm" style="text-align:right" value="0.00">
                   </div>
                 </td>
-              </tr> -->
+
+              </tr>
+              
             </tfooter>
 
           </table>

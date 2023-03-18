@@ -176,13 +176,13 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="VNotaIngreso" class="nav-link">
+                                    <a href="FNotaIngreso" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Nota de Ingreso</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="VOtroIngreso" class="nav-link">
+                                    <a href="FOtrosIngresos" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Otros Ingresos</p>
                                     </a>

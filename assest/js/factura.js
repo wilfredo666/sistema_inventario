@@ -207,8 +207,8 @@ function agregarCarrito2(id) {
       let objDetalle = {
         idProducto: data["id_producto"],
         descProducto: data["nombre_producto"],
-        cantProducto: 1,
-        preUnitario: 0,
+        cantProducto: 0,
+        preUnitario: data["precio_venta"],
         preTotal: 0,
       }
 
@@ -458,3 +458,90 @@ console.log(data)
     }
   })
 }
+
+/* PARA NOTA DE SALIDA */
+/*==========
+carrito2
+============*/
+var arregloCarrito3 = []
+var listaDetalle3 = document.getElementById("listaDetalle3")
+
+function agregarCarrito3(id) {
+  var obj = {
+    idProducto: id
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/productoControlador.php?ctrBusProducto",
+    data: obj,
+    dataType: "json",
+    success: function (data) {
+      let objDetalle = {
+        idProducto: data["id_producto"],
+        descProducto: data["nombre_producto"],
+        cantProducto: 1,
+      }
+
+      arregloCarrito3.push(objDetalle)
+      dibujarTablaCarrito3()
+    }
+  })
+}
+
+function dibujarTablaCarrito3() {
+
+  arregloCarrito3.innerHTML = ""
+  arregloCarrito3.forEach((detalle) => {
+    let fila = document.createElement("tr")
+
+    fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
+
+      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="calcularPreProdVenta(' + detalle.idProducto + ')">' + '</td>' /* + */
+
+      /* '<td><input type="number" class="form-control form-control-sm" id="preUnitV_' + detalle.idProducto + '" value="' + detalle.preUnitario + '" onkeyup="calcularPreProdVenta(' + detalle.idProducto + ')">' + '</td>' +
+
+
+      '<td><input type="number" class="form-control form-control-sm" id="totalV_' + detalle.idProducto + '" value="' + detalle.preTotal + '" readonly>' + '</td>'  */  
+    /* +
+      '<td>'+detalle.precioProducto+'</td>'+
+      '<td>'+detalle.precioTotalPro+'</td>' */
+
+    let tdEliminar = document.createElement("td")
+    let botonEliminar = document.createElement("button")
+    botonEliminar.classList.add("btn", "btn-danger", "btn-sm", "borrar")
+    let icono = document.createElement("i")
+    icono.classList.add("fas", "fa-trash")
+    botonEliminar.appendChild(icono)
+    botonEliminar.onclick = () => {
+      eliminarCarrito3(detalle.idProducto)
+    }
+
+    tdEliminar.appendChild(botonEliminar)
+    fila.appendChild(tdEliminar)
+
+    listaDetalle3.appendChild(fila)
+  })
+}
+
+function eliminarCarrito3(idProd) {
+
+  arregloCarrito3 = arregloCarrito3.filter((detalle) => {
+    if (idProd != detalle.idProducto) {
+      return detalle
+    }
+  })
+  dibujarTablaCarrito3()
+  /* calcularTotal3() */
+}
+/* function calcularTotal3() {
+  let totalCarrito = 0
+  let descuento = parseFloat(document.getElementById("descuentoVenta").value)
+
+  for (var i = 0; i < arregloCarrito3.length; i++) {
+    totalCarrito = totalCarrito + parseFloat(arregloCarrito3[i].preTotal)
+  }
+
+  document.getElementById("totalVenta").value=(totalCarrito).toFixed(2)
+  document.getElementById("netoVenta").value=(totalCarrito-descuento).toFixed(2) 
+} */

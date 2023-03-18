@@ -55,10 +55,6 @@
         nitCliente:{
           required: true,
         },
-        nomCliente:{
-          required:true,
-          minlength:8
-        },
         telCliente:{
           required:true,
           minlength:7
