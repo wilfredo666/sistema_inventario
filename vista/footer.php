@@ -120,7 +120,8 @@ seccion de modals
       "responsive": true, 
       "lengthChange": false, 
       "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      "dom": 'Bfrtip',
+      "buttons": ["copy", "csv", "excel", "pdf", "print"],
       language:{
         "decimal": "",
         "emptyTable": "No hay información",
@@ -141,7 +142,7 @@ seccion de modals
           "previous": "Anterior"
         }
       }
-    }).buttons().container().appendTo('#DataTable_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#pruebaB');
 
   });
 

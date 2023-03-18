@@ -21,7 +21,8 @@ session_start();
     <link rel="stylesheet" href="assest/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="assest/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="assest/plugins/datatables-css/datatables-min.css">
+   <!-- <link rel="stylesheet" href="assest/plugins/datatables-css/datatables-min.css">-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="assest/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Ionicons -->
@@ -49,6 +50,20 @@ session_start();
     <link rel="stylesheet" href="assest/plugins/dropzone/min/dropzone.min.css">
     <!--icono-->
     <link rel="icon" href="assest/dist/img/logoHermen.png">
+    <style>
+      table{
+        font-size: 14px;
+      }
+      .brand-link{
+        padding: 3%;
+      }
+      .main-header{
+        padding: 0.2%;
+      }
+      aside{
+        font-size: 0.9em;
+      }
+    </style>
   </head>
 
   <?php

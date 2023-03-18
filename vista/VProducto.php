@@ -7,8 +7,9 @@
   </section>
 
   <section class="content">
-    <h4>Lista de Productos</h4>
-    <table id="DataTable" class="table table-bordered table-striped">
+    
+    <table id="DataTable" class="">
+     <caption>Lista de Productos</caption>
       <thead>
         <tr>
           <th>Cod. Producto</th>
@@ -38,11 +39,11 @@
             <td><?php
                 if ($value["imagen_producto"] == "") {
                 ?>
-                <img src="assest/dist/img/productos/product_default.png" width='100'>
+                <img src="assest/dist/img/productos/product_default.png" width='50'>
               <?php
                 } else {
               ?>
-                <img src='assest/dist/img/productos/<?php echo $value["imagen_producto"]; ?>' width='100' height="100">
+                <img src='assest/dist/img/productos/<?php echo $value["imagen_producto"]; ?>' width='50' height="50">
               <?php
                 }
               ?>

@@ -7,8 +7,9 @@
   </section>
 
   <section class="content">
-   <h4>Lista de Usuarios</h4>
-    <table id="DataTable" class="table table-bordered table-striped">
+ 
+    <table id="DataTable" class="">
+     <caption>Lista de Usuarios</caption>
       <thead>
         <tr>
           <th>#ID</th>
@@ -18,7 +19,7 @@
           <th>Ultimo login</th>
           <th>Estado</th>
           <td>
-            <button class="btn btn-primary"  onclick="MNuevoUsuario()"> <i class="fas fa-plus"></i> Nuevo</button>
+            <button class="btn btn-primary btn-sm"  onclick="MNuevoUsuario()"> <i class="fas fa-plus"></i> Nuevo</button>
           </td>
         </tr>
       </thead>
@@ -49,7 +50,7 @@
             <td>
               <div class="btn-group">
                 
-                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
+                <button class="btn btn-sm dropdown-toggle" data-toggle="dropdown"></button>
 
                 <ul class="dropdown-menu">
 
