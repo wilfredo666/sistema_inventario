@@ -5,7 +5,7 @@
     <!--encabezado-->
     <form id="FNotaSalida" class="card card-primary card-outline">
       <div class="card-header">
-        <h4 class="card-title" style="font-size:20px;">Nota de Otros Ingresos</h4>
+        <h4 class="card-title">Nota de Otros Ingresos</h4>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
             <i class="fas fa-minus"></i>

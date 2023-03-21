@@ -8,7 +8,7 @@
 
   <section class="content">
  
-    <table id="DataTable" class="">
+    <table id="DataTable" class="display">
      <caption>Lista de Usuarios</caption>
       <thead>
         <tr>

@@ -142,7 +142,7 @@ seccion de modals
           "previous": "Anterior"
         }
       }
-    }).buttons().container().appendTo('#pruebaB');
+    }).buttons().container().appendTo('DataTable_wrapper .col-md-6:eq(0)');
 
   });
 

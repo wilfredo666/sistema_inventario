@@ -21,7 +21,7 @@ session_start();
     <link rel="stylesheet" href="assest/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="assest/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-   <!-- <link rel="stylesheet" href="assest/plugins/datatables-css/datatables-min.css">-->
+    <link rel="stylesheet" href="assest/plugins/datatables-css/datatables-min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="assest/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
@@ -52,7 +52,7 @@ session_start();
     <link rel="icon" href="assest/dist/img/logoHermen.png">
     <style>
       table{
-        font-size: 14px;
+        /*font-size: 14px;*/
       }
       .brand-link{
         padding: 3%;
@@ -61,7 +61,10 @@ session_start();
         padding: 0.2%;
       }
       aside{
-        font-size: 0.9em;
+       /* font-size: 0.9em;*/
+      }
+      table.dataTable tbody th, table.dataTable tbody td{
+        /*padding: 0;*/
       }
     </style>
   </head>
