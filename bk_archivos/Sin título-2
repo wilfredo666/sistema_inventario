@@ -1,0 +1,16 @@
+<td id="estadoFactura_<?php echo $value["id_factura"]; ?>">
+    <?php
+    if ($value["estado_factura"] == 1) {
+    ?>
+        <span class="badge badge-success">Emitido</span>
+    <?php
+    } else if ($value["estado_factura"] == 2) {
+    ?>
+        <button type="button" class="btn btn-block btn-warning btn-xs" onclick="cmbEstadoVenta(<?php echo $value["id_factura"] ?>)">Pendiente</button>
+    <?php
+    } else {
+    ?>
+        <span class="badge badge-danger">Anulado</span>
+    <?php
+    } ?>
+</td>

@@ -211,18 +211,6 @@ class ControladorVenta
     $respuesta = ModeloVenta::mdlCmbEstado($id);
     echo $respuesta;
   }
-/* REVISAR PORQUE LOS CHOFERES NO TIENEN UN ACCESSO CON SESSION */
-  static public function ctrInfoVentasChofer()
-  {
-    session_start();
-    require_once "../modelo/ventaModelo.php";
-    $data = array(
-      "usuario" => $_SESSION["idUsuario"]
-    );
-    /* var_dump($data); */
-    $respuesta = ModeloVenta::InfoVentasChofer($data);
-    echo $respuesta;
-  }
 
   /* PARA NOTAS DE SALIDAS */
   static public function ctrRegNotaSalida()
@@ -249,5 +237,16 @@ class ControladorVenta
     echo $respuesta;
 
     /* var_dump($data); */
+  }
+
+  static public function ctrInfoSalidas()
+  {
+    $respuesta = ModeloVenta::mdlInfoSalidas();
+    return $respuesta;
+  }
+  static public function ctrInfoIngresos()
+  {
+    $respuesta = ModeloVenta::mdlInfoIngresos();
+    return $respuesta;
   }
 }

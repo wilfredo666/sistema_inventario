@@ -1,7 +1,7 @@
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-       
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light" id="pruebaB">
             <!-- Left navbar links -->
@@ -40,7 +40,7 @@
                         <img src="assest/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block" id="usuarioLogin"><?php echo $_SESSION['nombre_usuario'];?></a>
+                        <a href="#" class="d-block" id="usuarioLogin"><?php echo $_SESSION['nombre_usuario']; ?></a>
                     </div>
                 </div>
 
@@ -151,6 +151,12 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a href="VFactura" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Ventas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="FNotaVenta" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Nota de Venta</p>
@@ -160,6 +166,12 @@
                                     <a href="FNotaSalida" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Nota de Salida</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="RNotaSalida" class="nav-link">
+                                        <i class="fas fa-tasks-alt nav-icon text-info"></i>
+                                        <p>Reporte Notas de Salida</p>
                                     </a>
                                 </li>
                             </ul>
@@ -179,6 +191,7 @@
                                 <li class="nav-item">
                                     <a href="FNotaIngreso" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
+
                                         <p>Nota de Ingreso</p>
                                     </a>
                                 </li>
@@ -188,8 +201,33 @@
                                         <p>Otros Ingresos</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="RNotaIngreso" class="nav-link">
+                                        <i class="fas fa-tasks-alt nav-icon text-info"></i>
+                                        <p>Reporte Notas de Ingreso</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>
+                                    Reportes
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="VReporte" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Reportes rep</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item">
                             <a href="salir" class="nav-link text-cyan">
                                 <i class="fas fa-power-off nav-icon"></i>
