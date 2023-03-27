@@ -96,6 +96,7 @@ session_start();
         || $_GET["ruta"] == "VFactura"
         || $_GET["ruta"] == "RNotaSalida"
         || $_GET["ruta"] == "RNotaIngreso"
+        || $_GET["ruta"] == "VProveedor"
       ) {
         $ruta=$_GET["ruta"].".php";
         

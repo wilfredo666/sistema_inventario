@@ -232,7 +232,6 @@ class ControladorVenta
       "descuentoVenta" => $_POST["descuentoVenta"],
       "netoVenta" => $_POST["netoVenta"]
     );
-
     $respuesta = ModeloVenta::mdlRegNotaSalida($data);
     echo $respuesta;
 

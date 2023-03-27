@@ -57,6 +57,7 @@
 <script src="assest/js/color.js"></script>
 <script src="assest/js/medida.js"></script>
 <script src="assest/js/factura.js"></script>
+<script src="assest/js/proveedor.js"></script>
 
 <!--====================
 seccion de modals
