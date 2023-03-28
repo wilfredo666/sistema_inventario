@@ -34,7 +34,7 @@
             <td><?php echo $value["total"]; ?></td>
             <td><?php echo $value["login_usuario"]; ?></td>
 
-            
+
             <?php
             if ($value["estado_factura"] == 1) {
             ?>
@@ -56,9 +56,9 @@
                 <button class="btn btn-sm  btn-danger" onclick="MAnularFactura(<?php echo $value["id_factura"]; ?>)">
                   <i class="fas fa-trash"></i>
                 </button>
-               <!--  <a href="vista/factura/impNotaVenta.php?id=<?php echo $value["id_factura"]; ?>" class="btn btn-success" target="_blank">
+                <a href="vista/reporte/impNotaVenta.php?id=<?php echo $value["id_factura"]; ?>" class="btn btn-success" target="_blank">
                   <i class="fas fa-print"></i>
-                </a> -->
+                </a>
               </div>
             </td>
           </tr>

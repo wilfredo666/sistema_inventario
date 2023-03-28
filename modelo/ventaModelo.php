@@ -154,8 +154,7 @@ join cliente
 on cliente.id_cliente=factura.id_cliente
 JOIN usuario
 on usuario.id_usuario=factura.id_usuario
-JOIN personal
-on personal.id_personal=factura.id_personal where id_factura=$id");
+where id_factura=$id");
 
     $stmt->execute();
     return $stmt->fetch();
