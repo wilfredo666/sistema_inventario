@@ -31,9 +31,20 @@ $cliente = ControladorCliente::ctrInfoCliente($id);
       <label for="">Nombre del Cliente</label>
       <input type="text" class="form-control" id="nomCliente" name="nomCliente" value="<?php echo $cliente["nombre_cliente"]; ?>">
     </div>
-    <div class="form-group">
-      <label for="">Teléfono del Cliente</label>
-      <input type="text" class="form-control" id="telCliente" name="telCliente" value="<?php echo $cliente["telefono_cliente"]; ?>">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label for="">Teléfono del Cliente</label>
+        <input type="text" class="form-control" id="telCliente" name="telCliente" value="<?php echo $cliente["telefono_cliente"]; ?>">
+      </div>
+      <div class="form-group col-md-6 ">
+        <label for="">Porcentaje de Descuento</label>
+        <div class="input-group mb-2">
+          <input type="number" class="form-control" id="descuento" name="descuento" value="<?php echo $cliente["descuento"]; ?>">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> %</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="modal-footer justify-content-between">
@@ -44,45 +55,44 @@ $cliente = ControladorCliente::ctrInfoCliente($id);
 </form>
 
 <script>
-  $(function(){
+  $(function() {
     $.validator.setDefaults({
-      submitHandler:function(){
+      submitHandler: function() {
         EditCliente()
       }
     })
-    $(document).ready(function(){
+    $(document).ready(function() {
       $("#FormEditCliente").validate({
-      rules:{
-        rzCliente:{
-          required:true,
-          minlength:5
+        rules: {
+          rzCliente: {
+            required: true,
+            minlength: 5
+          },
+          nitCliente: {
+            required: true,
+          },
+          telCliente: {
+            required: true,
+            minlength: 7
+          }
         },
-        nitCliente:{
-          required: true,
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+          error.addClass('invalid-feedback')
+          element.closest('.form-group').append(error)
         },
-        telCliente:{
-          required:true,
-          minlength:7
-        }        
-      },
-      errorElement:'span',
-      errorPlacement:function(error, element){
-        error.addClass('invalid-feedback')
-        element.closest('.form-group').append(error)
-      },
 
-      highlight: function(element, errorClass, validClass){
-        $(element).addClass('is-invalid')
-        /* .is-invalid */
-      },
+        highlight: function(element, errorClass, validClass) {
+          $(element).addClass('is-invalid')
+          /* .is-invalid */
+        },
 
-      unhighlight: function(element, errorClass, validClass){
-        $(element).removeClass('is-invalid')
-      }
+        unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('is-invalid')
+        }
 
-    })
+      })
     })
 
   })
-
 </script>

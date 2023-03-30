@@ -20,11 +20,12 @@ class ModeloCliente{
     $dirCliente=$data["dirCliente"];
     $nomCliente=$data["nomCliente"];
     $telCliente=$data["telCliente"];
+    $descuento=$data["descuento"];
 
     date_default_timezone_set('America/La_Paz');
     $fecha = date('Y-m-d');
 
-    $stmt=Conexion::conectar()->prepare("insert into cliente(razon_social_cliente, nit_ci_cliente, direccion_cliente, nombre_cliente, telefono_cliente) values('$rzCliente', '$nitCliente', '$dirCliente', '$nomCliente', '$telCliente')");
+    $stmt=Conexion::conectar()->prepare("insert into cliente(razon_social_cliente, nit_ci_cliente, direccion_cliente, nombre_cliente, telefono_cliente, descuento) values('$rzCliente', '$nitCliente', '$dirCliente', '$nomCliente', '$telCliente', '$descuento')");
 
     if($stmt->execute()){
       return "ok";
@@ -54,8 +55,9 @@ class ModeloCliente{
     $nomCliente=$data["nomCliente"];
     $telCliente=$data["telCliente"];
     $idCliente=$data["idCliente"];
+    $descuento=$data["descuento"];
 
-    $stmt=Conexion::conectar()->prepare("update cliente set razon_social_cliente='$rzCliente', nit_ci_cliente='$nitCliente',  direccion_cliente='$dirCliente', nombre_cliente='$nomCliente', telefono_cliente='$telCliente' where id_cliente=$idCliente");
+    $stmt=Conexion::conectar()->prepare("update cliente set razon_social_cliente='$rzCliente', nit_ci_cliente='$nitCliente',  direccion_cliente='$dirCliente', nombre_cliente='$nomCliente', telefono_cliente='$telCliente', descuento='$descuento' where id_cliente=$idCliente");
 
     if($stmt->execute()){
       return "ok";

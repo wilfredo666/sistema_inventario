@@ -89,7 +89,7 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->close();
     $stmt->null;
   }
-/* PARA REPORTES DE INGRESO Y SALIDAS */
+  /* PARA REPORTES DE INGRESO Y SALIDAS */
   static public function mdlInfoSalidas()
   {
     $stmt = Conexion::conectar()->prepare("select * from nota_salida");
@@ -113,7 +113,7 @@ on usuario.id_usuario=factura.id_usuario");
 
   static public function mdlInfoFactura($id)
   {
-    $stmt = Conexion::conectar()->prepare("select * from factura join cliente on cliente.id_cliente=factura.id_cliente join usuario on usuario.id_usuario=factura.id_usuario join personal on personal.id_personal=factura.id_personal where id_factura=$id");
+    $stmt = Conexion::conectar()->prepare("select * from factura join cliente on cliente.id_cliente=factura.id_cliente join usuario on usuario.id_usuario=factura.id_usuario where id_factura=$id");
 
     $stmt->execute();
     return $stmt->fetch();
@@ -162,7 +162,30 @@ where id_factura=$id");
     $stmt->close();
     $stmt->null;
   }
+/* ==============================================
+CONSULTAS PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
+====================================================*/
+  static public function mdlInfoNotaIngreso($id)
+  {
+    $stmt = Conexion::conectar()->prepare("select * from nota_ingreso where id_nota_ingreso=$id");
+    $stmt->execute();
+    return $stmt->fetch();
 
+    $stmt->close();
+    $stmt->null;
+  }
+
+  static public function mdlInfoNotaSalida($id)
+  {
+    $stmt = Conexion::conectar()->prepare("select * from nota_salida where id_nota_salida=$id");
+
+    $stmt->execute();
+    return $stmt->fetch();
+
+    $stmt->close();
+    $stmt->null;
+  }
+/* --------------------------------------------- */
   static public function mdlVentaReporte($data)
   {
     $idPersonal = $data["idPersonal"];

@@ -30,6 +30,7 @@ class ControladorCliente{
       "dirCliente"=>$_POST["dirCliente"],
       "nomCliente"=>$_POST["nomCliente"],
       "telCliente"=>$_POST["telCliente"],
+      "descuento"=>$_POST["descuento"],
     );
 
     $respuesta=ModeloCliente::mdlRegCliente($data);
@@ -53,6 +54,7 @@ class ControladorCliente{
       "dirCliente"=>$_POST["dirCliente"],
       "nomCliente"=>$_POST["nomCliente"],
       "telCliente"=>$_POST["telCliente"],
+      "descuento"=>$_POST["descuento"],
     );
 
     $respuesta=ModeloCliente::mdlEditCliente($data);

@@ -44,16 +44,14 @@
 
 
             <td>
+              <!-- funciones script en archivo reporte.js -->
               <div class="btn-group">
-                <button class="btn btn-sm btn-info" onclick="MVerFactura(<?php echo $value["id_factura"]; ?>)">
+                <button class="btn btn-sm btn-info" onclick="MVerNotaSalida(<?php echo $value['id_nota_salida']; ?>)">
                   <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn btn-sm  btn-danger" onclick="MAnularFactura(<?php echo $value["id_factura"]; ?>)">
+                <button class="btn btn-sm  btn-danger" >
                   <i class="fas fa-trash"></i>
                 </button>
-               <!--  <a href="vista/factura/impNotaVenta.php?id=<?php echo $value["id_factura"]; ?>" class="btn btn-success" target="_blank">
-                  <i class="fas fa-print"></i>
-                </a> -->
               </div>
             </td>
           </tr>

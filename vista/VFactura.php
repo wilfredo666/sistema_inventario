@@ -50,10 +50,10 @@
 
             <td>
               <div class="btn-group">
-                <button class="btn btn-sm btn-info" onclick="MVerFactura(<?php echo $value["id_factura"]; ?>)">
+                <button class="btn btn-sm btn-info" onclick="MVerFactura(<?php echo $value['id_factura']; ?>)">
                   <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn btn-sm  btn-danger" onclick="MAnularFactura(<?php echo $value["id_factura"]; ?>)">
+                <button class="btn btn-sm  btn-danger">
                   <i class="fas fa-trash"></i>
                 </button>
                 <a href="vista/reporte/impNotaVenta.php?id=<?php echo $value["id_factura"]; ?>" class="btn btn-success" target="_blank">

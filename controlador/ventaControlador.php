@@ -135,10 +135,21 @@ class ControladorVenta
 
   static public function ctrInfoNotaEntrega($id)
   {
-
     $respuesta = ModeloVenta::mdlInfoNotaEntrega($id);
     return $respuesta;
   }
+/* ==============================================
+PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
+====================================================*/
+  static public function ctrInfoNotaIngreso($id){
+    $respuesta = ModeloVenta::mdlInfoNotaIngreso($id);
+    return $respuesta;
+  }
+  static public function ctrInfoNotaSalida($id){
+    $respuesta = ModeloVenta::mdlInfoNotaSalida($id);
+    return $respuesta;
+  }
+  /* -------------------------------------------- */
 
   static public function ctrInfoNotaVenta($id)
   {

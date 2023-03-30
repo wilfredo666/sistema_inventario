@@ -41,7 +41,7 @@ $proveedor = ControladorProveedor::ctrInfoProveedor($id);
         </tr>
 
         <tr>
-          <th>Contactos</th>
+          <th>URL proveedor</th>
           <td><?php echo $proveedor["url_proveedor"]; ?></td>
         </tr>
         <tr>

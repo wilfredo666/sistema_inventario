@@ -44,6 +44,11 @@ $rzCliente = preg_replace('([^A-Za-z0-9])', '', $razonSocial);
           <td><?php echo $cliente["telefono_cliente"]; ?></td>
         </tr>
 
+        <tr>
+          <th>Porcentaje de Descuento</th>
+          <td><?php echo $cliente["descuento"] . " %"; ?></td>
+        </tr>
+
       </table>
 
     </div>
