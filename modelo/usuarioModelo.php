@@ -121,4 +121,35 @@ class ModeloUsuario
     $stmt->null;
   }
 
+  static public function mdlEliUsuario($id){
+//tenr en cuanta que si hay una exepecion se lanzara catch y el resto de codigo ya no
+    try{
+      $stmt = Conexion::conectar()->prepare("delete from usuario where id_usuario=$id");
+      $stmt->execute();
+
+    }catch (PDOException $e){
+      $codeError= $e->getCode();
+      if($codeError=="23000"){
+        return "error";
+
+        $stmt->close();
+        $stmt->null;
+      }
+    }
+    return "ok";
+
+    $stmt->close();
+    $stmt->null;
+
+  }
+  
+  static public function mdlCantidadUsuarios(){
+    $stmt = Conexion::conectar()->prepare("select count(id_usuario) as usuarios from usuario");
+
+    $stmt->execute();
+    return $stmt->fetch();
+
+    $stmt->close();
+    $stmt->null;
+  }
 }

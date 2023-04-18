@@ -37,7 +37,7 @@
                     <td class="pb-0 mb-0"><?php echo $value["nombre_producto"]; ?></td>
                     <td class="align-items-center text-center ">
                       <div class="btn-group ">
-                        <button type="button" class="btn btn-info btn-sm" onclick="agregarCarrito3(<?php echo $value["id_producto"]; ?>)">
+                        <button type="button" class="btn btn-info btn-sm" onclick="agregarCarritoNS(<?php echo $value["id_producto"]; ?>)">
                           <i class="fas fa-plus"></i>
                         </button>
                       </div>
@@ -56,14 +56,12 @@
               <span class="input-group-text">Código de Salida</span>
             </div>
             <input type="text" class="form-control" name="codSalida" id="codSalida" placeholder="Ingrese el código de salida">
-            <p class="text-danger" id="error-numFactura"></p>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">Concepto de Salida</span>
             </div>
             <input type="text" class="form-control" name="conceptoSalida" id="conceptoSalida" placeholder="Ingrese el concepto de salida">
-            <p class="text-danger" id="error-numFactura"></p>
           </div>
 
 
@@ -73,40 +71,11 @@
               <tr>
                 <th width=250px;>Descripción</th>
                 <th>Cantidad</th>
-                <!-- <th>P.Unitario</th>
-                <th width=100px;>Total</th> -->
                 <td>&nbsp;</td>
               </tr>
             </thead>
-            <tbody id="listaDetalle3">
+            <tbody id="listaDetalleNS">
             </tbody>
-            <tfooter>
-              <!-- <tr>
-                <td colspan="2"></td>
-                <td colspan="3">
-                  <div class="input-group sm-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" style="padding:0.15rem 0.5rem">Subtotal</span>
-                    </div>
-                    <input type="text" class="form-control form-control-sm" name="totalVenta" id="totalVenta" value="0.00" readonly style="text-align:right">
-                  </div>
-
-                  <div class="input-group sm-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" style="padding:0.15rem 0.5rem">Descuento</span>
-                    </div>
-                    <input type="text" id="descuentoVenta" class="form-control form-control-sm" onkeyup="calcularTotal()" value="0.00" style="text-align:right">
-                  </div>
-
-                  <div class="input-group sm-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" style="padding:0.15rem 0.5rem">Total</span>
-                    </div>
-                    <input type="text" id="netoVenta" readonly class="form-control form-control-sm" style="text-align:right" value="0.00">
-                  </div>
-                </td>
-              </tr> -->
-            </tfooter>
 
           </table>
 

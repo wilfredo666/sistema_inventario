@@ -7,7 +7,9 @@
   </section>
 
   <section class="content">
-    <h4>Lista de Proveedores</h4>
+   <h5 class="table-title">
+      Lista de Proveedores
+    </h5>
     <table id="DataTable" class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -40,7 +42,7 @@
                 <button class="btn btn-sm btn-secondary" onclick="MEditProveedor(<?php echo $value["id_proveedor"]; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" onclick="MEliProveedor(<?php echo $value["id_proveedor"];?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

@@ -7,9 +7,11 @@
   </section>
 
   <section class="content">
- 
-    <table id="DataTable" class="display">
-     <caption>Lista de Usuarios</caption>
+      <h5 class="table-title">
+      Lista de usuarios
+    </h5>
+
+    <table id="DataTable" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>#ID</th>
@@ -19,7 +21,7 @@
           <th>Ultimo login</th>
           <th>Estado</th>
           <td>
-            <button class="btn btn-primary btn-sm"  onclick="MNuevoUsuario()"> <i class="fas fa-plus"></i> Nuevo</button>
+            <button class="btn btn-block btn-primary btn-sm"  onclick="MNuevoUsuario()"> <i class="fas fa-plus"></i> Nuevo</button>
           </td>
         </tr>
       </thead>
@@ -66,7 +68,7 @@
                 <button class="btn btn-sm btn-secondary" onclick="MEditUsuario(<?php echo $value["id_usuario"];?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" onclick="MEliUsuario(<?php echo $value["id_usuario"];?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

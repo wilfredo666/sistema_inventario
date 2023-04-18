@@ -69,21 +69,20 @@ class ModeloCliente{
     $stmt->null;
   }
 
-  static public function mdlEliCliente($data){
-    $cliente=Conexion::conectar()->prepare("select * from factura where id_cliente=$data");
-    $cliente->execute();
-    if($cliente->fetch()>0){
-      echo "error";
-    }else{
-      $stmt=Conexion::conectar()->prepare("delete from cliente where id_cliente=$data");
-
-      if($stmt->execute()){
-        return "ok";
-      }else{
+  static public function mdlEliCliente($id){
+    try{
+      $cliente=Conexion::conectar()->prepare("delete from cliente where id_cliente=$id");
+      $cliente->execute();
+    }catch (PDOException $e){
+      $codeError= $e->getCode();
+      if($codeError=="23000"){
         return "error";
+
+        $stmt->close();
+        $stmt->null;
       }
     }
-
+    return "ok";
     $stmt->close();
     $stmt->null;
   }
@@ -96,7 +95,7 @@ class ModeloCliente{
     $stmt->close();
     $stmt->null;
   }
-  
+
   static public function mdlCantidadClientes(){
     $stmt=Conexion::conectar()->prepare("select count(*) as cliente from cliente");
     $stmt->execute();

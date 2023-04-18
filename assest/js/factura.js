@@ -93,51 +93,6 @@ function validarFormulario() {
   return true
 }
 
-function emitirNotaEntrega() {
-
-  let chofer = parseInt(document.getElementById("chofer").value)
-  let vehiculo = parseInt(document.getElementById("vehiculo").value)
-  let zonaVenta = document.getElementById("zonaVenta").value
-
-  let obj = {
-    "chofer": chofer,
-    "vehiculo": vehiculo,
-    "zonaVenta": zonaVenta,
-    "productos": JSON.stringify(arregloCarrito)
-  }
-
-  $.ajax({
-    type: "POST",
-    url: "controlador/ventaControlador.php?ctrRegNotaEntrega",
-    data: obj,
-    cache: false,
-    success: function (data) {
-
-      if (data == "ok") {
-        Swal.fire({
-          icon: 'success',
-          showConfirmButton: false,
-          title: 'Nota de Entrega registrada',
-          timer: 1000
-        })
-        setTimeout(function () {
-          location.reload()
-        }, 1200)
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: 'Error de registro',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    }
-  })
-
-
-}
-
 function MVerFactura(id) {
   $("#modal-xl").modal("show")
 
@@ -183,13 +138,14 @@ function busCliente(){
       /* console.log(data) */
       document.getElementById("rsCliente").value=data["razon_social_cliente"]
       document.getElementById("idCliente").value=data["id_cliente"]
+      document.getElementById("descuentoVenta").value=data["descuento"]
     }
   })
 }
 
-/*==========
-carrito2
-============*/
+/*===================================
+carrito2 - formmulario Nota de venta
+====================================*/
 var arregloCarrito2 = []
 var listaDetalle2 = document.getElementById("listaDetalle2")
 
@@ -205,10 +161,10 @@ function agregarCarrito2(id) {
     dataType: "json",
     success: function (data) {
       let objDetalle = {
-        idProducto: data["id_producto"],
+        idProducto: parseInt(data["id_producto"]),
         descProducto: data["nombre_producto"],
         cantProducto: 0,
-        preUnitario: data["precio_venta"],
+        preUnitario: parseFloat(data["precio_venta"]),
         preTotal: 0,
       }
 
@@ -282,7 +238,7 @@ function calcularPreProdVenta(idProd) {
   //dibujarTablaCarrito2()
   calcularTotal()
 }
-/**/
+
 function descPreProducto() {
   let descProducto = parseFloat(document.getElementById("descProducto").value)
   let preUnitActual = parseFloat(document.getElementById("preUnitActual").value)
@@ -293,18 +249,19 @@ function descPreProducto() {
   calcularPreProd()
 }
 
-function prueba(){
-  let descuento = parseFloat(document.getElementById("descuentoVenta").value)
-}
 function calcularTotal() {
   let totalCarrito = 0
-  let descuento = parseFloat(document.getElementById("descuentoVenta").value)
+
 
   for (var i = 0; i < arregloCarrito2.length; i++) {
     totalCarrito = totalCarrito + parseFloat(arregloCarrito2[i].preTotal)
   }
-
+  /*subtotal sin descuento*/
   document.getElementById("totalVenta").value=(totalCarrito).toFixed(2)
+
+  /*calculo del descuento (%)*/
+  let descuento =(totalCarrito/100)*parseFloat(document.getElementById("descuentoVenta").value)
+
   document.getElementById("netoVenta").value=(totalCarrito-descuento).toFixed(2) 
 }
 
@@ -332,7 +289,7 @@ function emitirFactura(){
     data: obj,
     cache: false,
     success: function (data) {
-console.log(data)
+
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
@@ -411,22 +368,15 @@ function MAnularFactura(id){
 }
 
 /* PARA NOTA DE SALIDA */
-function emitirSalida(){
+function emitirNotaSalida(){
 
   let codSalida = document.getElementById("codSalida").value
   let conceptoSalida = document.getElementById("conceptoSalida").value
 
-  let totalVenta = document.getElementById("totalVenta").value
-  let descuentoVenta = document.getElementById("descuentoVenta").value
-  let netoVenta = document.getElementById("netoVenta").value
-
   let obj = {
     "codSalida": codSalida,
     "conceptoSalida": conceptoSalida,
-    "totalVenta": totalVenta,
-    "descuentoVenta": descuentoVenta,
-    "netoVenta": netoVenta,
-    "productos": JSON.stringify(arregloCarrito2)
+    "productos": JSON.stringify(arregloCarritoNS)
   }
 
   $.ajax({
@@ -435,7 +385,6 @@ function emitirSalida(){
     data: obj,
     cache: false,
     success: function (data) {
-console.log(data)
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
@@ -459,14 +408,13 @@ console.log(data)
   })
 }
 
-/* PARA NOTA DE SALIDA */
 /*==========
-carrito2
+carrito - nota de salida
 ============*/
-var arregloCarrito3 = []
-var listaDetalle3 = document.getElementById("listaDetalle3")
+var arregloCarritoNS = []
+var listaDetalleNS = document.getElementById("listaDetalleNS")
 
-function agregarCarrito3(id) {
+function agregarCarritoNS(id) {
   var obj = {
     idProducto: id
   }
@@ -483,29 +431,22 @@ function agregarCarrito3(id) {
         cantProducto: 1,
       }
 
-      arregloCarrito3.push(objDetalle)
-      dibujarTablaCarrito3()
+      arregloCarritoNS.push(objDetalle)
+      dibujarTablaCarritoNS()
     }
   })
 }
 
-function dibujarTablaCarrito3() {
+function dibujarTablaCarritoNS() {
 
-  arregloCarrito3.innerHTML = ""
-  arregloCarrito3.forEach((detalle) => {
+  listaDetalleNS.innerHTML = ""
+  arregloCarritoNS.forEach((detalle) => {
     let fila = document.createElement("tr")
 
     fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
 
-      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="calcularPreProdVenta(' + detalle.idProducto + ')">' + '</td>' /* + */
+      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNS(' + detalle.idProducto + ')">' + '</td>'
 
-      /* '<td><input type="number" class="form-control form-control-sm" id="preUnitV_' + detalle.idProducto + '" value="' + detalle.preUnitario + '" onkeyup="calcularPreProdVenta(' + detalle.idProducto + ')">' + '</td>' +
-
-
-      '<td><input type="number" class="form-control form-control-sm" id="totalV_' + detalle.idProducto + '" value="' + detalle.preTotal + '" readonly>' + '</td>'  */  
-    /* +
-      '<td>'+detalle.precioProducto+'</td>'+
-      '<td>'+detalle.precioTotalPro+'</td>' */
 
     let tdEliminar = document.createElement("td")
     let botonEliminar = document.createElement("button")
@@ -514,34 +455,156 @@ function dibujarTablaCarrito3() {
     icono.classList.add("fas", "fa-trash")
     botonEliminar.appendChild(icono)
     botonEliminar.onclick = () => {
-      eliminarCarrito3(detalle.idProducto)
+      eliminarCarritoNS(detalle.idProducto)
     }
 
     tdEliminar.appendChild(botonEliminar)
     fila.appendChild(tdEliminar)
 
-    listaDetalle3.appendChild(fila)
+    listaDetalleNS.appendChild(fila)
   })
 }
 
-function eliminarCarrito3(idProd) {
+function eliminarCarritoNS(idProd) {
 
-  arregloCarrito3 = arregloCarrito3.filter((detalle) => {
+  arregloCarritoNS = arregloCarritoNS.filter((detalle) => {
     if (idProd != detalle.idProducto) {
       return detalle
     }
   })
-  dibujarTablaCarrito3()
-  /* calcularTotal3() */
+  dibujarTablaCarritoNS()
 }
-/* function calcularTotal3() {
-  let totalCarrito = 0
-  let descuento = parseFloat(document.getElementById("descuentoVenta").value)
 
-  for (var i = 0; i < arregloCarrito3.length; i++) {
-    totalCarrito = totalCarrito + parseFloat(arregloCarrito3[i].preTotal)
+function actCantidadNS(idProd) {
+  let cantidad = parseInt(document.getElementById("cantProV_" + idProd).value)
+
+  arregloCarritoNS.map(function (dato) {
+    //console.log(dato);
+    if (dato.idProducto == idProd) {
+      dato.cantProducto = cantidad
+    }
+    return dato 
+  })
+}
+
+/*======================
+carrito nota de ingreso
+========================*/
+var arregloCarritoNI=[]
+var listaDetalleNI = document.getElementById("listaDetalleNI")
+function agregarCarritoNI(id){
+  var obj = {
+    idProducto: id
   }
 
-  document.getElementById("totalVenta").value=(totalCarrito).toFixed(2)
-  document.getElementById("netoVenta").value=(totalCarrito-descuento).toFixed(2) 
-} */
+  $.ajax({
+    type: "POST",
+    url: "controlador/productoControlador.php?ctrBusProducto",
+    data: obj,
+    dataType: "json",
+    success: function (data) {
+      let objDetalle = {
+        idProducto: data["id_producto"],
+        descProducto: data["nombre_producto"],
+        cantProducto: 1,
+      }
+
+      arregloCarritoNI.push(objDetalle)
+      dibujarTablaCarritoNI()
+    }
+  })
+}
+
+function dibujarTablaCarritoNI() {
+
+  listaDetalleNI.innerHTML = ""
+  arregloCarritoNI.forEach((detalle) => {
+    let fila = document.createElement("tr")
+
+    fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
+
+      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNI(' + detalle.idProducto + ')">'  + '</td>'
+
+
+    let tdEliminar = document.createElement("td")
+    let botonEliminar = document.createElement("button")
+    botonEliminar.classList.add("btn", "btn-danger", "btn-sm", "borrar")
+    let icono = document.createElement("i")
+    icono.classList.add("fas", "fa-trash")
+    botonEliminar.appendChild(icono)
+    botonEliminar.onclick = () => {
+      eliminarCarritoNI(detalle.idProducto)
+    }
+
+    tdEliminar.appendChild(botonEliminar)
+    fila.appendChild(tdEliminar)
+
+    listaDetalleNI.appendChild(fila)
+  })
+}
+
+function actCantidadNI(idProd) {
+  let cantidad = parseInt(document.getElementById("cantProV_" + idProd).value)
+
+  arregloCarritoNI.map(function (dato) {
+    //console.log(dato);
+    if (dato.idProducto == idProd) {
+      dato.cantProducto = cantidad
+    }
+    return dato 
+  })
+}
+
+function eliminarCarritoNI(idProd) {
+
+  arregloCarritoNI = arregloCarritoNI.filter((detalle) => {
+    if (idProd != detalle.idProducto) {
+      return detalle
+    }
+  })
+  dibujarTablaCarritoNI()
+}
+
+
+/*=========================
+registro nota de ingreso
+==========================*/
+function emitirNotaIngreso(){
+
+  let codIngreso = document.getElementById("codIngreso").value
+  let conceptoIngreso = document.getElementById("conceptoIngreso").value
+
+  let obj = {
+    "codIngreso": codIngreso,
+    "conceptoIngreso": conceptoIngreso,
+    "productos": JSON.stringify(arregloCarritoNI)
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRegNotaIngreso",
+    data: obj,
+    cache: false,
+    success: function (data) {
+      if (data == "ok") {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Nota de Ingreso registrada',
+          timer: 1000
+        })
+        setTimeout(function () {
+          location.reload()
+        }, 1200)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error de registro',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  })
+}

@@ -171,7 +171,7 @@
                                 <li class="nav-item">
                                     <a href="VFactura" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
-                                        <p>Ventas</p>
+                                        <p>Reporte Ventas</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -213,12 +213,12 @@
                                         <p>Nota de Ingreso</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!--<li class="nav-item">
                                     <a href="FOtrosIngresos" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Otros Ingresos</p>
                                     </a>
-                                </li>
+                                </li>-->
                                 <li class="nav-item">
                                     <a href="RNotaIngreso" class="nav-link">
                                         <i class="fas fa-tasks-alt nav-icon text-info"></i>

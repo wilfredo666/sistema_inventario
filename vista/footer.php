@@ -122,7 +122,6 @@ seccion de modals
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
-      "dom": 'Bfrtip',
       "buttons": ["copy", "csv", "excel", "pdf", "print"],
       language: {
         "decimal": "",
@@ -144,7 +143,7 @@ seccion de modals
           "previous": "Anterior"
         }
       }
-    }).buttons().container().appendTo('DataTable_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#DataTable_wrapper .col-md-6:eq(0)');
 
   });
 
@@ -153,7 +152,6 @@ seccion de modals
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
-      /* "buttons": ["excel", "pdf", "print", "colvis"], */
       language: {
         "decimal": "",
         "emptyTable": "No hay información",
@@ -174,7 +172,7 @@ seccion de modals
           "previous": "Anterior"
         }
       }
-    }).buttons().container().appendTo('#DataTable_NVenta_wrapper .col-md-6:eq(0)');
+    })
 
   });
 
@@ -236,6 +234,81 @@ seccion de modals
 
     })
   })
+  
+  //validacion para nota de ingreso
+  $(function() {
+    $.validator.setDefaults({
+      submitHandler: function() {
+        emitirNotaIngreso()
+      }
+    });
+    $("#FNotaIngreso").validate({
+      rules: {
+        codIngreso: {
+          required: true,
+          minlength: 1
+        },
+        conceptoIngreso: {
+          required: true,
+          minlength: 3
+        }
+      },
+
+      errorElement: "span",
+      errorPlacement: function(error, element) {
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error)
+      },
+      //destacar
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+  
+   //validacion para nota de salida
+  $(function() {
+    $.validator.setDefaults({
+      submitHandler: function() {
+        emitirNotaSalida()
+      }
+    });
+    $("#FNotaSalida").validate({
+      rules: {
+        codSalida: {
+          required: true,
+          minlength: 1
+        },
+        conceptoSalida: {
+          required: true,
+          minlength: 3
+        }
+      },
+
+      errorElement: "span",
+      errorPlacement: function(error, element) {
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error)
+      },
+      //destacar
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+  
 </script>
 
 

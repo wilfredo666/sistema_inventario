@@ -71,19 +71,15 @@ class ModeloProveedor{
   }
 
   static public function mdlEliProveedor($data){
-    $Proveedor=Conexion::conectar()->prepare("select * from factura where id_Proveedor=$data");
-    $Proveedor->execute();
-    if($Proveedor->fetch()>0){
-      echo "error";
-    }else{
-      $stmt=Conexion::conectar()->prepare("delete from Proveedor where id_Proveedor=$data");
+    $stmt=Conexion::conectar()->prepare("delete from proveedor where id_proveedor=$data");
+    $stmt->execute();
 
-      if($stmt->execute()){
-        return "ok";
-      }else{
-        return "error";
-      }
+    if($stmt->execute()){
+      return "ok";
+    }else{
+      return "error";
     }
+
 
     $stmt->close();
     $stmt->null;
@@ -97,7 +93,7 @@ class ModeloProveedor{
     $stmt->close();
     $stmt->null;
   }
-  
+
   static public function mdlCantidadProveedors(){
     $stmt=Conexion::conectar()->prepare("select count(*) as Proveedor from Proveedor");
     $stmt->execute();

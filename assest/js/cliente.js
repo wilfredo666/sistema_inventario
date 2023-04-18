@@ -113,7 +113,7 @@ function MVerCliente(id) {
   })
 }
 
-function MElicliente(id) {
+function MEliCliente(id) {
   var obj = {
     id: id
   }
@@ -129,14 +129,13 @@ function MElicliente(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/clienteControlador.php?ctrElicliente",
+        url: "controlador/clienteControlador.php?ctrEliCliente",
         success: function (data) {
-
           if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'cliente eliminado',
+              title: 'Cliente eliminado',
               timer: 1000
             })
             setTimeout(function () {
@@ -146,7 +145,7 @@ function MElicliente(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El cliente no puede ser eliminado, porque esta en uso',
+              text: 'El cliente no puede ser eliminado debido a estar en uso',
               showConfirmButton: false,
               timer: 1500
             })

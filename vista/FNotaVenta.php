@@ -123,7 +123,7 @@
 
                   <div class="input-group sm-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" style="padding:0.15rem 0.5rem">Descuento</span>
+                      <span class="input-group-text" style="padding:0.15rem 0.5rem">Descuento(%)</span>
                     </div>
                     <input type="text" id="descuentoVenta" class="form-control form-control-sm" onkeyup="calcularTotal()" value="0.00" style="text-align:right">
                   </div>

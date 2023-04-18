@@ -90,23 +90,26 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlEliProducto($data){
-    $producto = Conexion::conectar()->prepare("select * from producto where id_producto=$data and estado=1");
-    $producto->execute();
-    if($producto->fetch() > 0){
-      echo "error";
-    }  else {
-        $stmt=Conexion::conectar()->prepare("delete from producto where id_producto=$data");
-        if($stmt->execute()){
-          return "ok";
-        }else{
-          return "error";
-        }
+  static public function mdlEliProducto($id){
+    try{
+      $stmt = Conexion::conectar()->prepare("delete from producto where id_producto=$id");
+      $stmt->execute();
+
+    }catch (PDOException $e){
+      $codeError= $e->getCode();
+      if($codeError=="23000"){
+        return "error";
+
+        $stmt->close();
+        $stmt->null;
       }
+    }
+
+    return "ok";
     $stmt->close();
     $stmt->null;
   }
-  
+
   static public function mdlBusProducto($idProducto){
     $stmt=Conexion::conectar()->prepare("select * from producto where id_producto='$idProducto'");
     $stmt->execute();
@@ -116,7 +119,7 @@ class ModeloProducto{
     $stmt->close();
     $stmt->null;
   }
-  
+
   static public function mdlCantidadProductos(){
     $stmt=Conexion::conectar()->prepare("select count(*) as producto from producto");
     $stmt->execute();
@@ -126,7 +129,7 @@ class ModeloProducto{
     $stmt->close();
     $stmt->null;
   }
-  
+
   static public function mdlInfoProductosVenta(){
     $stmt=Conexion::conectar()->prepare("select * from producto where estado=1");
     $stmt->execute();

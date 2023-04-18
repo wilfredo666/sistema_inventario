@@ -144,7 +144,7 @@ function MNuevoUsuario(){
           data:obj,
           url:"controlador/usuarioControlador.php?ctrEliUsuario",
           success:function(data){
-  
+
             if(data=="ok"){
               Swal.fire({
                 icon: 'success',
@@ -159,7 +159,7 @@ function MNuevoUsuario(){
               Swal.fire({
                 icon:'error',
                 title:'Error!!!',
-                text:'El usuario no puede ser eliminado, porque esta en uso',
+                text:'El usuario no puede ser eliminado debido a estar en uso',
                 showConfirmButton:false,
                 timer:1500
               })

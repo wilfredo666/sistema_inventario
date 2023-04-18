@@ -59,16 +59,15 @@ class ControladorCliente{
 
     $respuesta=ModeloCliente::mdlEditCliente($data);
     echo $respuesta;
-    /* var_dump($data) ; */
+    
 
   }
 
   static public function ctrEliCliente(){
     require "../modelo/ClienteModelo.php";
-    $data=$_POST["id"];
+    $id=$_POST["id"];
 
-    $respuesta=ModeloCliente::mdlEliCliente($data);
-
+   $respuesta=ModeloCliente::mdlEliCliente($id);
     echo $respuesta;
 
   }
