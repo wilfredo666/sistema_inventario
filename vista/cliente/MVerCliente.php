@@ -35,6 +35,16 @@ $rzCliente = preg_replace('([^A-Za-z0-9])', '', $razonSocial);
         </tr>
 
         <tr>
+          <th>País</th>
+          <td><?php echo $cliente["pais_cliente"]; ?></td>
+        </tr>
+
+        <tr>
+          <th>Ciudad</th>
+          <td><?php echo $cliente["ciudad_cliente"]; ?></td>
+        </tr>
+
+        <tr>
           <th>Nombre(s)</th>
           <td><?php echo $cliente["nombre_cliente"]; ?></td>
         </tr>

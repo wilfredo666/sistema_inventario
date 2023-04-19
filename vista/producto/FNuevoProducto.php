@@ -38,33 +38,34 @@
         ?>
       </select>
     </div>
+    
     <div class="form-group col-md-4">
-      <label for="">Categoría</label>
-      <select class="form-control select2bs4" name="categoriaProducto" id="categoriaProducto">
-        <option value="">Seleccionar Categoría</option>
+      <label for="">Grupo</label>
+      <select class="form-control select2bs4" name="grupoProducto" id="grupoProducto">
+        <option value="">Seleccionar grupo</option>
         <?php
-        require_once "../../controlador/categoriaControlador.php";
-        require_once "../../modelo/categoriaModelo.php";
-        $categoria = ControladorCategoria::ctrInfoCategorias();
-        foreach ($categoria as $value) {
+        require_once "../../controlador/grupoControlador.php";
+        require_once "../../modelo/grupoModelo.php";
+        $grupo = ControladorGrupo::ctrInfoGrupos();
+        foreach ($grupo as $value) {
         ?>
-          <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["desc_categoria"]; ?></option>
+          <option value="<?php echo $value["id_grupo"]; ?>"><?php echo $value["desc_grupo"]; ?></option>
         <?php
         }
         ?>
       </select>
     </div>
     <div class="form-group col-md-4">
-      <label for="">U. de Medida</label>
-      <select class="form-control select2bs4" name="medidaProducto" id="medidaProducto">
-        <option value="">Seleccionar U Medida</option>
+      <label for="">Diseño</label>
+      <select class="form-control select2bs4" name="disenoProducto" id="disenoProducto">
+        <option value="">Seleccionar diseño</option>
         <?php
-        require_once "../../controlador/medidaControlador.php";
-        require_once "../../modelo/medidaModelo.php";
-        $medida = ControladorMedida::ctrInfoMedidas();
-        foreach ($medida as $value) {
+        require_once "../../controlador/disenoControlador.php";
+        require_once "../../modelo/disenoModelo.php";
+        $diseno = ControladorDiseno::ctrInfoDisenos();
+        foreach ($diseno as $value) {
         ?>
-          <option value="<?php echo $value["id_medida"]; ?>"><?php echo $value["desc_medida"]; ?></option>
+          <option value="<?php echo $value["id_diseno"]; ?>"><?php echo $value["desc_diseno"]; ?></option>
         <?php
         }
         ?>
@@ -86,8 +87,41 @@
         }
         ?>
       </select>
-      
     </div>
+
+    <div class="form-group col-md-6">
+      <label for="">Tipo Producto</label>
+      <select class="form-control select2bs4" name="categoriaProducto" id="categoriaProducto">
+        <option value="">Seleccionar Tipo Producto</option>
+        <?php
+        require_once "../../controlador/categoriaControlador.php";
+        require_once "../../modelo/categoriaModelo.php";
+        $categoria = ControladorCategoria::ctrInfoCategorias();
+        foreach ($categoria as $value) {
+        ?>
+          <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["desc_categoria"]; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">U. de Medida</label>
+      <select class="form-control select2bs4" name="medidaProducto" id="medidaProducto">
+        <option value="">Seleccionar U Medida</option>
+        <?php
+        require_once "../../controlador/medidaControlador.php";
+        require_once "../../modelo/medidaModelo.php";
+        $medida = ControladorMedida::ctrInfoMedidas();
+        foreach ($medida as $value) {
+        ?>
+          <option value="<?php echo $value["id_medida"]; ?>"><?php echo $value["desc_medida"]; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+    </div>
+    
     <div class="form-group">
       <label for="">Imagen del Producto</label>
       <input type="file" class="form-control" id="ImgProducto" name="ImgProducto" onchange="previsualizar()" >

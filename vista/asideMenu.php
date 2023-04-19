@@ -127,7 +127,7 @@
                                 <li class="nav-item">
                                     <a href="VCategoria" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
-                                        <p>Categoría</p>
+                                        <p>Tipo Producto</p>
                                     </a>
                                 </li>
                             </ul>
@@ -144,6 +144,22 @@
                                     <a href="VColor" class="nav-link">
                                         <i class="far fa-circle nav-icon text-info"></i>
                                         <p>Color</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="VGrupo" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Grupo</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="VDiseno" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Diseño</p>
                                     </a>
                                 </li>
                             </ul>

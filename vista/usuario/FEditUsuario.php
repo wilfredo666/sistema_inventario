@@ -39,6 +39,7 @@ $usuario = ControladorUsuario::ctrInfoUsuario($id);
       <select name="perfilUsuario" id="perfilUsuario" class="form-control">
         <option value="Administrador" <?php if ($usuario["perfil"] == "Administrador") : ?>selected<?php endif; ?>>Administrador</option>
           <option value="Auxiliar" <?php if ($usuario["perfil"] == "Auxiliar") : ?>selected<?php endif; ?>>Auxiliar</option>
+          <option value="Almacen" <?php if ($usuario["perfil"] == "Almacen") : ?>selected<?php endif; ?>>Almacén</option>
       </select>
     </div>
 

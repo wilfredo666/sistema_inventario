@@ -6,7 +6,7 @@ $id=$_GET["id"];
 $producto=ControladorProducto::ctrInfoProducto($id);
 
 ?>
-<div class="modal-header encabezado">
+<div class="modal-header bg-dark">
   <h4 class="modal-title font-weight-light">Información del Producto</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -42,6 +42,16 @@ $producto=ControladorProducto::ctrInfoProducto($id);
         <tr>
           <th>Unidad de Medida</th>
           <td><?php echo $producto["desc_medida"];?></td>
+        </tr>
+
+        <tr>
+          <th>Grupo</th>
+          <td><?php echo $producto["desc_grupo"];?></td>
+        </tr>
+
+        <tr>
+          <th>Diseño</th>
+          <td><?php echo $producto["desc_diseno"];?></td>
         </tr>
 
         <tr>

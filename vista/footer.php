@@ -59,6 +59,8 @@
 <script src="assest/js/factura.js"></script>
 <script src="assest/js/proveedor.js"></script>
 <script src="assest/js/reporte.js"></script>
+<script src="assest/js/diseno.js"></script>
+<script src="assest/js/grupo.js"></script>
 
 <!--====================
 seccion de modals

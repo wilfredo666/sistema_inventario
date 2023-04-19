@@ -8,7 +8,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
 ?>
 
 
-<div class="modal-header encabezado">
+<div class="modal-header bg-dark">
   <h4 class="modal-title font-weight-light">Editar Producto</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -51,9 +51,9 @@ $producto = ControladorProducto::ctrInfoProducto($id);
       </select>
     </div>
     <div class="form-group col-md-3">
-      <label for="">Categoría</label>
+      <label for="">Tipo Producto</label>
       <select class="form-control select2bs4" name="categoriaProducto" id="categoriaProducto">
-        <option value="">Seleccionar Categoría</option>
+        <option value="">Seleccionar Tipo Producto</option>
         <?php
         require_once "../../controlador/categoriaControlador.php";
         require_once "../../modelo/categoriaModelo.php";
@@ -66,6 +66,40 @@ $producto = ControladorProducto::ctrInfoProducto($id);
         ?>
       </select>
     </div>
+
+    <div class="form-group col-md-6">
+      <label for="">Grupo</label>
+      <select class="form-control select2bs4" name="grupoProducto" id="grupoProducto">
+        <option value="">Seleccionar grupo</option>
+        <?php
+        require_once "../../controlador/grupoControlador.php";
+        require_once "../../modelo/grupoModelo.php";
+        $grupo = ControladorGrupo::ctrInfoGrupos();
+        foreach ($grupo as $value) {
+        ?>
+          <option value="<?php echo $value["id_grupo"]; ?>"<?php if ($producto["id_grupo"] == $value["id_grupo"]) : ?> selected <?php endif; ?>><?php echo $value["desc_grupo"]; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">Diseño</label>
+      <select class="form-control select2bs4" name="disenoProducto" id="disenoProducto">
+        <option value="">Seleccionar diseño</option>
+        <?php
+        require_once "../../controlador/disenoControlador.php";
+        require_once "../../modelo/disenoModelo.php";
+        $diseno = ControladorDiseno::ctrInfoDisenos();
+        foreach ($diseno as $value) {
+        ?>
+          <option value="<?php echo $value["id_diseno"]; ?>"<?php if ($producto["id_diseno"] == $value["id_diseno"]) : ?> selected <?php endif; ?>><?php echo $value["desc_diseno"]; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+    </div>
+
     <div class="form-group col-md-4">
       <label for="">U. de Medida</label>
       <select class="form-control select2bs4" name="medidaProducto" id="medidaProducto">

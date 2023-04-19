@@ -2,6 +2,7 @@
 $producto=ControladorProducto::ctrCantidadProductos();
 
 $venta=ControladorVenta::ctrCantidadVentas();
+$totalVentas=ControladorVenta::ctrTotalVentas();
 $cliente=ControladorCliente::ctrCantidadClientes();
 $usuario=ControladorUsuario::ctrCantidadUsuarios();
 
@@ -49,9 +50,9 @@ $usuario=ControladorUsuario::ctrCantidadUsuarios();
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?php echo $venta["ventas"];?></h3>
+                <h3><?php echo $totalVentas["totalVentas"]. " Bs.";?></h3>
 
-                <p>Ventas</p>
+                <p>Ventas - Gestión 2023</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

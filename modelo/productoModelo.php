@@ -17,12 +17,14 @@ class ModeloProducto{
     $costoProducto=$data["costoProducto"];
     $precioProducto=$data["precioProducto"];
     $tallaProducto=$data["tallaProducto"];
+    $grupoProducto=$data["grupoProducto"];
+    $disenoProducto=$data["disenoProducto"];
     $categoriaProducto=$data["categoriaProducto"];
     $medidaProducto=$data["medidaProducto"];
     $colorProducto=$data["colorProducto"];
     $imgProducto=$data["imgProducto"];
 
-    $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, nombre_producto, precio_costo, precio_venta, imagen_producto, id_categoria, id_medida, id_talla, id_color)values('$codProducto', '$nomProducto', '$costoProducto', '$precioProducto','$imgProducto','$categoriaProducto',' $medidaProducto','$tallaProducto','$colorProducto')");
+    $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, nombre_producto, precio_costo, precio_venta, imagen_producto, id_grupo, id_diseno, id_categoria, id_medida, id_talla, id_color)values('$codProducto', '$nomProducto', '$costoProducto', '$precioProducto', '$imgProducto' , '$grupoProducto', '$disenoProducto', '$categoriaProducto',' $medidaProducto','$tallaProducto','$colorProducto')");
 
     if($stmt->execute()){
       return "ok";
@@ -40,6 +42,8 @@ class ModeloProducto{
       left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
       left join talla on talla.id_talla=producto.id_talla
       left join color on color.id_color=producto.id_color
+      left join grupo on grupo.id_grupo=producto.id_grupo
+      left join diseno on diseno.id_diseno=producto.id_diseno
       where id_producto=$id");
     $stmt->execute();
 
@@ -57,6 +61,8 @@ class ModeloProducto{
     $costoProducto=$data["costoProducto"];
     $precioProducto=$data["precioProducto"];
     $tallaProducto=$data["tallaProducto"];
+    $grupoProducto=$data["grupoProducto"];
+    $disenoProducto=$data["disenoProducto"];
     $categoriaProducto=$data["categoriaProducto"];
     $medidaProducto=$data["medidaProducto"];
     $colorProducto=$data["colorProducto"];
@@ -64,7 +70,7 @@ class ModeloProducto{
     $estadoProducto=$data["estadoProducto"];
 
 
-    $stmt=Conexion::conectar()->prepare("update producto set cod_producto='$codProducto', nombre_producto='$nomProducto', precio_costo='$costoProducto', precio_venta='$precioProducto', imagen_producto='$ImgProducto', id_categoria='$categoriaProducto', id_medida='$medidaProducto', id_talla='$tallaProducto', id_color='$colorProducto', estado='$estadoProducto' where id_producto=$idProducto");
+    $stmt=Conexion::conectar()->prepare("update producto set cod_producto='$codProducto', nombre_producto='$nomProducto', precio_costo='$costoProducto', precio_venta='$precioProducto', imagen_producto='$ImgProducto', id_grupo='$grupoProducto' , id_diseno='$disenoProducto', id_categoria='$categoriaProducto', id_medida='$medidaProducto', id_talla='$tallaProducto', id_color='$colorProducto', estado='$estadoProducto' where id_producto=$idProducto");
 
     if($stmt->execute()){
       return "ok";

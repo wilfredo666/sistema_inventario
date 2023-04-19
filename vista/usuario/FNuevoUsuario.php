@@ -31,6 +31,7 @@
         <option value="">Seleccionar</option>
         <option value="Administrador">Administrador</option>
         <option value="Auxiliar">Auxiliar</option>
+        <option value="Almacen">Almacén</option>
       </select>
     </div>
   </div>

@@ -265,5 +265,14 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->close();
     $stmt->null;
   }
+  /* SUMATORIA DE TOTAL VENTAS */
+  static public function mdlTotalVentas(){
+    $stmt = Conexion::conectar()->prepare("select sum(total) as totalVentas from factura where fecha_emision BETWEEN '2023-01-01' and '2023-12-31'");
+    $stmt->execute();
+    return $stmt->fetch();
+
+    $stmt->close();
+    $stmt->null;
+  }
 
 }

@@ -162,4 +162,9 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     return $respuesta;
   }
 
+  static public function ctrTotalVentas(){
+    $respuesta = ModeloVenta::mdlTotalVentas();
+    return $respuesta;
+  }
+
 }
