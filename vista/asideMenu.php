@@ -260,6 +260,22 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="VRepMovimiento" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Rep. Movimientos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="VRepClasificacion" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Rep. Clasificación</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">

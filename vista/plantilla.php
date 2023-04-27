@@ -112,6 +112,8 @@ session_start();
         || $_GET["ruta"] == "RNotaIngreso"
         || $_GET["ruta"] == "VProveedor"
         || $_GET["ruta"] == "VReporte"
+        || $_GET["ruta"] == "VRepMovimiento"
+        || $_GET["ruta"] == "VRepClasificacion"
         || $_GET["ruta"] == "VGrupo"
         || $_GET["ruta"] == "VDiseno"
       ) {
