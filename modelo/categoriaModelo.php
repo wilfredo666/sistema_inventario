@@ -4,7 +4,7 @@ class ModeloCategoria{
 
 
   static public function mdlInfoCategorias(){
-    $stmt=Conexion::conectar()->prepare("select * from Categoria");
+    $stmt=Conexion::conectar()->prepare("select * from categoria");
     $stmt->execute();
 
     return $stmt->fetchAll();
