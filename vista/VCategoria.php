@@ -29,10 +29,7 @@
             <td><?php echo $value["desc_categoria"]; ?></td>
             <td>
               <div class="btn-group">
-                <!-- <button class="btn btn-sm btn-info" onclick="MVerCategoria(<?php echo $value["id_categoria"]; ?>)">
-                  <i class="fas fa-eye"></i>
-                </button> -->
-                <button class="btn btn-sm btn-secondary" onclick="MEditCategoria(<?php echo $value["id_categoria"]; ?>)">
+                <button class="btn btn-sm btn-secondary" onclick="MEditCategoria(<?php echo $value['id_categoria']; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
                 <button class="btn btn-sm btn-danger">
@@ -45,8 +42,6 @@
         <?php
         }
         ?>
-
-
       </tbody>
     </table>
 

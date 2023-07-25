@@ -126,6 +126,7 @@ function MNuevoUsuario(){
     })
   }
   
+ 
   function MEliUsuario(id){
     var obj={
       id:id
@@ -144,7 +145,7 @@ function MNuevoUsuario(){
           data:obj,
           url:"controlador/usuarioControlador.php?ctrEliUsuario",
           success:function(data){
-
+  
             if(data=="ok"){
               Swal.fire({
                 icon: 'success',
@@ -159,9 +160,9 @@ function MNuevoUsuario(){
               Swal.fire({
                 icon:'error',
                 title:'Error!!!',
-                text:'El usuario no puede ser eliminado debido a estar en uso',
+                text:'El usuario no puede ser eliminado, porque es un usuario activo',
                 showConfirmButton:false,
-                timer:1500
+                timer:1900
               })
             }
           }

@@ -8,120 +8,119 @@
 
     <div class="modal-body" style="padding-bottom: 0; padding-top: 1;">
         <div class="card">
-            <!-- <form id="ReporteDePersonal"> -->
-            <div class="card-body" style="padding-bottom: 0;">
-                <div class="container col-md-12">
-                    <div class="row">
-                        <div class="form-group col-md-2">
-                            <label>Tallas</label>
-                            <div class="input-group mb-0">
-                                <select class="form-control select2bs4" name="talla" id="talla">
-                                    <option value="">-- Seleccionar --</option>
-                                    <?php
-                                    require_once "controlador/tallaControlador.php";
-                                    require_once "modelo/tallaModelo.php";
-                                    $tallas = ControladorTalla::ctrInfoTallas();
-                                    foreach ($tallas as $value) {
-                                    ?>
-                                        <option value="<?php echo $value["id_talla"]; ?>"><?php echo $value["desc_talla"]; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
+            <form id="ReporteClasificacion">
+                <div class="card-body" style="padding-bottom: 0;">
+                    <div class="container col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label>Tallas</label>
+                                <div class="input-group mb-0">
+                                    <select class="form-control select2bs4" name="talla" id="talla">
+                                        <option value="">-- Seleccionar --</option>
+                                        <?php
+                                        require_once "controlador/tallaControlador.php";
+                                        require_once "modelo/tallaModelo.php";
+                                        $tallas = ControladorTalla::ctrInfoTallas();
+                                        foreach ($tallas as $value) {
+                                        ?>
+                                            <option value="<?php echo $value["id_talla"]; ?>"><?php echo $value["desc_talla"]; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-md-2">
-                            <label>Grupos</label>
-                            <div class="input-group mb-0">
-                                <select class="form-control select2bs4" name="grupo" id="grupo">
-                                    <option value="">-- Seleccionar --</option>
-                                    <?php
-                                    require_once "controlador/grupoControlador.php";
-                                    require_once "modelo/grupoModelo.php";
-                                    $grupos = Controladorgrupo::ctrInfogrupos();
-                                    foreach ($grupos as $value) {
-                                    ?>
-                                        <option value="<?php echo $value["id_grupo"]; ?>"><?php echo $value["desc_grupo"]; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
+                            <div class="form-group col-md-2">
+                                <label>Grupos</label>
+                                <div class="input-group mb-0">
+                                    <select class="form-control select2bs4" name="grupo" id="grupo">
+                                        <option value="">-- Seleccionar --</option>
+                                        <?php
+                                        require_once "controlador/grupoControlador.php";
+                                        require_once "modelo/grupoModelo.php";
+                                        $grupos = Controladorgrupo::ctrInfogrupos();
+                                        foreach ($grupos as $value) {
+                                        ?>
+                                            <option value="<?php echo $value["id_grupo"]; ?>"><?php echo $value["desc_grupo"]; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-md-2">
-                            <label>Diseños</label>
-                            <div class="input-group mb-0">
-                                <select class="form-control select2bs4" name="diseño" id="diseño">
-                                    <option value="">-- Seleccionar --</option>
-                                    <?php
-                                    require_once "controlador/disenoControlador.php";
-                                    require_once "modelo/disenoModelo.php";
-                                    $disenos = Controladordiseno::ctrInfodisenos();
-                                    foreach ($disenos as $value) {
-                                    ?>
-                                        <option value="<?php echo $value["id_diseno"]; ?>"><?php echo $value["desc_diseno"]; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
+                            <div class="form-group col-md-2">
+                                <label>Diseños</label>
+                                <div class="input-group mb-0">
+                                    <select class="form-control select2bs4" name="diseno" id="diseno">
+                                        <option value="">-- Seleccionar --</option>
+                                        <?php
+                                        require_once "controlador/disenoControlador.php";
+                                        require_once "modelo/disenoModelo.php";
+                                        $disenos = Controladordiseno::ctrInfodisenos();
+                                        foreach ($disenos as $value) {
+                                        ?>
+                                            <option value="<?php echo $value["id_diseno"]; ?>"><?php echo $value["desc_diseno"]; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-md-2">
-                            <label>Color</label>
-                            <div class="input-group mb-0">
-                                <select class="form-control select2bs4" name="color" id="color">
-                                    <option value="">-- Seleccionar --</option>
-                                    <?php
-                                    require_once "controlador/colorControlador.php";
-                                    require_once "modelo/colorModelo.php";
-                                    $colors = ControladorColor::ctrInfocolores();
-                                    foreach ($colors as $value) {
-                                    ?>
-                                        <option value="<?php echo $value["id_color"]; ?>"><?php echo $value["desc_color"]; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
+                            <div class="form-group col-md-2">
+                                <label>Color</label>
+                                <div class="input-group mb-0">
+                                    <select class="form-control select2bs4" name="color" id="color">
+                                        <option value="">-- Seleccionar --</option>
+                                        <?php
+                                        require_once "controlador/colorControlador.php";
+                                        require_once "modelo/colorModelo.php";
+                                        $colors = ControladorColor::ctrInfocolores();
+                                        foreach ($colors as $value) {
+                                        ?>
+                                            <option value="<?php echo $value["id_color"]; ?>"><?php echo $value["desc_color"]; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-md-3">
-                            <label>Tipo</label>
-                            <div class="input-group mb-0">
-                                <select class="form-control select2bs4" name="categoriaProducto" id="categoriaProducto">
-                                    <option value="">Seleccionar Tipo Producto</option>
-                                    <?php
-                                    require_once "controlador/categoriaControlador.php";
-                                    require_once "modelo/categoriaModelo.php";
-                                    $categoria = ControladorCategoria::ctrInfoCategorias();
-                                    foreach ($categoria as $value) {
-                                    ?>
-                                        <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["desc_categoria"]; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
+                            <div class="form-group col-md-3">
+                                <label>Tipo</label>
+                                <div class="input-group mb-0">
+                                    <select class="form-control select2bs4" name="categoriaProducto" id="categoriaProducto">
+                                        <option value="">Seleccionar Tipo Producto</option>
+                                        <?php
+                                        require_once "controlador/categoriaControlador.php";
+                                        require_once "modelo/categoriaModelo.php";
+                                        $categoria = ControladorCategoria::ctrInfoCategorias();
+                                        foreach ($categoria as $value) {
+                                        ?>
+                                            <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["desc_categoria"]; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-1">
-                            <label>Buscar</label>
-                            <div class="input-group-append flex-row">
-
-                                <button type="button" class="btn btn-navbar bg-secondary" style="height: min-content; width: 80px;  align-self: center;">
-                                    <i class="fas fa-search "></i>
-                                </button>
+                            <div class="form-group col-md-1">
+                                <label>Buscar</label>
+                                <div class="input-group-append flex-row">
+                                    <button type="button" class="btn btn-navbar bg-secondary" style="height: min-content; width: 80px;  align-self: center;" onclick="reporteClasificacion();">
+                                        <i class="fas fa-search "></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- </form> -->
+            </form>
         </div>
     </div>
-    
+
 </div>
 
 <script>

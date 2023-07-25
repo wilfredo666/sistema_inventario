@@ -40,3 +40,22 @@ function MVerNotaEntrega(id) {
     }
   })
 }
+/* ====================================
+REPORTE POR CLASIFICACIÓN
+=======================================*/
+function reporteClasificacion() {
+  let form = new FormData($("#ReporteClasificacion")[0])
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/productoControlador.php?ctrRepClasificacion",
+    data: form,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      /* $("#repServSolicitud").html(data) */
+      console.log(data)
+    }
+  })
+}

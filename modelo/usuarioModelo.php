@@ -89,6 +89,7 @@ class ModeloUsuario
     $stmt->close();
     $stmt->null;
   }
+  
   static public function mdlUsuarioPermiso($idUsuario,$idPermiso){
     $stmt = Conexion::conectar()->prepare("select * from permiso_usuario where id_usuario=$idUsuario and id_permiso=$idPermiso");
 
@@ -121,10 +122,9 @@ class ModeloUsuario
     $stmt->null;
   }
 
-  static public function mdlEliUsuario($id){
-//tenr en cuanta que si hay una exepecion se lanzara catch y el resto de codigo ya no
+  /* static public function mdlEliUsuario($id){
     try{
-      $stmt = Conexion::conectar()->prepare("delete from usuario where id_usuario=$id");
+      $stmt = Conexion::conectar()->prepare("delete from usuario where estado=0 and id_usuario=$id");
       $stmt->execute();
 
     }catch (PDOException $e){
@@ -140,8 +140,26 @@ class ModeloUsuario
 
     $stmt->close();
     $stmt->null;
+  } */
 
+  static public function mdlEliUsuario($id)
+  {
+    $usuario = Conexion::conectar()->prepare("select * from usuario where id_usuario=$id and estado=1");
+    $usuario->execute();
+    if ($usuario->fetch() > 0) {
+      echo "error";
+    } else {
+      $stmt = Conexion::conectar()->prepare("delete from usuario where id_usuario=$id");
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        return "error";
+      }
+    }
+    $stmt->close();
+    $stmt->null;
   }
+
   
   static public function mdlCantidadUsuarios(){
     $stmt = Conexion::conectar()->prepare("select count(id_usuario) as usuarios from usuario");

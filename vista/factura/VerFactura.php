@@ -85,7 +85,7 @@ $productos = json_decode($factura["detalle_factura"], true);
             <td><?php echo $factura["total"]; ?></td>
           </tr>
           <tr>
-            <td colspan="3"><b>Descuento</b></td>
+            <td colspan="3"><b>Descuento (%)</b></td>
             <td><?php echo $factura["descuento"]; ?></td>
           </tr>
           <tr>

@@ -1,3 +1,4 @@
+
 <?php 
 $ruta=parse_url($_SERVER['REQUEST_URI']);
 
