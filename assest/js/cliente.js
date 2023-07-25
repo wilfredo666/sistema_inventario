@@ -105,7 +105,7 @@ function MVerCliente(id) {
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/cliente/MVercliente.php?id=" + id,
+    url: "vista/cliente/MVerCliente.php?id=" + id,
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
