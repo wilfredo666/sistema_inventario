@@ -22,17 +22,17 @@ class ModeloVenta
     if ($stmt->execute()) {
       //fecha
       date_default_timezone_set("America/La_paz");
-      $fecha=date("Y-m-d");
+      $fecha = date("Y-m-d");
 
       //transformar de json a array
-      $salProductos=json_decode($data["productos"],true);
+      $salProductos = json_decode($data["productos"], true);
 
       //registrar en la bd - tabla salida stock
-      for($i=0; $i<count($salProductos); $i++){
-        $idProducto=$salProductos[$i]["idProducto"];
-        $cantProducto=$salProductos[$i]["cantProducto"];
+      for ($i = 0; $i < count($salProductos); $i++) {
+        $idProducto = $salProductos[$i]["idProducto"];
+        $cantProducto = $salProductos[$i]["cantProducto"];
 
-        $salida_sql=Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values('$idProducto', $cantProducto, 'NV-$numFactura')");
+        $salida_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values('$idProducto', $cantProducto, 'NV-$numFactura')");
         $salida_sql->execute();
       }
 
@@ -59,6 +59,20 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->close();
     $stmt->null;
   }
+
+  /*====================================
+ PARA REPORTES DE INGRESO Y SALIDAS 
+ ====================================*/
+  static public function mdlInformacionVentas()
+  {
+    $stmt = Conexion::conectar()->prepare("select * from factura");
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+    $stmt->close();
+    $stmt->null;
+  }
+
   /* PARA REPORTES DE INGRESO Y SALIDAS */
   static public function mdlInfoSalidas()
   {
@@ -202,14 +216,14 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
 
     if ($stmt->execute()) {
       //transformar de json a array
-      $salProductos=json_decode($data["productos"],true);
+      $salProductos = json_decode($data["productos"], true);
 
       //registrar en la bd - tabla salida stock
-      for($i=0; $i<count($salProductos); $i++){
-        $idProducto=$salProductos[$i]["idProducto"];
-        $cantProducto=$salProductos[$i]["cantProducto"];
+      for ($i = 0; $i < count($salProductos); $i++) {
+        $idProducto = $salProductos[$i]["idProducto"];
+        $cantProducto = $salProductos[$i]["cantProducto"];
 
-        $salida_sql=Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values($idProducto, $cantProducto, 'NS-$codSalida')");
+        $salida_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values($idProducto, $cantProducto, 'NS-$codSalida')");
         $salida_sql->execute();
       }
 
@@ -236,14 +250,14 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     if ($stmt->execute()) {
 
       //transformar de json a array
-      $ingProductos=json_decode($data["productos"],true);
+      $ingProductos = json_decode($data["productos"], true);
 
       //registrar en la bd - tabla ingreso stock
-      for($i=0; $i<count($ingProductos); $i++){
-        $idProducto=$ingProductos[$i]["idProducto"];
-        $cantProducto=$ingProductos[$i]["cantProducto"];
+      for ($i = 0; $i < count($ingProductos); $i++) {
+        $idProducto = $ingProductos[$i]["idProducto"];
+        $cantProducto = $ingProductos[$i]["cantProducto"];
 
-        $ingreso_sql=Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso) values($idProducto, $cantProducto, 'NI-$codIngreso')");
+        $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso) values($idProducto, $cantProducto, 'NI-$codIngreso')");
         $ingreso_sql->execute();
       }
 
@@ -256,7 +270,8 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->null;
   }
 
-  static public function mdlCantidadVentas(){
+  static public function mdlCantidadVentas()
+  {
     $stmt = Conexion::conectar()->prepare("select count(id_factura) as ventas from factura");
 
     $stmt->execute();
@@ -266,7 +281,8 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->null;
   }
   /* SUMATORIA DE TOTAL VENTAS */
-  static public function mdlTotalVentas(){
+  static public function mdlTotalVentas()
+  {
     $stmt = Conexion::conectar()->prepare("select sum(total) as totalVentas from factura where fecha_emision BETWEEN '2023-01-01' and '2023-12-31'");
     $stmt->execute();
     return $stmt->fetch();
@@ -274,5 +290,4 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->close();
     $stmt->null;
   }
-
 }

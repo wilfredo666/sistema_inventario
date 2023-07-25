@@ -26,9 +26,10 @@ class ControladorVenta
     return $respuesta;
   }
 
-  static public function ctrInfoFactura($id){
+  static public function ctrInfoFactura($id)
+  {
 
-    $respuesta=ModeloVenta::mdlInfoFactura($id);
+    $respuesta = ModeloVenta::mdlInfoFactura($id);
     return $respuesta;
   }
 
@@ -48,7 +49,7 @@ class ControladorVenta
     require_once "../modelo/ventaModelo.php";
 
     $id = $_POST["idVenta"];
-    $respuesta=ModeloVenta::mdlAnularVenta($id);
+    $respuesta = ModeloVenta::mdlAnularVenta($id);
     echo $respuesta;
   }
 
@@ -75,16 +76,28 @@ class ControladorVenta
     $respuesta = ModeloVenta::mdlRegNotaVenta($data);
     echo $respuesta;
 
+    var_dump($data);
+  }
+
+  /* ==============================================
+PARA VER SI HAY VENTAS
+====================================================*/
+  static public function ctrInformacionVentas()
+  {
+    $respuesta = ModeloVenta::mdlInformacionVentas();
+    return $respuesta;
   }
 
   /* ==============================================
 PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
 ====================================================*/
-  static public function ctrInfoNotaIngreso($id){
+  static public function ctrInfoNotaIngreso($id)
+  {
     $respuesta = ModeloVenta::mdlInfoNotaIngreso($id);
     return $respuesta;
   }
-  static public function ctrInfoNotaSalida($id){
+  static public function ctrInfoNotaSalida($id)
+  {
     $respuesta = ModeloVenta::mdlInfoNotaSalida($id);
     return $respuesta;
   }
@@ -96,9 +109,10 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     return $respuesta;
   }
 
-  static public function ctrCmbEstado(){
+  static public function ctrCmbEstado()
+  {
     require_once "../modelo/ventaModelo.php";
-    $id=$_POST["idVenta"];
+    $id = $_POST["idVenta"];
     $respuesta = ModeloVenta::mdlCmbEstado($id);
     echo $respuesta;
   }
@@ -137,7 +151,8 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     return $respuesta;
   }
 
-  static public function ctrRegNotaIngreso(){
+  static public function ctrRegNotaIngreso()
+  {
     session_start(); //inicamos la sesion para obtener el id del usuario actual
     require_once "../modelo/ventaModelo.php";
 
@@ -157,14 +172,15 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     echo $respuesta;
   }
 
-  static public function ctrCantidadVentas(){
+  static public function ctrCantidadVentas()
+  {
     $respuesta = ModeloVenta::mdlCantidadVentas();
     return $respuesta;
   }
 
-  static public function ctrTotalVentas(){
+  static public function ctrTotalVentas()
+  {
     $respuesta = ModeloVenta::mdlTotalVentas();
     return $respuesta;
   }
-
 }

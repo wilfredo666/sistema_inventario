@@ -82,7 +82,7 @@ function cantidadProd(idProd) {
   //dibujarTablaCarrito()
 }
 
-function validarFormulario() {
+/* function validarFormulario() {
   let numFactura = document.getElementById("numFactura").value
 
   if (numFactura == null || numFactura.length == 0 || /^\s+$/.test(numFactura)) {
@@ -91,7 +91,7 @@ function validarFormulario() {
   }
 
   return true
-}
+} */
 
 function MVerFactura(id) {
   $("#modal-xl").modal("show")
@@ -289,8 +289,8 @@ function emitirFactura(){
     data: obj,
     cache: false,
     success: function (data) {
-
-      if (data == "ok") {
+      console.log(data);
+      if (data != "ok") {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,

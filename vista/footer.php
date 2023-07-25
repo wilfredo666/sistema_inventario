@@ -194,10 +194,6 @@ seccion de modals
     });
     $("#FNotaVenta").validate({
       rules: {
-        numFactura: {
-          required: true,
-          minlength: 3
-        },
         nitCliente: {
           required: true
         },
@@ -206,10 +202,6 @@ seccion de modals
         },
       },
       messages: {
-        numFactura: {
-          required: "El campo no puede estar vacio",
-          minlength: "El campo no puede tener menos de 3 caracteres"
-        },
         nitCliente: {
           required: "Inserte o seleccione un nit/ci"
         },

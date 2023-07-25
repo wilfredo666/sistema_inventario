@@ -6,6 +6,7 @@ if(isset($ruta["query"])){
      $ruta["query"]=="ctrInfoProductos"||
      $ruta["query"]=="ctrEditProducto"||
      $ruta["query"]=="ctrEliProducto"||
+     $ruta["query"]=="ctrRepClasificacion"||
      $ruta["query"]=="ctrBusProducto"){
     $metodo=$ruta["query"];
     $producto=new ControladorProducto();
@@ -124,5 +125,20 @@ class ControladorProducto{
     return $respuesta;
   }
     
+  static public function ctrRepClasificacion(){
+    $categoriaProducto = $_POST["categoriaProducto"];
+    $color = $_POST["color"];
+    $diseno = $_POST["diseno"];
+    $grupo = $_POST["grupo"];
+    $talla = $_POST["talla"];
+
+    var_dump($diseno);
+    var_dump($grupo);
+    var_dump($talla);
+    var_dump($color);
+    var_dump($categoriaProducto);
+  }
+
+  /*  */
   
 }
