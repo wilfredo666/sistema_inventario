@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2023 a las 06:33:11
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 7.4.30
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 25, 2023 at 10:07 PM
+-- Server version: 10.5.19-MariaDB-cll-lve
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,36 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema_inventario`
+-- Database: `u184609663_inventario`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Table structure for table `categoria`
 --
 
 CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL,
   `desc_categoria` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `categoria`
+-- Dumping data for table `categoria`
 --
 
 INSERT INTO `categoria` (`id_categoria`, `desc_categoria`) VALUES
-(1, 'Calzetines'),
-(2, 'Mallas'),
-(3, 'Medias nylon'),
-(4, 'Calzas de Licra'),
-(5, 'Jeans Licra'),
-(6, 'Media pantalon');
+(1, 'Media Pantalon'),
+(2, 'Media Soporte'),
+(3, 'Pantyhose'),
+(4, 'CT Hombre'),
+(5, 'Calcetines'),
+(6, 'Bucaneras');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -60,10 +60,10 @@ CREATE TABLE `cliente` (
   `nombre_cliente` varchar(100) NOT NULL,
   `telefono_cliente` varchar(50) NOT NULL,
   `descuento` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `cliente`
+-- Dumping data for table `cliente`
 --
 
 INSERT INTO `cliente` (`id_cliente`, `razon_social_cliente`, `nit_ci_cliente`, `direccion_cliente`, `pais_cliente`, `ciudad_cliente`, `nombre_cliente`, `telefono_cliente`, `descuento`) VALUES
@@ -74,17 +74,17 @@ INSERT INTO `cliente` (`id_cliente`, `razon_social_cliente`, `nit_ci_cliente`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `color`
+-- Table structure for table `color`
 --
 
 CREATE TABLE `color` (
   `id_color` int(11) NOT NULL,
   `desc_color` varchar(50) NOT NULL,
   `img_color` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `color`
+-- Dumping data for table `color`
 --
 
 INSERT INTO `color` (`id_color`, `desc_color`, `img_color`) VALUES
@@ -95,27 +95,27 @@ INSERT INTO `color` (`id_color`, `desc_color`, `img_color`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `diseno`
+-- Table structure for table `diseno`
 --
 
 CREATE TABLE `diseno` (
   `id_diseno` int(11) NOT NULL,
   `desc_diseno` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `diseno`
+-- Dumping data for table `diseno`
 --
 
 INSERT INTO `diseno` (`id_diseno`, `desc_diseno`) VALUES
-(1, 'Vivos fluorecentess'),
-(2, 'Juvenil'),
-(3, 'Mangas Cortas');
+(1, 'Con Puntera'),
+(2, 'Nuda'),
+(3, 'CV, S/M');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `factura`
+-- Table structure for table `factura`
 --
 
 CREATE TABLE `factura` (
@@ -129,10 +129,10 @@ CREATE TABLE `factura` (
   `fecha_emision` datetime NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `estado_factura` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `factura`
+-- Dumping data for table `factura`
 --
 
 INSERT INTO `factura` (`id_factura`, `codigo_factura`, `id_cliente`, `detalle_factura`, `total`, `descuento`, `neto`, `fecha_emision`, `id_usuario`, `estado_factura`) VALUES
@@ -144,27 +144,31 @@ INSERT INTO `factura` (`id_factura`, `codigo_factura`, `id_cliente`, `detalle_fa
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `grupo`
+-- Table structure for table `grupo`
 --
 
 CREATE TABLE `grupo` (
   `id_grupo` int(11) NOT NULL,
   `desc_grupo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `grupo`
+-- Dumping data for table `grupo`
 --
 
 INSERT INTO `grupo` (`id_grupo`, `desc_grupo`) VALUES
-(1, 'Poliester'),
-(2, 'Hilos'),
-(3, 'Lana hilada');
+(1, 'Lujo'),
+(2, 'Stretch'),
+(3, 'Lycra'),
+(4, 'Camiseta Térmica PA'),
+(5, 'Calceteria'),
+(6, 'Men´s Underwear'),
+(7, 'Poleras');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ingreso_stock`
+-- Table structure for table `ingreso_stock`
 --
 
 CREATE TABLE `ingreso_stock` (
@@ -172,10 +176,10 @@ CREATE TABLE `ingreso_stock` (
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `cod_ingreso` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `ingreso_stock`
+-- Dumping data for table `ingreso_stock`
 --
 
 INSERT INTO `ingreso_stock` (`id_ingreso_stock`, `id_producto`, `cantidad`, `cod_ingreso`) VALUES
@@ -185,7 +189,7 @@ INSERT INTO `ingreso_stock` (`id_ingreso_stock`, `id_producto`, `cantidad`, `cod
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `nota_ingreso`
+-- Table structure for table `nota_ingreso`
 --
 
 CREATE TABLE `nota_ingreso` (
@@ -196,10 +200,10 @@ CREATE TABLE `nota_ingreso` (
   `fecha_ingreso` datetime NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `estado_nota_ingreso` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `nota_ingreso`
+-- Dumping data for table `nota_ingreso`
 --
 
 INSERT INTO `nota_ingreso` (`id_nota_ingreso`, `cod_nota_ingreso`, `concepto_ingreso`, `detalle_ingreso`, `fecha_ingreso`, `id_usuario`, `estado_nota_ingreso`) VALUES
@@ -210,7 +214,7 @@ INSERT INTO `nota_ingreso` (`id_nota_ingreso`, `cod_nota_ingreso`, `concepto_ing
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `nota_salida`
+-- Table structure for table `nota_salida`
 --
 
 CREATE TABLE `nota_salida` (
@@ -221,10 +225,10 @@ CREATE TABLE `nota_salida` (
   `fecha_salida` datetime NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `estado_nota_salida` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `nota_salida`
+-- Dumping data for table `nota_salida`
 --
 
 INSERT INTO `nota_salida` (`id_nota_salida`, `cod_nota_salida`, `concepto_salida`, `detalle_nota_salida`, `fecha_salida`, `id_usuario`, `estado_nota_salida`) VALUES
@@ -237,16 +241,16 @@ INSERT INTO `nota_salida` (`id_nota_salida`, `cod_nota_salida`, `concepto_salida
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permiso`
+-- Table structure for table `permiso`
 --
 
 CREATE TABLE `permiso` (
   `id_permiso` int(11) NOT NULL,
   `desc_permiso` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `permiso`
+-- Dumping data for table `permiso`
 --
 
 INSERT INTO `permiso` (`id_permiso`, `desc_permiso`) VALUES
@@ -261,17 +265,17 @@ INSERT INTO `permiso` (`id_permiso`, `desc_permiso`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `permiso_usuario`
+-- Table structure for table `permiso_usuario`
 --
 
 CREATE TABLE `permiso_usuario` (
   `id_permiso_usuario` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_permiso` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Volcado de datos para la tabla `permiso_usuario`
+-- Dumping data for table `permiso_usuario`
 --
 
 INSERT INTO `permiso_usuario` (`id_permiso_usuario`, `id_usuario`, `id_permiso`) VALUES
@@ -286,7 +290,7 @@ INSERT INTO `permiso_usuario` (`id_permiso_usuario`, `id_usuario`, `id_permiso`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Table structure for table `producto`
 --
 
 CREATE TABLE `producto` (
@@ -303,10 +307,10 @@ CREATE TABLE `producto` (
   `id_talla` int(11) NOT NULL,
   `id_color` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `producto`
+-- Dumping data for table `producto`
 --
 
 INSERT INTO `producto` (`id_producto`, `cod_producto`, `nombre_producto`, `precio_costo`, `precio_venta`, `imagen_producto`, `id_grupo`, `id_diseno`, `id_categoria`, `id_medida`, `id_talla`, `id_color`, `estado`) VALUES
@@ -318,7 +322,7 @@ INSERT INTO `producto` (`id_producto`, `cod_producto`, `nombre_producto`, `preci
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Table structure for table `proveedor`
 --
 
 CREATE TABLE `proveedor` (
@@ -330,10 +334,10 @@ CREATE TABLE `proveedor` (
   `email_proveedor` varchar(30) NOT NULL,
   `url_proveedor` varchar(50) NOT NULL,
   `estado_proveedor` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `proveedor`
+-- Dumping data for table `proveedor`
 --
 
 INSERT INTO `proveedor` (`id_proveedor`, `nit_proveedor`, `rs_proveedor`, `direccion_prov`, `telefono_prov`, `email_proveedor`, `url_proveedor`, `estado_proveedor`) VALUES
@@ -343,7 +347,7 @@ INSERT INTO `proveedor` (`id_proveedor`, `nit_proveedor`, `rs_proveedor`, `direc
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `salida_stock`
+-- Table structure for table `salida_stock`
 --
 
 CREATE TABLE `salida_stock` (
@@ -351,10 +355,10 @@ CREATE TABLE `salida_stock` (
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `cod_salida` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `salida_stock`
+-- Dumping data for table `salida_stock`
 --
 
 INSERT INTO `salida_stock` (`id_salida_stock`, `id_producto`, `cantidad`, `cod_salida`) VALUES
@@ -370,16 +374,16 @@ INSERT INTO `salida_stock` (`id_salida_stock`, `id_producto`, `cantidad`, `cod_s
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `talla`
+-- Table structure for table `talla`
 --
 
 CREATE TABLE `talla` (
   `id_talla` int(11) NOT NULL,
   `desc_talla` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `talla`
+-- Dumping data for table `talla`
 --
 
 INSERT INTO `talla` (`id_talla`, `desc_talla`) VALUES
@@ -389,16 +393,16 @@ INSERT INTO `talla` (`id_talla`, `desc_talla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `unidad_medida`
+-- Table structure for table `unidad_medida`
 --
 
 CREATE TABLE `unidad_medida` (
   `id_medida` int(11) NOT NULL,
   `desc_medida` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `unidad_medida`
+-- Dumping data for table `unidad_medida`
 --
 
 INSERT INTO `unidad_medida` (`id_medida`, `desc_medida`) VALUES
@@ -409,7 +413,7 @@ INSERT INTO `unidad_medida` (`id_medida`, `desc_medida`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -421,48 +425,48 @@ CREATE TABLE `usuario` (
   `ultimo_login` datetime NOT NULL,
   `fecha_registro` date NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `login_usuario`, `password`, `perfil`, `ultimo_login`, `fecha_registro`, `estado`) VALUES
-(1, 'Administrador ADM', 'admin', '$2y$10$y5Oc7mG8p4MPuFPvUdOk/.Gkf6iD/3kNqtYm2Lw0fOxRiBrLItehS', 'Administrador', '2023-04-18 21:03:38', '2023-03-02', 1),
-(4, 'Eliseo', 'eliseo', '$2y$10$nftFdT4H9Bqhsd0oqU/PVeBoaintyW/d7eocua2v7PDM2FiX/Y8Me', 'Auxiliar', '0000-00-00 00:00:00', '2023-03-04', 0),
+(1, 'Administrador ADM', 'admin', '$2y$10$y5Oc7mG8p4MPuFPvUdOk/.Gkf6iD/3kNqtYm2Lw0fOxRiBrLItehS', 'Administrador', '2023-07-18 22:07:33', '2023-03-02', 1),
+(4, 'Eliseo', 'eliseo', '$2y$10$nftFdT4H9Bqhsd0oqU/PVeBoaintyW/d7eocua2v7PDM2FiX/Y8Me', 'Auxiliar', '0000-00-00 00:00:00', '2023-03-04', 1),
 (5, 'Gary Hermen', 'gary123', '$2y$10$2jjMim3BV1mCTbZwemiNdeUsAZpN0f63n0/oKMUJzGWhrlpmOMb/u', 'Administrador', '0000-00-00 00:00:00', '2023-03-04', 0),
 (6, 'marina Luna', 'marina', '$2y$10$mtRPQi4rJxoGSm/3Up2sbeCO7JQuDEjQfXt0JdISRx/RT7zEuITIq', 'Administrador', '2023-03-13 12:30:17', '2023-03-08', 1);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `categoria`
+-- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
--- Indices de la tabla `color`
+-- Indexes for table `color`
 --
 ALTER TABLE `color`
   ADD PRIMARY KEY (`id_color`);
 
 --
--- Indices de la tabla `diseno`
+-- Indexes for table `diseno`
 --
 ALTER TABLE `diseno`
   ADD PRIMARY KEY (`id_diseno`);
 
 --
--- Indices de la tabla `factura`
+-- Indexes for table `factura`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`id_factura`),
@@ -470,204 +474,204 @@ ALTER TABLE `factura`
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
--- Indices de la tabla `grupo`
+-- Indexes for table `grupo`
 --
 ALTER TABLE `grupo`
   ADD PRIMARY KEY (`id_grupo`);
 
 --
--- Indices de la tabla `ingreso_stock`
+-- Indexes for table `ingreso_stock`
 --
 ALTER TABLE `ingreso_stock`
   ADD PRIMARY KEY (`id_ingreso_stock`),
   ADD KEY `id_producto` (`id_producto`);
 
 --
--- Indices de la tabla `nota_ingreso`
+-- Indexes for table `nota_ingreso`
 --
 ALTER TABLE `nota_ingreso`
   ADD PRIMARY KEY (`id_nota_ingreso`);
 
 --
--- Indices de la tabla `nota_salida`
+-- Indexes for table `nota_salida`
 --
 ALTER TABLE `nota_salida`
   ADD PRIMARY KEY (`id_nota_salida`);
 
 --
--- Indices de la tabla `permiso`
+-- Indexes for table `permiso`
 --
 ALTER TABLE `permiso`
   ADD PRIMARY KEY (`id_permiso`);
 
 --
--- Indices de la tabla `permiso_usuario`
+-- Indexes for table `permiso_usuario`
 --
 ALTER TABLE `permiso_usuario`
   ADD PRIMARY KEY (`id_permiso_usuario`);
 
 --
--- Indices de la tabla `producto`
+-- Indexes for table `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id_producto`);
 
 --
--- Indices de la tabla `proveedor`
+-- Indexes for table `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`id_proveedor`);
 
 --
--- Indices de la tabla `salida_stock`
+-- Indexes for table `salida_stock`
 --
 ALTER TABLE `salida_stock`
   ADD PRIMARY KEY (`id_salida_stock`),
   ADD KEY `id_producto` (`id_producto`);
 
 --
--- Indices de la tabla `talla`
+-- Indexes for table `talla`
 --
 ALTER TABLE `talla`
   ADD PRIMARY KEY (`id_talla`);
 
 --
--- Indices de la tabla `unidad_medida`
+-- Indexes for table `unidad_medida`
 --
 ALTER TABLE `unidad_medida`
   ADD PRIMARY KEY (`id_medida`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `categoria`
+-- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `cliente`
+-- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `color`
+-- AUTO_INCREMENT for table `color`
 --
 ALTER TABLE `color`
   MODIFY `id_color` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `diseno`
+-- AUTO_INCREMENT for table `diseno`
 --
 ALTER TABLE `diseno`
   MODIFY `id_diseno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `factura`
+-- AUTO_INCREMENT for table `factura`
 --
 ALTER TABLE `factura`
   MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `grupo`
+-- AUTO_INCREMENT for table `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `ingreso_stock`
+-- AUTO_INCREMENT for table `ingreso_stock`
 --
 ALTER TABLE `ingreso_stock`
   MODIFY `id_ingreso_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `nota_ingreso`
+-- AUTO_INCREMENT for table `nota_ingreso`
 --
 ALTER TABLE `nota_ingreso`
   MODIFY `id_nota_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `nota_salida`
+-- AUTO_INCREMENT for table `nota_salida`
 --
 ALTER TABLE `nota_salida`
   MODIFY `id_nota_salida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `permiso`
+-- AUTO_INCREMENT for table `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `permiso_usuario`
+-- AUTO_INCREMENT for table `permiso_usuario`
 --
 ALTER TABLE `permiso_usuario`
   MODIFY `id_permiso_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `proveedor`
+-- AUTO_INCREMENT for table `proveedor`
 --
 ALTER TABLE `proveedor`
   MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `salida_stock`
+-- AUTO_INCREMENT for table `salida_stock`
 --
 ALTER TABLE `salida_stock`
   MODIFY `id_salida_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `talla`
+-- AUTO_INCREMENT for table `talla`
 --
 ALTER TABLE `talla`
   MODIFY `id_talla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `unidad_medida`
+-- AUTO_INCREMENT for table `unidad_medida`
 --
 ALTER TABLE `unidad_medida`
   MODIFY `id_medida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `factura`
+-- Constraints for table `factura`
 --
 ALTER TABLE `factura`
   ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
 
 --
--- Filtros para la tabla `ingreso_stock`
+-- Constraints for table `ingreso_stock`
 --
 ALTER TABLE `ingreso_stock`
   ADD CONSTRAINT `ingreso_stock_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`);
 
 --
--- Filtros para la tabla `salida_stock`
+-- Constraints for table `salida_stock`
 --
 ALTER TABLE `salida_stock`
   ADD CONSTRAINT `salida_stock_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`);
