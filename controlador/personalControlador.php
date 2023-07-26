@@ -1,91 +1,80 @@
-<?php 
-$ruta=parse_url($_SERVER['REQUEST_URI']);
+<?php
+$ruta = parse_url($_SERVER['REQUEST_URI']);
 
-if(isset($ruta["query"])){
-  if($ruta["query"]=="ctrRegCliente"||
-     $ruta["query"]=="ctrEditCliente"||
-     $ruta["query"]=="ctrEliCliente"||
-     $ruta["query"]=="ctrBusCliente"){
-    $metodo=$ruta["query"];
-    $cliente=new ControladorCliente();
-    $cliente->$metodo();
+if (isset($ruta["query"])) {
+  if (
+    $ruta["query"] == "ctrRegPersonal" ||
+    $ruta["query"] == "ctrEditPersonal" ||
+    $ruta["query"] == "ctrEliPersonal" ||
+    $ruta["query"] == "ctrBusPersonal"
+  ) {
+    $metodo = $ruta["query"];
+    $Personal = new ControladorPersonal();
+    $Personal->$metodo();
   }
 }
 
 
-class ControladorCliente{
+class ControladorPersonal
+{
 
-  static public function ctrInfoClientes(){
-    $respuesta=ModeloCliente::mdlInfoClientes();
-
+  static public function ctrInformacionPersonal()
+  {
+    $respuesta = ModeloPersonal::mdlInformacionPersonal();
     return $respuesta;
   }
 
-  static public function ctrRegCliente(){
-    require "../modelo/clienteModelo.php";
+  static public function ctrRegPersonal()
+  {
+    require "../modelo/personalModelo.php";
 
-    $data=array(
-      "rzCliente"=>$_POST["rzCliente"],
-      "nitCliente"=>$_POST["nitCliente"],
-      "dirCliente"=>$_POST["dirCliente"],
-      "paisCliente"=>$_POST["paisCliente"],
-      "ciudadCliente"=>$_POST["ciudadCliente"],
-      "nomCliente"=>$_POST["nomCliente"],
-      "telCliente"=>$_POST["telCliente"],
-      "descuento"=>$_POST["descuento"],
+    $data = array(
+      "nomPersonal" => $_POST["nomPersonal"],
+      "patPersonal" => $_POST["patPersonal"],
+      "matPersonal" => $_POST["matPersonal"],
+      "ciPersonal" => $_POST["ciPersonal"],
+      "nacPersonal" => $_POST["nacPersonal"],
+      "cargoPersonal" => $_POST["cargoPersonal"],
+      "telPersonal" => $_POST["telPersonal"],
+      "dirPersonal" => $_POST["dirPersonal"],
     );
 
-    $respuesta=ModeloCliente::mdlRegCliente($data);
-
+    $respuesta = ModeloPersonal::mdlRegPersonal($data);
     echo $respuesta;
   }
 
-  static public function ctrInfoCliente($id){
-    $respuesta=ModeloCliente::mdlInfoCliente($id);
-
+  static public function ctrInfoPersonal($id)
+  {
+    $respuesta = ModeloPersonal::mdlInfoPersonal($id);
     return $respuesta;
   }
 
-  static public function ctrEditCliente(){
-    require "../modelo/clienteModelo.php";
+  static public function ctrEditPersonal()
+  {
+    require "../modelo/personalModelo.php";
 
-    $data=array(
-      "rzCliente"=>$_POST["rzCliente"],
-      "idCliente"=>$_POST["idCliente"],
-      "nitCliente"=>$_POST["nitCliente"],
-      "dirCliente"=>$_POST["dirCliente"],
-      "paisCliente"=>$_POST["paisCliente"],
-      "ciudadCliente"=>$_POST["ciudadCliente"],
-      "nomCliente"=>$_POST["nomCliente"],
-      "telCliente"=>$_POST["telCliente"],
-      "descuento"=>$_POST["descuento"],
+    $data = array(
+      "idPersonal" => $_POST["idPersonal"],
+      "nomPersonal" => $_POST["nomPersonal"],
+      "patPersonal" => $_POST["patPersonal"],
+      "matPersonal" => $_POST["matPersonal"],
+      "ciPersonal" => $_POST["ciPersonal"],
+      "nacPersonal" => $_POST["nacPersonal"],
+      "cargoPersonal" => $_POST["cargoPersonal"],
+      "telPersonal" => $_POST["telPersonal"],
+      "dirPersonal" => $_POST["dirPersonal"],
+      "estadoPersonal" => $_POST["estadoPersonal"],
     );
-
-    $respuesta=ModeloCliente::mdlEditCliente($data);
+    $respuesta = ModeloPersonal::mdlEditPersonal($data);
     echo $respuesta;
-    
-
   }
 
-  static public function ctrEliCliente(){
-    require "../modelo/ClienteModelo.php";
-    $id=$_POST["id"];
+  static public function ctrEliPersonal()
+  {
+    require "../modelo/personalModelo.php";
+    $id = $_POST["id"];
 
-   $respuesta=ModeloCliente::mdlEliCliente($id);
+    $respuesta = ModeloPersonal::mdlEliPersonal($id);
     echo $respuesta;
-
-  }
-
-  static public function ctrBusCliente(){
-    require "../modelo/clienteModelo.php";
-    $nitCliente=$_POST["nitCliente"];
-
-    $respuesta=ModeloCliente::mdlBusCliente($nitCliente);
-    echo json_encode($respuesta);
-  }
-
-  static public function ctrCantidadClientes(){
-    $respuesta=ModeloCliente::mdlCantidadClientes();
-    return $respuesta;
   }
 }

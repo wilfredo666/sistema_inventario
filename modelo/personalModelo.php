@@ -1,10 +1,10 @@
 <?php 
 require_once "conexion.php";
-class ModeloCliente{
+class ModeloPersonal{
 
 
-  static public function mdlInfoClientes(){
-    $stmt=Conexion::conectar()->prepare("select * from cliente");
+  static public function mdlInformacionPersonal(){
+    $stmt=Conexion::conectar()->prepare("select * from personal");
     $stmt->execute();
 
     return $stmt->fetchAll();
@@ -13,75 +13,66 @@ class ModeloCliente{
     $stmt->null;
   }
 
-  static public function mdlRegCliente($data){
+  static public function mdlRegPersonal($data){
+    $nomPersonal=$data["nomPersonal"];
+    $patPersonal=$data["patPersonal"];
+    $matPersonal=$data["matPersonal"];
+    $ciPersonal=$data["ciPersonal"];
+    $nacPersonal=$data["nacPersonal"];
+    $cargoPersonal=$data["cargoPersonal"];
+    $telPersonal=$data["telPersonal"];
+    $dirPersonal=$data["dirPersonal"];
 
-    $rzCliente=$data["rzCliente"];
-    $nitCliente=$data["nitCliente"];
-    $dirCliente=$data["dirCliente"];
-    $paisCliente=$data["paisCliente"];
-    $ciudadCliente=$data["ciudadCliente"];
-    $nomCliente=$data["nomCliente"];
-    $telCliente=$data["telCliente"];
-    $descuento=$data["descuento"];
-
-    date_default_timezone_set('America/La_Paz');
-    $fecha = date('Y-m-d');
-
-    $stmt=Conexion::conectar()->prepare("insert into cliente(razon_social_cliente, nit_ci_cliente, pais_cliente, ciudad_cliente, direccion_cliente, nombre_cliente, telefono_cliente, descuento) values('$rzCliente', '$nitCliente', '$paisCliente', '$ciudadCliente',  '$dirCliente', '$nomCliente', '$telCliente', '$descuento')");
+    $stmt=Conexion::conectar()->prepare("insert into personal(nombre_personal, ap_pat_personal, ap_mat_personal, ci_personal, nacimiento_personal, cargo_personal, direccion_personal, contactos_personal) values('$nomPersonal', '$patPersonal', '$matPersonal', '$ciPersonal',  '$nacPersonal', '$cargoPersonal', '$dirPersonal', '$telPersonal')");
 
     if($stmt->execute()){
       return "ok";
     }else{
       return "error";
     }
-
     $stmt->close();
     $stmt->null;
   }
 
-  static public function mdlInfoCliente($id){
-    $stmt=Conexion::conectar()->prepare("select * from cliente where id_cliente=$id");
+  static public function mdlInfoPersonal($id){
+    $stmt=Conexion::conectar()->prepare("select * from personal where id_personal=$id");
     $stmt->execute();
-
     return $stmt->fetch();
-
     $stmt->close();
     $stmt->null;
   }
 
-  static public function mdlEditCliente($data){
+  static public function mdlEditPersonal($data){
+    $idPersonal=$data["idPersonal"];
+    $nomPersonal=$data["nomPersonal"];
+    $patPersonal=$data["patPersonal"];
+    $matPersonal=$data["matPersonal"];
+    $ciPersonal=$data["ciPersonal"];
+    $nacPersonal=$data["nacPersonal"];
+    $cargoPersonal=$data["cargoPersonal"];
+    $telPersonal=$data["telPersonal"];
+    $dirPersonal=$data["dirPersonal"];
+    $estadoPersonal=$data["estadoPersonal"];
 
-    $rzCliente=$data["rzCliente"];
-    $nitCliente=$data["nitCliente"];
-    $dirCliente=$data["dirCliente"];
-    $paisCliente=$data["paisCliente"];
-    $ciudadCliente=$data["ciudadCliente"];
-    $nomCliente=$data["nomCliente"];
-    $telCliente=$data["telCliente"];
-    $idCliente=$data["idCliente"];
-    $descuento=$data["descuento"];
-
-    $stmt=Conexion::conectar()->prepare("update cliente set razon_social_cliente='$rzCliente', nit_ci_cliente='$nitCliente',  direccion_cliente='$dirCliente', pais_cliente='$paisCliente', ciudad_cliente='$ciudadCliente', nombre_cliente='$nomCliente', telefono_cliente='$telCliente', descuento='$descuento' where id_cliente=$idCliente");
+    $stmt=Conexion::conectar()->prepare("update personal set nombre_personal='$nomPersonal', ap_pat_personal='$patPersonal',  ap_mat_personal='$matPersonal', ci_personal='$ciPersonal', nacimiento_personal='$nacPersonal', cargo_personal='$cargoPersonal', direccion_personal='$dirPersonal', contactos_personal='$telPersonal', estado_personal='$estadoPersonal' where id_personal=$idPersonal");
 
     if($stmt->execute()){
       return "ok";
     }else{
       return "error";
     }
-
     $stmt->close();
     $stmt->null;
   }
 
-  static public function mdlEliCliente($id){
+  static public function mdlEliPersonal($id){
     try{
-      $cliente=Conexion::conectar()->prepare("delete from cliente where id_cliente=$id");
-      $cliente->execute();
+      $personal=Conexion::conectar()->prepare("delete from personal where id_personal=$id");
+      $personal->execute();
     }catch (PDOException $e){
       $codeError= $e->getCode();
       if($codeError=="23000"){
         return "error";
-
         $stmt->close();
         $stmt->null;
       }
@@ -90,24 +81,4 @@ class ModeloCliente{
     $stmt->close();
     $stmt->null;
   }
-
-  static public function mdlBusCliente($nitCliente){
-    $stmt=Conexion::conectar()->prepare("select * from cliente where nit_ci_cliente=$nitCliente");
-    $stmt->execute();
-    return $stmt->fetch();
-
-    $stmt->close();
-    $stmt->null;
-  }
-
-  static public function mdlCantidadClientes(){
-    $stmt=Conexion::conectar()->prepare("select count(*) as cliente from cliente");
-    $stmt->execute();
-
-    return $stmt->fetch();
-
-    $stmt->close();
-    $stmt->null;
-  }
-
 }

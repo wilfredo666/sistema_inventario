@@ -8,57 +8,55 @@
 
   <section class="content">
     <h5 class="table-title">
-      Lista de clientes
+      Lista del Personal
     </h5>
     <table id="DataTable" class="table table-bordered table-striped">
 
       <thead>
         <tr>
-          <th>Razon Social</th>
-          <th>N.I.T.</th>
-          <th>Descuento(%)</th>
-          <th>Contactos</th>
+          <th>Nombres</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>C.I.</th>
+          <th>Cargo</th>
+          <th>Contacto</th>
           <!-- <th>Estado</th> -->
           <td>
-            <button class="btn btn-block btn-primary btn-sm" onclick="MNuevoCliente()">
-            <i class="fas fa-plus"></i>
-            Nuevo</button>
+            <button class="btn btn-block btn-primary btn-sm" onclick="MNuevoPersonal()">
+              <i class="fas fa-plus"></i>
+              Nuevo</button>
           </td>
         </tr>
       </thead>
       <tbody>
         <?php
-        $cliente = ControladorCliente::ctrInfoClientes();
-
-        foreach ($cliente as $value) {
+        $personal = ControladorPersonal::ctrInformacionPersonal();
+        foreach ($personal as $value) {
         ?>
-        <tr>
-          <td><?php echo $value["razon_social_cliente"]; ?></td>
-          <td><?php echo $value["nit_ci_cliente"]; ?></td>
-          <td><?php echo $value["descuento"]; ?></td>
-          <td><?php echo $value["telefono_cliente"]; ?></td>
-
-
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-sm btn-info" onclick="MVerCliente(<?php echo $value["id_cliente"]; ?>)">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button class="btn btn-sm btn-secondary" onclick="MEditCliente(<?php echo $value["id_cliente"]; ?>)">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button class="btn btn-sm btn-danger" onclick="MEliCliente(<?php echo $value["id_cliente"];?>)">
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-
+          <tr>
+            <td><?php echo $value["nombre_personal"]; ?></td>
+            <td><?php echo $value["ap_pat_personal"]; ?></td>
+            <td><?php echo $value["ap_mat_personal"]; ?></td>
+            <td><?php echo $value["ci_personal"]; ?></td>
+            <td><?php echo $value["cargo_personal"]; ?></td>
+            <td><?php echo $value["contactos_personal"]; ?></td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="MVerPersonal(<?php echo $value['id_personal']; ?>)">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-secondary" onclick="MEditPersonal(<?php echo $value['id_personal']; ?>)">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="MEliPersonal(<?php echo $value['id_personal']; ?>)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
         <?php
         }
         ?>
-
-
       </tbody>
     </table>
 
