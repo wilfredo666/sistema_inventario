@@ -147,7 +147,7 @@ class ModeloUsuario
     $usuario = Conexion::conectar()->prepare("select * from usuario where id_usuario=$id and estado=1");
     $usuario->execute();
     if ($usuario->fetch() > 0) {
-      echo "error";
+      return "error";
     } else {
       $stmt = Conexion::conectar()->prepare("delete from usuario where id_usuario=$id");
       if ($stmt->execute()) {
