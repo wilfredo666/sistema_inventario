@@ -62,6 +62,7 @@
 <script src="assest/js/diseno.js"></script>
 <script src="assest/js/grupo.js"></script>
 <script src="assest/js/personal.js"></script>
+<script src="assest/js/provInterno.js"></script>
 
 <!--====================
 seccion de modals

@@ -122,6 +122,14 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="VProvInterno" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-info"></i>
+                                        <p>Proveedores Internos</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">

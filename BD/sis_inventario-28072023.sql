@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-07-2023 a las 02:19:49
+-- Tiempo de generación: 29-07-2023 a las 05:38:34
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -378,6 +378,29 @@ INSERT INTO `proveedor` (`id_proveedor`, `nit_proveedor`, `rs_proveedor`, `direc
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `registro_empaque`
+--
+
+CREATE TABLE `registro_empaque` (
+  `id_entrega` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_talla` int(11) NOT NULL,
+  `id_color` int(11) NOT NULL,
+  `docenas` varchar(20) NOT NULL,
+  `unidades` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `registro_empaque`
+--
+
+INSERT INTO `registro_empaque` (`id_entrega`, `id_producto`, `id_talla`, `id_color`, `docenas`, `unidades`) VALUES
+(1, 1, 1, 2, '18', '8'),
+(2, 5, 3, 1, '15', '4');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `salida_stock`
 --
 
@@ -487,7 +510,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `login_usuario`, `password`, `perfil`, `ultimo_login`, `fecha_registro`, `estado`) VALUES
-(1, 'Administrador ADM', 'admin', '$2y$10$y5Oc7mG8p4MPuFPvUdOk/.Gkf6iD/3kNqtYm2Lw0fOxRiBrLItehS', 'Administrador', '2023-07-25 18:38:17', '2023-03-02', 1),
+(1, 'Administrador ADM', 'admin', '$2y$10$y5Oc7mG8p4MPuFPvUdOk/.Gkf6iD/3kNqtYm2Lw0fOxRiBrLItehS', 'Administrador', '2023-07-28 21:41:40', '2023-03-02', 1),
 (4, 'Eliseo', 'eliseo', '$2y$10$nftFdT4H9Bqhsd0oqU/PVeBoaintyW/d7eocua2v7PDM2FiX/Y8Me', 'Auxiliar', '0000-00-00 00:00:00', '2023-03-04', 0),
 (5, 'Gary Hermen', 'gary123', '$2y$10$2jjMim3BV1mCTbZwemiNdeUsAZpN0f63n0/oKMUJzGWhrlpmOMb/u', 'Administrador', '0000-00-00 00:00:00', '2023-03-04', 0),
 (6, 'marina Luna', 'marina', '$2y$10$mtRPQi4rJxoGSm/3Up2sbeCO7JQuDEjQfXt0JdISRx/RT7zEuITIq', 'Administrador', '2023-03-13 12:30:17', '2023-03-08', 1),
@@ -583,6 +606,12 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`id_proveedor`);
+
+--
+-- Indices de la tabla `registro_empaque`
+--
+ALTER TABLE `registro_empaque`
+  ADD PRIMARY KEY (`id_entrega`);
 
 --
 -- Indices de la tabla `salida_stock`
@@ -696,6 +725,12 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `proveedor`
   MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `registro_empaque`
+--
+ALTER TABLE `registro_empaque`
+  MODIFY `id_entrega` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `salida_stock`

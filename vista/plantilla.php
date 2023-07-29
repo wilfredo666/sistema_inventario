@@ -117,6 +117,7 @@ session_start();
         || $_GET["ruta"] == "VGrupo"
         || $_GET["ruta"] == "VDiseno"
         || $_GET["ruta"] == "VPersonal"
+        || $_GET["ruta"] == "VProvInterno"
       ) {
         $ruta = $_GET["ruta"] . ".php";
       }

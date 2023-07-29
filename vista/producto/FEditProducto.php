@@ -15,7 +15,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
         </button>
     </div>
 
-<div class="modal-body row">
+    <div class="modal-body row">
         <div class="form-group col-md-4">
             <label for="">Cód. Producto</label>
             <input type="text" class="form-control" id="codProducto" name="codProducto" value="<?php echo $producto["cod_producto"] ?>">
@@ -38,14 +38,14 @@ $producto = ControladorProducto::ctrInfoProducto($id);
             <select class="form-control select2bs4" name="tallaProducto" id="tallaProducto">
                 <option value="">Seleccionar talla</option>
                 <?php
-    require_once "../../controlador/tallaControlador.php";
-                   require_once "../../modelo/tallaModelo.php";
-                   $talla = ControladorTalla::ctrInfoTallas();
-                   foreach ($talla as $value) {
+                require_once "../../controlador/tallaControlador.php";
+                require_once "../../modelo/tallaModelo.php";
+                $talla = ControladorTalla::ctrInfoTallas();
+                foreach ($talla as $value) {
                 ?>
-                <option value="<?php echo $value["id_talla"]; ?>" <?php if ($producto["id_talla"] == $value["id_talla"]) : ?> selected <?php endif; ?>><?php echo $value["desc_talla"]; ?></option>
+                    <option value="<?php echo $value["id_talla"]; ?>" <?php if ($producto["id_talla"] == $value["id_talla"]) : ?> selected <?php endif; ?>><?php echo $value["desc_talla"]; ?></option>
                 <?php
-                   }
+                }
                 ?>
             </select>
         </div>
@@ -59,7 +59,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
                 $categoria = ControladorCategoria::ctrInfoCategorias();
                 foreach ($categoria as $value) {
                 ?>
-                <option value="<?php echo $value["id_categoria"]; ?>" <?php if ($producto["id_categoria"] == $value["id_categoria"]) : ?> selected <?php endif; ?>><?php echo $value["desc_categoria"]; ?></option>
+                    <option value="<?php echo $value["id_categoria"]; ?>" <?php if ($producto["id_categoria"] == $value["id_categoria"]) : ?> selected <?php endif; ?>><?php echo $value["desc_categoria"]; ?></option>
                 <?php
                 }
                 ?>
@@ -76,7 +76,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
                 $grupo = ControladorGrupo::ctrInfoGrupos();
                 foreach ($grupo as $value) {
                 ?>
-                <option value="<?php echo $value["id_grupo"]; ?>"<?php if ($producto["id_grupo"] == $value["id_grupo"]) : ?> selected <?php endif; ?>><?php echo $value["desc_grupo"]; ?></option>
+                    <option value="<?php echo $value["id_grupo"]; ?>" <?php if ($producto["id_grupo"] == $value["id_grupo"]) : ?> selected <?php endif; ?>><?php echo $value["desc_grupo"]; ?></option>
                 <?php
                 }
                 ?>
@@ -92,7 +92,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
                 $diseno = ControladorDiseno::ctrInfoDisenos();
                 foreach ($diseno as $value) {
                 ?>
-                <option value="<?php echo $value["id_diseno"]; ?>"<?php if ($producto["id_diseno"] == $value["id_diseno"]) : ?> selected <?php endif; ?>><?php echo $value["desc_diseno"]; ?></option>
+                    <option value="<?php echo $value["id_diseno"]; ?>" <?php if ($producto["id_diseno"] == $value["id_diseno"]) : ?> selected <?php endif; ?>><?php echo $value["desc_diseno"]; ?></option>
                 <?php
                 }
                 ?>
@@ -109,7 +109,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
                 $medida = ControladorMedida::ctrInfoMedidas();
                 foreach ($medida as $value) {
                 ?>
-                <option value="<?php echo $value["id_medida"]; ?>" <?php if ($producto["id_medida"] == $value["id_medida"]) : ?> selected <?php endif; ?>><?php echo $value["desc_medida"]; ?></option>
+                    <option value="<?php echo $value["id_medida"]; ?>" <?php if ($producto["id_medida"] == $value["id_medida"]) : ?> selected <?php endif; ?>><?php echo $value["desc_medida"]; ?></option>
                 <?php
                 }
                 ?>
@@ -125,7 +125,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
                 $color = ControladorColor::ctrInfoColores();
                 foreach ($color as $value) {
                 ?>
-                <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"]; ?>" <?php if ($producto["id_color"] == $value["id_color"]) : ?> selected <?php endif; ?>><?php echo $value["desc_color"]; ?></option>
+                    <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"]; ?>" <?php if ($producto["id_color"] == $value["id_color"]) : ?> selected <?php endif; ?>><?php echo $value["desc_color"]; ?></option>
                 <?php
                 }
                 ?>
@@ -146,22 +146,21 @@ $producto = ControladorProducto::ctrInfoProducto($id);
             <input type="hidden" id="imgActProducto" name="imgActProducto" value="<?php echo $producto["imagen_producto"]; ?>">
             <?php if ($producto["imagen_producto"] == "") {
             ?>
-            <img src="assest/dist/img/productos/product_default.png" class="img-thumbnail previsualizar" width="200">
+                <img src="assest/dist/img/productos/product_default.png" class="img-thumbnail previsualizar" width="200">
             <?php
-} else {
+            } else {
             ?>
-            <img src="assest/dist/img/productos/<?php echo $producto["imagen_producto"]; ?>" class="img-thumbnail previsualizar" width="200px" height="200px">
+                <img src="assest/dist/img/productos/<?php echo $producto["imagen_producto"]; ?>" class="img-thumbnail previsualizar" width="200px" height="200px">
             <?php
-}
+            }
             ?>
         </div>
-        
+
     </div>
-    
-    
+
+
     <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
     </div>
 </form>
-
