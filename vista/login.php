@@ -6,7 +6,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Ingrese sus credenciales</p>
+                <p class="login-box-msg">Ingrese ahora</p>
 
                 <form action="#" method="post">
                     <div class="input-group mb-3">
