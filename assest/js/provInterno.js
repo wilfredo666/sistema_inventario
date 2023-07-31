@@ -1,10 +1,10 @@
-function MNuevoProvInterno() {
+function MNuevoEmpaque() {
   $("#modal-default").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/provInterno/FNuevoProvInterno.php",
+    url: "vista/provInterno/FNuevoEmpaque.php",
     data: obj,
     success: function (data) {
       $("#content-default").html(data)
@@ -12,19 +12,19 @@ function MNuevoProvInterno() {
   })
 }
 
-function RegProvInterno() {
+function RegEmpaque() {
 
-  var formData = new FormData($("#FormRegProvInterno")[0])
+  var formData = new FormData($("#FormRegEmpaque")[0])
 
   $.ajax({
     type: "POST",
-    url: "controlador/provInternoControlador.php?ctrRegProvInterno",
+    url: "controlador/provInternoControlador.php?ctrRegEmpaque",
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
     success: function (data) {
-      console.log(data)
+
       if (data == "ok") {
         Swal.fire({
           icon: 'success',

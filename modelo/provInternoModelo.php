@@ -12,14 +12,15 @@ class ModeloProvInterno{
     $stmt->null;
   }
 
-  static public function mdlRegProvInterno($data){
+  static public function mdlRegEmpaque($data){
     $producto=$data["producto"];
     $talla=$data["talla"];
     $color=$data["color"];
     $docenas=$data["docenas"];
     $unidades=$data["unidades"];
+    $personal=$data["personal"];
 
-    $stmt=Conexion::conectar()->prepare("insert into registro_empaque(id_producto, id_talla, id_color, docenas, unidades)values('$producto', '$talla', '$color', '$docenas', '$unidades')");
+    $stmt=Conexion::conectar()->prepare("insert into registro_empaque(id_producto, id_talla, id_color, docenas, unidades, id_encargado)values($producto, $talla, $color, $docenas, $unidades, $personal)");
 
     if($stmt->execute()){
       return "ok";

@@ -20,7 +20,7 @@
           <th>Docenas</th>
           <th>Unidades</th>
           <td>
-            <button class="btn btn-primary" onclick="MNuevoProvInterno()">Nuevo</button>
+            <button class="btn btn-primary" onclick="MNuevoEmpaque()">Nuevo</button>
           </td>
         </tr>
       </thead>

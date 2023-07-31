@@ -131,7 +131,8 @@ function MEliCliente(id) {
         data: obj,
         url: "controlador/clienteControlador.php?ctrEliCliente",
         success: function (data) {
-          if (data == "ok") {
+          console.log(data)
+          /*if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
@@ -149,7 +150,7 @@ function MEliCliente(id) {
               showConfirmButton: false,
               timer: 1500
             })
-          }
+          }*/
         }
       })
 

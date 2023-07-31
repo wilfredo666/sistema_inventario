@@ -79,6 +79,7 @@ class ModeloCliente{
       $cliente->execute();
     }catch (PDOException $e){
       $codeError= $e->getCode();
+      
       if($codeError=="23000"){
         return "error";
 

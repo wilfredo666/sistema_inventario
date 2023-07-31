@@ -1,11 +1,28 @@
 <div class="modal-header bg-dark">
-  <h4 class="modal-title font-weight-light">Registrar nuevo ProvInterno</h4>
+  <h4 class="modal-title font-weight-light">Registrar nuevo Empaque</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<form action="" id="FormRegProvInterno">
+<form action="" id="FormRegEmpaque">
   <div class="modal-body row">
+    <div class="form-group col-md-12">
+      <label for="">Personal</label>
+      <select class="form-control select2bs4" name="personal" id="personal">
+        <option value="">Seleccionar Persona a cargo</option>
+        <?php
+        require_once "../../controlador/personalControlador.php";
+        require_once "../../modelo/personalModelo.php";
+        $producto = ControladorPersonal::ctrInformacionPersonal();
+        foreach ($producto as $value) {
+        ?>
+        <option value="<?php echo $value["id_personal"]; ?>"><?php echo $value["nombre_personal"]." ".$value["ap_pat_personal"]." ".$value["ap_mat_personal"]; ?></option>
+        <?php
+        }
+        ?>
+      </select>
+    </div>
+
     <div class="form-group col-md-7">
       <label for="">Producto</label>
       <select class="form-control select2bs4" name="producto" id="producto">
@@ -16,7 +33,7 @@
         $producto = ControladorProducto::ctrInfoProductos();
         foreach ($producto as $value) {
         ?>
-          <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
+        <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
         <?php
         }
         ?>
@@ -33,7 +50,7 @@
         $talla = ControladorTalla::ctrInfoTallas();
         foreach ($talla as $value) {
         ?>
-          <option value="<?php echo $value["id_talla"]; ?>"><?php echo $value["desc_talla"]; ?></option>
+        <option value="<?php echo $value["id_talla"]; ?>"><?php echo $value["desc_talla"]; ?></option>
         <?php
         }
         ?>
@@ -50,8 +67,8 @@
         $color = ControladorColor::ctrInfoColores();
         foreach ($color as $value) {
         ?>
-          <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"]; ?>"><?php echo $value["desc_color"]; ?></option>
-          <!-- <option value="<?php echo $value["id_color"]; ?>" type="button" style="background-color:<?php echo $value['img_color'] ?>; width: 60px;" ></option> -->
+        <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"]; ?>"><?php echo $value["desc_color"]; ?></option>
+        <!-- <option value="<?php echo $value["id_color"]; ?>" type="button" style="background-color:<?php echo $value['img_color'] ?>; width: 60px;" ></option> -->
         <?php
         }
         ?>
@@ -80,14 +97,17 @@
     $.validator.setDefaults({
 
       submitHandler: function() {
-        RegProvInterno()
+        RegEmpaque()
       }
     })
     $(document).ready(function() {
-      $("#FormRegProvInterno").validate({
+      $("#FormRegEmpaque").validate({
         rules: {
           producto: "required",
           docenas: {
+            required: true
+          },
+          personal: {
             required: true
           },
           unidades: {

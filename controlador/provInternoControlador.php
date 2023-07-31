@@ -2,7 +2,7 @@
 $ruta=parse_url($_SERVER['REQUEST_URI']);
 
 if(isset($ruta["query"])){
-  if($ruta["query"]=="ctrRegProvInterno"||
+  if($ruta["query"]=="ctrRegEmpaque"||
      $ruta["query"]=="ctrInfoProvInternos"||
      $ruta["query"]=="ctrEditProvInterno"||
      $ruta["query"]=="ctrEliProvInterno"){
@@ -20,7 +20,7 @@ class ControladorProvInterno{
     return $respuesta;
   }
 
-  static public function ctrRegProvInterno(){
+  static public function ctrRegEmpaque(){
     require "../modelo/provInternoModelo.php";
 
     $data=array(
@@ -29,9 +29,10 @@ class ControladorProvInterno{
       "color"=>$_POST["color"],
       "docenas"=>$_POST["docenas"],
       "unidades"=>$_POST["unidades"],
+      "personal"=>$_POST["personal"]
     );
 
-    $respuesta=ModeloProvInterno::mdlRegProvInterno($data);
+    $respuesta=ModeloProvInterno::mdlRegEmpaque($data);
     echo $respuesta;
   }
 
