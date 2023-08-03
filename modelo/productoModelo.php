@@ -10,6 +10,10 @@ class ModeloProducto{
     $stmt->close();
     $stmt->null;
   }
+  
+  static public function mdlTotProducto($id){
+    $totFactura=Conexion::conectar()->prepare("select ")
+  }
 
   static public function mdlRegProducto($data){
     $codProducto=$data["codProducto"];

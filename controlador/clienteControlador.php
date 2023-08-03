@@ -68,7 +68,7 @@ class ControladorCliente{
   }
 
   static public function ctrEliCliente(){
-    require "../modelo/ClienteModelo.php";
+    require "../modelo/clienteModelo.php";
     $id=$_POST["id"];
 
    $respuesta=ModeloCliente::mdlEliCliente($id);
