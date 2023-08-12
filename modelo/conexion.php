@@ -2,27 +2,27 @@
 
 class Conexion
 {
-    static public function conectar()
-    {
-        /* ==============================
-        PARA TRABAJAR DE MANERA LOCAL
-        ============================== */
+  /* CONEXION POR PDO */
+  static public function conectar()
+  {
+    /* =============================
+         PARA TRABAJAR DE MANERA LOCAL 
+         =================================*/
+    $host = "localhost";
+    $db = "web_academico";
+    $userDB = "root";
+    $passDB = "";
 
-        /* $host = "localhost";
-        $db = "sistema_inventario";
-        $userDB = "root";
-        $passDB = ""; */
+    /* =============================
+         PARA CONECTAR CON EL HOSTING
+         =================================*/
+    /* $host = "localhost";
+        $db = "u497252732_web_academico";
+        $userDB = "u497252732_root";
+        $passDB = "Academico123!"; */
 
-        /* ==============================
-        PARA CONCETAR BD CON EL HOSTING
-        ============================== */
-        $host = "localhost";
-        $db = "u184609663_inventario";
-        $userDB = "u184609663_root";
-        $passDB = "Admin123!"; 
-
-        $link = new PDO("mysql:host=" . $host . ";" . "dbname=" . $db, $userDB, $passDB);
-        $link->exec("set names utf8");
-        return $link;
-    }
+    $link = new PDO("mysql:host=" . $host . ";" . "dbname=" . $db, $userDB, $passDB);
+    $link->exec("set names utf8");
+    return $link;
+  }
 }
