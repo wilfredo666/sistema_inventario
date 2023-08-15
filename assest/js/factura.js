@@ -544,6 +544,7 @@ function dibujarTablaCarritoNI() {
   })
 }
 
+//*********************nota de empaque********************
 
 /*======================
 carrito nota de empaque
@@ -565,8 +566,9 @@ function agregarCarritoNE(id){
       let objDetalle = {
         idProducto: data["id_producto"],
         descProducto: data["nombre_producto"],
+        costoProducto: data["precio_costo"],
         cantProdDocena: 1,
-        cantProducto: 1,
+        cantProducto: 1
       }
 
       arregloCarritoNE.push(objDetalle)
@@ -584,7 +586,12 @@ function dibujarTablaCarritoNE() {
     fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
 
       '<td><input type="number" class="form-control form-control-sm" id="cantProDocena_' + detalle.idProducto + '" value="' + detalle.cantProdDocena + '" onkeyup="actCantidadNE(' + detalle.idProducto + ')">'  + '</td>'+
-      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNE(' + detalle.idProducto + ')">'  + '</td>'
+      
+      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadDocNE(' + detalle.idProducto + ')">'  + '</td>'+
+      
+      '<td><input type="number" class="form-control form-control-sm" id="costoProV_' + detalle.idProducto + '" value="' + detalle.costoProducto + '">'  + '</td>'+
+      
+      '<td><input type="number" class="form-control form-control-sm" id="totalProV_' + detalle.idProducto + '" value="0">'  + '</td>'
 
 
     let tdEliminar = document.createElement("td")
@@ -604,6 +611,50 @@ function dibujarTablaCarritoNE() {
   })
 }
 
+/*=========================
+registro nota de empaque
+==========================*/
+function emitirNotaEmpaque(){
+  let codEmpaque = document.getElementById("codEmpaque").value
+  let personal = document.getElementById("personalEmpaque").value
+
+  let obj = {
+    "codEmpaque": codEmpaque,
+    "personal": personal,
+    "productosEmpaque": JSON.stringify(arregloCarritoNE)
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRegEmpaque",
+    data: obj,
+    cache: false,
+    success: function (data) {
+      if (data == "ok") {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Nota de Ingreso registrada',
+          timer: 1000
+        })
+        setTimeout(function () {
+          location.reload()
+        }, 1200)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error de registro',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  })
+}
+
+
+//**********************nota de ingreso************************
 
 function actCantidadNI(idProd) {
   let cantidad = parseInt(document.getElementById("cantProV_" + idProd).value)
@@ -670,3 +721,4 @@ function emitirNotaIngreso(){
     }
   })
 }
+

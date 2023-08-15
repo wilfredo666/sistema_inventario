@@ -172,6 +172,24 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     echo $respuesta;
   }
 
+  static public function ctrRegEmpaque(){
+    require_once "../modelo/ventaModelo.php";
+
+    date_default_timezone_set("America/La_Paz");
+    $fecha = date("Y-m-d");
+    $hora = date("H:i:s");
+
+    $data = array(
+      "codIngreso" => $_POST["codIngreso"],
+      "conceptoIngreso" => $_POST["conceptoIngreso"],
+      "usuario" => $_SESSION["idUsuario"],
+      "fechaHora" => $fecha . " " . $hora,
+      "productos" => $_POST["productos"]
+    );
+
+    $respuesta = ModeloVenta::mdlRegNotaIngreso($data);
+    echo $respuesta;
+  }
   static public function ctrCantidadVentas()
   {
     $respuesta = ModeloVenta::mdlCantidadVentas();

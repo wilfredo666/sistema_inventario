@@ -4,7 +4,11 @@ class ModeloProducto{
 
 
   static public function mdlInfoProductos(){
-    $stmt=Conexion::conectar()->prepare("select * from producto join talla on producto.id_talla=talla.id_talla");
+    $stmt=Conexion::conectar()->prepare("select * from producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
+      left join talla on talla.id_talla=producto.id_talla
+      left join color on color.id_color=producto.id_color
+      left join grupo on grupo.id_grupo=producto.id_grupo
+      left join diseno on diseno.id_diseno=producto.id_diseno");
     $stmt->execute();
     return $stmt->fetchAll();
     $stmt->close();
@@ -122,7 +126,13 @@ class ModeloProducto{
   }
 
   static public function mdlBusProducto($idProducto){
-    $stmt=Conexion::conectar()->prepare("select * from producto where id_producto='$idProducto'");
+    $stmt=Conexion::conectar()->prepare("select * from producto 
+          left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
+      left join talla on talla.id_talla=producto.id_talla
+      left join color on color.id_color=producto.id_color
+      left join grupo on grupo.id_grupo=producto.id_grupo
+      left join diseno on diseno.id_diseno=producto.id_diseno
+      where id_producto='$idProducto'");
     $stmt->execute();
 
     return $stmt->fetch();
