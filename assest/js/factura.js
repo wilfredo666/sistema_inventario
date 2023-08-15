@@ -515,6 +515,7 @@ function agregarCarritoNI(id){
   })
 }
 
+
 function dibujarTablaCarritoNI() {
 
   listaDetalleNI.innerHTML = ""
@@ -542,6 +543,67 @@ function dibujarTablaCarritoNI() {
     listaDetalleNI.appendChild(fila)
   })
 }
+
+
+/*======================
+carrito nota de empaque
+========================*/
+var arregloCarritoNE=[]
+var listaDetalleNE = document.getElementById("listaDetalleNE")
+function agregarCarritoNE(id){
+
+  var obj = {
+    idProducto: id
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/productoControlador.php?ctrBusProducto",
+    data: obj,
+    dataType: "json",
+    success: function (data) {
+      let objDetalle = {
+        idProducto: data["id_producto"],
+        descProducto: data["nombre_producto"],
+        cantProdDocena: 1,
+        cantProducto: 1,
+      }
+
+      arregloCarritoNE.push(objDetalle)
+      dibujarTablaCarritoNE()
+    }
+  })
+}
+
+function dibujarTablaCarritoNE() {
+
+  listaDetalleNE.innerHTML = ""
+  arregloCarritoNE.forEach((detalle) => {
+    let fila = document.createElement("tr")
+
+    fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
+
+      '<td><input type="number" class="form-control form-control-sm" id="cantProDocena_' + detalle.idProducto + '" value="' + detalle.cantProdDocena + '" onkeyup="actCantidadNE(' + detalle.idProducto + ')">'  + '</td>'+
+      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNE(' + detalle.idProducto + ')">'  + '</td>'
+
+
+    let tdEliminar = document.createElement("td")
+    let botonEliminar = document.createElement("button")
+    botonEliminar.classList.add("btn", "btn-danger", "btn-sm", "borrar")
+    let icono = document.createElement("i")
+    icono.classList.add("fas", "fa-trash")
+    botonEliminar.appendChild(icono)
+    botonEliminar.onclick = () => {
+      eliminarCarritoNE(detalle.idProducto)
+    }
+
+    tdEliminar.appendChild(botonEliminar)
+    fila.appendChild(tdEliminar)
+
+    listaDetalleNE.appendChild(fila)
+  })
+}
+
 
 function actCantidadNI(idProd) {
   let cantidad = parseInt(document.getElementById("cantProV_" + idProd).value)

@@ -228,12 +228,7 @@
                   </a>
                 </li>
 
-                <li class="nav-item">
-                  <a href="VEmpaques" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Reporte de empaques</p>
-                  </a>
-                </li>
+
 
               </ul>
             </li>
@@ -249,22 +244,37 @@
 
 
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="FNotaIngreso" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-
-                    <p>Nota de Ingreso</p>
-                  </a>
-                </li>
+                
                 <!--<li class="nav-item">
 <a href="FOtrosIngresos" class="nav-link">
 <i class="far fa-circle nav-icon text-info"></i>
 <p>Otros Ingresos</p>
 </a>
 </li>-->
+               <li class="nav-item">
+                  <a href="FNEmpaque" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Insertar Empaque</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="VEmpaques" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Lista de Empaques</p>
+                  </a>
+                </li>
+                
+                <li class="nav-item">
+                  <a href="FNotaIngreso" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Nota de Ingreso</p>
+                  </a>
+                </li>
+                
                 <li class="nav-item">
                   <a href="RNotaIngreso" class="nav-link">
-                    <i class="fas fa-tasks-alt nav-icon text-info"></i>
+                    <i class="far fa-circle nav-icon text-info"></i>
                     <p>Reporte Notas de Ingreso</p>
                   </a>
                 </li>

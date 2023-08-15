@@ -1,4 +1,5 @@
-function MNuevoEmpaque() {
+//codigo sin usar
+/*function MNuevoEmpaque() {
   $("#modal-default").modal("show")
 
   var obj = ""
@@ -10,7 +11,7 @@ function MNuevoEmpaque() {
       $("#content-default").html(data)
     }
   })
-}
+}*/
 
 function RegEmpaque() {
 

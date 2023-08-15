@@ -20,7 +20,7 @@
           <th>Docenas</th>
           <th>Unidades</th>
           <td>
-            <button class="btn btn-primary" onclick="MNuevoEmpaque()">Nuevo</button>
+           <a class="btn btn-primary" href="FNEmpaque">Nuevo</a>
           </td>
         </tr>
       </thead>
