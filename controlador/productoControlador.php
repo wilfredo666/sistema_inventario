@@ -7,6 +7,7 @@ if(isset($ruta["query"])){
      $ruta["query"]=="ctrEditProducto"||
      $ruta["query"]=="ctrEliProducto"||
      $ruta["query"]=="ctrRepClasificacion"||
+     $ruta["query"]=="ctrBuscarProducto"||
      $ruta["query"]=="ctrBusProducto"){
     $metodo=$ruta["query"];
     $producto=new ControladorProducto();
@@ -19,7 +20,6 @@ class ControladorProducto{
 
   static public function ctrInfoProductos(){
     $respuesta=ModeloProducto::mdlInfoProductos();
-
     return $respuesta;
   }
 
@@ -139,6 +139,13 @@ class ControladorProducto{
     var_dump($categoriaProducto);
   }
 
-  /*  */
+  static public function ctrBuscarProducto()
+    {
+        require "../modelo/productoModelo.php";
+        $data = $_POST["id"];
+        $respuesta = ModeloProducto::mdlInfoProducto($data);
+        /* var_dump($respuesta); */
+        echo json_encode($respuesta);
+    }
   
 }

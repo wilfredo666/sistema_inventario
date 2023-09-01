@@ -122,23 +122,23 @@ function MVerNotaEntrega(id) {
 }
 
 /* Buscar datos del cliente */
-function busCliente(){
-  let nitCliente=document.getElementById("nitCliente").value
+function busCliente() {
+  let nitCliente = document.getElementById("nitCliente").value
   /*   console.log(nitCliente) */
-  var obj={
-    nitCliente:nitCliente
+  var obj = {
+    nitCliente: nitCliente
   }
 
   $.ajax({
-    type:"POST",
-    url:"controlador/clienteControlador.php?ctrBusCliente",
-    data:obj,
-    dataType:"json",
-    success:function(data){
+    type: "POST",
+    url: "controlador/clienteControlador.php?ctrBusCliente",
+    data: obj,
+    dataType: "json",
+    success: function (data) {
       /* console.log(data) */
-      document.getElementById("rsCliente").value=data["razon_social_cliente"]
-      document.getElementById("idCliente").value=data["id_cliente"]
-      document.getElementById("descuentoVenta").value=data["descuento"]
+      document.getElementById("rsCliente").value = data["razon_social_cliente"]
+      document.getElementById("idCliente").value = data["id_cliente"]
+      document.getElementById("descuentoVenta").value = data["descuento"]
     }
   })
 }
@@ -187,7 +187,7 @@ function dibujarTablaCarrito2() {
       '<td><input type="number" class="form-control form-control-sm" id="preUnitV_' + detalle.idProducto + '" value="' + detalle.preUnitario + '" onkeyup="calcularPreProdVenta(' + detalle.idProducto + ')">' + '</td>' +
 
 
-      '<td><input type="number" class="form-control form-control-sm" id="totalV_' + detalle.idProducto + '" value="' + detalle.preTotal + '" readonly>' + '</td>'   
+      '<td><input type="number" class="form-control form-control-sm" id="totalV_' + detalle.idProducto + '" value="' + detalle.preTotal + '" readonly>' + '</td>'
     /* +
       '<td>'+detalle.precioProducto+'</td>'+
       '<td>'+detalle.precioTotalPro+'</td>' */
@@ -224,16 +224,16 @@ function calcularPreProdVenta(idProd) {
   let cantidad = parseInt(document.getElementById("cantProV_" + idProd).value)
   let preUnit = parseFloat(document.getElementById("preUnitV_" + idProd).value)
   //let total = parseFloat(document.getElementById("totalV_" + idProd).value)
-  document.getElementById("totalV_" + idProd).value=parseFloat(cantidad*preUnit)
+  document.getElementById("totalV_" + idProd).value = parseFloat(cantidad * preUnit)
 
   arregloCarrito2.map(function (dato) {
     //console.log(dato);
     if (dato.idProducto == idProd) {
       dato.preUnitario = preUnit
       dato.cantProducto = cantidad
-      dato.preTotal = parseFloat(preUnit*cantidad)
+      dato.preTotal = parseFloat(preUnit * cantidad)
     }
-    return dato 
+    return dato
   })
   //dibujarTablaCarrito2()
   calcularTotal()
@@ -257,15 +257,15 @@ function calcularTotal() {
     totalCarrito = totalCarrito + parseFloat(arregloCarrito2[i].preTotal)
   }
   /*subtotal sin descuento*/
-  document.getElementById("totalVenta").value=(totalCarrito).toFixed(2)
+  document.getElementById("totalVenta").value = (totalCarrito).toFixed(2)
 
   /*calculo del descuento (%)*/
-  let descuento =(totalCarrito/100)*parseFloat(document.getElementById("descuentoVenta").value)
+  let descuento = (totalCarrito / 100) * parseFloat(document.getElementById("descuentoVenta").value)
 
-  document.getElementById("netoVenta").value=(totalCarrito-descuento).toFixed(2) 
+  document.getElementById("netoVenta").value = (totalCarrito - descuento).toFixed(2)
 }
 
-function emitirFactura(){
+function emitirFactura() {
 
   let numFactura = document.getElementById("numFactura").value
   let idCliente = document.getElementById("idCliente").value
@@ -313,53 +313,53 @@ function emitirFactura(){
   })
 }
 
-function cmbEstadoVenta(id){
-  var obj={
-    idVenta:id
+function cmbEstadoVenta(id) {
+  var obj = {
+    idVenta: id
   }
   $.ajax({
-    type:"POST",
-    url:"controlador/ventaControlador.php?ctrCmbEstado",
-    data:obj,
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrCmbEstado",
+    data: obj,
     cache: false,
-    success:function(data){
-      if(data=="ok"){
-        document.getElementById("estadoFactura_"+id).innerHTML=""
-        document.getElementById("estadoFactura_"+id).innerHTML='<span class="badge badge-success">Emitido</span>'
+    success: function (data) {
+      if (data == "ok") {
+        document.getElementById("estadoFactura_" + id).innerHTML = ""
+        document.getElementById("estadoFactura_" + id).innerHTML = '<span class="badge badge-success">Emitido</span>'
       }
 
     }
   })
 }
 
-function MAnularFactura(id){
-  var obj={
-    idVenta:id
+function MAnularFactura(id) {
+  var obj = {
+    idVenta: id
   }
 
   Swal.fire({
-    title:'Esta seguro de anular esta factura?',
-    showDenyButton:true,
-    showCancelButton:false,
-    confirmButtonText:'Confirmar',
-    denyButtonText:'Cancelar'    
-  }).then((result)=>{
-    if(result.isConfirmed){
+    title: 'Esta seguro de anular esta factura?',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: 'Confirmar',
+    denyButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
       $.ajax({
-        type:"POST",
-        data:obj,
-        url:"controlador/ventaControlador.php?ctrAnularVenta",
-        success:function(data){
+        type: "POST",
+        data: obj,
+        url: "controlador/ventaControlador.php?ctrAnularVenta",
+        success: function (data) {
 
-          if(data=="ok"){
+          if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
               title: 'Factura anulada',
               timer: 1000
             })
-            document.getElementById("estadoFactura_"+id).innerHTML=""
-            document.getElementById("estadoFactura_"+id).innerHTML='<span class="badge badge-danger">Anulado</span>'
+            document.getElementById("estadoFactura_" + id).innerHTML = ""
+            document.getElementById("estadoFactura_" + id).innerHTML = '<span class="badge badge-danger">Anulado</span>'
           }
         }
       })
@@ -368,7 +368,7 @@ function MAnularFactura(id){
 }
 
 /* PARA NOTA DE SALIDA */
-function emitirNotaSalida(){
+function emitirNotaSalida() {
 
   let codSalida = document.getElementById("codSalida").value
   let conceptoSalida = document.getElementById("conceptoSalida").value
@@ -483,16 +483,16 @@ function actCantidadNS(idProd) {
     if (dato.idProducto == idProd) {
       dato.cantProducto = cantidad
     }
-    return dato 
+    return dato
   })
 }
 
 /*======================
 carrito nota de ingreso
 ========================*/
-var arregloCarritoNI=[]
+var arregloCarritoNI = []
 var listaDetalleNI = document.getElementById("listaDetalleNI")
-function agregarCarritoNI(id){
+function agregarCarritoNI(id) {
   var obj = {
     idProducto: id
   }
@@ -524,7 +524,7 @@ function dibujarTablaCarritoNI() {
 
     fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
 
-      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNI(' + detalle.idProducto + ')">'  + '</td>'
+      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNI(' + detalle.idProducto + ')">' + '</td>'
 
 
     let tdEliminar = document.createElement("td")
@@ -549,14 +549,15 @@ function dibujarTablaCarritoNI() {
 /*======================
 carrito nota de empaque
 ========================*/
-var arregloCarritoNE=[]
+var arregloCarritoNE = []
 var listaDetalleNE = document.getElementById("listaDetalleNE")
-function agregarCarritoNE(id){
 
+function agregarCarritoNE() {
+  const selectElement = document.getElementById('productoEmpaque');
+  const idProd = selectElement.value;
   var obj = {
-    idProducto: id
+    idProducto: idProd
   }
-
   $.ajax({
     type: "POST",
     url: "controlador/productoControlador.php?ctrBusProducto",
@@ -577,7 +578,85 @@ function agregarCarritoNE(id){
   })
 }
 
+let totalCost = 0;
+let totalDocena = 0;
+let totalUnidad = 0;
+
 function dibujarTablaCarritoNE() {
+
+  var idProductoEmpaque = document.getElementById("productoEmpaque").value;
+  var ingDocenas = document.getElementById("ingDocenas").value;
+  var ingUnidades = document.getElementById("ingUnidades").value;
+  var costoProducto = document.getElementById("costoProducto").value;
+  var descripcionProd = document.getElementById("descripcionProd").value;
+
+  const productTable = document.getElementById('listaDetalleNE').getElementsByTagName('tbody')[0];
+  const totalCell = document.getElementById('totalCell');
+  const totalDocenas = document.getElementById('totalDocenas');
+  const totalUnidades = document.getElementById('totalUnidades');
+  
+  const newRow = productTable.insertRow();
+  const cell1 = newRow.insertCell(0);
+  const cell2 = newRow.insertCell(1);
+  const cell3 = newRow.insertCell(2);
+  const cell4 = newRow.insertCell(3);
+  const cell5 = newRow.insertCell(4);
+  const cell6 = newRow.insertCell(5);
+  const cell7 = newRow.insertCell(6);
+
+  var operacionDocenas = ingDocenas * 12;
+  var sumaUnidad = operacionDocenas + parseInt(ingUnidades);
+  var costoSubtotal = (sumaUnidad * costoProducto).toFixed(2);
+
+
+  cell1.innerHTML = idProductoEmpaque;
+  cell2.innerHTML = descripcionProd;
+  cell3.innerHTML = ingDocenas;
+  cell4.innerHTML = ingUnidades;
+  cell5.innerHTML = costoProducto;
+  cell6.innerHTML = costoSubtotal;
+  cell7.innerHTML = '<button class="btn btn-danger btn-sm" onclick="eliminarProducto(this)"><i class="fas fa-times-circle"></i></button>';
+
+  console.log(sumaUnidad);
+  console.log(operacionDocenas);
+  console.log(ingUnidades);
+  
+  totalCost = totalCost + parseInt(costoSubtotal);
+  totalCell.textContent = totalCost.toFixed(2);
+
+  /* // PARA SUMAR LAS DOCENAS Y UNIDADES
+  totalDocena = totalDocena + parseInt(ingDocenas);
+  totalDocenas.textContent = totalDocena;
+
+  totalUnidad = totalUnidad + parseInt(ingUnidades);
+  totalUnidades.textContent = totalUnidad; */
+
+  limpiarFormulario();
+}
+
+function limpiarFormulario() {
+  const productoEmpaque = document.getElementById('productoEmpaque');
+  const ingDocenas = document.getElementById('ingDocenas');
+  const ingUnidades = document.getElementById('ingUnidades');
+  const costoProducto = document.getElementById('costoProducto');
+
+  productoEmpaque.value = '';
+  ingDocenas.value = '';
+  ingUnidades.value = '';
+  costoProducto.value = '';
+}
+
+function eliminarProducto(button) {
+  const row = button.parentNode.parentNode;
+  const costoSubtotal = parseFloat(row.cells[4].textContent);
+
+  totalCost = parseInt(totalCost) - parseInt(costoSubtotal);
+  totalCell.textContent = totalCost.toFixed(2);
+
+  row.remove();
+}
+
+/* function dibujarTablaCarritoNE() {
 
   listaDetalleNE.innerHTML = ""
   arregloCarritoNE.forEach((detalle) => {
@@ -609,12 +688,12 @@ function dibujarTablaCarritoNE() {
 
     listaDetalleNE.appendChild(fila)
   })
-}
+} */
 
 /*=========================
 registro nota de empaque
 ==========================*/
-function emitirNotaEmpaque(){
+function emitirNotaEmpaque() {
   let codEmpaque = document.getElementById("codEmpaque").value
   let personal = document.getElementById("personalEmpaque").value
 
@@ -664,7 +743,7 @@ function actCantidadNI(idProd) {
     if (dato.idProducto == idProd) {
       dato.cantProducto = cantidad
     }
-    return dato 
+    return dato
   })
 }
 
@@ -682,7 +761,7 @@ function eliminarCarritoNI(idProd) {
 /*=========================
 registro nota de ingreso
 ==========================*/
-function emitirNotaIngreso(){
+function emitirNotaIngreso() {
 
   let codIngreso = document.getElementById("codIngreso").value
   let conceptoIngreso = document.getElementById("conceptoIngreso").value
