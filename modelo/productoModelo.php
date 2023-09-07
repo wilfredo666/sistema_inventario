@@ -47,7 +47,8 @@ class ModeloProducto{
 
   static public function mdlInfoProducto($id){
     $stmt=Conexion::conectar()->prepare(
-      "select * from producto 
+      "select cod_producto,desc_color,desc_diseno,desc_grupo,desc_medida,desc_talla,estado,id_categoria,color.id_color,diseno.id_diseno,grupo.id_grupo,unidad_medida.id_medida,producto.id_producto,talla.id_talla,imagen_producto,img_color,nombre_producto,precio_costo,precio_venta    
+      from producto 
       left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
       left join talla on talla.id_talla=producto.id_talla
       left join color on color.id_color=producto.id_color
@@ -161,5 +162,37 @@ class ModeloProducto{
     $stmt->null;
   }
 
+  /*=============================================
+	MOSTRAR NOTA DE EMPAQUES
+	=============================================*/
+  static public function mdlMostrarNotaEmpaque()
+  {
+      $stmt = Conexion::conectar()->prepare("select count(*) as empaque from nota_empaque");
+      $stmt->execute();
+
+      return $stmt->fetchColumn();
+      $stmt->close();
+      $stmt->null;
+  }
+
+  static public function mdlMostrarUltimaNE()
+  {
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_empaque ORDER BY id_nota_empaque DESC");
+      $stmt->execute();
+
+      return $stmt->fetch();
+      $stmt->close();
+      $stmt->null;
+  }
+  /* STOCK PRODUCTO */
+  static public function mdlStockProducto($id)
+  {
+      $stmt = Conexion::conectar()->prepare("select sum(cantidad) as stock from ingreso_stock where id_producto = $id");
+      $stmt->execute();
+
+      return $stmt->fetch();
+      $stmt->close();
+      $stmt->null;
+  }
 
 }

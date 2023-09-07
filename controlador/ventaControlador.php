@@ -8,6 +8,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrRegNotaVenta" ||
     $ruta["query"] == "ctrCmbEstado" ||
     $ruta["query"] == "ctrRegNotaIngreso" ||
+    $ruta["query"] == "ctrRegEmpaque" ||
     $ruta["query"] == "ctrRegNotaSalida"
   ) {
     $metodo = $ruta["query"];
@@ -180,16 +181,16 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     $hora = date("H:i:s");
 
     $data = array(
-      "codIngreso" => $_POST["codIngreso"],
-      "conceptoIngreso" => $_POST["conceptoIngreso"],
-      "usuario" => $_SESSION["idUsuario"],
-      "fechaHora" => $fecha . " " . $hora,
-      "productos" => $_POST["productos"]
+      "fechaEmpaque" => $fecha,
+      "personalEmpaque" => $_POST["personalEmpaque"],
+      "nroEmpaque" => $_POST["nroEmpaque"],
+      "observacionEmpaque" => $_POST["observacionEmpaque"],
+      "detalle" => $_POST["detalle"],
     );
-
-    $respuesta = ModeloVenta::mdlRegNotaIngreso($data);
+    $respuesta = ModeloVenta::mdlRegEmpaque($data);
     echo $respuesta;
   }
+  
   static public function ctrCantidadVentas()
   {
     $respuesta = ModeloVenta::mdlCantidadVentas();

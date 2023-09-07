@@ -47,7 +47,23 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Número de Comprobante</label>
-                  <input type="text" class="form-control" name="nroEmpaque" id="nroEmpaque" placeholder="Ejm. IE0012">
+                  <?php
+                  $item = null;
+                  $valor = null;
+                  $empaque = ControladorProducto::ctrMostrarNotaEmpaque();
+
+                  if ($empaque == 0) {
+                    echo '<input type="text" class="form-control" id="nroEmpaque" name="nroEmpaque" value="IE-10001" readonly>';
+                  } else {
+                    $notaEmpaque = ControladorProducto::ctrMostrarUltimaNE();
+                    $codigo = $notaEmpaque["nro_comprobante_emp"];
+                    $dividirCodigo = explode("-", $codigo);
+                    $numeroCorrelativo = $dividirCodigo[1]+1;
+                   
+                    echo '<input type="text" class="form-control" id="nroEmpaque" name="nroEmpaque" value="IE-' . $numeroCorrelativo . '" readonly>';
+                  }
+                  ?>
+
                 </div>
               </div>
               <div class="col-md-8">
@@ -60,7 +76,7 @@
             <!-- </div> -->
             <div class="card-footer text-right">
               <button type="button" class="btn btn-default bg-dark" onclick="location.reload();"><i class="fas fa-times"></i> Anular Nota</button>
-              <button class="btn btn-success "><i class="fas fa-download"></i> Guardar Nota</button>
+              <a class="btn btn-success" onclick="GuardarNotaEmp()"><i class="fas fa-download"></i> Guardar Nota</a>
             </div>
           </div>
         </div>
@@ -80,7 +96,6 @@
             </div>
             <!--encabezado de datos para la nota-->
             <div class="card-body row pb-0 mb-0">
-
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Código EAN:</label>
@@ -177,7 +192,7 @@
           <div class=" row">
             <div class="col-md-12">
 
-              <table class="table" id="listaDetalleNE">
+              <table class="table" id="detalleNE">
                 <thead class="text-center">
                   <tr>
                     <th>ID</th>
@@ -190,10 +205,11 @@
                     <!-- <th>&nbsp;</th> -->
                   </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody class="text-center" id="listaDetalleNE">
                 </tbody>
-                <!-- <tfoot>
+                <tfoot class="text-center">
                   <tr style="margin-right: 200px; padding-right: 500px;">
+                    <td></td>
                     <th class="text-right">TOTALES:</th>
                     <td id="totalDocenas"></td>
                     <td id="totalUnidades"></td>
@@ -201,8 +217,8 @@
                     <td id="totalCell">0</td>
                     <td></td>
                   </tr>
-                </tfoot> -->
-                <tfoot class="text-center">
+                </tfoot>
+                <!--  <tfoot class="text-center">
                   <tr style="margin-right: 200px; padding-right: 500px;">
                     <td></td>
                     <td></td>
@@ -212,7 +228,7 @@
                     <td id="totalCell">0</td>
                     <td></td>
                   </tr>
-                </tfoot>
+                </tfoot> -->
               </table>
 
             </div>

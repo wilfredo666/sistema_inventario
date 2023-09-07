@@ -57,45 +57,28 @@ function dibujarTablaCarrito() {
 }
 
 function eliminarCarrito(idProd) {
-
   arregloCarrito = arregloCarrito.filter((detalle) => {
     if (idProd != detalle.idProducto) {
       return detalle
     }
   })
-
   dibujarTablaCarrito()
-
 }
 
 
 function cantidadProd(idProd) {
   let cantPro = parseInt(document.getElementById("cantPro_" + idProd).value)
-
   arregloCarrito.map(function (dato) {
     if (dato.idProducto == idProd) {
-      //dato.precioTotalPro = parseFloat(dato.precioProducto * cantPro).toFixed(2)
       dato.cantProducto = cantPro
     }
     return dato
   })
-  //dibujarTablaCarrito()
 }
 
-/* function validarFormulario() {
-  let numFactura = document.getElementById("numFactura").value
-
-  if (numFactura == null || numFactura.length == 0 || /^\s+$/.test(numFactura)) {
-    document.getElementById("error-numFactura").innerHTML = "El campo #Factura tiene datos incorrectos"
-    return false
-  }
-
-  return true
-} */
 
 function MVerFactura(id) {
   $("#modal-xl").modal("show")
-
   var obj = ""
   $.ajax({
     type: "POST",
@@ -124,11 +107,9 @@ function MVerNotaEntrega(id) {
 /* Buscar datos del cliente */
 function busCliente() {
   let nitCliente = document.getElementById("nitCliente").value
-  /*   console.log(nitCliente) */
   var obj = {
     nitCliente: nitCliente
   }
-
   $.ajax({
     type: "POST",
     url: "controlador/clienteControlador.php?ctrBusCliente",
@@ -148,12 +129,10 @@ carrito2 - formmulario Nota de venta
 ====================================*/
 var arregloCarrito2 = []
 var listaDetalle2 = document.getElementById("listaDetalle2")
-
 function agregarCarrito2(id) {
   var obj = {
     idProducto: id
   }
-
   $.ajax({
     type: "POST",
     url: "controlador/productoControlador.php?ctrBusProducto",
@@ -167,7 +146,6 @@ function agregarCarrito2(id) {
         preUnitario: parseFloat(data["precio_venta"]),
         preTotal: 0,
       }
-
       arregloCarrito2.push(objDetalle)
       dibujarTablaCarrito2()
     }
@@ -175,7 +153,6 @@ function agregarCarrito2(id) {
 }
 
 function dibujarTablaCarrito2() {
-
   listaDetalle2.innerHTML = ""
   arregloCarrito2.forEach((detalle) => {
     let fila = document.createElement("tr")
@@ -188,9 +165,6 @@ function dibujarTablaCarrito2() {
 
 
       '<td><input type="number" class="form-control form-control-sm" id="totalV_' + detalle.idProducto + '" value="' + detalle.preTotal + '" readonly>' + '</td>'
-    /* +
-      '<td>'+detalle.precioProducto+'</td>'+
-      '<td>'+detalle.precioTotalPro+'</td>' */
 
     let tdEliminar = document.createElement("td")
     let botonEliminar = document.createElement("button")
@@ -210,7 +184,6 @@ function dibujarTablaCarrito2() {
 }
 
 function eliminarCarrito2(idProd) {
-
   arregloCarrito2 = arregloCarrito2.filter((detalle) => {
     if (idProd != detalle.idProducto) {
       return detalle
@@ -242,31 +215,23 @@ function calcularPreProdVenta(idProd) {
 function descPreProducto() {
   let descProducto = parseFloat(document.getElementById("descProducto").value)
   let preUnitActual = parseFloat(document.getElementById("preUnitActual").value)
-
-
   document.getElementById("preUnitario").value = parseFloat(preUnitActual - descProducto)
-
   calcularPreProd()
 }
 
 function calcularTotal() {
   let totalCarrito = 0
-
-
   for (var i = 0; i < arregloCarrito2.length; i++) {
     totalCarrito = totalCarrito + parseFloat(arregloCarrito2[i].preTotal)
   }
   /*subtotal sin descuento*/
   document.getElementById("totalVenta").value = (totalCarrito).toFixed(2)
-
   /*calculo del descuento (%)*/
   let descuento = (totalCarrito / 100) * parseFloat(document.getElementById("descuentoVenta").value)
-
   document.getElementById("netoVenta").value = (totalCarrito - descuento).toFixed(2)
 }
 
 function emitirFactura() {
-
   let numFactura = document.getElementById("numFactura").value
   let idCliente = document.getElementById("idCliente").value
   let rsCliente = document.getElementById("rsCliente").value
@@ -289,7 +254,7 @@ function emitirFactura() {
     data: obj,
     cache: false,
     success: function (data) {
-      console.log(data);
+      /* console.log(data); */
       if (data != "ok") {
         Swal.fire({
           icon: 'success',
@@ -430,7 +395,6 @@ function agregarCarritoNS(id) {
         descProducto: data["nombre_producto"],
         cantProducto: 1,
       }
-
       arregloCarritoNS.push(objDetalle)
       dibujarTablaCarritoNS()
     }
@@ -438,15 +402,12 @@ function agregarCarritoNS(id) {
 }
 
 function dibujarTablaCarritoNS() {
-
   listaDetalleNS.innerHTML = ""
   arregloCarritoNS.forEach((detalle) => {
     let fila = document.createElement("tr")
 
     fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
-
       '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNS(' + detalle.idProducto + ')">' + '</td>'
-
 
     let tdEliminar = document.createElement("td")
     let botonEliminar = document.createElement("button")
@@ -466,7 +427,6 @@ function dibujarTablaCarritoNS() {
 }
 
 function eliminarCarritoNS(idProd) {
-
   arregloCarritoNS = arregloCarritoNS.filter((detalle) => {
     if (idProd != detalle.idProducto) {
       return detalle
@@ -477,9 +437,7 @@ function eliminarCarritoNS(idProd) {
 
 function actCantidadNS(idProd) {
   let cantidad = parseInt(document.getElementById("cantProV_" + idProd).value)
-
   arregloCarritoNS.map(function (dato) {
-    //console.log(dato);
     if (dato.idProducto == idProd) {
       dato.cantProducto = cantidad
     }
@@ -496,7 +454,6 @@ function agregarCarritoNI(id) {
   var obj = {
     idProducto: id
   }
-
   $.ajax({
     type: "POST",
     url: "controlador/productoControlador.php?ctrBusProducto",
@@ -508,7 +465,6 @@ function agregarCarritoNI(id) {
         descProducto: data["nombre_producto"],
         cantProducto: 1,
       }
-
       arregloCarritoNI.push(objDetalle)
       dibujarTablaCarritoNI()
     }
@@ -517,15 +473,12 @@ function agregarCarritoNI(id) {
 
 
 function dibujarTablaCarritoNI() {
-
   listaDetalleNI.innerHTML = ""
   arregloCarritoNI.forEach((detalle) => {
     let fila = document.createElement("tr")
 
     fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
-
       '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadNI(' + detalle.idProducto + ')">' + '</td>'
-
 
     let tdEliminar = document.createElement("td")
     let botonEliminar = document.createElement("button")
@@ -544,7 +497,7 @@ function dibujarTablaCarritoNI() {
   })
 }
 
-//*********************nota de empaque********************
+//********************* NOTA DE EMPAQUE ********************
 
 /*======================
 carrito nota de empaque
@@ -568,72 +521,89 @@ function agregarCarritoNE() {
         idProducto: data["id_producto"],
         descProducto: data["nombre_producto"],
         costoProducto: data["precio_costo"],
-        cantProdDocena: 1,
-        cantProducto: 1
+        cantProdDocena: document.getElementById("ingDocenas").value,
+        cantProdUnidad: document.getElementById("ingUnidades").value
       }
-
       arregloCarritoNE.push(objDetalle)
       dibujarTablaCarritoNE()
     }
   })
 }
-
-let totalCost = 0;
-let totalDocena = 0;
-let totalUnidad = 0;
-
+/*=========================
+DINUJA EL CARRITO NOTA DE EMPAQUE
+==========================*/
 function dibujarTablaCarritoNE() {
+  listaDetalleNE.innerHTML = ""
+  arregloCarritoNE.forEach((detalle) => {
+    let precioUnidad = detalle.costoProducto / 12;
+    let totalUnidades = (((parseInt(detalle.cantProdDocena)) * 12) + parseInt(detalle.cantProdUnidad));
+    let costoTotalProducto = (totalUnidades * precioUnidad).toFixed(2);
 
-  var idProductoEmpaque = document.getElementById("productoEmpaque").value;
-  var ingDocenas = document.getElementById("ingDocenas").value;
-  var ingUnidades = document.getElementById("ingUnidades").value;
-  var costoProducto = document.getElementById("costoProducto").value;
-  var descripcionProd = document.getElementById("descripcionProd").value;
+    let fila = document.createElement("tr")
 
-  const productTable = document.getElementById('listaDetalleNE').getElementsByTagName('tbody')[0];
-  const totalCell = document.getElementById('totalCell');
-  const totalDocenas = document.getElementById('totalDocenas');
-  const totalUnidades = document.getElementById('totalUnidades');
-  
-  const newRow = productTable.insertRow();
-  const cell1 = newRow.insertCell(0);
-  const cell2 = newRow.insertCell(1);
-  const cell3 = newRow.insertCell(2);
-  const cell4 = newRow.insertCell(3);
-  const cell5 = newRow.insertCell(4);
-  const cell6 = newRow.insertCell(5);
-  const cell7 = newRow.insertCell(6);
+    fila.innerHTML = '<td>' + detalle.idProducto + '</td>' +
+      '<td>' + detalle.descProducto + '</td>' +
+      '<td>' + detalle.cantProdDocena + '</td>' +
+      '<td>' + detalle.cantProdUnidad + '</td>' +
+      '<td>' + detalle.costoProducto + '</td>' +
+      '<td>' + costoTotalProducto + '</td>' +
+      '<td>' + '<a class="btn btn-danger btn-sm" onclick="eliminarProducto(' + detalle.idProducto + ')"><i class="fas fa-times-circle"></i></a>' + '</td>'
 
-  var operacionDocenas = ingDocenas * 12;
-  var sumaUnidad = operacionDocenas + parseInt(ingUnidades);
-  var costoSubtotal = (sumaUnidad * costoProducto).toFixed(2);
+    listaDetalleNE.appendChild(fila)
 
+  })
 
-  cell1.innerHTML = idProductoEmpaque;
-  cell2.innerHTML = descripcionProd;
-  cell3.innerHTML = ingDocenas;
-  cell4.innerHTML = ingUnidades;
-  cell5.innerHTML = costoProducto;
-  cell6.innerHTML = costoSubtotal;
-  cell7.innerHTML = '<button class="btn btn-danger btn-sm" onclick="eliminarProducto(this)"><i class="fas fa-times-circle"></i></button>';
-
-  console.log(sumaUnidad);
-  console.log(operacionDocenas);
-  console.log(ingUnidades);
-  
-  totalCost = totalCost + parseInt(costoSubtotal);
-  totalCell.textContent = totalCost.toFixed(2);
-
-  /* // PARA SUMAR LAS DOCENAS Y UNIDADES
-  totalDocena = totalDocena + parseInt(ingDocenas);
-  totalDocenas.textContent = totalDocena;
-
-  totalUnidad = totalUnidad + parseInt(ingUnidades);
-  totalUnidades.textContent = totalUnidad; */
-
+  totalesCantidad();
   limpiarFormulario();
 }
+/*=========================
+SUMA DE LOS TOTALES DE LA TABLA DETALLE PRODUCTOS - NOTA EMPAQUE
+==========================*/
+function totalesCantidad() {
+  var tabla = document.getElementById("detalleNE");
+  const totalDocenas = document.getElementById('totalDocenas');
+  const totalUnidades = document.getElementById('totalUnidades');
+  const sumaCostoTotal = document.getElementById('totalCell');
 
+  var sumaUnidades = 0;
+  var sumaDocenas = 0;
+  var sumaTotalCosto = 0;
+
+  // menos la ultima fila de la tabla SUMA DE UNIDADES
+  for (var i = 0; i < tabla.rows.length - 1; i++) {
+    var valorCelda = parseInt(tabla.rows[i].cells[3].textContent);
+    if (!isNaN(valorCelda)) {
+      sumaUnidades += valorCelda;
+    }
+  }
+
+  // menos la ultima fila de la tabla SUMA DE DOCENAS
+  for (var i = 0; i < tabla.rows.length - 1; i++) {
+    var valorCelda = parseInt(tabla.rows[i].cells[2].textContent);
+    if (!isNaN(valorCelda)) {
+      sumaDocenas += valorCelda;
+    }
+  }
+
+  // menos la ultima fila de la tabla SUMA DEL COSTO TOTAL
+  for (var i = 0; i < tabla.rows.length - 1; i++) {
+    var valorCelda = parseFloat(tabla.rows[i].cells[5].textContent);
+    if (!isNaN(valorCelda)) {
+      sumaTotalCosto += valorCelda;
+    }
+  }
+
+  var sumaTotalUnidades = (sumaDocenas * 12) + sumaUnidades;
+  var docenaReales = Math.floor(sumaTotalUnidades / 12);
+  var unidadReales = sumaTotalUnidades - (docenaReales * 12);
+  // ENVIAR LOS VALORES TOTALES
+  totalDocenas.textContent = docenaReales;
+  totalUnidades.textContent = unidadReales;
+  sumaCostoTotal.textContent = sumaTotalCosto.toFixed(2);
+}
+/*=========================
+LIMPIAR EL FORMULARIO DE INGRESO DE PRODUCTOS
+==========================*/
 function limpiarFormulario() {
   const productoEmpaque = document.getElementById('productoEmpaque');
   const ingDocenas = document.getElementById('ingDocenas');
@@ -645,62 +615,35 @@ function limpiarFormulario() {
   ingUnidades.value = '';
   costoProducto.value = '';
 }
-
-function eliminarProducto(button) {
-  const row = button.parentNode.parentNode;
-  const costoSubtotal = parseFloat(row.cells[4].textContent);
-
-  totalCost = parseInt(totalCost) - parseInt(costoSubtotal);
-  totalCell.textContent = totalCost.toFixed(2);
-
-  row.remove();
+/*=========================
+ELIMINAR UN REGISTRO DE NOTA DE EMPAQUE
+==========================*/
+function eliminarProducto(id) {
+  arregloCarritoNE = arregloCarritoNE.filter(
+    (detalle) => {
+      if (id != detalle.idProducto) {
+        return detalle
+      }
+    }
+  )
+  dibujarTablaCarritoNE();
 }
 
-/* function dibujarTablaCarritoNE() {
-
-  listaDetalleNE.innerHTML = ""
-  arregloCarritoNE.forEach((detalle) => {
-    let fila = document.createElement("tr")
-
-    fila.innerHTML = '<td>' + detalle.descProducto + '</td>' +
-
-      '<td><input type="number" class="form-control form-control-sm" id="cantProDocena_' + detalle.idProducto + '" value="' + detalle.cantProdDocena + '" onkeyup="actCantidadNE(' + detalle.idProducto + ')">'  + '</td>'+
-      
-      '<td><input type="number" class="form-control form-control-sm" id="cantProV_' + detalle.idProducto + '" value="' + detalle.cantProducto + '" onkeyup="actCantidadDocNE(' + detalle.idProducto + ')">'  + '</td>'+
-      
-      '<td><input type="number" class="form-control form-control-sm" id="costoProV_' + detalle.idProducto + '" value="' + detalle.costoProducto + '">'  + '</td>'+
-      
-      '<td><input type="number" class="form-control form-control-sm" id="totalProV_' + detalle.idProducto + '" value="0">'  + '</td>'
-
-
-    let tdEliminar = document.createElement("td")
-    let botonEliminar = document.createElement("button")
-    botonEliminar.classList.add("btn", "btn-danger", "btn-sm", "borrar")
-    let icono = document.createElement("i")
-    icono.classList.add("fas", "fa-trash")
-    botonEliminar.appendChild(icono)
-    botonEliminar.onclick = () => {
-      eliminarCarritoNE(detalle.idProducto)
-    }
-
-    tdEliminar.appendChild(botonEliminar)
-    fila.appendChild(tdEliminar)
-
-    listaDetalleNE.appendChild(fila)
-  })
-} */
-
 /*=========================
-registro nota de empaque
+REGISTRO Y GUARDADO DE NOTA DE EMPAQUE
 ==========================*/
-function emitirNotaEmpaque() {
-  let codEmpaque = document.getElementById("codEmpaque").value
-  let personal = document.getElementById("personalEmpaque").value
+function GuardarNotaEmp() {
+  let fechaEmpaque = document.getElementById("fechaEmpaque").value
+  let personalEmpaque = document.getElementById("personalEmpaque").value
+  let nroEmpaque = document.getElementById("nroEmpaque").value
+  let observacionEmpaque = document.getElementById("observacionEmpaque").value
 
   let obj = {
-    "codEmpaque": codEmpaque,
-    "personal": personal,
-    "productosEmpaque": JSON.stringify(arregloCarritoNE)
+    "fechaEmpaque": fechaEmpaque,
+    "personalEmpaque": personalEmpaque,
+    "nroEmpaque": nroEmpaque,
+    "observacionEmpaque": observacionEmpaque,
+    "detalle": JSON.stringify(arregloCarritoNE)
   }
 
   $.ajax({
@@ -709,6 +652,7 @@ function emitirNotaEmpaque() {
     data: obj,
     cache: false,
     success: function (data) {
+      console.log(data)
       if (data == "ok") {
         Swal.fire({
           icon: 'success',

@@ -210,8 +210,6 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $productos = $data["productos"];
     $usuario = $data["usuario"];
 
-
-
     $stmt = Conexion::conectar()->prepare("insert into nota_salida(cod_nota_salida, concepto_salida, detalle_nota_salida, fecha_salida, id_usuario) values('NS-$codSalida', '$conceptoSalida', '$productos', '$fechaHora', $usuario)");
 
     if ($stmt->execute()) {
@@ -287,6 +285,41 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->execute();
     return $stmt->fetch();
 
+    $stmt->close();
+    $stmt->null;
+  }
+
+  /* ========================================
+  REGISTRO DE LAS NOTAS DE EMPAQUE
+  =========================================== */
+  static public function mdlRegEmpaque($data)
+  {
+    $fechaEmpaque = $data["fechaEmpaque"];
+    $personalEmpaque = $data["personalEmpaque"];
+    $nroEmpaque = $data["nroEmpaque"];
+    $observacionEmpaque = $data["observacionEmpaque"];
+    $detalle = $data["detalle"];
+
+    $stmt = Conexion::conectar()->prepare("insert into nota_empaque(id_personal, fecha_empaque, nro_comprobante_emp, observacion_empaque, detalle_empaque) values($personalEmpaque, '$fechaEmpaque', '$nroEmpaque', '$observacionEmpaque', '$detalle')");
+
+    if ($stmt->execute()) {
+      //transformar de json a array
+      $detalle = json_decode($data["detalle"], true);
+
+      for ($i = 0; $i < count($detalle); $i++) {
+        $idProducto = $detalle[$i]["idProducto"];
+        $nroEmpaque = $nroEmpaque;
+        $cantDocena = $detalle[$i]["cantProdDocena"];
+        $cantUnidad = $detalle[$i]["cantProdUnidad"];
+        $cantTotalUnidades = ($cantDocena*12)+$cantUnidad;
+
+        $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso) values($idProducto, $cantTotalUnidades, '$nroEmpaque')");
+        $ingreso_sql->execute();
+      }
+      return "ok";
+    } else {
+      return "error";
+    }
     $stmt->close();
     $stmt->null;
   }
