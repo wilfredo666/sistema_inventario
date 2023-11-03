@@ -203,6 +203,19 @@
 
               <ul class="nav nav-treeview">
                 <li class="nav-item">
+                  <a href="FSalidaVenta" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Nota Ventas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="RNotaSalida" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Detalle Ventas</p>
+                  </a>
+                </li> 
+                <!-- ESTAS SON LAS 4 OPCIONES ANTIGUAS CON FUNCIONAMIENTO -->
+                <!-- <li class="nav-item">
                   <a href="FNotaVenta" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Nota de Venta</p>
@@ -226,10 +239,7 @@
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Reporte Notas de Salida</p>
                   </a>
-                </li>
-
-
-
+                </li> -->
               </ul>
             </li>
 
@@ -244,34 +254,62 @@
 
 
               <ul class="nav nav-treeview">
-                
+
                 <!--<li class="nav-item">
-<a href="FOtrosIngresos" class="nav-link">
-<i class="far fa-circle nav-icon text-info"></i>
-<p>Otros Ingresos</p>
-</a>
-</li>-->
-               <li class="nav-item">
+                <a href="FOtrosIngresos" class="nav-link">
+                <i class="far fa-circle nav-icon text-info"></i>
+                <p>Otros Ingresos</p>
+                </a>
+                </li>-->
+                <li class="nav-item">
                   <a href="FNEmpaque" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Insertar Empaque</p>
+                    <p>Ingreso por Empaque</p>
                   </a>
                 </li>
-                
+
                 <li class="nav-item">
+                  <a href="FNDevolucion" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Ingreso por Devolución</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="FNProveedor" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Ingreso Prov. Externos</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="FNAjuste" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Ingreso Ajuste de Inv.</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="FNOtrosIng" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Otros Ingresos</p>
+                  </a>
+                </li>
+
+                <!-- <li class="nav-item">
                   <a href="VEmpaques" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Lista de Empaques</p>
                   </a>
                 </li>
-                
+
                 <li class="nav-item">
                   <a href="FNotaIngreso" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Nota de Ingreso</p>
                   </a>
-                </li>
-                
+                </li> -->
+
                 <li class="nav-item">
                   <a href="RNotaIngreso" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>

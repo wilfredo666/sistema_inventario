@@ -190,29 +190,37 @@ function previsualizar() {
   }
 }
 
-function datosProducto(){
-   //seleccionado de un select con el ID de producto 
-   var selectElement = document.getElementById("productoEmpaque");
-   var id = selectElement.value;
-   var obj = {
-       id: id
-   }
-   $.ajax({
-       type: "POST",
-       data: obj,
-       url: "controlador/productoControlador.php?ctrBuscarProducto",
-       success: function (data) {
-           // Parseamos los datos recibidos en formato JSON
-           var datos = JSON.parse(data);
+function datosProducto() {
+  //seleccionado de un select con el ID de producto 
+  var selectElement = document.getElementById("productoEmpaque");
+  var id = selectElement.value;
+  var obj = {
+    id: id
+  }
+  $.ajax({
+    type: "POST",
+    data: obj,
+    url: "controlador/productoControlador.php?ctrBuscarProducto",
+    success: function (data) {
+      // Parseamos los datos recibidos en formato JSON
+      var datos = JSON.parse(data);
 
-           // Obtenemos el elemento HTML donde mostraremos los resultados
-           var codigoEAN = document.getElementById("codigoEAN");
-           var costoProducto = document.getElementById("costoProducto");
-           var descripcionProd = document.getElementById("descripcionProd");
-           codigoEAN.value = datos.cod_producto;
-           costoProducto.value = datos.precio_costo;
-           descripcionProd.value = datos.nombre_producto;
-           console.log(datos);
-       }
-   })
+      // Obtenemos el elemento HTML donde mostraremos los resultados
+      var codigoEAN = document.getElementById("codigoEAN");
+      var costoProducto = document.getElementById("costoProducto");
+      var descripcionProd = document.getElementById("descripcionProd");
+      var stockDocenas = document.getElementById("stockDocenas");
+      var stockUnidades = document.getElementById("stockUnidades");
+      codigoEAN.value = datos.cod_producto;
+      costoProducto.value = datos.precio_costo;
+      descripcionProd.value = datos.nombre_producto;
+
+      var stockTotal = datos.stock;
+      var docenaReales = Math.floor(stockTotal / 12);
+      var unidadReales = stockTotal - (docenaReales * 12);
+      stockDocenas.value = docenaReales;
+      stockUnidades.value = unidadReales;
+      /* console.log(datos); */
+    }
+  })
 }

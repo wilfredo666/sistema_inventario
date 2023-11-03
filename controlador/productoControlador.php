@@ -174,10 +174,69 @@ class ControladorProducto
     return $respuesta;
   }
 
-  /* stock producto */
+  /*======================================
+   INGRESO DE stock producto 
+   =======================================*/
   static public function ctrStockProducto($id)
   {
     $respuesta = ModeloProducto::mdlStockProducto($id);
     echo $respuesta['stock'];
   }
+
+/*=============================================
+	MOSTRAR DEVOLUCIONES DE PRODUCTOS
+	=============================================*/
+  static public function ctrMostrarDevolucion()
+  {
+    $respuesta = ModeloProducto::mdlMostrarDevolucion();
+    return $respuesta;
+  }
+  static public function ctrMostrarUltimaND()
+  {
+    $respuesta = ModeloProducto::mdlMostrarUltimaND();
+    return $respuesta;
+  }
+
+  /*=============================================
+	MOSTRAR NOTA DE INGRESO POR PROVEEDORES EXTERNOS
+	=============================================*/
+  static public function ctrMostrarIngProv()
+  {
+    $respuesta = ModeloProducto::mdlMostrarIngProv();
+    return $respuesta;
+  }
+  static public function ctrMostrarUltimaNPE()
+  {
+    $respuesta = ModeloProducto::mdlMostrarUltimaNPE();
+    return $respuesta;
+  }
+  /*=============================================
+	MOSTRAR NOTA DE INGRESO POR AJUSTE DE INVENTARIOS
+	=============================================*/
+  static public function ctrMostrarIngAjuste()
+  {
+    $respuesta = ModeloProducto::mdlMostrarIngAjuste();
+    return $respuesta;
+  }
+  static public function ctrMostrarUltimaNIA()
+  {
+    $respuesta = ModeloProducto::mdlMostrarUltimaNIA();
+    return $respuesta;
+  }
+
+  /*=============================================
+	MOSTRAR NOTA DE OTROS INGRESOS
+	=============================================*/
+  static public function ctrMostrarOtrosIng()
+  {
+    $respuesta = ModeloProducto::mdlMostrarOtrosIng();
+    return $respuesta;
+  }
+  static public function ctrMostrarUltimaNOtrosIng()
+  {
+    $respuesta = ModeloProducto::mdlMostrarUltimaNOtrosIng();
+    return $respuesta;
+  }
+  
+  
 }

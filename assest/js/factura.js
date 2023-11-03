@@ -701,7 +701,6 @@ function eliminarCarritoNI(idProd) {
   dibujarTablaCarritoNI()
 }
 
-
 /*=========================
 registro nota de ingreso
 ==========================*/
@@ -744,4 +743,194 @@ function emitirNotaIngreso() {
     }
   })
 }
+
+/*=========================
+REGISTRO Y GUARDADO DE NOTA DE DEVOLUCIONES
+==========================*/
+function GuardarNotaDev() {
+  let fechaDev = document.getElementById("fechaDev").value
+  let personal = document.getElementById("personal").value
+  let nroDevolucion = document.getElementById("nroDevolucion").value
+  let observacion = document.getElementById("observacion").value
+
+  let obj = {
+    "fechaDev": fechaDev,
+    "personal": personal,
+    "nroDevolucion": nroDevolucion,
+    "observacion": observacion,
+    "detalle": JSON.stringify(arregloCarritoNE)
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRegDevolucion",
+    data: obj,
+    cache: false,
+    success: function (data) {
+      console.log(data)
+      if (data == "ok") {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Nota de Ingreso registrada',
+          timer: 1000
+        })
+        setTimeout(function () {
+          location.reload()
+        }, 1200)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error de registro',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  })
+}
+
+/*=========================
+REGISTRO Y GUARDADO DE NOTA DE INGRESO POR PROVEEDORES EXTERNOS
+==========================*/
+function GuardarNotaProv() {
+  let fecha = document.getElementById("fecha").value
+  let personal = document.getElementById("personal").value
+  let nroComprobante = document.getElementById("nroComprobante").value
+  let observacion = document.getElementById("observacion").value
+
+  let obj = {
+    "fecha": fecha,
+    "personal": personal,
+    "nroComprobante": nroComprobante,
+    "observacion": observacion,
+    "detalle": JSON.stringify(arregloCarritoNE)
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRegProvExterno",
+    data: obj,
+    cache: false,
+    success: function (data) {
+      console.log(data)
+      if (data == "ok") {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Nota de Ingreso registrada',
+          timer: 1000
+        })
+        setTimeout(function () {
+          location.reload()
+        }, 1200)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error de registro',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  })
+}
+
+/*=========================
+REGISTRO Y GUARDADO DE NOTA DE INGRESO POR PROVEEDORES EXTERNOS
+==========================*/
+function GuardarNotaIngAjuste() {
+  let fecha = document.getElementById("fecha").value
+  let personal = document.getElementById("personal").value
+  let nroComprobante = document.getElementById("nroComprobante").value
+  let observacion = document.getElementById("observacion").value
+
+  let obj = {
+    "fecha": fecha,
+    "personal": personal,
+    "nroComprobante": nroComprobante,
+    "observacion": observacion,
+    "detalle": JSON.stringify(arregloCarritoNE)
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRegAjusteInventario",
+    data: obj,
+    cache: false,
+    success: function (data) {
+      console.log(data)
+      if (data == "ok") {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Nota de Ingreso registrada',
+          timer: 1000
+        })
+        setTimeout(function () {
+          location.reload()
+        }, 1200)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error de registro',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  })
+}
+
+/*=========================
+REGISTRO Y GUARDADO DE NOTA DE INGRESO POR OTROS INGRESOS
+==========================*/
+function GuardarNotaOtrosIng() {
+  let fecha = document.getElementById("fecha").value
+  let personal = document.getElementById("personal").value
+  let nroComprobante = document.getElementById("nroComprobante").value
+  let observacion = document.getElementById("observacion").value
+
+  let obj = {
+    "fecha": fecha,
+    "personal": personal,
+    "nroComprobante": nroComprobante,
+    "observacion": observacion,
+    "detalle": JSON.stringify(arregloCarritoNE)
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRegOtrosIngresos",
+    data: obj,
+    cache: false,
+    success: function (data) {
+      console.log(data)
+      if (data == "ok") {
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          title: 'Nota de Ingreso registrada',
+          timer: 1000
+        })
+        setTimeout(function () {
+          location.reload()
+        }, 1200)
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error de registro',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    }
+  })
+}
+
+
 

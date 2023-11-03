@@ -25,12 +25,12 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Fecha:</label>
-                  <input type="date" class="form-control" name="fechaEmpaque" id="fechaEmpaque" value="<?php echo date('Y-m-d'); ?>" readonly>
+                  <input type="date" class="form-control" name="fechaEmpaque" id="fechaEmpaque" value="<?php date_default_timezone_set('America/La_Paz'); echo date('Y-m-d'); ?>" readonly>
                 </div>
               </div>
               <div class="col-md-8">
                 <div class="form-group">
-                  <label>Persona a cargo</label>
+                  <label>Personal a cargo</label>
                   <select class="form-control select2bs4" name="personalEmpaque" id="personalEmpaque">
                     <option value="">Seleccionar Personal a cargo</option>
                     <?php

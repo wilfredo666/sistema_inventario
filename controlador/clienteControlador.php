@@ -5,13 +5,13 @@ if(isset($ruta["query"])){
   if($ruta["query"]=="ctrRegCliente"||
      $ruta["query"]=="ctrEditCliente"||
      $ruta["query"]=="ctrEliCliente"||
+     $ruta["query"]=="ctrInformeCliente"||
      $ruta["query"]=="ctrBusCliente"){
     $metodo=$ruta["query"];
     $cliente=new ControladorCliente();
     $cliente->$metodo();
   }
 }
-
 
 class ControladorCliente{
 
@@ -42,8 +42,16 @@ class ControladorCliente{
 
   static public function ctrInfoCliente($id){
     $respuesta=ModeloCliente::mdlInfoCliente($id);
-
     return $respuesta;
+  }
+
+  static public function ctrInformeCliente(){
+    require "../modelo/clienteModelo.php";
+    $id = $_POST["id"];
+    $respuesta=ModeloCliente::mdlInfoCliente($id);
+    /* var_dump($respuesta); */
+    /* return $respuesta; */
+    echo json_encode($respuesta);
   }
 
   static public function ctrEditCliente(){

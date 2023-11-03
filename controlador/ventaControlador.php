@@ -9,6 +9,11 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrCmbEstado" ||
     $ruta["query"] == "ctrRegNotaIngreso" ||
     $ruta["query"] == "ctrRegEmpaque" ||
+    $ruta["query"] == "ctrRegDevolucion" ||
+    $ruta["query"] == "ctrRegProvExterno" ||
+    $ruta["query"] == "ctrRegAjusteInventario" ||
+    $ruta["query"] == "ctrRegOtrosIngresos" ||
+    $ruta["query"] == "ctrRegVenta" ||
     $ruta["query"] == "ctrRegNotaSalida"
   ) {
     $metodo = $ruta["query"];
@@ -173,13 +178,12 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     echo $respuesta;
   }
 
-  static public function ctrRegEmpaque(){
+  static public function ctrRegEmpaque()
+  {
     require_once "../modelo/ventaModelo.php";
-
     date_default_timezone_set("America/La_Paz");
     $fecha = date("Y-m-d");
     $hora = date("H:i:s");
-
     $data = array(
       "fechaEmpaque" => $fecha,
       "personalEmpaque" => $_POST["personalEmpaque"],
@@ -190,7 +194,7 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     $respuesta = ModeloVenta::mdlRegEmpaque($data);
     echo $respuesta;
   }
-  
+
   static public function ctrCantidadVentas()
   {
     $respuesta = ModeloVenta::mdlCantidadVentas();
@@ -201,5 +205,126 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
   {
     $respuesta = ModeloVenta::mdlTotalVentas();
     return $respuesta;
+  }
+  /* ===================================================
+PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
+==================================================== */
+  static public function ctrRegDevolucion()
+  {
+    require_once "../modelo/ventaModelo.php";
+    date_default_timezone_set("America/La_Paz");
+    $fecha = date("Y-m-d");
+    $hora = date("H:i:s");
+    $data = array(
+      "fecha" => $fecha,
+      "personal" => $_POST["personal"],
+      "nroDevolucion" => $_POST["nroDevolucion"],
+      "observacion" => $_POST["observacion"],
+      "detalle" => $_POST["detalle"],
+    );
+    $respuesta = ModeloVenta::mdlRegDevolucion($data);
+    echo $respuesta;
+  }
+
+  /* ===================================================
+  PARA REGISTRAR LAS NOTAS DE INGRESO POR PROEVEEDORES EXTERNOS
+  ==================================================== */
+static public function ctrRegProvExterno()
+{
+  require_once "../modelo/ventaModelo.php";
+  date_default_timezone_set("America/La_Paz");
+  $fechas = date("Y-m-d");
+  $hora = date("H:i:s");
+  $data = array(
+    "fecha" => $fechas,
+    "personal" => $_POST["personal"],
+    "nroComprobante" => $_POST["nroComprobante"],
+    "observacion" => $_POST["observacion"],
+    "detalle" => $_POST["detalle"],
+  );
+  
+  $respuesta = ModeloVenta::mdlRegProvExterno($data);
+  echo $respuesta;
+}
+
+ /* ===================================================
+  PARA REGISTRAR LAS NOTAS DE INGRESO POR AJUSTE DE INVENTARIOS
+  ==================================================== */
+static public function ctrRegAjusteInventario()
+{
+  require_once "../modelo/ventaModelo.php";
+  date_default_timezone_set("America/La_Paz");
+  $fechas = date("Y-m-d");
+  $hora = date("H:i:s");
+  $data = array(
+    "fecha" => $fechas,
+    "personal" => $_POST["personal"],
+    "nroComprobante" => $_POST["nroComprobante"],
+    "observacion" => $_POST["observacion"],
+    "detalle" => $_POST["detalle"],
+  );
+  
+  $respuesta = ModeloVenta::mdlRegAjusteInventario($data);
+  echo $respuesta;
+}
+
+/* ===================================================
+  PARA REGISTRAR LAS NOTAS DE INGRESO POR OTROS INGRESOS
+  ==================================================== */
+  static public function ctrRegOtrosIngresos()
+  {
+    require_once "../modelo/ventaModelo.php";
+    date_default_timezone_set("America/La_Paz");
+    $fechas = date("Y-m-d");
+    $hora = date("H:i:s");
+    $data = array(
+      "fecha" => $fechas,
+      "personal" => $_POST["personal"],
+      "nroComprobante" => $_POST["nroComprobante"],
+      "observacion" => $_POST["observacion"],
+      "detalle" => $_POST["detalle"],
+    );
+    
+    $respuesta = ModeloVenta::mdlRegOtrosIngresos($data);
+    echo $respuesta;
+  }
+  
+  /*=============================================
+	MOSTRAR CANNTIDAD DE VENTAS
+	=============================================*/
+  static public function ctrMostrarCantVentas()
+  {
+    $respuesta = ModeloVenta::mdlMostrarCantVentas();
+    return $respuesta;
+  }
+  static public function ctrUltimaVenta()
+  {
+    $respuesta = ModeloVenta::mdlUltimaVenta();
+    return $respuesta;
+  }
+
+ /*=============================================
+	PARA REGISTRAR LAS VENTAS
+	=============================================*/
+  static public function ctrRegVenta()
+  {
+    session_start(); //inicamos la sesion para obtener el id del usuario actual
+    require_once "../modelo/ventaModelo.php";
+    date_default_timezone_set("America/La_Paz");
+    $fecha = date("Y-m-d");
+    $hora = date("H:i:s");
+    $data = array(
+      "fecha" => $fecha,
+      "cliente" => $_POST["cliente"],
+      "nroComprobante" => $_POST["nroComprobante"],
+      "observacion" => $_POST["observacion"],
+      "detalle" => $_POST["detalle"],
+      "subTotal" => $_POST["subTotal"],
+      "totalNeto" => $_POST["totalNeto"],
+      "totalDescuento" => $_POST["totalDescuento"],
+      "usuario" => $_SESSION["idUsuario"],
+    );
+    $respuesta = ModeloVenta::mdlRegistroVenta($data);
+    echo $respuesta;
   }
 }

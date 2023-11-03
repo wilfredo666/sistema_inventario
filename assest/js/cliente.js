@@ -180,3 +180,27 @@ function Comprobarcliente() {
 
   })
 }
+
+function datosClientes(){
+   //seleccionado de un select con el ID de producto 
+   var selectElement = document.getElementById("cliente");
+   var id = selectElement.value;
+   var obj = {
+     id: id
+   }
+   $.ajax({
+     type: "POST",
+     data: obj,
+     url: "controlador/clienteControlador.php?ctrInformeCliente",
+     success: function (data) {
+       // Parseamos los datos recibidos en formato JSON
+       var datos = JSON.parse(data);
+ 
+       // Obtenemos el elemento HTML donde mostraremos los resultados
+       var descuentoCliente = document.getElementById("descuentoCliente");
+      
+       descuentoCliente.value = datos.descuento;
+       console.log(data);
+     }
+   })
+}

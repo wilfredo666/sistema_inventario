@@ -63,6 +63,7 @@
 <script src="assest/js/grupo.js"></script>
 <script src="assest/js/personal.js"></script>
 <script src="assest/js/provInterno.js"></script>
+<script src="assest/js/venta.js"></script>
 
 <!--====================
 seccion de modals
@@ -148,6 +149,37 @@ seccion de modals
         }
       }
     }).buttons().container().appendTo('#DataTable_wrapper .col-md-6:eq(0)');
+
+  });
+
+  $(function() {
+    $("#DataTableVenta").DataTable({
+      "ordering": false,
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print"],
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+        }
+      }
+    }).buttons().container().appendTo('#DataTableVenta_wrapper .col-md-6:eq(0)');
 
   });
 
