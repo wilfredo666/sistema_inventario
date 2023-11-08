@@ -187,7 +187,7 @@ class ModeloProducto{
   /* STOCK PRODUCTO */
   static public function mdlStockProducto($id)
   {
-      $stmt = Conexion::conectar()->prepare("select sum(cantidad) as stock from ingreso_stock where id_producto = $id");
+      $stmt = Conexion::conectar()->prepare("SELECT sum(cantidad)-(SELECT sum(cantidad) FROM salida_stock WHERE id_producto=$id) as stock FROM ingreso_stock WHERE id_producto=$id");
       $stmt->execute();
 
       return $stmt->fetch();

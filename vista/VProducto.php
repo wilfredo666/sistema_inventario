@@ -17,7 +17,7 @@
           <th>Nombre del Producto</th>
           <th>Talla</th>
           <th>Precio Venta</th>
-          <th>Stock</th>
+          <th>Stock[D|U]</th>
           <th>Imagen</th>
           <th>Estado</th>
           <td>
@@ -36,7 +36,13 @@
             <td><?php echo $value["nombre_producto"]; ?></td>
             <td><?php echo $value["desc_talla"]; ?></td>
             <td><?php echo $value["precio_venta"]; ?></td>
-            <td><span class="badge badge-warning"> <?php  ControladorProducto::ctrStockProducto($value["id_producto"]);?> </span></td>
+            <td><span class="badge badge-warning"> <?php  $stock=ControladorProducto::ctrStockProducto($value["id_producto"]);
+             $unidades=$stock%12;
+             $docenas=floor($stock/12);
+          echo $docenas." | ".$unidades;
+              ?> 
+            </span></td>
+            
             <td><?php
                 if ($value["imagen_producto"] == "") {
                 ?>
