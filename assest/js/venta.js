@@ -4,7 +4,7 @@
 carrito nota de VENTA
 ========================*/
 var arregloCarritoNV = []
-var listaDetalleNE = document.getElementById("listaDetalleNV")
+var listaDetalleNV = document.getElementById("listaDetalleNV")
 
 function agregarCarritoNV() {
     const selectElement = document.getElementById('productoEmpaque');
@@ -35,7 +35,7 @@ function agregarCarritoNV() {
 DINUJA EL CARRITO NOTA DE EMPAQUE
 ==========================*/
 function dibujarTablaCarritoNV() {
-    listaDetalleNE.innerHTML = ""
+    listaDetalleNV.innerHTML = ""
     arregloCarritoNV.forEach((detalle) => {
         let precioUnidad = detalle.costoProducto / 12;
         let totalUnidades = (((parseInt(detalle.cantProdDocena)) * 12) + parseInt(detalle.cantProdUnidad));
@@ -54,19 +54,19 @@ function dibujarTablaCarritoNV() {
             '<td>' + descuento.toFixed(2) + '</td>' +
             /* '<td>' + detalle.descuentoCliente + ' % </td>' + */
             '<td>' + totalNeto.toFixed(2) + '</td>' +
-            '<td>' + '<a class="btn btn-danger btn-sm" onclick="eliminarProducto(' + detalle.idProducto + ')"><i class="fas fa-times-circle"></i></a>' + '</td>'
+            '<td>' + '<a class="btn btn-danger btn-sm" onclick="eliminarProductoNV(' + detalle.idProducto + ')"><i class="fas fa-times-circle"></i></a>' + '</td>'
 
-        listaDetalleNE.appendChild(fila)
+            listaDetalleNV.appendChild(fila)
 
     })
 
-    totalesCantidad();
-    limpiarFormulario();
+    totalesCantidadNV();
+    limpiarFormularioNV();
 }
 /*=========================
 SUMA DE LOS TOTALES DE LA TABLA DETALLE PRODUCTOS - NOTA EMPAQUE
 ==========================*/
-function totalesCantidad() {
+function totalesCantidadNV() {
     var tabla = document.getElementById("detalleNE");
     const totalDocenas = document.getElementById('totalDocenas');
     const totalUnidades = document.getElementById('totalUnidades');
@@ -133,7 +133,7 @@ function totalesCantidad() {
 /*=========================
 LIMPIAR EL FORMULARIO DE INGRESO DE PRODUCTOS
 ==========================*/
-function limpiarFormulario() {
+function limpiarFormularioNV() {
     const productoEmpaque = document.getElementById('productoEmpaque');
     const ingDocenas = document.getElementById('ingDocenas');
     const ingUnidades = document.getElementById('ingUnidades');
@@ -147,7 +147,7 @@ function limpiarFormulario() {
 /*=========================
 ELIMINAR UN REGISTRO DE NOTA DE EMPAQUE
 ==========================*/
-function eliminarProducto(id) {
+function eliminarProductoNV(id) {
     arregloCarritoNV = arregloCarritoNV.filter(
         (detalle) => {
             if (id != detalle.idProducto) {

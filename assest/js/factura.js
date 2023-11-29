@@ -535,6 +535,7 @@ DINUJA EL CARRITO NOTA DE EMPAQUE
 function dibujarTablaCarritoNE() {
   listaDetalleNE.innerHTML = ""
   arregloCarritoNE.forEach((detalle) => {
+    console.log(detalle);
     let precioUnidad = detalle.costoProducto / 12;
     let totalUnidades = (((parseInt(detalle.cantProdDocena)) * 12) + parseInt(detalle.cantProdUnidad));
     let costoTotalProducto = (totalUnidades * precioUnidad).toFixed(2);
