@@ -229,46 +229,46 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
   /* ===================================================
   PARA REGISTRAR LAS NOTAS DE INGRESO POR PROEVEEDORES EXTERNOS
   ==================================================== */
-static public function ctrRegProvExterno()
-{
-  require_once "../modelo/ventaModelo.php";
-  date_default_timezone_set("America/La_Paz");
-  $fechas = date("Y-m-d");
-  $hora = date("H:i:s");
-  $data = array(
-    "fecha" => $fechas,
-    "personal" => $_POST["personal"],
-    "nroComprobante" => $_POST["nroComprobante"],
-    "observacion" => $_POST["observacion"],
-    "detalle" => $_POST["detalle"],
-  );
-  
-  $respuesta = ModeloVenta::mdlRegProvExterno($data);
-  echo $respuesta;
-}
+  static public function ctrRegProvExterno()
+  {
+    require_once "../modelo/ventaModelo.php";
+    date_default_timezone_set("America/La_Paz");
+    $fechas = date("Y-m-d");
+    $hora = date("H:i:s");
+    $data = array(
+      "fecha" => $fechas,
+      "personal" => $_POST["personal"],
+      "nroComprobante" => $_POST["nroComprobante"],
+      "observacion" => $_POST["observacion"],
+      "detalle" => $_POST["detalle"],
+    );
 
- /* ===================================================
+    $respuesta = ModeloVenta::mdlRegProvExterno($data);
+    echo $respuesta;
+  }
+
+  /* ===================================================
   PARA REGISTRAR LAS NOTAS DE INGRESO POR AJUSTE DE INVENTARIOS
   ==================================================== */
-static public function ctrRegAjusteInventario()
-{
-  require_once "../modelo/ventaModelo.php";
-  date_default_timezone_set("America/La_Paz");
-  $fechas = date("Y-m-d");
-  $hora = date("H:i:s");
-  $data = array(
-    "fecha" => $fechas,
-    "personal" => $_POST["personal"],
-    "nroComprobante" => $_POST["nroComprobante"],
-    "observacion" => $_POST["observacion"],
-    "detalle" => $_POST["detalle"],
-  );
-  
-  $respuesta = ModeloVenta::mdlRegAjusteInventario($data);
-  echo $respuesta;
-}
+  static public function ctrRegAjusteInventario()
+  {
+    require_once "../modelo/ventaModelo.php";
+    date_default_timezone_set("America/La_Paz");
+    $fechas = date("Y-m-d");
+    $hora = date("H:i:s");
+    $data = array(
+      "fecha" => $fechas,
+      "personal" => $_POST["personal"],
+      "nroComprobante" => $_POST["nroComprobante"],
+      "observacion" => $_POST["observacion"],
+      "detalle" => $_POST["detalle"],
+    );
 
-/* ===================================================
+    $respuesta = ModeloVenta::mdlRegAjusteInventario($data);
+    echo $respuesta;
+  }
+
+  /* ===================================================
   PARA REGISTRAR LAS NOTAS DE INGRESO POR OTROS INGRESOS
   ==================================================== */
   static public function ctrRegOtrosIngresos()
@@ -284,11 +284,11 @@ static public function ctrRegAjusteInventario()
       "observacion" => $_POST["observacion"],
       "detalle" => $_POST["detalle"],
     );
-    
+
     $respuesta = ModeloVenta::mdlRegOtrosIngresos($data);
     echo $respuesta;
   }
-  
+
   /*=============================================
 	MOSTRAR CANNTIDAD DE VENTAS
 	=============================================*/
@@ -303,7 +303,7 @@ static public function ctrRegAjusteInventario()
     return $respuesta;
   }
 
- /*=============================================
+  /*=============================================
 	PARA REGISTRAR LAS VENTAS
 	=============================================*/
   static public function ctrRegVenta()
