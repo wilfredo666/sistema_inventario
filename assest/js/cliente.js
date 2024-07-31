@@ -200,7 +200,7 @@ function datosClientes(){
        var descuentoCliente = document.getElementById("descuentoCliente");
       
        descuentoCliente.value = datos.descuento;
-       console.log(data);
+       //console.log(data);
      }
    })
 }

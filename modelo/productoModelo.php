@@ -47,14 +47,8 @@ class ModeloProducto{
 
   static public function mdlInfoProducto($id){
     $stmt=Conexion::conectar()->prepare(
-      "select cod_producto,desc_color,desc_diseno,desc_grupo,desc_medida,desc_talla,estado,id_categoria,color.id_color,diseno.id_diseno,grupo.id_grupo,unidad_medida.id_medida,producto.id_producto,talla.id_talla,imagen_producto,img_color,nombre_producto,precio_costo,precio_venta, sum(cantidad) as stock    from producto 
-      left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
-      left join talla on talla.id_talla=producto.id_talla
-      left join color on color.id_color=producto.id_color
-      left join grupo on grupo.id_grupo=producto.id_grupo
-      left join diseno on diseno.id_diseno=producto.id_diseno
-      left join ingreso_stock on ingreso_stock.id_producto=producto.id_producto
-      where producto.id_producto=$id");
+      "SELECT cod_producto,desc_color,desc_diseno,desc_grupo,desc_medida,desc_talla,estado,id_categoria,color.id_color,diseno.id_diseno,grupo.id_grupo,unidad_medida.id_medida,producto.id_producto,talla.id_talla,imagen_producto,img_color,nombre_producto,precio_costo,precio_venta, diferencia
+      FROM producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida left join talla on talla.id_talla=producto.id_talla left join color on color.id_color=producto.id_color left join grupo on grupo.id_grupo=producto.id_grupo left join diseno on diseno.id_diseno=producto.id_diseno left join stock_producto on stock_producto.id_producto=producto.id_producto where producto.id_producto=$id");
     $stmt->execute();
 
     return $stmt->fetch();
@@ -187,10 +181,10 @@ class ModeloProducto{
   /* STOCK PRODUCTO */
   static public function mdlStockProducto($id)
   {
-      $stmt = Conexion::conectar()->prepare("SELECT sum(cantidad)-(SELECT sum(cantidad) FROM salida_stock WHERE id_producto=$id) as stock FROM ingreso_stock WHERE id_producto=$id");
+      $stmt = Conexion::conectar()->prepare("SELECT * FROM stock_producto WHERE id_producto=$id");
       $stmt->execute();
 
-      return $stmt->fetch();
+      return $stmt->fetch(PDO::FETCH_ASSOC);
       $stmt->close();
       $stmt->null;
   }

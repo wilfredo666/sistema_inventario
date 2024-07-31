@@ -129,7 +129,7 @@ function MEliProducto(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/ProductoControlador.php?ctrEliProducto",
+        url: "controlador/productoControlador.php?ctrEliProducto",
         success: function (data) {
           /* console.log(data) */
           if (data == "ok") {
@@ -212,11 +212,11 @@ function datosProducto() {
       var stockDocenas = document.getElementById("stockDocenas");
       var stockUnidades = document.getElementById("stockUnidades");
       codigoEAN.value = datos.cod_producto;
-      costoProducto.value = datos.precio_costo;
+      costoProducto.value = datos.precio_venta;
       descripcionProd.value = datos.nombre_producto;
 
-      var stockTotal = datos.stock;
-      var docenaReales = Math.floor(stockTotal / 12);
+      var stockTotal = datos.diferencia; 14
+      var docenaReales = Math.floor(stockTotal / 12); 1
       var unidadReales = stockTotal - (docenaReales * 12);
       stockDocenas.value = docenaReales;
       stockUnidades.value = unidadReales;

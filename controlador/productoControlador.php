@@ -180,7 +180,7 @@ class ControladorProducto
   static public function ctrStockProducto($id)
   {
     $respuesta = ModeloProducto::mdlStockProducto($id);
-    return $respuesta['stock'];
+    return $respuesta;
   }
 
 /*=============================================

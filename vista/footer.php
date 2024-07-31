@@ -2,7 +2,7 @@
   <div class="float-right d-none d-sm-block">
     <b>Version</b> 1.0.0
   </div>
-  <strong>Copyright &copy; 2023 <a href="https://ekesoft.es">Ekesoft</a>.</strong> Derechos reservados.
+  <strong>Copyright &copy; 2024 <a href="https://ekesoft.es">Ekesoft</a>.</strong> Derechos reservados.
 </footer>
 
 <!-- Control Sidebar -->
@@ -153,6 +153,44 @@ seccion de modals
   });
 
   $(function() {
+    $("#DataTable_producto").DataTable({
+      "paging": true,
+      "pageLength": 15, 
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "processing": true,
+      //"serverSide": true, // Activar paginación del lado del servidor
+      /*"ajax": {
+        "url": "controlador/productoControlador.php?ctrInfoProductos", // Ruta al script del servidor que procesa la solicitud
+        "type": "POST" // o "GET", según corresponda
+      },*/
+      "buttons": ["copy", "csv", "excel", "pdf", "print"],
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+          "first": "Primero",
+          "last": "Ultimo",
+          "next": "Siguiente",
+          "previous": "Anterior"
+        }
+      }
+    }).buttons().container().appendTo('#DataTable_producto_wrapper .col-md-6:eq(0)');
+
+  });
+
+  $(function() {
     $("#DataTableVenta").DataTable({
       "ordering": false,
       "responsive": true,
@@ -262,7 +300,7 @@ seccion de modals
 
     })
   })
-  
+
   //validacion para nota de ingreso
   $(function() {
     $.validator.setDefaults({
@@ -299,8 +337,8 @@ seccion de modals
 
     })
   })
-  
-   //validacion para nota de salida
+
+  //validacion para nota de salida
   $(function() {
     $.validator.setDefaults({
       submitHandler: function() {
@@ -336,7 +374,7 @@ seccion de modals
 
     })
   })
-  
+
 </script>
 
 

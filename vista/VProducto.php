@@ -10,7 +10,7 @@
     <h5 class="table-title">
       Lista de Productos
     </h5>
-    <table id="DataTable" class="table table-bordered table-striped">
+    <table id="DataTable_producto" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>Cod. Producto</th>
@@ -37,14 +37,18 @@
             <td><?php echo $value["desc_talla"]; ?></td>
             <td><?php echo $value["precio_venta"]; ?></td>
             <td><span class="badge badge-warning"> <?php  $stock=ControladorProducto::ctrStockProducto($value["id_producto"]);
-             $unidades=$stock%12;
-             $docenas=floor($stock/12);
-          echo $docenas." | ".$unidades;
+
+          if($stock!=false){
+            echo $stock["docenas"]." | ".$stock["unidades"];
+          }else{
+            echo "0|0";
+          }
+          
               ?> 
             </span></td>
             
             <td><?php
-                if ($value["imagen_producto"] == "") {
+                if (empty($value["imagen_producto"]) || !preg_match("/\.(jpg|png)$/i", $value["imagen_producto"])) {
                 ?>
                 <img src="assest/dist/img/productos/product_default.png" width='50'>
               <?php

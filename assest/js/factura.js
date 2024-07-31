@@ -535,7 +535,7 @@ DINUJA EL CARRITO NOTA DE EMPAQUE
 function dibujarTablaCarritoNE() {
   listaDetalleNE.innerHTML = ""
   arregloCarritoNE.forEach((detalle) => {
-    console.log(detalle);
+    //console.log(detalle);
     let precioUnidad = detalle.costoProducto / 12;
     let totalUnidades = (((parseInt(detalle.cantProdDocena)) * 12) + parseInt(detalle.cantProdUnidad));
     let costoTotalProducto = (totalUnidades * precioUnidad).toFixed(2);
@@ -653,7 +653,7 @@ function GuardarNotaEmp() {
     data: obj,
     cache: false,
     success: function (data) {
-      console.log(data)
+      //console.log(data)
       if (data == "ok") {
         Swal.fire({
           icon: 'success',

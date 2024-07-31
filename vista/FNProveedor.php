@@ -130,13 +130,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Ingreso Docenas</label>
-                                    <input type="text" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0">
+                                    <input type="text" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0" value="0">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Ingreso Unidades</label>
-                                    <input type="text" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0">
+                                    <input type="text" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0" value="0">
                                 </div>
                             </div>
                         </div>

@@ -33,16 +33,16 @@
                 $producto = ControladorProducto::ctrInfoProductos();
                 foreach ($producto as $value) {
                 ?><tr>
-                    <td class="pb-0 mb-0"><?php echo $value["cod_producto"]; ?></td>
-                    <td class="pb-0 mb-0"><?php echo $value["nombre_producto"]; ?></td>
-                    <td class="align-items-center text-center ">
-                      <div class="btn-group ">
-                        <button type="button" class="btn btn-info btn-sm" onclick="agregarCarritoNS(<?php echo $value["id_producto"]; ?>)">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                <td class="pb-0 mb-0"><?php echo $value["cod_producto"]; ?></td>
+                <td class="pb-0 mb-0"><?php echo $value["nombre_producto"]; ?></td>
+                <td class="align-items-center text-center ">
+                  <div class="btn-group ">
+                    <button type="button" class="btn btn-info btn-sm" onclick="agregarCarritoNS(<?php echo $value["id_producto"]; ?>)">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </td>
+                </tr>
                 <?php
                 }
                 ?>
