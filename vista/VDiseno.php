@@ -32,7 +32,7 @@
                 <button class="btn btn-sm btn-secondary" onclick="MEditDiseno(<?php echo $value['id_diseno']; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" onclick="MEliDiseno(<?php echo $value['id_diseno']; ?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

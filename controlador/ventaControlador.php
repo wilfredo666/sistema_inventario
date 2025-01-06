@@ -13,6 +13,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrRegProvExterno" ||
     $ruta["query"] == "ctrRegAjusteInventario" ||
     $ruta["query"] == "ctrRegOtrosIngresos" ||
+    $ruta["query"] == "ctrRepMovimiento" ||
     $ruta["query"] == "ctrRegVenta" ||
     $ruta["query"] == "ctrRegNotaSalida"
   ) {
@@ -326,5 +327,36 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     );
     $respuesta = ModeloVenta::mdlRegistroVenta($data);
     echo $respuesta;
+  }
+
+  // Función para convertir "MM/DD/YYYY" a "YYYY-MM-DD"
+  function convertDate($date) {
+   /* $dateArray = explode("/", $date); return $dateArray[2] . "-" . $dateArray[0] . "-" . $dateArray[1];*/
+    echo $date;
+  }
+
+  //de reporte.js -> consultaMovimiento
+  
+  static public function ctrRepMovimiento(){
+    //global convertDate();
+    require_once "../modelo/ventaModelo.php";
+
+    $rangoFecha = $_POST["reservation"];
+            
+    // Dividir las fechas en un array
+    $fecha = explode(" - ", $rangoFecha);
+//convertDate($fecha[0]);
+    echo $fechaInicial = $this->convertDate($fecha[0]);
+   /* echo $fechaFinal = convertDate($fecha[1]);*/
+
+    /*$data=array(
+      "producto"=>$_POST["producto"],
+      "fechaInicial"=>$fechaInicial,
+      "fechaFinal"=>$fechaFinal,
+      "tipoMovimiento"=>$_POST["tipoMovimiento"]
+    );*/
+    //var_dump($data);
+    //ModeloVenta::mdlRepMovimiento($data);
+
   }
 }

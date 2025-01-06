@@ -108,7 +108,7 @@
               <div class="col-md-8">
                 <div class="form-group">
                   <label>Artículo / Descripción Porducto</label>
-                  <select class="form-control select2bs4" name="productoEmpaque" id="productoEmpaque" onchange="datosProducto();">
+                  <select class="form-control select2bs4" name="productoEmpaque" id="productoEmpaque" onchange="datosProducto('s');">
                     <option value="">Seleccionar Artículo</option>
                     <?php
                     $producto = ControladorProducto::ctrInfoProductos();
@@ -125,7 +125,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Precio Docena</label>
-                  <input type="text" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00" readonly>
+                  <input type="text" class="form-control" name="ventaProducto" id="ventaProducto" placeholder="0.00">
+                  <input type="hidden" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00">
                 </div>
               </div>
               <div class="col-md-4">
@@ -287,12 +288,6 @@
 
     })
 
-/*    $("#btnGuardarNV").click(function(event) {
-      event.preventDefault(); // Evita el envío del formulario
-      if ($("#FSalidaVenta").valid()) {
-        GuardarNotaVenta(); // Llama a la función en venta.js de guardado
-      }
-    });*/
 
     $("#btnCarritoNV").click(function() {
       if ($("#FSalidaVenta").valid()) {

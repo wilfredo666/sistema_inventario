@@ -17,7 +17,7 @@ class ModeloTalla{
 
     $descTalla=$data["descTalla"];
 
-    $stmt=Conexion::conectar()->prepare("insert into Talla(desc_talla) values('$descTalla')");
+    $stmt=Conexion::conectar()->prepare("insert into talla(desc_talla) values('$descTalla')");
 
     if($stmt->execute()){
       return "ok";
@@ -30,7 +30,7 @@ class ModeloTalla{
   }
 
   static public function mdlInfoTalla($id){
-    $stmt=Conexion::conectar()->prepare("select * from Talla where id_Talla=$id");
+    $stmt=Conexion::conectar()->prepare("select * from talla where id_talla=$id");
     $stmt->execute();
 
     return $stmt->fetch();
@@ -57,26 +57,27 @@ class ModeloTalla{
   }
 
   static public function mdlEliTalla($data){
-    $Talla=Conexion::conectar()->prepare("select * from factura where id_Talla=$data");
+  /*  $Talla=Conexion::conectar()->prepare("select * from factura where id_talla=$data");
     $Talla->execute();
     if($Talla->fetch()>0){
       echo "error";
     }else{
-      $stmt=Conexion::conectar()->prepare("delete from Talla where id_Talla=$data");
+      }*/
+      $stmt=Conexion::conectar()->prepare("delete from talla where id_talla=$data");
 
       if($stmt->execute()){
         return "ok";
       }else{
         return "error";
       }
-    }
+    
 
     $stmt->close();
     $stmt->null;
   }
 
   static public function mdlBusTalla($nitTalla){
-    $stmt=Conexion::conectar()->prepare("select * from Talla where nit_ci_Talla=$nitTalla");
+    $stmt=Conexion::conectar()->prepare("select * from Talla where nit_ci_talla=$nitTalla");
     $stmt->execute();
     return $stmt->fetch();
 
@@ -85,7 +86,7 @@ class ModeloTalla{
   }
   
   static public function mdlCantidadTallas(){
-    $stmt=Conexion::conectar()->prepare("select count(*) as Talla from Talla");
+    $stmt=Conexion::conectar()->prepare("select count(*) as Talla from talla");
     $stmt->execute();
 
     return $stmt->fetch();

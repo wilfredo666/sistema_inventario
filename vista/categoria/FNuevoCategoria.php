@@ -10,7 +10,6 @@
     <div class="form-group">
       <label for="">Descripción de Categoria</label>
       <input type="text" class="form-control" id="desCategoria" name="desCategoria">
-      <p id="error-login"></p>
     </div>
   </div>
   <div class="modal-footer justify-content-between">
@@ -32,8 +31,7 @@
       $("#FormRegCategoria").validate({
       rules:{
         desCategoria:{
-          required:true,
-          minlength:5
+          required:true
         }
       },
       errorElement:'span',
@@ -44,7 +42,6 @@
 
       highlight: function(element, errorClass, validClass){
         $(element).addClass('is-invalid')
-        /* .is-invalid */
       },
 
       unhighlight: function(element, errorClass, validClass){

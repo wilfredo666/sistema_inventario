@@ -7,10 +7,6 @@ $id = $_GET["id"];
 $notaSalida = ControladorVenta::ctrInfoNotaSalida($id);
 $productos = json_decode($notaSalida["detalle_venta"], true);
 
-
-/* var_dump($notaSalida); */
-
-
 $today = getdate();
 
 $pdf = new FPDF('P', 'mm', 'Letter');
@@ -67,12 +63,11 @@ foreach ($productos as $producto) {
 
     $totalUnidades = $totalUnidades + $totalUnidad;
 
-    $pdf->SetFont('Arial', '', 11);
+
     $pdf->setX(8);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(25, 8, $prod['cod_producto'], 1, 0, "C");
-    $pdf->SetFont('Arial', '', 11);
-    $pdf->Cell(75, 8, $producto['descProducto'], 1, 0, "");
+    $pdf->Cell(75, 8, utf8_decode($producto['descProducto']), 1, 0, "");
     $pdf->Cell(12, 8, $producto['cantProdDocena'], 1, 0, "C");
     $pdf->Cell(12, 8, $producto['cantProdUnidad'], 1, 0, "C");
     $pdf->Cell(20, 8, $producto['costoProducto'], 1, 0, "C");

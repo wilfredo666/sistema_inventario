@@ -52,7 +52,7 @@ class ControladorTalla{
   }
 
   static public function ctrEliTalla(){
-    require "../modelo/TallaModelo.php";
+    require "../modelo/tallaModelo.php";
     $data=$_POST["id"];
 
     $respuesta=ModeloTalla::mdlEliTalla($data);
@@ -62,7 +62,7 @@ class ControladorTalla{
   }
 
   static public function ctrBusTalla(){
-    require "../modelo/TallaModelo.php";
+    require "../modelo/tallaModelo.php";
     $nitTalla=$_POST["nitTalla"];
 
     $respuesta=ModeloTalla::mdlBusTalla($nitTalla);

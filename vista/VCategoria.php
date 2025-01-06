@@ -32,7 +32,7 @@
                 <button class="btn btn-sm btn-secondary" onclick="MEditCategoria(<?php echo $value['id_categoria']; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" onclick="MEliCategoria(<?php echo $value['id_categoria']; ?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

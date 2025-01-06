@@ -520,7 +520,8 @@ function agregarCarritoNE() {
       let objDetalle = {
         idProducto: data["id_producto"],
         descProducto: data["nombre_producto"],
-        costoProducto: data["precio_costo"],
+        //costoProducto: data["precio_costo"],
+        costoProducto: parseFloat(document.getElementById("costoProducto").value),
         cantProdDocena: document.getElementById("ingDocenas").value,
         cantProdUnidad: document.getElementById("ingUnidades").value
       }
@@ -539,7 +540,9 @@ function dibujarTablaCarritoNE() {
     let precioUnidad = detalle.costoProducto / 12;
     let totalUnidades = (((parseInt(detalle.cantProdDocena)) * 12) + parseInt(detalle.cantProdUnidad));
     let costoTotalProducto = (totalUnidades * precioUnidad).toFixed(2);
-
+/*console.log(precioUnidad)
+console.log(totalUnidades)
+console.log(costoTotalProducto)*/
     let fila = document.createElement("tr")
 
     fila.innerHTML = '<td>' + detalle.idProducto + '</td>' +
@@ -611,10 +614,10 @@ function limpiarFormulario() {
   const ingUnidades = document.getElementById('ingUnidades');
   const costoProducto = document.getElementById('costoProducto');
 
-  productoEmpaque.value = '';
-  ingDocenas.value = '';
-  ingUnidades.value = '';
-  costoProducto.value = '';
+  //productoEmpaque.value = '';
+  ingDocenas.value = 0;
+  ingUnidades.value = 0;
+  //costoProducto.value = '';
 }
 /*=========================
 ELIMINAR UN REGISTRO DE NOTA DE EMPAQUE

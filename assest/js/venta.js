@@ -21,7 +21,7 @@ function agregarCarritoNV() {
       let objDetalle = {
         idProducto: data["id_producto"],
         descProducto: data["nombre_producto"],
-        costoProducto: data["precio_venta"],
+        costoProducto: parseFloat(document.getElementById("ventaProducto").value),
         cantProdDocena: document.getElementById("ingDocenas").value,
         cantProdUnidad: document.getElementById("ingUnidades").value,
         descuentoCliente: document.getElementById("descuentoCliente").value
@@ -139,7 +139,7 @@ function limpiarFormularioNV() {
   const ingUnidades = document.getElementById('ingUnidades');
   const costoProducto = document.getElementById('costoProducto');
 
-  productoEmpaque.value = '';
+  //productoEmpaque.value = '';
   ingDocenas.value = 0;
   ingUnidades.value = 0;
   costoProducto.value = '';

@@ -10,7 +10,6 @@
     <div class="form-group">
       <label for="">Descripción de Talla</label>
       <input type="text" class="form-control" id="descTalla" name="descTalla">
-      <p id="error-login"></p>
     </div>
   </div>
   <div class="modal-footer justify-content-between">
@@ -32,7 +31,7 @@
       $("#FormRegTalla").validate({
       rules:{
         descTalla:{
-          required:true,
+          required:true
         }
       },
       errorElement:'span',
@@ -43,7 +42,7 @@
 
       highlight: function(element, errorClass, validClass){
         $(element).addClass('is-invalid')
-        /* .is-invalid */
+
       },
 
       unhighlight: function(element, errorClass, validClass){

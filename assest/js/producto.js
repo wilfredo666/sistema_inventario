@@ -190,7 +190,7 @@ function previsualizar() {
   }
 }
 
-function datosProducto() {
+function datosProducto(tipo) { //tipo [s, i] se refiere si es de tipo salida o ingreso de producto
   //seleccionado de un select con el ID de producto 
   var selectElement = document.getElementById("productoEmpaque");
   var id = selectElement.value;
@@ -207,20 +207,34 @@ function datosProducto() {
 
       // Obtenemos el elemento HTML donde mostraremos los resultados
       var codigoEAN = document.getElementById("codigoEAN");
+      var ventaProducto = document.getElementById("ventaProducto");
       var costoProducto = document.getElementById("costoProducto");
       var descripcionProd = document.getElementById("descripcionProd");
       var stockDocenas = document.getElementById("stockDocenas");
       var stockUnidades = document.getElementById("stockUnidades");
       codigoEAN.value = datos.cod_producto;
-      costoProducto.value = datos.precio_venta;
+      ventaProducto.value = datos.precio_venta;
+      costoProducto.value = datos.precio_costo;
       descripcionProd.value = datos.nombre_producto;
 
-      var stockTotal = datos.diferencia; 14
-      var docenaReales = Math.floor(stockTotal / 12); 1
-      var unidadReales = stockTotal - (docenaReales * 12);
+      var stockTotal = parseInt(datos.diferencia)
+      var docenaReales = datos.docenas
+      var unidadReales = datos.unidades
       stockDocenas.value = docenaReales;
       stockUnidades.value = unidadReales;
-      /* console.log(datos); */
+
+      /* evaluando el stock para inserccion de datos*/
+      if(tipo=="s"){
+
+        if(stockTotal<=0 || isNaN(stockTotal)){
+
+          document.getElementById("ingDocenas").readOnly=true
+          document.getElementById("ingUnidades").readOnly=true
+        }else{
+          document.getElementById("ingDocenas").readOnly=false
+          document.getElementById("ingUnidades").readOnly=false
+        }
+      }
     }
   })
 }

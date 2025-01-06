@@ -29,13 +29,11 @@
             <td><?php echo $value["desc_talla"]; ?></td>
             <td>
               <div class="btn-group">
-                <!-- <button class="btn btn-sm btn-info" onclick="MVerTalla(<?php echo $value["id_talla"]; ?>)">
-                  <i class="fas fa-eye"></i>
-                </button> -->
+
                 <button class="btn btn-sm btn-secondary" onclick="MEditTalla(<?php echo $value["id_talla"]; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" onclick="MEliTalla(<?php echo $value["id_talla"]; ?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

@@ -22,7 +22,7 @@ class ControladorDiseno{
   }
 
   static public function ctrRegDiseno(){
-    require "../modelo/DisenoModelo.php";
+    require "../modelo/disenoModelo.php";
 
     $data=array(
       "descDiseno"=>$_POST["descDiseno"],
@@ -52,7 +52,7 @@ class ControladorDiseno{
   }
 
   static public function ctrEliDiseno(){
-    require "../modelo/DisenoModelo.php";
+    require "../modelo/disenoModelo.php";
     $data=$_POST["id"];
 
     $respuesta=ModeloDiseno::mdlEliDiseno($data);

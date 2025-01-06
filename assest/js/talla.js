@@ -24,12 +24,12 @@ function RegTalla() {
     contentType: false,
     processData: false,
     success: function (data) {
-
+ 
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El Talla ha sido registrado',
+          title: 'La Talla ha sido registrada',
           timer: 1000
         })
         setTimeout(function () {
@@ -127,14 +127,14 @@ function MEliTalla(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/TallaControlador.php?ctrEliTalla",
+        url: "controlador/tallaControlador.php?ctrEliTalla",
         success: function (data) {
 
           if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'Talla eliminado',
+              title: 'Talla eliminada',
               timer: 1000
             })
             setTimeout(function () {
@@ -144,7 +144,7 @@ function MEliTalla(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El Talla no puede ser eliminado, porque esta en uso',
+              text: 'La Talla no puede ser eliminada, porque esta en uso',
               showConfirmButton: false,
               timer: 1500
             })

@@ -30,7 +30,7 @@ class ModeloDiseno{
   }
 
   static public function mdlInfoDiseno($id){
-    $stmt=Conexion::conectar()->prepare("select * from Diseno where id_Diseno=$id");
+    $stmt=Conexion::conectar()->prepare("select * from diseno where id_diseno=$id");
     $stmt->execute();
 
     return $stmt->fetch();
@@ -57,26 +57,26 @@ class ModeloDiseno{
   }
 
   static public function mdlEliDiseno($data){
-    $Diseno=Conexion::conectar()->prepare("select * from factura where id_Diseno=$data");
+/*    $Diseno=Conexion::conectar()->prepare("select * from factura where id_diseno=$data");
     $Diseno->execute();
     if($Diseno->fetch()>0){
       echo "error";
-    }else{
-      $stmt=Conexion::conectar()->prepare("delete from Diseno where id_Diseno=$data");
+    }else{}*/
+      $stmt=Conexion::conectar()->prepare("delete from diseno where id_diseno=$data");
 
       if($stmt->execute()){
         return "ok";
       }else{
         return "error";
       }
-    }
+    
 
     $stmt->close();
     $stmt->null;
   }
 
   static public function mdlBusDiseno($nitDiseno){
-    $stmt=Conexion::conectar()->prepare("select * from Diseno where nit_ci_Diseno=$nitDiseno");
+    $stmt=Conexion::conectar()->prepare("select * from diseno where nit_ci_diseno=$nitDiseno");
     $stmt->execute();
     return $stmt->fetch();
 
@@ -85,7 +85,7 @@ class ModeloDiseno{
   }
   
   static public function mdlCantidadDisenos(){
-    $stmt=Conexion::conectar()->prepare("select count(*) as Diseno from Diseno");
+    $stmt=Conexion::conectar()->prepare("select count(*) as diseno from diseno");
     $stmt->execute();
 
     return $stmt->fetch();

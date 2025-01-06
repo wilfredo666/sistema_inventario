@@ -478,6 +478,7 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->close();
     $stmt->null;
   }
+
   static public function mdlUltimaVenta()
   {
     $stmt = Conexion::conectar()->prepare("SELECT * FROM venta ORDER BY id_venta DESC");
@@ -487,7 +488,7 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->null;
   }
 
-   /* ========================================
+  /* ========================================
   REGISTRO DE LAS NOTAS DE VENTAS
   =========================================== */
   static public function mdlRegistroVenta($data)
@@ -524,5 +525,20 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     }
     $stmt->close();
     $stmt->null;
+  }
+
+  static public function mdlRepMovimiento($data){
+    var_dump($data);
+/*    $stmt = Conexion::conectar()->prepare("select * from factura
+join cliente
+on cliente.id_cliente=factura.id_cliente
+JOIN usuario
+on usuario.id_usuario=factura.id_usuario");
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+    $stmt->close();
+    $stmt->null;*/
   }
 }

@@ -47,6 +47,7 @@ function RegDiseno() {
     }
   })
 }
+
 function MEditDiseno(id) {
   $("#modal-default").modal("show")
 
@@ -117,7 +118,7 @@ function MEliDiseno(id) {
   }
 
   Swal.fire({
-    title: '¿Esta seguro de eliminar este Diseno?',
+    title: '¿Esta seguro de eliminar este Diseño?',
     showDenyButton: true,
     showCancelButton: false,
     confirmButtonText: 'Confirmar',
@@ -127,7 +128,7 @@ function MEliDiseno(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/DisenoControlador.php?ctrEliDiseno",
+        url: "controlador/disenoControlador.php?ctrEliDiseno",
         success: function (data) {
 
           if (data == "ok") {
@@ -144,7 +145,7 @@ function MEliDiseno(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El Diseno no puede ser eliminado, porque esta en uso',
+              text: 'El Diseño no puede ser eliminado, porque esta en uso',
               showConfirmButton: false,
               timer: 1500
             })

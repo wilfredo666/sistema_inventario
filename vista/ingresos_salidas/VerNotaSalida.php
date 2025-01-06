@@ -7,6 +7,7 @@ $id = $_GET["id"];
 
 $notaSalida = ControladorVenta::ctrInfoNotaSalida($id);
 $productos = json_decode($notaSalida["detalle_venta"], true);
+
 ?>
 <div class="modal-header">
   <h4 class="modal-title">Información detalle de Venta</h4>

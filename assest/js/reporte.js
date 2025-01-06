@@ -1,4 +1,3 @@
-
 function MVerNotaIngreso(id) {
   $("#modal-xl").modal("show")
 
@@ -55,6 +54,28 @@ function reporteClasificacion() {
     processData: false,
     success: function (data) {
       /* $("#repServSolicitud").html(data) */
+      console.log(data)
+    }
+  })
+}
+
+//de VRepMovimiento.php 
+function consultaMovimiento(){
+  let producto= document.getElementById("producto").value
+  let reservation= document.getElementById("reservation").value
+  let tipoMovimiento= document.getElementById("tipoMovimiento").value
+
+  var obj = {
+    producto:producto,
+    reservation:reservation,
+    tipoMovimiento:tipoMovimiento
+  }
+  
+  $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRepMovimiento",
+    data: obj,
+    success: function (data) {
       console.log(data)
     }
   })

@@ -105,7 +105,7 @@
               <div class="col-md-8">
                 <div class="form-group">
                   <label>Artículo / Descripción Porducto</label>
-                  <select class="form-control select2bs4" name="productoEmpaque" id="productoEmpaque" onchange="datosProducto();">
+                  <select class="form-control select2bs4" name="productoEmpaque" id="productoEmpaque" onchange="datosProducto('i');">
                     <option value="">Seleccionar Artículo</option>
                     <?php
                     $producto = ControladorProducto::ctrInfoProductos();
@@ -134,6 +134,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Costo</label>
+                  <input type="hidden" class="form-control" name="ventaProducto" id="ventaProducto" placeholder="0.00">
                   <input type="text" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00">
                 </div>
               </div>

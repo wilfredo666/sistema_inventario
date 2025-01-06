@@ -144,7 +144,7 @@ $producto = ControladorProducto::ctrInfoProducto($id);
             <label for="">Imagen del Producto</label>
             <input type="file" class="form-control" id="ImgProducto" name="ImgProducto" onchange="previsualizar()">
             <input type="hidden" id="imgActProducto" name="imgActProducto" value="<?php echo $producto["imagen_producto"]; ?>">
-            <?php if ($producto["imagen_producto"] == "") {
+            <?php if (empty($producto["imagen_producto"]) || !preg_match("/\.(jpg|png)$/i", $producto["imagen_producto"])) {
             ?>
                 <img src="assest/dist/img/productos/product_default.png" class="img-thumbnail previsualizar" width="200">
             <?php
@@ -157,10 +157,9 @@ $producto = ControladorProducto::ctrInfoProducto($id);
         </div>
 
     </div>
-
+</form>
 
     <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+        <button type="button" class="btn btn-primary" id="guardar" onclick="EditProducto()">Guardar</button>
     </div>
-</form>

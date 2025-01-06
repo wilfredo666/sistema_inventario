@@ -18,7 +18,7 @@ function RegCategoria() {
 
   $.ajax({
     type: "POST",
-    url: "controlador/categoriaControlador.php?ctrRegCategoria",
+    url: "controlador/categoriaControlador.php?ctrRegistrarCategoria",
     data: formData,
     cache: false,
     contentType: false,
@@ -29,7 +29,7 @@ function RegCategoria() {
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
-          title: 'El Categoria ha sido registrado',
+          title: 'La Categoria ha sido registrada',
           timer: 1000
         })
         setTimeout(function () {
@@ -117,7 +117,7 @@ function MEliCategoria(id) {
   }
 
   Swal.fire({
-    title: '¿Esta seguro de eliminar este Categoria?',
+    title: '¿Esta seguro de eliminar esta Categoria?',
     showDenyButton: true,
     showCancelButton: false,
     confirmButtonText: 'Confirmar',
@@ -127,14 +127,14 @@ function MEliCategoria(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/CategoriaControlador.php?ctrEliCategoria",
+        url: "controlador/categoriaControlador.php?ctrEliCategoria",
         success: function (data) {
 
           if (data == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'Categoria eliminado',
+              title: 'Categoria eliminada',
               timer: 1000
             })
             setTimeout(function () {
@@ -144,7 +144,7 @@ function MEliCategoria(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El Categoria no puede ser eliminado, porque esta en uso',
+              text: 'La Categoria no puede ser eliminado, porque esta en uso',
               showConfirmButton: false,
               timer: 1500
             })
