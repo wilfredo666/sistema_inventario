@@ -43,11 +43,59 @@
 <!-- SweetAlert2 -->
 <script src="assest/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- date-range-picker -->
-<script src="assest/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- <script src="assest/plugins/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="assest/dist/js/otros/jquery.min.js"></script>
+<script type="text/javascript" src="assest/dist/js/otros/moment.min.js"></script> -->
+
 <!-- Select2 -->
 <script src="assest/plugins/select2/js/select2.full.min.js"></script>
 <!-- dropzonejs -->
 <script src="assest/plugins/dropzone/min/dropzone.min.js"></script>
+
+
+<!-- Moment.js -->
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<!-- Date Range Picker JS -->
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#daterange').daterangepicker({
+      opens: 'right', // Muestra el selector a la derecha
+      locale: {
+        format: 'YYYY-MM-DD', // Formato de las fechas
+        separator: ' a ', // Separador entre fechas
+        applyLabel: 'Aplicar',
+        cancelLabel: 'Cancelar',
+        fromLabel: 'Desde',
+        toLabel: 'Hasta',
+        daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+        monthNames: [
+          'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ],
+        firstDay: 1
+      }
+    });
+  });
+  $('#daterange-btn').daterangepicker({
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+      },
+      startDate: moment().subtract(29, 'days'),
+      endDate: moment()
+    },
+    function(start, end) {
+      $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+    }
+  )
+</script>
 
 <script src="assest/js/usuario.js"></script>
 <script src="assest/js/cliente.js"></script>
@@ -155,7 +203,7 @@ seccion de modals
   $(function() {
     $("#DataTable_producto").DataTable({
       "paging": true,
-      "pageLength": 15, 
+      "pageLength": 15,
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
@@ -374,7 +422,6 @@ seccion de modals
 
     })
   })
-
 </script>
 
 

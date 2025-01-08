@@ -330,24 +330,26 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
   }
 
   // Función para convertir "MM/DD/YYYY" a "YYYY-MM-DD"
-  function convertDate($date) {
-   /* $dateArray = explode("/", $date); return $dateArray[2] . "-" . $dateArray[0] . "-" . $dateArray[1];*/
+  function convertDate($date)
+  {
+    /* $dateArray = explode("/", $date); return $dateArray[2] . "-" . $dateArray[0] . "-" . $dateArray[1];*/
     echo $date;
   }
 
   //de reporte.js -> consultaMovimiento
-  
-  static public function ctrRepMovimiento(){
+
+  static public function ctrRepMovimiento()
+  {
     //global convertDate();
     require_once "../modelo/ventaModelo.php";
 
     $rangoFecha = $_POST["reservation"];
-            
+
     // Dividir las fechas en un array
     $fecha = explode(" - ", $rangoFecha);
-//convertDate($fecha[0]);
+    //convertDate($fecha[0]);
     echo $fechaInicial = $this->convertDate($fecha[0]);
-   /* echo $fechaFinal = convertDate($fecha[1]);*/
+    /* echo $fechaFinal = convertDate($fecha[1]);*/
 
     /*$data=array(
       "producto"=>$_POST["producto"],
@@ -358,5 +360,11 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     //var_dump($data);
     //ModeloVenta::mdlRepMovimiento($data);
 
+  }
+
+  static public function ctrMontoTotalVentas()
+  {
+    $respuesta = ModeloVenta::mdlMontoTotalVentas();
+    return $respuesta;
   }
 }

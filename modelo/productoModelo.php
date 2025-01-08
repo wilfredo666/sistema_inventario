@@ -1,10 +1,12 @@
-<?php 
+<?php
 require_once "conexion.php";
-class ModeloProducto{
+class ModeloProducto
+{
 
 
-  static public function mdlInfoProductos(){
-    $stmt=Conexion::conectar()->prepare("select * from producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
+  static public function mdlInfoProductos()
+  {
+    $stmt = Conexion::conectar()->prepare("select * from producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
       left join talla on talla.id_talla=producto.id_talla
       left join color on color.id_color=producto.id_color
       left join grupo on grupo.id_grupo=producto.id_grupo
@@ -14,30 +16,32 @@ class ModeloProducto{
     $stmt->close();
     $stmt->null;
   }
-  
 
-  static public function mdlTotProducto($id){
+
+  static public function mdlTotProducto($id)
+  {
     //$totFactura=Conexion::conectar()->prepare("select ")
   }
 
-  static public function mdlRegProducto($data){
-    $codProducto=$data["codProducto"];
-    $nomProducto=$data["nomProducto"];
-    $costoProducto=$data["costoProducto"];
-    $precioProducto=$data["precioProducto"];
-    $tallaProducto=$data["tallaProducto"];
-    $grupoProducto=$data["grupoProducto"];
-    $disenoProducto=$data["disenoProducto"];
-    $categoriaProducto=$data["categoriaProducto"];
-    $medidaProducto=$data["medidaProducto"];
-    $colorProducto=$data["colorProducto"];
-    $imgProducto=$data["imgProducto"];
+  static public function mdlRegProducto($data)
+  {
+    $codProducto = $data["codProducto"];
+    $nomProducto = $data["nomProducto"];
+    $costoProducto = $data["costoProducto"];
+    $precioProducto = $data["precioProducto"];
+    $tallaProducto = $data["tallaProducto"];
+    $grupoProducto = $data["grupoProducto"];
+    $disenoProducto = $data["disenoProducto"];
+    $categoriaProducto = $data["categoriaProducto"];
+    $medidaProducto = $data["medidaProducto"];
+    $colorProducto = $data["colorProducto"];
+    $imgProducto = $data["imgProducto"];
 
-    $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, nombre_producto, precio_costo, precio_venta, imagen_producto, id_grupo, id_diseno, id_categoria, id_medida, id_talla, id_color)values('$codProducto', '$nomProducto', '$costoProducto', '$precioProducto', '$imgProducto' , '$grupoProducto', '$disenoProducto', '$categoriaProducto',' $medidaProducto','$tallaProducto','$colorProducto')");
+    $stmt = Conexion::conectar()->prepare("insert into producto(cod_producto, nombre_producto, precio_costo, precio_venta, imagen_producto, id_grupo, id_diseno, id_categoria, id_medida, id_talla, id_color)values('$codProducto', '$nomProducto', '$costoProducto', '$precioProducto', '$imgProducto' , '$grupoProducto', '$disenoProducto', '$categoriaProducto',' $medidaProducto','$tallaProducto','$colorProducto')");
 
-    if($stmt->execute()){
+    if ($stmt->execute()) {
       return "ok";
-    }else{
+    } else {
       return "error";
     }
 
@@ -45,9 +49,11 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlInfoProducto($id){
-    $stmt=Conexion::conectar()->prepare(
-      "SELECT cod_producto,desc_color,desc_diseno,desc_grupo,desc_medida,desc_talla,estado,id_categoria,color.id_color,diseno.id_diseno,grupo.id_grupo,unidad_medida.id_medida,producto.id_producto,talla.id_talla,imagen_producto,img_color,nombre_producto,precio_costo,precio_venta, diferencia, docenas, unidades FROM producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida left join talla on talla.id_talla=producto.id_talla left join color on color.id_color=producto.id_color left join grupo on grupo.id_grupo=producto.id_grupo left join diseno on diseno.id_diseno=producto.id_diseno left join stock_producto on stock_producto.id_producto=producto.id_producto where producto.id_producto=$id");
+  static public function mdlInfoProducto($id)
+  {
+    $stmt = Conexion::conectar()->prepare(
+      "SELECT cod_producto,desc_color,desc_diseno,desc_grupo,desc_medida,desc_talla,estado,id_categoria,color.id_color,diseno.id_diseno,grupo.id_grupo,unidad_medida.id_medida,producto.id_producto,talla.id_talla,imagen_producto,img_color,nombre_producto,precio_costo,precio_venta, diferencia, docenas, unidades FROM producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida left join talla on talla.id_talla=producto.id_talla left join color on color.id_color=producto.id_color left join grupo on grupo.id_grupo=producto.id_grupo left join diseno on diseno.id_diseno=producto.id_diseno left join stock_producto on stock_producto.id_producto=producto.id_producto where producto.id_producto=$id"
+    );
     $stmt->execute();
 
     return $stmt->fetch();
@@ -56,28 +62,29 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlEditProducto($data){
+  static public function mdlEditProducto($data)
+  {
 
-    $idProducto=$data["idProducto"];
-    $codProducto=$data["codProducto"];
-    $nomProducto=$data["nomProducto"];
-    $costoProducto=$data["costoProducto"];
-    $precioProducto=$data["precioProducto"];
-    $tallaProducto=$data["tallaProducto"];
-    $grupoProducto=$data["grupoProducto"];
-    $disenoProducto=$data["disenoProducto"];
-    $categoriaProducto=$data["categoriaProducto"];
-    $medidaProducto=$data["medidaProducto"];
-    $colorProducto=$data["colorProducto"];
-    $ImgProducto=$data["ImgProducto"];
-    $estadoProducto=$data["estadoProducto"];
+    $idProducto = $data["idProducto"];
+    $codProducto = $data["codProducto"];
+    $nomProducto = $data["nomProducto"];
+    $costoProducto = $data["costoProducto"];
+    $precioProducto = $data["precioProducto"];
+    $tallaProducto = $data["tallaProducto"];
+    $grupoProducto = $data["grupoProducto"];
+    $disenoProducto = $data["disenoProducto"];
+    $categoriaProducto = $data["categoriaProducto"];
+    $medidaProducto = $data["medidaProducto"];
+    $colorProducto = $data["colorProducto"];
+    $ImgProducto = $data["ImgProducto"];
+    $estadoProducto = $data["estadoProducto"];
 
 
-    $stmt=Conexion::conectar()->prepare("update producto set cod_producto='$codProducto', nombre_producto='$nomProducto', precio_costo='$costoProducto', precio_venta='$precioProducto', imagen_producto='$ImgProducto', id_grupo='$grupoProducto' , id_diseno='$disenoProducto', id_categoria='$categoriaProducto', id_medida='$medidaProducto', id_talla='$tallaProducto', id_color='$colorProducto', estado='$estadoProducto' where id_producto=$idProducto");
+    $stmt = Conexion::conectar()->prepare("update producto set cod_producto='$codProducto', nombre_producto='$nomProducto', precio_costo='$costoProducto', precio_venta='$precioProducto', imagen_producto='$ImgProducto', id_grupo='$grupoProducto' , id_diseno='$disenoProducto', id_categoria='$categoriaProducto', id_medida='$medidaProducto', id_talla='$tallaProducto', id_color='$colorProducto', estado='$estadoProducto' where id_producto=$idProducto");
 
-    if($stmt->execute()){
+    if ($stmt->execute()) {
       return "ok";
-    }else{
+    } else {
       return "error";
     }
 
@@ -85,13 +92,14 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlActualizarAcceso($fechaHora, $id){
+  static public function mdlActualizarAcceso($fechaHora, $id)
+  {
 
-    $stmt=Conexion::conectar()->prepare("update Producto set ultimo_login='$fechaHora' where id_Producto=$id");
+    $stmt = Conexion::conectar()->prepare("update Producto set ultimo_login='$fechaHora' where id_Producto=$id");
 
-    if($stmt->execute()){
+    if ($stmt->execute()) {
       return "ok";
-    }else{
+    } else {
       return "error";
     }
 
@@ -99,14 +107,14 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlEliProducto($id){
-    try{
+  static public function mdlEliProducto($id)
+  {
+    try {
       $stmt = Conexion::conectar()->prepare("delete from producto where id_producto=$id");
       $stmt->execute();
-
-    }catch (PDOException $e){
-      $codeError= $e->getCode();
-      if($codeError=="23000"){
+    } catch (PDOException $e) {
+      $codeError = $e->getCode();
+      if ($codeError == "23000") {
         return "error";
 
         $stmt->close();
@@ -119,8 +127,9 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlBusProducto($idProducto){
-    $stmt=Conexion::conectar()->prepare("select * from producto 
+  static public function mdlBusProducto($idProducto)
+  {
+    $stmt = Conexion::conectar()->prepare("select * from producto 
           left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
       left join talla on talla.id_talla=producto.id_talla
       left join color on color.id_color=producto.id_color
@@ -135,8 +144,9 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlCantidadProductos(){
-    $stmt=Conexion::conectar()->prepare("select count(*) as producto from producto");
+  static public function mdlCantidadProductos()
+  {
+    $stmt = Conexion::conectar()->prepare("select count(*) as producto from producto");
     $stmt->execute();
 
     return $stmt->fetch();
@@ -145,8 +155,9 @@ class ModeloProducto{
     $stmt->null;
   }
 
-  static public function mdlInfoProductosVenta(){
-    $stmt=Conexion::conectar()->prepare("select * from producto where estado=1");
+  static public function mdlInfoProductosVenta()
+  {
+    $stmt = Conexion::conectar()->prepare("select * from producto where estado=1");
     $stmt->execute();
 
     return $stmt->fetchAll();
@@ -160,32 +171,32 @@ class ModeloProducto{
 	=============================================*/
   static public function mdlMostrarNotaEmpaque()
   {
-      $stmt = Conexion::conectar()->prepare("select count(*) as empaque from nota_empaque");
-      $stmt->execute();
+    $stmt = Conexion::conectar()->prepare("select count(*) as empaque from nota_empaque");
+    $stmt->execute();
 
-      return $stmt->fetchColumn();
-      $stmt->close();
-      $stmt->null;
+    return $stmt->fetchColumn();
+    $stmt->close();
+    $stmt->null;
   }
 
   static public function mdlMostrarUltimaNE()
   {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_empaque ORDER BY id_nota_empaque DESC");
-      $stmt->execute();
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_empaque ORDER BY id_nota_empaque DESC");
+    $stmt->execute();
 
-      return $stmt->fetch();
-      $stmt->close();
-      $stmt->null;
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
   }
   /* STOCK PRODUCTO */
   static public function mdlStockProducto($id)
   {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM stock_producto WHERE id_producto=$id");
-      $stmt->execute();
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM stock_producto WHERE id_producto=$id");
+    $stmt->execute();
 
-      return $stmt->fetch(PDO::FETCH_ASSOC);
-      $stmt->close();
-      $stmt->null;
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->close();
+    $stmt->null;
   }
 
   /*=============================================
@@ -193,19 +204,19 @@ class ModeloProducto{
 	=============================================*/
   static public function mdlMostrarDevolucion()
   {
-      $stmt = Conexion::conectar()->prepare("select count(*) as devolucion from nota_devolucion");
-      $stmt->execute();
-      return $stmt->fetchColumn();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("select count(*) as devolucion from nota_devolucion");
+    $stmt->execute();
+    return $stmt->fetchColumn();
+    $stmt->close();
+    $stmt->null;
   }
   static public function mdlMostrarUltimaND()
   {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_devolucion ORDER BY id_devolucion DESC");
-      $stmt->execute();
-      return $stmt->fetch();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_devolucion ORDER BY id_devolucion DESC");
+    $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
   }
 
   /*=============================================
@@ -213,19 +224,19 @@ class ModeloProducto{
 	=============================================*/
   static public function mdlMostrarIngProv()
   {
-      $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_ingreso_prov");
-      $stmt->execute();
-      return $stmt->fetchColumn();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_ingreso_prov");
+    $stmt->execute();
+    return $stmt->fetchColumn();
+    $stmt->close();
+    $stmt->null;
   }
   static public function mdlMostrarUltimaNPE()
   {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_ingreso_prov ORDER BY id_ingreso_prov DESC");
-      $stmt->execute();
-      return $stmt->fetch();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_ingreso_prov ORDER BY id_ingreso_prov DESC");
+    $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
   }
 
   /*=============================================
@@ -233,19 +244,19 @@ class ModeloProducto{
 	=============================================*/
   static public function mdlMostrarIngAjuste()
   {
-      $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_ingreso_ajuste");
-      $stmt->execute();
-      return $stmt->fetchColumn();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_ingreso_ajuste");
+    $stmt->execute();
+    return $stmt->fetchColumn();
+    $stmt->close();
+    $stmt->null;
   }
   static public function mdlMostrarUltimaNIA()
   {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_ingreso_ajuste ORDER BY id_ingreso_ajuste DESC");
-      $stmt->execute();
-      return $stmt->fetch();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_ingreso_ajuste ORDER BY id_ingreso_ajuste DESC");
+    $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
   }
 
   /*=============================================
@@ -253,20 +264,18 @@ class ModeloProducto{
 	=============================================*/
   static public function mdlMostrarOtrosIng()
   {
-      $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_otros_ingresos");
-      $stmt->execute();
-      return $stmt->fetchColumn();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_otros_ingresos");
+    $stmt->execute();
+    return $stmt->fetchColumn();
+    $stmt->close();
+    $stmt->null;
   }
   static public function mdlMostrarUltimaNOtrosIng()
   {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_otros_ingresos ORDER BY id_otros_ingresos DESC");
-      $stmt->execute();
-      return $stmt->fetch();
-      $stmt->close();
-      $stmt->null;
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_otros_ingresos ORDER BY id_otros_ingresos DESC");
+    $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
   }
-  
-  
 }

@@ -213,7 +213,10 @@
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Detalle Ventas</p>
                   </a>
-                </li> 
+                </li>
+
+
+
                 <!-- ESTAS SON LAS 4 OPCIONES ANTIGUAS CON FUNCIONAMIENTO -->
                 <!-- <li class="nav-item">
                   <a href="FNotaVenta" class="nav-link">
@@ -327,7 +330,7 @@
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-<!--              <ul class="nav nav-treeview">
+              <!--              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="VReporte" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
