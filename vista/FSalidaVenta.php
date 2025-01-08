@@ -163,7 +163,7 @@
             </div>
             <!-- </div> -->
             <div class="card-footer text-right">
-              <button type="button" class="btn btn-dark" id="btnCarritoNV" ><i class="fas fa-plus-circle"></i> Agregar Item</button>
+              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="agregarCarritoNV()" ><i class="fas fa-plus-circle"></i> Agregar Item</button>
             </div>
           </div>
         </div>

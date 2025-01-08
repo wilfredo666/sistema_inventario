@@ -86,7 +86,7 @@ on usuario.id_usuario=factura.id_usuario");
   }
   static public function mdlInfoIngresos()
   {
-    $stmt = Conexion::conectar()->prepare("select * from nota_ingreso");
+    $stmt = Conexion::conectar()->prepare("SELECT nro_comprobante_emp as codigo, fecha_empaque as fecha FROM nota_empaque UNION SELECT nro_comprobante_dev as codigo, fecha_devolucion as fecha FROM nota_devolucion UNION SELECT nro_comprobante_ajuste as codigo, fecha_ingreso_ajuste as fecha FROM nota_ingreso_ajuste UNION SELECT nro_comprobante_prov as codigo, fecha_ingreso_prov as fecha FROM nota_ingreso_prov UNION SELECT nro_comprobante_otros as codigo, fecha_otros_ingresos as fecha FROM nota_otros_ingresos");
 
     $stmt->execute();
     return $stmt->fetchAll();

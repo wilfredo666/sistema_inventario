@@ -11,10 +11,10 @@
     <table id="DataTable" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>#Código</th>
-          <th>Concepto</th>
+          <th>#</th>
+          <th>#Código Ingreso</th>
+          <!-- <th>Concepto</th> -->
           <th>Fecha</th>
-          <th>Estado</th>
           <td>
           </td>
         </tr>
@@ -22,31 +22,22 @@
       <tbody>
         <?php
         $ingreso = ControladorVenta::ctrInfoIngresos();
-
+        $c=0;
         foreach ($ingreso as $value) {
+          $c=$c+1;
         ?>
           <tr>
-            <td><?php echo $value["cod_nota_ingreso"]; ?></td>
-            <td><?php echo $value["concepto_ingreso"]; ?></td>
-            <td><?php echo $value["fecha_ingreso"]; ?></td>
+            <td><?php echo $c ?></td>
+            <td><?php echo $value["codigo"]; ?></td>
+            <!-- <td><?php echo $value["concepto_ingreso"]; ?></td> -->
+            <td><?php echo $value["fecha"]; ?></td>
             
-            <?php
-            if ($value["estado_nota_ingreso"] == 1) {
-            ?>
-              <td><span class="badge badge-success">aceptado</span></td>
-            <?php
-            } else {
-            ?>
-              <td><span class="badge badge-danger">rechazado</span></td>
-            <?php
-            }
-            ?>
             <td>
               <div class="btn-group">
                  <!-- funciones script en archivo reporte.js -->
-                <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso(<?php echo $value['id_nota_ingreso']; ?>)">
+                <!-- <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso(<?php echo $value['id_nota_ingreso']; ?>)">
                   <i class="fas fa-eye"></i>
-                </button>
+                </button> -->
                 <button class="btn btn-sm  btn-danger">
                   <i class="fas fa-trash"></i>
                 </button>
