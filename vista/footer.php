@@ -112,6 +112,7 @@
 <script src="assest/js/personal.js"></script>
 <script src="assest/js/provInterno.js"></script>
 <script src="assest/js/venta.js"></script>
+<script src="assest/js/ventaOtros.js"></script>
 
 <!--====================
 seccion de modals

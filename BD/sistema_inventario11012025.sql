@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2025 a las 21:16:38
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.4
+-- Servidor: 127.0.0.1:3307
+-- Tiempo de generación: 11-01-2025 a las 05:02:48
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -372,7 +372,8 @@ CREATE TABLE `ingreso_stock` (
 
 INSERT INTO `ingreso_stock` (`id_ingreso_stock`, `id_producto`, `cantidad`, `cod_ingreso`) VALUES
 (1, 1, 246, 'IE-10001'),
-(2, 2, 76, 'ID-1');
+(2, 2, 76, 'ID-1'),
+(3, 3, 152, 'IP-1');
 
 -- --------------------------------------------------------
 
@@ -490,6 +491,13 @@ CREATE TABLE `nota_ingreso_prov` (
   `estado_ingreso_prov` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `nota_ingreso_prov`
+--
+
+INSERT INTO `nota_ingreso_prov` (`id_ingreso_prov`, `nombre_personal`, `fecha_ingreso_prov`, `nro_comprobante_prov`, `observacion_ingreso_prov`, `detalle_ingreso_prov`, `estado_ingreso_prov`) VALUES
+(1, 'ASATEX', '2025-01-10', 'IP-1', '', '[{\"idProducto\":\"3\",\"descProducto\":\"Media Pantalon Lujo CP - Almendra\",\"costoProducto\":50,\"cantProdDocena\":\"12\",\"cantProdUnidad\":\"8\"}]', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -521,6 +529,35 @@ CREATE TABLE `nota_salida` (
   `id_usuario` int(11) NOT NULL,
   `estado_nota_salida` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nota_salida_otros`
+--
+
+CREATE TABLE `nota_salida_otros` (
+  `id_salida_otros` int(11) NOT NULL,
+  `codigo_salida_otros` varchar(150) NOT NULL,
+  `id_cliente` varchar(100) NOT NULL,
+  `detalle_salida_otros` text NOT NULL,
+  `total_salida_otros` decimal(10,2) NOT NULL,
+  `descuento_salida_otros` decimal(10,2) NOT NULL,
+  `neto_salida_otros` decimal(10,2) NOT NULL,
+  `fecha_salida_otros` date NOT NULL,
+  `observacion_salida_otros` varchar(255) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `concepto_salida_otros` varchar(150) NOT NULL,
+  `estado_salida_otros` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `nota_salida_otros`
+--
+
+INSERT INTO `nota_salida_otros` (`id_salida_otros`, `codigo_salida_otros`, `id_cliente`, `detalle_salida_otros`, `total_salida_otros`, `descuento_salida_otros`, `neto_salida_otros`, `fecha_salida_otros`, `observacion_salida_otros`, `id_usuario`, `concepto_salida_otros`, `estado_salida_otros`) VALUES
+(13, 'SO-1', 'Persona Natural', '[{\"idProducto\":\"1\",\"descProducto\":\"Media Pantalon Lujo CP - Cognac\",\"costoProducto\":25,\"cantProdDocena\":\"0\",\"cantProdUnidad\":\"2\",\"descuentoCliente\":\"0\"}]', '4.17', '0.00', '4.17', '2025-01-10', '', 1, 'Regalo', 1),
+(14, 'SO-2', 'Persona Jurídica', '[{\"idProducto\":\"1\",\"descProducto\":\"Media Pantalon Lujo CP - Cognac\",\"costoProducto\":25,\"cantProdDocena\":\"0\",\"cantProdUnidad\":\"2\",\"descuentoCliente\":\"0\"},{\"idProducto\":\"3\",\"descProducto\":\"Media Pantalon Lujo CP - Almendra\",\"costoProducto\":85,\"cantProdDocena\":\"0\",\"cantProdUnidad\":\"4\",\"descuentoCliente\":\"0\"}]', '32.50', '0.00', '32.50', '2025-01-10', '', 1, 'Marketing', 1);
 
 -- --------------------------------------------------------
 
@@ -686,7 +723,14 @@ CREATE TABLE `salida_stock` (
 INSERT INTO `salida_stock` (`id_salida_stock`, `id_producto`, `cantidad`, `cod_salida`) VALUES
 (1, 1, 52, 'SV-1'),
 (2, 1, 14, 'SV-2'),
-(3, 2, 15, 'SV-2');
+(3, 2, 15, 'SV-2'),
+(4, 3, 2, 'SV-3'),
+(5, 3, 2, 'SV-4'),
+(6, 1, 6, 'SV-5'),
+(8, 1, 2, 'SO-1'),
+(9, 1, 2, 'SO-2'),
+(10, 3, 4, 'SO-2'),
+(11, 2, 16, 'SV-6');
 
 -- --------------------------------------------------------
 
@@ -699,7 +743,7 @@ CREATE TABLE `stock_producto` (
 ,`total_ingreso` decimal(32,0)
 ,`total_salida` decimal(32,0)
 ,`diferencia` decimal(33,0)
-,`docenas` decimal(16,0)
+,`docenas` decimal(34,0)
 ,`unidades` decimal(33,0)
 );
 
@@ -788,7 +832,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `login_usuario`, `password`, `perfil`, `ultimo_login`, `fecha_registro`, `estado`) VALUES
-(1, 'Administrador ADM', 'admin', '$2y$10$y5Oc7mG8p4MPuFPvUdOk/.Gkf6iD/3kNqtYm2Lw0fOxRiBrLItehS', 'Administrador', '2025-01-07 11:44:42', '2023-03-02', 1);
+(1, 'Administrador ADM', 'admin', '$2y$10$y5Oc7mG8p4MPuFPvUdOk/.Gkf6iD/3kNqtYm2Lw0fOxRiBrLItehS', 'Administrador', '2025-01-10 11:46:17', '2023-03-02', 1);
 
 -- --------------------------------------------------------
 
@@ -816,7 +860,11 @@ CREATE TABLE `venta` (
 
 INSERT INTO `venta` (`id_venta`, `codigo_venta`, `id_cliente`, `detalle_venta`, `total`, `descuento`, `neto`, `fecha_emision`, `observacion`, `id_usuario`, `estado_venta`) VALUES
 (1, 'SV-1', 11, '[{\"idProducto\":\"1\",\"descProducto\":\"Media Pantalon Lujo CP - Cognac\",\"costoProducto\":25,\"cantProdDocena\":\"4\",\"cantProdUnidad\":\"4\",\"descuentoCliente\":\"20.00\"}]', '108.33', '21.67', '86.66', '2025-01-08', '', 1, 1),
-(2, 'SV-2', 13, '[{\"idProducto\":\"1\",\"descProducto\":\"Media Pantalon Lujo CP - Cognac\",\"costoProducto\":25,\"cantProdDocena\":\"1\",\"cantProdUnidad\":\"2\",\"descuentoCliente\":\"30.00\"},{\"idProducto\":\"2\",\"descProducto\":\"Media Pantalon Lujo CP - Tabaco\",\"costoProducto\":30,\"cantProdDocena\":\"1\",\"cantProdUnidad\":\"3\",\"descuentoCliente\":\"30.00\"}]', '66.67', '20.00', '46.67', '2025-01-08', '', 1, 1);
+(2, 'SV-2', 13, '[{\"idProducto\":\"1\",\"descProducto\":\"Media Pantalon Lujo CP - Cognac\",\"costoProducto\":25,\"cantProdDocena\":\"1\",\"cantProdUnidad\":\"2\",\"descuentoCliente\":\"30.00\"},{\"idProducto\":\"2\",\"descProducto\":\"Media Pantalon Lujo CP - Tabaco\",\"costoProducto\":30,\"cantProdDocena\":\"1\",\"cantProdUnidad\":\"3\",\"descuentoCliente\":\"30.00\"}]', '66.67', '20.00', '46.67', '2025-01-08', '', 1, 1),
+(3, 'SV-3', 14, '[{\"idProducto\":\"3\",\"descProducto\":\"Media Pantalon Lujo CP - Almendra\",\"costoProducto\":85,\"cantProdDocena\":\"0\",\"cantProdUnidad\":\"2\",\"descuentoCliente\":\"15.00\"}]', '14.17', '2.13', '12.04', '2025-01-10', '', 1, 1),
+(4, 'SV-4', 15, '[{\"idProducto\":\"3\",\"descProducto\":\"Media Pantalon Lujo CP - Almendra\",\"costoProducto\":85,\"cantProdDocena\":\"0\",\"cantProdUnidad\":\"2\",\"descuentoCliente\":\"20.00\"}]', '14.17', '2.83', '11.34', '2025-01-10', '', 1, 1),
+(5, 'SV-5', 15, '[{\"idProducto\":\"1\",\"descProducto\":\"Media Pantalon Lujo CP - Cognac\",\"costoProducto\":25,\"cantProdDocena\":\"0\",\"cantProdUnidad\":\"6\",\"descuentoCliente\":\"20.00\"}]', '12.50', '2.50', '10.00', '2025-01-10', '', 1, 1),
+(6, 'SV-6', 11, '[{\"idProducto\":\"2\",\"descProducto\":\"Media Pantalon Lujo CP - Tabaco\",\"costoProducto\":30,\"cantProdDocena\":\"1\",\"cantProdUnidad\":\"4\",\"descuentoCliente\":\"20.00\"}]', '40.00', '8.00', '32.00', '2025-01-10', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -825,7 +873,7 @@ INSERT INTO `venta` (`id_venta`, `codigo_venta`, `id_cliente`, `detalle_venta`, 
 --
 DROP TABLE IF EXISTS `stock_producto`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `stock_producto`  AS  select `ingreso`.`id_producto` AS `id_producto`,ifnull(`ingreso`.`total_ingreso`,0) AS `total_ingreso`,ifnull(`salida`.`total_salida`,0) AS `total_salida`,ifnull(`ingreso`.`total_ingreso`,0) - ifnull(`salida`.`total_salida`,0) AS `diferencia`,floor((ifnull(`ingreso`.`total_ingreso`,0) - ifnull(`salida`.`total_salida`,0)) / 12) AS `docenas`,(ifnull(`ingreso`.`total_ingreso`,0) - ifnull(`salida`.`total_salida`,0)) MOD 12 AS `unidades` from ((select `ingreso_stock`.`id_producto` AS `id_producto`,sum(`ingreso_stock`.`cantidad`) AS `total_ingreso` from `ingreso_stock` group by `ingreso_stock`.`id_producto`) `ingreso` left join (select `salida_stock`.`id_producto` AS `id_producto`,sum(`salida_stock`.`cantidad`) AS `total_salida` from `salida_stock` group by `salida_stock`.`id_producto`) `salida` on(`ingreso`.`id_producto` = `salida`.`id_producto`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `stock_producto`  AS SELECT `ingreso`.`id_producto` AS `id_producto`, ifnull(`ingreso`.`total_ingreso`,0) AS `total_ingreso`, ifnull(`salida`.`total_salida`,0) AS `total_salida`, ifnull(`ingreso`.`total_ingreso`,0) - ifnull(`salida`.`total_salida`,0) AS `diferencia`, floor((ifnull(`ingreso`.`total_ingreso`,0) - ifnull(`salida`.`total_salida`,0)) / 12) AS `docenas`, (ifnull(`ingreso`.`total_ingreso`,0) - ifnull(`salida`.`total_salida`,0)) MOD 12 AS `unidades` FROM ((select `ingreso_stock`.`id_producto` AS `id_producto`,sum(`ingreso_stock`.`cantidad`) AS `total_ingreso` from `ingreso_stock` group by `ingreso_stock`.`id_producto`) `ingreso` left join (select `salida_stock`.`id_producto` AS `id_producto`,sum(`salida_stock`.`cantidad`) AS `total_salida` from `salida_stock` group by `salida_stock`.`id_producto`) `salida` on(`ingreso`.`id_producto` = `salida`.`id_producto`))  ;
 
 --
 -- Índices para tablas volcadas
@@ -924,6 +972,12 @@ ALTER TABLE `nota_otros_ingresos`
 --
 ALTER TABLE `nota_salida`
   ADD PRIMARY KEY (`id_nota_salida`);
+
+--
+-- Indices de la tabla `nota_salida_otros`
+--
+ALTER TABLE `nota_salida_otros`
+  ADD PRIMARY KEY (`id_salida_otros`);
 
 --
 -- Indices de la tabla `permiso`
@@ -1037,7 +1091,7 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT de la tabla `ingreso_stock`
 --
 ALTER TABLE `ingreso_stock`
-  MODIFY `id_ingreso_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ingreso_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -1073,7 +1127,7 @@ ALTER TABLE `nota_ingreso_ajuste`
 -- AUTO_INCREMENT de la tabla `nota_ingreso_prov`
 --
 ALTER TABLE `nota_ingreso_prov`
-  MODIFY `id_ingreso_prov` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ingreso_prov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `nota_otros_ingresos`
@@ -1086,6 +1140,12 @@ ALTER TABLE `nota_otros_ingresos`
 --
 ALTER TABLE `nota_salida`
   MODIFY `id_nota_salida` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `nota_salida_otros`
+--
+ALTER TABLE `nota_salida_otros`
+  MODIFY `id_salida_otros` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -1127,7 +1187,7 @@ ALTER TABLE `registro_empaque`
 -- AUTO_INCREMENT de la tabla `salida_stock`
 --
 ALTER TABLE `salida_stock`
-  MODIFY `id_salida_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_salida_stock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `talla`
@@ -1151,7 +1211,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

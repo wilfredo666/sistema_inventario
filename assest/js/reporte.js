@@ -80,3 +80,30 @@ function consultaMovimiento(){
     }
   })
 }
+
+/* ====================================
+REPORTE MENOR POR PRODUCTO
+=======================================*/
+function consultaMovMenorProd() {
+   const picker = $('#daterange').data('daterangepicker');
+   const fechaInicial = picker.startDate.format('YYYY-MM-DD'); 
+   const fechaFinal = picker.endDate.format('YYYY-MM-DD');
+ 
+   let producto = document.getElementById('producto').value;
+ 
+   var obj = {
+    producto:producto,
+    fechaInicial:fechaInicial,
+    fechaFinal:fechaFinal
+   }
+
+   $.ajax({
+    type: "POST",
+    url: "controlador/ventaControlador.php?ctrRepMenorProd",
+    data: obj,
+    success: function (data) {
+      console.log(data)
+    }
+  })
+
+}

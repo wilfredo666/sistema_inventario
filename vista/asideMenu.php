@@ -209,6 +209,12 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="FSalidaOtros" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Nota Salidas Otros</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="RNotaSalida" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Detalle Ventas</p>
@@ -338,6 +344,14 @@
                   </a>
                 </li>
               </ul>-->
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="VRepMenorProd" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Rep. Menor p/producto</p>
+                  </a>
+                </li>
+              </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="VRepMovimiento" class="nav-link">

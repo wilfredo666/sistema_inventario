@@ -117,6 +117,24 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->null;
   }
 
+  static public function mdlRepMenorProd($data)
+  {
+    $producto = $data["producto"];
+    $fechaInicial = $data["fechaInicial"];
+    $fechaFinal = $data["fechaFinal"];
+
+    //$stmt = Conexion::conectar()->prepare("SELECT * FROM salida_stock WHERE fecha_emision BETWEEN '$fechaInicial' AND '$fechaFinal'");
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM salida_stock WHERE id_salida_stock=$producto");
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+    $stmt->close();
+    $stmt->null;
+  }
+
+
+
   static public function mdlAnularVenta($id)
   {
     $stmt = Conexion::conectar()->prepare("update factura set estado_factura=0 where id_factura=$id");
@@ -488,6 +506,24 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->null;
   }
 
+  static public function mdlMostrarCantVentasOtros()
+  {
+    $stmt = Conexion::conectar()->prepare("select count(*) as registros from nota_salida_otros");
+    $stmt->execute();
+    return $stmt->fetchColumn();
+    $stmt->close();
+    $stmt->null;
+  }
+
+  static public function mdlUltimaVentaOtros()
+  {
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM nota_salida_otros ORDER BY id_salida_otros DESC");
+    $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
+  }
+
   /* ========================================
   REGISTRO DE LAS NOTAS DE VENTAS
   =========================================== */
@@ -549,6 +585,46 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->execute();
     return $stmt->fetch();
 
+    $stmt->close();
+    $stmt->null;
+  }
+
+  /* ========================================
+  REGISTRO DE LAS NOTAS DE VENTAS DE OTROS COCEPTOS
+  =========================================== */
+  static public function mdlRegistroVentaOtros($data)
+  {
+    $fecha = $data["fecha"];
+    $cliente = $data["cliente"];
+    $nroComprobante = $data["nroComprobante"];
+    $observacion = $data["observacion"];
+    $concepto_salida = $data["concepto_salida"];
+    $detalle = $data["detalle"];
+    $subTotal = $data["subTotal"];
+    $totalNeto = $data["totalNeto"];
+    $totalDescuento = $data["totalDescuento"];
+    $usuario = $data["usuario"];
+
+    $stmt = Conexion::conectar()->prepare("insert into nota_salida_otros(codigo_salida_otros, id_cliente, detalle_salida_otros, total_salida_otros, descuento_salida_otros, neto_salida_otros, fecha_salida_otros, observacion_salida_otros, id_usuario, concepto_salida_otros) values('$nroComprobante', '$cliente', '$detalle', '$subTotal', '$totalDescuento', '$totalNeto', '$fecha', '$observacion', $usuario, '$concepto_salida')");
+
+    if ($stmt->execute()) {
+      //transformar de json a array
+      $detalle = json_decode($data["detalle"], true);
+
+      for ($i = 0; $i < count($detalle); $i++) {
+        $idProducto = $detalle[$i]["idProducto"];
+        $nroComprobante = $nroComprobante;
+        $cantDocena = $detalle[$i]["cantProdDocena"];
+        $cantUnidad = $detalle[$i]["cantProdUnidad"];
+        $cantTotalUnidades = ($cantDocena * 12) + $cantUnidad;
+
+        $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values($idProducto, $cantTotalUnidades, '$nroComprobante')");
+        $ingreso_sql->execute();
+      }
+      return "ok";
+    } else {
+      return "error";
+    }
     $stmt->close();
     $stmt->null;
   }

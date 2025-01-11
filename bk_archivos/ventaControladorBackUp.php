@@ -14,7 +14,6 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrRegAjusteInventario" ||
     $ruta["query"] == "ctrRegOtrosIngresos" ||
     $ruta["query"] == "ctrRepMovimiento" ||
-    $ruta["query"] == "ctrRepMenorProd" ||
     $ruta["query"] == "ctrRegVenta" ||
     $ruta["query"] == "ctrRegVentaOtros" ||
     $ruta["query"] == "ctrRegNotaSalida"
@@ -406,21 +405,6 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     );
     /* var_dump($data); */
     $respuesta = ModeloVenta::mdlRegistroVentaOtros($data);
-    echo $respuesta;
-  }
-
-  static public function ctrRepMenorProd()
-  {
-    $producto = $_POST["producto"];
-    $fechaInicial = $_POST["fechaInicial"];
-    $fechaFinal = $_POST["fechaFinal"];
-
-    $data = array(
-      "producto" => $producto,
-      "fechaInicial" => $fechaInicial,
-      "fechaFinal" => $fechaFinal,
-    );
-    $respuesta = ModeloVenta::mdlRepMenorProd($data);
     echo $respuesta;
   }
 }

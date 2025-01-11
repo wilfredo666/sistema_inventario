@@ -13,9 +13,9 @@
         <tr>
           <th>#Código Venta</th>
           <th>Cliente</th>
-          <th>Total Neto (Bs.)</th>
+          <th>Total</th>
           <th>Fecha</th>
-          <th>Estado</th>
+          <!--  <th>Estado</th> -->
           <th>Acciones</th>
         </tr>
       </thead>
@@ -26,22 +26,22 @@
         foreach ($salida as $value) {
         ?>
           <tr>
-            <td><?php echo $value["codigo_venta"]; ?></td>
-            <td><?php echo $value["razon_social_cliente"]; ?></td>
-            <td><?php echo $value["neto"]; ?></td>
-            <td><?php echo $value["fecha_emision"]; ?></td>
+            <td><?php echo $value["codigo"]; ?></td>
+            <td><?php echo $value["cliente"]; ?></td>
+            <td><?php echo $value["total_neto"]; ?></td>
+            <td><?php echo $value["fecha"]; ?></td>
 
-            <?php
-            if ($value["estado_venta"] == 1) {
-            ?>
+            <!-- <?php
+                  if ($value["estado_venta"] == 1) {
+                  ?>
               <td><span class="badge badge-success">aceptado</span></td>
             <?php
-            } else {
+                  } else {
             ?>
               <td><span class="badge badge-danger">rechazado</span></td>
             <?php
-            }
-            ?>
+                  }
+            ?> -->
 
 
             <td>
