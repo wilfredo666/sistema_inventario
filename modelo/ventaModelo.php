@@ -124,7 +124,7 @@ on usuario.id_usuario=factura.id_usuario");
     $fechaFinal = $data["fechaFinal"];
 
     //$stmt = Conexion::conectar()->prepare("SELECT * FROM salida_stock WHERE fecha_emision BETWEEN '$fechaInicial' AND '$fechaFinal'");
-    $stmt = Conexion::conectar()->prepare("SELECT * FROM salida_stock WHERE id_salida_stock=$producto");
+    $stmt = Conexion::conectar()->prepare("SELECT salida_stock.id_producto as producto, cantidad, cod_salida as codigo, nombre_producto FROM salida_stock join producto on producto.id_producto = salida_stock.id_producto WHERE salida_stock.id_producto=$producto UNION SELECT ingreso_stock.id_producto as producto, cantidad, cod_ingreso as codigo , nombre_producto FROM ingreso_stock join producto on producto.id_producto = ingreso_stock.id_producto WHERE ingreso_stock.id_producto=$producto");
 
     $stmt->execute();
     return $stmt->fetchAll();

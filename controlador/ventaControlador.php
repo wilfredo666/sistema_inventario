@@ -420,7 +420,11 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
       "fechaInicial" => $fechaInicial,
       "fechaFinal" => $fechaFinal,
     );
+    /* var_dump($data); */
+    require_once "../modelo/ventaModelo.php";
     $respuesta = ModeloVenta::mdlRepMenorProd($data);
-    echo $respuesta;
+    /* echo $respuesta; */
+    echo json_encode($respuesta);
+    
   }
 }

@@ -9,6 +9,12 @@ var listaDetalleNV = document.getElementById("listaDetalleNV")
 function agregarCarritoNV() {
   const selectElement = document.getElementById('productoEmpaque');
   const idProd = selectElement.value;
+
+  if (arregloCarritoNV.some(item => item.idProducto === idProd)) {
+    alert("Este producto ya fue agregado al carrito.");
+    return;
+  }
+
   var obj = {
     idProducto: idProd
   }
@@ -163,7 +169,7 @@ REGISTRO Y GUARDADO DE NOTA DE EMPAQUE
 ==========================*/
 function GuardarNotaVenta() {
   //evaluando si hay algo en el carrito para guardar
-  if(arregloCarritoNV.length!=0){
+  if (arregloCarritoNV.length != 0) {
 
     let fecha = document.getElementById("fecha").value
     let cliente = document.getElementById("cliente").value
@@ -212,7 +218,7 @@ function GuardarNotaVenta() {
         }
       }
     })
-  }else{
-    document.getElementById("aviso").innerHTML="*Nada que enviar"
+  } else {
+    document.getElementById("aviso").innerHTML = "*Nada que enviar"
   }
 }

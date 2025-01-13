@@ -85,25 +85,69 @@ function consultaMovimiento(){
 REPORTE MENOR POR PRODUCTO
 =======================================*/
 function consultaMovMenorProd() {
-   const picker = $('#daterange').data('daterangepicker');
-   const fechaInicial = picker.startDate.format('YYYY-MM-DD'); 
-   const fechaFinal = picker.endDate.format('YYYY-MM-DD');
- 
-   let producto = document.getElementById('producto').value;
- 
-   var obj = {
-    producto:producto,
-    fechaInicial:fechaInicial,
-    fechaFinal:fechaFinal
-   }
+  const picker = $('#daterange').data('daterangepicker');
+  const fechaInicial = picker.startDate.format('YYYY-MM-DD'); 
+  const fechaFinal = picker.endDate.format('YYYY-MM-DD');
 
-   $.ajax({
-    type: "POST",
-    url: "controlador/ventaControlador.php?ctrRepMenorProd",
-    data: obj,
-    success: function (data) {
-      console.log(data)
-    }
-  })
+  let producto = document.getElementById('producto').value;
 
+  var obj = {
+      producto: producto,
+      fechaInicial: fechaInicial,
+      fechaFinal: fechaFinal
+  };
+
+  $.ajax({
+      type: "POST",
+      url: "controlador/ventaControlador.php?ctrRepMenorProd",
+      data: obj,
+      dataType: "json", 
+      success: function (data) {
+          if ($.fn.DataTable.isDataTable('#DataTable')) {
+              $('#DataTable').DataTable().destroy();
+          }
+          $('#DataTable tbody').empty();
+
+          data.forEach(item => {
+              $('#DataTable tbody').append(`
+                  <tr>
+                      <td>${item.codigo}</td>
+                      <td>${item.nombre_producto}</td>
+                      <td>${item.cantidad}</td>
+                  </tr>
+              `);
+          });
+
+          $('#DataTable').DataTable({
+              responsive: true,
+              lengthChange: false,
+              autoWidth: false,
+              buttons: ["copy", "csv", "excel", "pdf", "print"],
+              language: {
+                  "decimal": "",
+                  "emptyTable": "No hay información",
+                  "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                  "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                  "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                  "infoPostFix": "",
+                  "thousands": ",",
+                  "lengthMenu": "Mostrar _MENU_ Entradas",
+                  "loadingRecords": "Cargando...",
+                  "processing": "Procesando...",
+                  "search": "Buscar:",
+                  "zeroRecords": "Sin resultados encontrados",
+                  "paginate": {
+                      "first": "Primero",
+                      "last": "Último",
+                      "next": "Siguiente",
+                      "previous": "Anterior"
+                  }
+              }
+          }).buttons().container().appendTo('#DataTable_wrapper .col-md-6:eq(0)');
+      },
+      error: function (xhr, status, error) {
+          console.error('Error:', error);
+          alert('Error al cargar los datos.');
+      }
+  });
 }
