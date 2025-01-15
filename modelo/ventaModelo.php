@@ -84,14 +84,39 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->close();
     $stmt->null;
   }
+
   static public function mdlInfoIngresos()
   {
-    $stmt = Conexion::conectar()->prepare("SELECT nro_comprobante_emp as codigo, fecha_empaque as fecha FROM nota_empaque UNION SELECT nro_comprobante_dev as codigo, fecha_devolucion as fecha FROM nota_devolucion UNION SELECT nro_comprobante_ajuste as codigo, fecha_ingreso_ajuste as fecha FROM nota_ingreso_ajuste UNION SELECT nro_comprobante_prov as codigo, fecha_ingreso_prov as fecha FROM nota_ingreso_prov UNION SELECT nro_comprobante_otros as codigo, fecha_otros_ingresos as fecha FROM nota_otros_ingresos");
+    $stmt1 = Conexion::conectar()->prepare("SELECT nro_comprobante_emp as codigo, fecha_empaque as fecha FROM nota_empaque");
+    $stmt2 = Conexion::conectar()->prepare("SELECT nro_comprobante_dev as codigo, fecha_devolucion as fecha FROM nota_devolucion");
+    $stmt3 = Conexion::conectar()->prepare("SELECT nro_comprobante_ajuste as codigo, fecha_ingreso_ajuste as fecha FROM nota_ingreso_ajuste ");
+    $stmt4 = Conexion::conectar()->prepare("SELECT nro_comprobante_prov as codigo, fecha_ingreso_prov as fecha FROM nota_ingreso_prov ");
+    $stmt5 = Conexion::conectar()->prepare("SELECT nro_comprobante_otros as codigo, fecha_otros_ingresos as fecha FROM nota_otros_ingresos");
 
-    $stmt->execute();
-    return $stmt->fetchAll();
+    $stmt1->execute();
+    $result1 = $stmt1->fetchAll();
 
-    $stmt->close();
+    $stmt2->execute();
+    $result2 = $stmt2->fetchAll();
+
+    $stmt3->execute();
+    $result3 = $stmt3->fetchAll();
+
+    $stmt4->execute();
+    $result4 = $stmt4->fetchAll();
+
+    $stmt5->execute();
+    $result5 = $stmt5->fetchAll();
+
+    $resultadoFinal = array_merge($result1, $result2, $result3, $result4, $result5);
+
+    $stmt1->closeCursor();
+    $stmt2->closeCursor();
+    $stmt3->closeCursor();
+    $stmt4->closeCursor();
+    $stmt5->closeCursor();
+
+    return $resultadoFinal;
     $stmt->null;
   }
 
@@ -124,12 +149,61 @@ on usuario.id_usuario=factura.id_usuario");
     $fechaFinal = $data["fechaFinal"];
 
     //$stmt = Conexion::conectar()->prepare("SELECT * FROM salida_stock WHERE fecha_emision BETWEEN '$fechaInicial' AND '$fechaFinal'");
-    $stmt = Conexion::conectar()->prepare("SELECT salida_stock.id_producto as producto, cantidad, cod_salida as codigo, nombre_producto FROM salida_stock join producto on producto.id_producto = salida_stock.id_producto WHERE salida_stock.id_producto=$producto UNION SELECT ingreso_stock.id_producto as producto, cantidad, cod_ingreso as codigo , nombre_producto FROM ingreso_stock join producto on producto.id_producto = ingreso_stock.id_producto WHERE ingreso_stock.id_producto=$producto");
+    $stmt1 = Conexion::conectar()->prepare("SELECT cantidad, cod_salida as codigo, venta.fecha_emision as fecha FROM salida_stock JOIN venta ON salida_stock.cod_salida=venta.codigo_venta WHERE salida_stock.id_producto=$producto");
 
-    $stmt->execute();
-    return $stmt->fetchAll();
+    $stmt2 = Conexion::conectar()->prepare("SELECT cantidad, cod_salida as codigo, nota_salida_otros.fecha_salida_otros as fecha 
+              FROM salida_stock 
+              JOIN nota_salida_otros ON salida_stock.cod_salida=nota_salida_otros.codigo_salida_otros
+              WHERE salida_stock.id_producto=$producto");
 
-    $stmt->close();
+    $stmt3 = Conexion::conectar()->prepare("SELECT cantidad, cod_ingreso as codigo, nota_empaque.fecha_empaque as fecha 
+            FROM ingreso_stock 
+            JOIN nota_empaque ON ingreso_stock.cod_ingreso=nota_empaque.nro_comprobante_emp
+            WHERE ingreso_stock.id_producto=$producto");
+
+    $stmt4 = Conexion::conectar()->prepare("SELECT cantidad, cod_ingreso as codigo, nota_ingreso_ajuste.fecha_ingreso_ajuste as fecha 
+            FROM ingreso_stock 
+            JOIN nota_ingreso_ajuste ON ingreso_stock.cod_ingreso=nota_ingreso_ajuste.nro_comprobante_ajuste
+            WHERE ingreso_stock.id_producto=$producto");
+
+    $stmt5 = Conexion::conectar()->prepare("SELECT cantidad, cod_ingreso as codigo, nota_ingreso_prov.fecha_ingreso_prov as fecha 
+            FROM ingreso_stock 
+            JOIN nota_ingreso_prov ON ingreso_stock.cod_ingreso=nota_ingreso_prov.nro_comprobante_prov
+            WHERE ingreso_stock.id_producto=$producto");
+
+    $stmt6 = Conexion::conectar()->prepare("SELECT cantidad, cod_ingreso as codigo, nota_otros_ingresos.fecha_otros_ingresos as fecha 
+            FROM ingreso_stock 
+            JOIN nota_otros_ingresos ON ingreso_stock.cod_ingreso=nota_otros_ingresos.nro_comprobante_otros
+            WHERE ingreso_stock.id_producto=$producto");
+
+    $stmt1->execute();
+    $result1 = $stmt1->fetchAll();
+
+    $stmt2->execute();
+    $result2 = $stmt2->fetchAll();
+
+    $stmt3->execute();
+    $result3 = $stmt3->fetchAll();
+
+    $stmt4->execute();
+    $result4 = $stmt4->fetchAll();
+
+    $stmt5->execute();
+    $result5 = $stmt5->fetchAll();
+
+    $stmt6->execute();
+    $result6 = $stmt6->fetchAll();
+
+    $resultadoFinal = array_merge($result1, $result2, $result3, $result4, $result5, $result6);
+
+    $stmt1->closeCursor();
+    $stmt2->closeCursor();
+    $stmt3->closeCursor();
+    $stmt4->closeCursor();
+    $stmt5->closeCursor();
+    $stmt6->closeCursor();
+
+    return $resultadoFinal;
     $stmt->null;
   }
 

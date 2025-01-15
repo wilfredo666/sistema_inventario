@@ -89,8 +89,9 @@ class ModeloUsuario
     $stmt->close();
     $stmt->null;
   }
-  
-  static public function mdlUsuarioPermiso($idUsuario,$idPermiso){
+
+  static public function mdlUsuarioPermiso($idUsuario, $idPermiso)
+  {
     $stmt = Conexion::conectar()->prepare("select * from permiso_usuario where id_usuario=$idUsuario and id_permiso=$idPermiso");
 
     $stmt->execute();
@@ -99,20 +100,21 @@ class ModeloUsuario
     $stmt->null;
   }
 
-  static public function mdlActualizarPermiso($data){
-    $idUsuario=$data["idUsuario"];
-    $idPermiso=$data["idPermiso"];
+  static public function mdlActualizarPermiso($data)
+  {
+    $idUsuario = $data["idUsuario"];
+    $idPermiso = $data["idPermiso"];
 
     $permiso = Conexion::conectar()->prepare("select * from permiso_usuario where id_usuario=$idUsuario and id_permiso=$idPermiso");
     $permiso->execute();
 
-    if(($permiso->fetch())!=null){
+    if (($permiso->fetch()) != null) {
       $stmt = Conexion::conectar()->prepare("delete from permiso_usuario  where id_usuario=$idUsuario and id_permiso=$idPermiso");
-    }else{
+    } else {
       $stmt = Conexion::conectar()->prepare("insert into permiso_usuario (id_usuario, id_permiso) values ($idUsuario, $idPermiso)");
     }
 
-    if ( $stmt->execute() ) {
+    if ($stmt->execute()) {
       return "ok";
     } else {
       return "error";
@@ -160,8 +162,9 @@ class ModeloUsuario
     $stmt->null;
   }
 
-  
-  static public function mdlCantidadUsuarios(){
+
+  static public function mdlCantidadUsuarios()
+  {
     $stmt = Conexion::conectar()->prepare("select count(id_usuario) as usuarios from usuario");
 
     $stmt->execute();

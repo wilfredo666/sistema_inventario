@@ -11,7 +11,7 @@ function agregarCarritoNV() {
   const idProd = selectElement.value;
 
   if (arregloCarritoNV.some(item => item.idProducto === idProd)) {
-    alert("Este producto ya fue agregado al carrito.");
+      toastr.error('El Producto ya fue agregado, seleccione otro producto...!!!')
     return;
   }
 

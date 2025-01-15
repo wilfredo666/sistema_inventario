@@ -109,14 +109,18 @@ function consultaMovMenorProd() {
           $('#DataTable tbody').empty();
 
           data.forEach(item => {
-              $('#DataTable tbody').append(`
-                  <tr>
-                      <td>${item.codigo}</td>
-                      <td>${item.nombre_producto}</td>
-                      <td>${item.cantidad}</td>
-                  </tr>
-              `);
-          });
+            let tipoMovimiento = item.codigo.startsWith('S') ? 'Salida' : 
+                                 item.codigo.startsWith('I') ? 'Ingreso' : 'Otro';
+
+            $('#DataTable tbody').append(`
+                <tr>
+                    <td>${item.codigo}</td>
+                    <td>${item.cantidad}</td>
+                    <td>${item.fecha}</td>
+                    <td>${tipoMovimiento}</td>
+                </tr>
+            `);
+        });
 
           $('#DataTable').DataTable({
               responsive: true,

@@ -352,7 +352,7 @@
                   </a>
                 </li>
               </ul>
-              <ul class="nav nav-treeview">
+              <!-- <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="VRepMovimiento" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
@@ -367,7 +367,7 @@
                     <p>Rep. Clasificación</p>
                   </a>
                 </li>
-              </ul>
+              </ul> -->
             </li>
 
             <li class="nav-item">

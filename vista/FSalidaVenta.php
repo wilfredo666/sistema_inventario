@@ -25,7 +25,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Fecha:</label>
-                  <input type="date" class="form-control" name="fecha" id="fecha" value="<?php date_default_timezone_set('America/La_Paz'); echo date('Y-m-d'); ?>" readonly>
+                  <input type="date" class="form-control" name="fecha" id="fecha" value="<?php date_default_timezone_set('America/La_Paz');
+                                                                                          echo date('Y-m-d'); ?>" readonly>
                 </div>
               </div>
 
@@ -38,7 +39,7 @@
                     $cliente = ControladorCliente::ctrInfoClientes();
                     foreach ($cliente as $value) {
                     ?>
-                    <option value="<?php echo $value["id_cliente"]; ?>"><?php echo $value["razon_social_cliente"] ?></option>
+                      <option value="<?php echo $value["id_cliente"]; ?>"><?php echo $value["razon_social_cliente"] ?></option>
                     <?php
                     }
                     ?>
@@ -114,7 +115,7 @@
                     $producto = ControladorProducto::ctrInfoProductos();
                     foreach ($producto as $value) {
                     ?>
-                    <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
+                      <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
                     <?php
                     }
                     ?>
@@ -163,7 +164,7 @@
             </div>
             <!-- </div> -->
             <div class="card-footer text-right">
-              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="agregarCarritoNV()" ><i class="fas fa-plus-circle"></i> Agregar Item</button>
+              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="agregarCarritoNV()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
             </div>
           </div>
         </div>
@@ -224,10 +225,10 @@
                   <tr style="margin-right: 200px; padding-right: 500px;">
                     <td></td>
                     <th class="text-right">TOTALES:</th>
-                    <td id="totalDocenas" class="font-weight-bold" ></td>
-                    <td id="totalUnidades" class="font-weight-bold" ></td>
+                    <td id="totalDocenas" class="font-weight-bold"></td>
+                    <td id="totalUnidades" class="font-weight-bold"></td>
                     <td></td>
-                    <td id="totalCell" class="font-weight-bold" >0</td>
+                    <td id="totalCell" class="font-weight-bold">0</td>
                     <td id="totalDescuento" class="font-weight-bold">0</td>
                     <td id="totalNeto" class="font-weight-bold" style="background-color: #C4F2F5;">0</td>
                     <td></td>
@@ -261,11 +262,11 @@
         productoEmpaque: {
           required: true
         },
-        ingDocenas:{
+        ingDocenas: {
           required: true,
           minlength: 1
         },
-        ingUnidades:{
+        ingUnidades: {
           required: true,
           minlength: 1
         }

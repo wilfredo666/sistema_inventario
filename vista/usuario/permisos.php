@@ -1,16 +1,16 @@
 <?php
 //capturamos la url y separamos el id de usuario
-$path=parse_url($_SERVER['REQUEST_URI']);
+$path = parse_url($_SERVER['REQUEST_URI']);
 global $id;
-$id=$path["query"];
+$id = $path["query"];
 
 
-function permiso($idPermiso){
+function permiso($idPermiso)
+{
   global $id;
 
-  $permiso=ControladorUsuario::ctrUsuarioPermiso($id,$idPermiso);
+  $permiso = ControladorUsuario::ctrUsuarioPermiso($id, $idPermiso);
   return $permiso;
-
 }
 
 ?>
@@ -30,7 +30,7 @@ function permiso($idPermiso){
           <div class="col-md-12">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Permisos habiles para: <?php echo "";?></h3>
+                <h3 class="card-title">Permisos habiles para: <?php echo ""; ?></h3>
               </div>
 
               <div class="card-body">
@@ -39,7 +39,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary1" <?php if(permiso(1)!=false):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,1)">
+                        <input type="checkbox" id="checkboxPrimary1" <?php if (permiso(1) != false): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,1)">
                         <label for="checkboxPrimary1">
                           Usuarios
                         </label>
@@ -51,7 +51,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary2" <?php if(permiso(2)!=NULL):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,2)">
+                        <input type="checkbox" id="checkboxPrimary2" <?php if (permiso(2) != NULL): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,2)">
                         <label for="checkboxPrimary2">
                           Clientes
                         </label>
@@ -63,7 +63,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary3"  <?php if(permiso(3)!=NULL):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,3)">
+                        <input type="checkbox" id="checkboxPrimary3" <?php if (permiso(3) != NULL): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,3)">
                         <label for="checkboxPrimary3">
                           Productos
                         </label>
@@ -77,7 +77,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary4"  <?php if(permiso(4)!=NULL):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,4)">
+                        <input type="checkbox" id="checkboxPrimary4" <?php if (permiso(4) != NULL): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,4)">
                         <label for="checkboxPrimary4">
                           Notas de venta
                         </label>
@@ -89,7 +89,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary5"  <?php if(permiso(5)!=NULL):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,5)">
+                        <input type="checkbox" id="checkboxPrimary5" <?php if (permiso(5) != NULL): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,5)">
                         <label for="checkboxPrimary5">
                           Notas de salida
                         </label>
@@ -101,7 +101,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary6"  <?php if(permiso(6)!=NULL):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,6)">
+                        <input type="checkbox" id="checkboxPrimary6" <?php if (permiso(6) != NULL): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,6)">
                         <label for="checkboxPrimary6">
                           Notas de ingreso
                         </label>
@@ -116,7 +116,7 @@ function permiso($idPermiso){
                     <div class="form-group clearfix">
 
                       <div class="icheck-primary d-inline">
-                        <input type="checkbox" id="checkboxPrimary7"  <?php if(permiso(7)!=NULL):?>checked<?php endif;?> onChange="actualizarPermiso(<?php echo $id?>,7)">
+                        <input type="checkbox" id="checkboxPrimary7" <?php if (permiso(7) != NULL): ?>checked<?php endif; ?> onChange="actualizarPermiso(<?php echo $id ?>,7)">
                         <label for="checkboxPrimary7">
                           Otros ingresos
                         </label>
@@ -133,7 +133,7 @@ function permiso($idPermiso){
                 </div>
 
               </div>
-              
+
             </div>
 
           </div>
@@ -148,4 +148,3 @@ function permiso($idPermiso){
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-

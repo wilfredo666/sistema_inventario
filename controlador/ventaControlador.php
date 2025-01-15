@@ -425,6 +425,5 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     $respuesta = ModeloVenta::mdlRepMenorProd($data);
     /* echo $respuesta; */
     echo json_encode($respuesta);
-    
   }
 }

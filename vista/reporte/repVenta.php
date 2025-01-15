@@ -63,15 +63,15 @@ foreach ($productos as $producto) {
 
     $totalUnidades = $totalUnidades + $totalUnidad;
 
-    $descripcionTruncada = (strlen($producto['descProducto']) > 40) 
-    ? mb_substr($producto['descProducto'], 0, 40) . '...' 
-    : $producto['descProducto'];
+    $descripcionTruncada = (strlen($producto['descProducto']) > 40)
+        ? mb_substr($producto['descProducto'], 0, 40) . '...'
+        : $producto['descProducto'];
 
 
     $pdf->setX(8);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(25, 8, $prod['cod_producto'], 1, 0, "C");
-    $pdf->Cell(75, 8, $descripcionTruncada, 1, 0, "");
+    $pdf->Cell(75, 8, utf8_decode($descripcionTruncada), 1, 0, "");
     $pdf->Cell(12, 8, $producto['cantProdDocena'], 1, 0, "C");
     $pdf->Cell(12, 8, $producto['cantProdUnidad'], 1, 0, "C");
     $pdf->Cell(20, 8, $producto['costoProducto'], 1, 0, "C");

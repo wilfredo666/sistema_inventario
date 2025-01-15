@@ -47,7 +47,7 @@
                 </div>
               </div> -->
 
-              <div class="col-md-8">
+              <!--  <div class="col-md-8">
                 <div class="form-group">
                   <label>Cliente</label>
                   <select class="form-control select2bs4" name="cliente" id="cliente">
@@ -57,8 +57,23 @@
                     <option value="Otros">Otros</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
 
+              <input type="hidden" id="cliente" name="cliente" value="null">
+
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Concepto de Salida</label>
+                  <select class="form-control select2bs4" name="concepto_salida" id="concepto_salida">
+                    <option value="">-- Seleccionar concepto de salida --</option>
+                    <option value="Promocion">Promocion</option>
+                    <option value="Regalo">Regalo</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Ajuste">Por Ajuste</option>
+                    <option value="Otros">Otros</option>
+                  </select>
+                </div>
+              </div>
 
               <div class="col-md-4">
                 <div class="form-group">
@@ -82,24 +97,12 @@
                 </div>
               </div>
 
+
+
               <div class="col-md-8">
                 <div class="form-group">
-                  <label>Concepto de Salida</label>
-                  <select class="form-control select2bs4" name="concepto_salida" id="concepto_salida">
-                    <option value="">-- Seleccionar concepto de salida --</option>
-                    <option value="Promocion">Promocion</option>
-                    <option value="Regalo">Regalo</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Ajuste">Por Ajuste</option>
-                    <option value="Otros">Otros</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="form-group">
                   <label for="">Observación</label>
-                  <textarea class="form-control" name="observacion" id="observacion" cols="30" rows="1" placeholder="Observaciones..."></textarea>
+                  <textarea class="form-control" name="observacion" id="observacion" cols="30" rows="3" placeholder="Observaciones..."></textarea>
                 </div>
               </div>
             </div>
@@ -169,19 +172,21 @@
                 </div>
               </div>
 
-              <div class="col-md-4">
+              <!-- <div class="col-md-4">
                 <div class="form-group">
                   <label for="">% Descuento</label>
                   <input type="text" class="form-control" name="descuentoCliente" id="descuentoCliente" value=0>
                 </div>
-              </div>
-              <div class="col-md-4">
+              </div> -->
+              <input type="hidden" name="descuentoCliente" id="descuentoCliente" value=0>
+
+              <div class="col-md-6">
                 <div class="form-group">
                   <label for="">Salida Docenas</label>
                   <input type="text" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0" value="0">
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="form-group">
                   <label for="">Salida Unidades</label>
                   <input type="text" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0" value="0">

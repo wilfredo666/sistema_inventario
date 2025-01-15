@@ -26,7 +26,8 @@
                 </div>
               </div>
             </div>
-
+            <div class="form-group col-md-4">
+            </div>
             <div class="form-group col-md-5">
               <label>Lista de Productos</label>
               <div class="input-group mb-0">
@@ -68,8 +69,8 @@
                   </div>
                 </div> -->
             <div class="d-flex align-items-center justify-content-center">
-              <button type="button" class="btn btn-navbar bg-secondary " onclick="consultaMovMenorProd()" style="padding: 12px;">
-                <i class="fas fa-search "></i>
+              <button type="button" class="btn btn-navbar bg-secondary " onclick="consultaMovMenorProd()" style="padding: 5 12; margin-top: 15px;">
+                Buscar <i class="fas fa-search "></i>
               </button>
             </div>
           </div>
@@ -82,9 +83,10 @@
         <table id="DataTable" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>#Código Venta</th>
-              <th>Producto</th>
-              <th>Cantidad</th>
+              <th>#Código de Movimiento</th>
+              <th>Cantidad/Unidades</th>
+              <th>Fecha</th>
+              <th>Tipo Ingreso</th>
             </tr>
           </thead>
           <tbody>

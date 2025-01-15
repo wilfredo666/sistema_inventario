@@ -6,6 +6,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrRegUsuario" ||
     $ruta["query"] == "ctrEditUsuario" ||
     $ruta["query"] == "ctrEliUsuario" ||
+    $ruta["query"] == "ctrActualizarPermiso" ||
     $ruta["query"] == "ctrBusUsuario"
   ) {
     $metodo = $ruta["query"];
@@ -29,7 +30,7 @@ class ControladorUsuario
         $_SESSION["login_usuario"] = $respuesta["login_usuario"];
         $_SESSION["nombre_usuario"] = $respuesta["nombre_usuario"];
         $_SESSION["perfil"] = $respuesta["perfil"];
-        $_SESSION["idUsuario"]=$respuesta["id_usuario"];
+        $_SESSION["idUsuario"] = $respuesta["id_usuario"];
 
         date_default_timezone_set("America/La_Paz");
         $fecha = date("Y-m-d");
@@ -102,36 +103,38 @@ class ControladorUsuario
     echo $respuesta;
   }
 
-  static public function ctrUsuarioPermiso($idUsuario,$idPermiso){
-    $respuesta = ModeloUsuario::mdlUsuarioPermiso($idUsuario,$idPermiso);
+  static public function ctrUsuarioPermiso($idUsuario, $idPermiso)
+  {
+    $respuesta = ModeloUsuario::mdlUsuarioPermiso($idUsuario, $idPermiso);
     return $respuesta;
   }
 
-  static public function ctrActualizarPermiso(){
+  static public function ctrActualizarPermiso()
+  {
     require "../modelo/usuarioModelo.php";
 
-    $data=array(
-      "idUsuario"=>$_POST["idUsuario"],
-      "idPermiso"=>$_POST["idPermiso"]
+    $data = array(
+      "idUsuario" => $_POST["idUsuario"],
+      "idPermiso" => $_POST["idPermiso"]
     );
 
-    $respuesta = ModeloUsuario::mdlActualizarPermiso( $data );
+    $respuesta = ModeloUsuario::mdlActualizarPermiso($data);
     echo $respuesta;
   }
 
-  static public function ctrEliUsuario(){
+  static public function ctrEliUsuario()
+  {
     require "../modelo/usuarioModelo.php";
 
-    $id=$_POST["id"];
+    $id = $_POST["id"];
 
     $respuesta = ModeloUsuario::mdlEliUsuario($id);
     echo $respuesta;
-
   }
-  
-  static public function ctrCantidadUsuarios(){
+
+  static public function ctrCantidadUsuarios()
+  {
     $respuesta = ModeloUsuario::mdlCantidadUsuarios();
     return $respuesta;
   }
-
 }
