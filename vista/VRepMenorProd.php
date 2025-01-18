@@ -7,12 +7,12 @@
   </section>
 
   <div class="modal-body" style="padding-bottom: 0; padding-top: 1;">
-    <div class="card">
+    <div class="">
       <!-- <form id="ReporteDePersonal"> -->
       <div class="card-body" style="padding-bottom: 0;">
         <div class="container col-md-12">
           <div class="row">
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
               <label>Rango de Fechas</label>
 
               <div class="input-group">
@@ -26,7 +26,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
             </div>
             <div class="form-group col-md-5">
               <label>Lista de Productos</label>
@@ -48,6 +48,16 @@
                   ?>
                 </select>
               </div>
+
+
+
+            </div>
+            <div class="form-group col-md-1 d-flex align-items-center justify-content-center">
+              <!-- <div class="d-flex align-items-center justify-content-center"> -->
+              <button type="button" class="btn btn-navbar bg-secondary " onclick="consultaMovMenorProd()" style="padding-left: 20px; padding-right: 20px; margin-top: 30px;">
+                <i class="fas fa-search "></i>
+              </button>
+              <!-- </div> -->
             </div>
 
             <!-- <div class="form-group col-md-4">
@@ -68,11 +78,7 @@
                     </button>
                   </div>
                 </div> -->
-            <div class="d-flex align-items-center justify-content-center">
-              <button type="button" class="btn btn-navbar bg-secondary " onclick="consultaMovMenorProd()" style="padding: 5 12; margin-top: 15px;">
-                Buscar <i class="fas fa-search "></i>
-              </button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -84,9 +90,9 @@
           <thead>
             <tr>
               <th>#Código de Movimiento</th>
-              <th>Cantidad/Unidades</th>
+              <th>Cantidad [D|U]</th>
               <th>Fecha</th>
-              <th>Tipo Ingreso</th>
+              <th>Tipo</th>
             </tr>
           </thead>
           <tbody>

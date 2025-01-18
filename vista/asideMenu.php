@@ -1,3 +1,12 @@
+<?php
+function habilitado($idPermiso)
+{
+  $id = $_SESSION["idUsuario"];
+  $permiso = ControladorUsuario::ctrUsuarioPermiso($id, $idPermiso);
+  return $permiso;
+}
+?>
+
 <body class="hold-transition sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
@@ -47,64 +56,76 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                  Usuarios
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VUsuario" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Lista de usuarios</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-street-view"></i>
-                <p>
-                  Personal
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VPersonal" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Lista de Personal</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-handshake"></i>
-                <p>
-                  Clientes
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VCliente" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Lista de clientes</p>
-                  </a>
-                </li>
+            <?php if (habilitado(1) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                    Usuarios
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VUsuario" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Lista de usuarios</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php } ?>
 
-                <!-- <li class="nav-item">
+            <?php if (habilitado(7) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-street-view"></i>
+                  <p>
+                    Personal
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VPersonal" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Lista de Personal</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php } ?>
+
+            <?php if (habilitado(2) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-handshake"></i>
+                  <p>
+                    Clientes
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VCliente" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Lista de clientes</p>
+                    </a>
+                  </li>
+
+                  <!-- <li class="nav-item">
 <a href="FNuevoCliente" class="nav-link">
 <i class="far fa-circle nav-icon text-info"></i>
 <p>Registrar Cliente</p>
 </a>
 </li> -->
-              </ul>
-            </li>
+                </ul>
+              </li>
+            <?php } ?>
+
 
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -122,109 +143,111 @@
                   </a>
                 </li>
               </ul>
-
             </li>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-grip-horizontal"></i>
-                <p>
-                  Productos
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VProducto" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Lista de productos</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VCategoria" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Tipo Producto</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VTalla" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Talla</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VColor" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Color</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VGrupo" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Grupo</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VDiseno" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Diseño</p>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VMedida" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Unidad de Medida</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            <?php if (habilitado(3) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-grip-horizontal"></i>
+                  <p>
+                    Productos
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VProducto" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Lista de productos</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VCategoria" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Tipo Producto</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VTalla" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Talla</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VColor" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Color</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VGrupo" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Grupo</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VDiseno" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Diseño</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VMedida" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Unidad de Medida</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php } ?>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-cash-register"></i>
-                <p>
-                  Salidas
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
+            <?php if (habilitado(4) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-cash-register"></i>
+                  <p>
+                    Salidas
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="FSalidaVenta" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Nota Ventas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="FSalidaOtros" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Nota Salidas Otros</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="RNotaSalida" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Detalle Ventas</p>
+                    </a>
+                  </li>
 
 
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="FSalidaVenta" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Nota Ventas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="FSalidaOtros" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Nota Salidas Otros</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="RNotaSalida" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Detalle Ventas</p>
-                  </a>
-                </li>
 
-
-
-                <!-- ESTAS SON LAS 4 OPCIONES ANTIGUAS CON FUNCIONAMIENTO -->
-                <!-- <li class="nav-item">
+                  <!-- ESTAS SON LAS 4 OPCIONES ANTIGUAS CON FUNCIONAMIENTO -->
+                  <!-- <li class="nav-item">
                   <a href="FNotaVenta" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Nota de Venta</p>
@@ -249,63 +272,66 @@
                     <p>Reporte Notas de Salida</p>
                   </a>
                 </li> -->
-              </ul>
-            </li>
+                </ul>
+              </li>
+            <?php } ?>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-boxes"></i>
-                <p>
-                  Ingreso
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
+            <?php if (habilitado(5) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-boxes"></i>
+                  <p>
+                    Ingreso
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
 
 
-              <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview">
 
-                <!--<li class="nav-item">
+                  <!--<li class="nav-item">
                 <a href="FOtrosIngresos" class="nav-link">
                 <i class="far fa-circle nav-icon text-info"></i>
                 <p>Otros Ingresos</p>
                 </a>
                 </li>-->
-                <li class="nav-item">
-                  <a href="FNEmpaque" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Ingreso por Empaque</p>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                    <a href="FNEmpaque" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Ingreso por Empaque</p>
+                    </a>
+                  </li>
 
-                <li class="nav-item">
-                  <a href="FNDevolucion" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Ingreso por Devolución</p>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                    <a href="FNDevolucion" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Ingreso por Devolución</p>
+                    </a>
+                  </li>
 
-                <li class="nav-item">
-                  <a href="FNProveedor" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Ingreso Prov. Externos</p>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                    <a href="FNProveedor" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Ingreso Prov. Externos</p>
+                    </a>
+                  </li>
 
-                <li class="nav-item">
-                  <a href="FNAjuste" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Ingreso Ajuste de Inv.</p>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                    <a href="FNAjuste" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Ingreso Ajuste de Inv.</p>
+                    </a>
+                  </li>
 
-                <li class="nav-item">
-                  <a href="FNOtrosIng" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Otros Ingresos</p>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                    <a href="FNOtrosIng" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Otros Ingresos</p>
+                    </a>
+                  </li>
 
-                <!-- <li class="nav-item">
+                  <!-- <li class="nav-item">
                   <a href="VEmpaques" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
                     <p>Lista de Empaques</p>
@@ -319,24 +345,27 @@
                   </a>
                 </li> -->
 
-                <li class="nav-item">
-                  <a href="RNotaIngreso" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Reporte Notas de Ingreso</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+                  <li class="nav-item">
+                    <a href="RNotaIngreso" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Reporte Notas de Ingreso</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php } ?>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-line"></i>
-                <p>
-                  Reportes
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <!--              <ul class="nav nav-treeview">
+            <?php if (habilitado(6) != null) {
+            ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-line"></i>
+                  <p>
+                    Reportes
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <!--              <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="VReporte" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
@@ -344,15 +373,15 @@
                   </a>
                 </li>
               </ul>-->
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="VRepMenorProd" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Rep. Menor p/producto</p>
-                  </a>
-                </li>
-              </ul>
-              <!-- <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="VRepMenorProd" class="nav-link">
+                      <i class="far fa-circle nav-icon text-info"></i>
+                      <p>Rep. Menor p/producto</p>
+                    </a>
+                  </li>
+                </ul>
+                <!-- <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="VRepMovimiento" class="nav-link">
                     <i class="far fa-circle nav-icon text-info"></i>
@@ -368,7 +397,8 @@
                   </a>
                 </li>
               </ul> -->
-            </li>
+              </li>
+            <?php } ?>
 
             <li class="nav-item">
               <a href="salir" class="nav-link text-cyan">

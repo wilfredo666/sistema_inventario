@@ -103,6 +103,9 @@ function consultaMovMenorProd() {
       data: obj,
       dataType: "json", 
       success: function (data) {
+        console.log(data);
+
+        
           if ($.fn.DataTable.isDataTable('#DataTable')) {
               $('#DataTable').DataTable().destroy();
           }
@@ -112,10 +115,15 @@ function consultaMovMenorProd() {
             let tipoMovimiento = item.codigo.startsWith('S') ? 'Salida' : 
                                  item.codigo.startsWith('I') ? 'Ingreso' : 'Otro';
 
+            let docenas = Math.floor(item.cantidad / 12);
+            let unidades = Math.floor(item.cantidad % 12);
+
+            let cantidad = `${docenas}  | ${unidades} `;
+
             $('#DataTable tbody').append(`
                 <tr>
                     <td>${item.codigo}</td>
-                    <td>${item.cantidad}</td>
+                    <td>${cantidad}</td>
                     <td>${item.fecha}</td>
                     <td>${tipoMovimiento}</td>
                 </tr>

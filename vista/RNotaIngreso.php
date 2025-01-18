@@ -13,8 +13,10 @@
         <tr>
           <th>#</th>
           <th>#Código Ingreso</th>
-          <!-- <th>Concepto</th> -->
+          <th>Ingreso Por:</th>
+          <th>Personal</th>
           <th>Fecha</th>
+          <th>observación</th>
           <td>
           </td>
         </tr>
@@ -22,19 +24,51 @@
       <tbody>
         <?php
         $ingreso = ControladorVenta::ctrInfoIngresos();
-        $c=0;
+        $c = 0;
         foreach ($ingreso as $value) {
-          $c=$c+1;
+          $c = $c + 1;
         ?>
           <tr>
             <td><?php echo $c ?></td>
             <td><?php echo $value["codigo"]; ?></td>
-            <!-- <td><?php echo $value["concepto_ingreso"]; ?></td> -->
-            <td><?php echo $value["fecha"]; ?></td>
-            
+            <td><?php
+                $codigo = $value["codigo"];
+
+                $tipo = '';
+                if (strpos($codigo, 'I') === 0) {
+                  $segundaLetra = substr($codigo, 1, 1);
+                  switch ($segundaLetra) {
+                    case 'O':
+                      $tipo = 'Otros';
+                      break;
+                    case 'E':
+                      $tipo = 'Empaque';
+                      break;
+                    case 'A':
+                      $tipo = 'Ajuste';
+                      break;
+                    case 'P':
+                      $tipo = 'Proveedor';
+                      break;
+                    case 'D':
+                      $tipo = 'Devolucion';
+                      break;
+                    default:
+                      $tipo = 'Otros';
+                      break;
+                  }
+                } else {
+                  $tipo = 'Otros';
+                }
+                echo $tipo;
+                ?></td>
+            <td><?php echo $value["personal"]; ?></td>
+            <td><?php echo $value["fecha"]; ?></td><!--  -->
+            <td><?php echo $value["observacion"]; ?></td><!--  -->
+
             <td>
               <div class="btn-group">
-                 <!-- funciones script en archivo reporte.js -->
+                <!-- funciones script en archivo reporte.js -->
                 <!-- <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso(<?php echo $value['id_nota_ingreso']; ?>)">
                   <i class="fas fa-eye"></i>
                 </button> -->

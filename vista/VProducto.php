@@ -36,17 +36,17 @@
             <td><?php echo $value["nombre_producto"]; ?></td>
             <td><?php echo $value["desc_talla"]; ?></td>
             <td><?php echo $value["precio_venta"]; ?></td>
-            <td><span class="badge badge-warning"> <?php  $stock=ControladorProducto::ctrStockProducto($value["id_producto"]);
+            <td><span class="badge badge-warning"> <?php $stock = ControladorProducto::ctrStockProducto($value["id_producto"]);
 
-          if($stock!=false){
-            echo $stock["docenas"]." | ".$stock["unidades"];
-          }else{
-            echo "0|0";
-          }
-          
-              ?> 
-            </span></td>
-            
+                                                    if ($stock != false) {
+                                                      echo $stock["docenas"] . " | " . $stock["unidades"];
+                                                    } else {
+                                                      echo "0|0";
+                                                    }
+
+                                                    ?>
+              </span></td>
+
             <td><?php
                 if (empty($value["imagen_producto"]) || !preg_match("/\.(jpg|png)$/i", $value["imagen_producto"])) {
                 ?>
@@ -79,7 +79,7 @@
                 <button class="btn btn-sm btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"]; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger"  onclick="MEliProducto(<?php echo $value["id_producto"];?>)">
+                <button class="btn btn-sm btn-danger" onclick="MEliProducto(<?php echo $value["id_producto"]; ?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>
