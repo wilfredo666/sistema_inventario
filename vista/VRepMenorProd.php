@@ -13,7 +13,6 @@
         <div class="container col-md-12">
           <div class="row">
             <div class="form-group col-md-3">
-              <label>Rango de Fechas</label>
 
               <div class="input-group">
                 <div class="input-group">
@@ -26,14 +25,26 @@
                 </div>
               </div>
             </div>
-            <div class="form-group col-md-3">
+            
+            <div class="form-group col-md-2">
+            <a href="vista/KardexPro.php" class="btn btn-block btn-outline-success">
+            <i class="fa fa-save"></i>
+            Kardex
+            </a>
             </div>
+            
+            <div class="form-group col-md-2"></div>
+            
             <div class="form-group col-md-5">
-              <label>Lista de Productos</label>
-              <div class="input-group mb-0">
+
+              <div class="input-group my-colorpicker2 colorpicker-element">
+
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Producto:</span>
+                  <span class="input-group-text">
+                    Productos:
+                  </span>
                 </div>
+
                 <select class="form-control select2bs4" name="producto" id="producto">
                   <option value="0">Todos</option>
                   <?php
@@ -42,42 +53,22 @@
                   $producto = ControladorProducto::ctrInfoProductos();
                   foreach ($producto as $value) {
                   ?>
-                    <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
+                  <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
                   <?php
                   }
                   ?>
                 </select>
+                <div class="input-group-append">
+                  <button class="input-group-text" onclick="consultaMovMenorProd()">
+                    <i class="fas fa-search "></i>
+                  </button>
+                </div>
               </div>
 
 
 
             </div>
-            <div class="form-group col-md-1 d-flex align-items-center justify-content-center">
-              <!-- <div class="d-flex align-items-center justify-content-center"> -->
-              <button type="button" class="btn btn-navbar bg-secondary " onclick="consultaMovMenorProd()" style="padding-left: 20px; padding-right: 20px; margin-top: 30px;">
-                <i class="fas fa-search "></i>
-              </button>
-              <!-- </div> -->
-            </div>
 
-            <!-- <div class="form-group col-md-4">
-                <label>Tipo de Movimiento</label>
-                <div class="input-group mb-0">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Tipo: </span>
-                  </div>
-
-                  <select class="form-control input-group-append" name="tipoMovimiento" id="tipoMovimiento">
-                    <option value="NS"> NS </option>
-                    <option value="NV"> Ventas </option>
-                    <option value="NI"> NI </option>
-                  </select>
-                  <div class="input-group-append">
-                    <button type="button" class="btn btn-navbar bg-secondary" onclick="consultaMovimiento()">
-                      <i class="fas fa-search "></i>
-                    </button>
-                  </div>
-                </div> -->
 
           </div>
         </div>
