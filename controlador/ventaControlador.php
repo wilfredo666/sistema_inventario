@@ -100,9 +100,9 @@ PARA VER SI HAY VENTAS
   /* ==============================================
 PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
 ====================================================*/
-  static public function ctrInfoNotaIngreso($id)
+  static public function ctrInfoNotaIngreso($id, $codigo)
   {
-    $respuesta = ModeloVenta::mdlInfoNotaIngreso($id);
+    $respuesta = ModeloVenta::mdlInfoNotaIngreso($id, $codigo);
     return $respuesta;
   }
   static public function ctrInfoNotaSalida($id)

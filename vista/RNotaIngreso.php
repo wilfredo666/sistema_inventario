@@ -17,8 +17,7 @@
           <th>Personal</th>
           <th>Fecha</th>
           <th>observación</th>
-          <td>
-          </td>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -65,13 +64,12 @@
             <td><?php echo $value["personal"]; ?></td>
             <td><?php echo $value["fecha"]; ?></td><!--  -->
             <td><?php echo $value["observacion"]; ?></td><!--  -->
-
             <td>
               <div class="btn-group">
                 <!-- funciones script en archivo reporte.js -->
-                <!-- <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso(<?php echo $value['id_nota_ingreso']; ?>)">
+                <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
                   <i class="fas fa-eye"></i>
-                </button> -->
+                </button>
                 <button class="btn btn-sm  btn-danger">
                   <i class="fas fa-trash"></i>
                 </button>

@@ -87,15 +87,15 @@ on usuario.id_usuario=factura.id_usuario");
 
   static public function mdlInfoIngresos()
   {
-    $stmt1 = Conexion::conectar()->prepare("SELECT nro_comprobante_emp as codigo, fecha_empaque as fecha, observacion_empaque as observacion, personal.nombre_personal as personal
+    $stmt1 = Conexion::conectar()->prepare("SELECT nro_comprobante_emp as codigo, fecha_empaque as fecha, observacion_empaque as observacion, personal.nombre_personal as personal, id_nota_empaque as id
             FROM nota_empaque
             JOIN personal ON personal.id_personal=nota_empaque.id_personal");
-    $stmt2 = Conexion::conectar()->prepare("SELECT nro_comprobante_dev as codigo, fecha_devolucion as fecha , observacion_dev as observacion, nombre_personal as personal FROM nota_devolucion");
-    $stmt3 = Conexion::conectar()->prepare("SELECT nro_comprobante_ajuste as codigo, fecha_ingreso_ajuste as fecha, personal.nombre_personal as personal, observacion_ingreso_ajuste as observacion
+    $stmt2 = Conexion::conectar()->prepare("SELECT nro_comprobante_dev as codigo, fecha_devolucion as fecha , observacion_dev as observacion, nombre_personal as personal, id_devolucion as id FROM nota_devolucion");
+    $stmt3 = Conexion::conectar()->prepare("SELECT nro_comprobante_ajuste as codigo, fecha_ingreso_ajuste as fecha, personal.nombre_personal as personal, observacion_ingreso_ajuste as observacion, id_ingreso_ajuste as id
             FROM nota_ingreso_ajuste
             JOIN personal ON personal.id_personal=nota_ingreso_ajuste.id_personal");
-    $stmt4 = Conexion::conectar()->prepare("SELECT nro_comprobante_prov as codigo, fecha_ingreso_prov as fecha, nombre_personal as personal, observacion_ingreso_prov as observacion FROM nota_ingreso_prov ");
-    $stmt5 = Conexion::conectar()->prepare("SELECT nro_comprobante_otros as codigo, fecha_otros_ingresos as fecha, personal.nombre_personal as personal, observacion_otros_ingresos as observacion
+    $stmt4 = Conexion::conectar()->prepare("SELECT nro_comprobante_prov as codigo, fecha_ingreso_prov as fecha, nombre_personal as personal, observacion_ingreso_prov as observacion, id_ingreso_prov as id FROM nota_ingreso_prov ");
+    $stmt5 = Conexion::conectar()->prepare("SELECT nro_comprobante_otros as codigo, fecha_otros_ingresos as fecha, personal.nombre_personal as personal, observacion_otros_ingresos as observacion, id_otros_ingresos as id
             FROM nota_otros_ingresos
             JOIN personal ON personal.id_personal=nota_otros_ingresos.id_personal;");
 
@@ -252,14 +252,58 @@ where id_factura=$id");
   /* ==============================================
 CONSULTAS PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
 ====================================================*/
-  static public function mdlInfoNotaIngreso($id)
+  static public function mdlInfoNotaIngreso($id, $codigo)
   {
-    $stmt = Conexion::conectar()->prepare("select * from nota_ingreso where id_nota_ingreso=$id");
-    $stmt->execute();
-    return $stmt->fetch();
-
-    $stmt->close();
-    $stmt->null;
+    if (strpos($codigo, 'I') === 0 || strpos($codigo, 'O') === 0) {
+      $segundaLetra = substr($codigo, 1, 1);
+      switch ($segundaLetra) {
+        case 'I':
+          $stmt = Conexion::conectar()->prepare("SELECT fecha_otros_ingresos as fecha, nro_comprobante_otros as codigo, observacion_otros_ingresos as observacion, detalle_otros_ingresos as detalle
+          from nota_otros_ingresos where id_otros_ingresos=$id");
+          $stmt->execute();
+          return $stmt->fetch();
+          $stmt->close();
+          $stmt->null;
+          break;
+        case 'E':
+          $stmt = Conexion::conectar()->prepare("SELECT fecha_empaque as fecha, nro_comprobante_emp as codigo, observacion_empaque as observacion, detalle_empaque as detalle
+                  from nota_empaque where id_nota_empaque=$id");
+          $stmt->execute();
+          return $stmt->fetch();
+          $stmt->close();
+          $stmt->null;
+          break;
+        case 'A':
+          $stmt = Conexion::conectar()->prepare("SELECT fecha_ingreso_ajuste as fecha, nro_comprobante_ajuste as codigo, observacion_ingreso_ajuste as observacion, detalle_ingreso_ajuste as detalle
+                  from nota_ingreso_ajuste where id_ingreso_ajuste=$id");
+          $stmt->execute();
+          return $stmt->fetch();
+          $stmt->close();
+          $stmt->null;
+          break;
+        case 'P':
+          $stmt = Conexion::conectar()->prepare("SELECT fecha_ingreso_prov as fecha, nro_comprobante_prov as codigo, observacion_ingreso_prov as observacion, detalle_ingreso_prov as detalle
+          from nota_ingreso_prov where id_ingreso_prov=$id");
+          $stmt->execute();
+          return $stmt->fetch();
+          $stmt->close();
+          $stmt->null;
+          break;
+        case 'D':
+          $stmt = Conexion::conectar()->prepare("SELECT fecha_devolucion as fecha, nro_comprobante_dev as codigo, observacion_dev as observacion, detalle_devolucion as detalle
+          from nota_devolucion where id_devolucion=$id");
+          $stmt->execute();
+          return $stmt->fetch();
+          $stmt->close();
+          $stmt->null;
+          break;
+        default:
+          $tipo = 'Otros';
+          break;
+      }
+    } else {
+      $tipo = 'Otros';
+    }
   }
 
   static public function mdlInfoNotaSalida($id)

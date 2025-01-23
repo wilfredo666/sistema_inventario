@@ -1,12 +1,12 @@
-function MVerNotaIngreso(id) {
+function MVerNotaIngreso(id,codigo) {
   $("#modal-xl").modal("show")
 
   var obj = ""
   $.ajax({
     type: "POST",
-    url: "vista/ingresos_salidas/VerNotaIngreso.php?id=" + id,
+    url: "vista/ingresos_salidas/VerNotaIngreso.php?id=" + id + "&codigo=" + codigo,
     data: obj,
-    success: function (data) {
+    success: function (data) {     
       $("#content-xl").html(data)
     }
   })

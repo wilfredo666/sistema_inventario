@@ -76,17 +76,17 @@ $productos = json_decode($notaSalida["detalle_venta"], true);
           $totalUnidad = ($producto['cantProdDocena'] * 12) + $producto['cantProdUnidad'];
           $subTotal = $totalUnidad * $precioUnidad;
 
-          $liquidoNeto = $subTotal - (($subTotal*$producto['descuentoCliente'])/100);
+          $liquidoNeto = $subTotal - (($subTotal * $producto['descuentoCliente']) / 100);
 
         ?>
-          <tr  class="text-center">
+          <tr class="text-center">
             <td><?php echo $producto['descProducto'] ?></td>
             <td><?php echo $producto['cantProdDocena'] ?></td>
             <td><?php echo $producto['cantProdUnidad'] ?></td>
             <td><?php echo $producto['costoProducto'] ?></td>
-            <td><?php echo number_format(round($subTotal, 2),2) ?></td>
+            <td><?php echo number_format(round($subTotal, 2), 2) ?></td>
             <td><?php echo $producto['descuentoCliente'] . " %" ?></td>
-            <td><?php echo number_format(round($liquidoNeto,2),2) ?></td>
+            <td><?php echo number_format(round($liquidoNeto, 2), 2) ?></td>
           </tr>
         <?php
         }

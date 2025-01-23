@@ -4,9 +4,11 @@ require_once "../../controlador/ventaControlador.php";
 require_once "../../modelo/ventaModelo.php";
 
 $id = $_GET["id"];
+$codigo = $_GET["codigo"];
 
-$notaIngreso = ControladorVenta::ctrInfoNotaIngreso($id);
-/* $productos=json_decode($factura["detalle_factura"],true); */
+$notaIngreso = ControladorVenta::ctrInfoNotaIngreso($id, $codigo);
+$productos = json_decode($notaIngreso["detalle"], true);
+
 ?>
 <div class="modal-header">
   <h4 class="modal-title">Información de Nota de Ingreso</h4>
@@ -16,30 +18,25 @@ $notaIngreso = ControladorVenta::ctrInfoNotaIngreso($id);
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
 
       <table class="table">
         <tr>
           <th>#Cod. Nota de Ingreso</th>
-          <td><?php echo $notaIngreso["cod_nota_ingreso"]; ?></td>
-        </tr>
-
-        <tr>
-          <th>Concepto de Ingreso</th>
-          <td><?php echo $notaIngreso["concepto_ingreso"]; ?></td>
-        </tr>
-
-        <tr>
-          <th>Detalle de Ingreso</th>
-          <td><?php echo $notaIngreso["detalle_ingreso"]; ?></td>
+          <td><?php echo $notaIngreso["codigo"]; ?></td>
         </tr>
 
         <tr>
           <th>Fecha</th>
-          <td><?php echo $notaIngreso["fecha_ingreso"]; ?></td>
+          <td><?php echo $notaIngreso["fecha"]; ?></td>
         </tr>
 
         <tr>
+          <th>Observación</th>
+          <td><?php echo $notaIngreso["observacion"]; ?></td>
+        </tr>
+
+        <!--  <tr>
           <th>Estado</th>
           <td><?php
               if ($notaIngreso["estado_nota_ingreso"] == 0) {
@@ -52,25 +49,41 @@ $notaIngreso = ControladorVenta::ctrInfoNotaIngreso($id);
             <?php
               } ?>
           </td>
-        </tr>
+        </tr> -->
 
       </table>
 
     </div>
-    <div class="col-sm-6">
-      <table class="table">
-        <thead class="bg-gradient-dark">
-          <th>Producto</th>
-          <th>Cantidad</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td><?php echo $notaIngreso["detalle_ingreso"]; ?></td>
-            <td><?php echo $notaIngreso["detalle_ingreso"]; ?></td>
+
+  </div>
+  <div class="col-sm-12">
+    <table class="table">
+      <thead class="bg-gradient-dark text-center">
+        <th>Producto</th>
+        <th>Docenas</th>
+        <th>Unidades</th>
+        <th>P/Docena</th>
+        <th>Total</th>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($productos as $producto) {
+          $precioUnidad = $producto['costoProducto'] / 12;
+          $totalUnidad = ($producto['cantProdDocena'] * 12) + $producto['cantProdUnidad'];
+          $subTotal = $totalUnidad * $precioUnidad;
+        ?>
+          <tr class="text-center">
+            <td><?php echo $producto['descProducto'] ?></td>
+            <td><?php echo $producto['cantProdDocena'] ?></td>
+            <td><?php echo $producto['cantProdUnidad'] ?></td>
+            <td><?php echo $producto['costoProducto'] ?></td>
+            <td><?php echo number_format(round($subTotal, 2), 2) ?></td>
           </tr>
-        </tbody>
-      </table>
-    </div>
+        <?php
+        }
+        ?>
+      </tbody>
+    </table>
   </div>
 
 </div>
