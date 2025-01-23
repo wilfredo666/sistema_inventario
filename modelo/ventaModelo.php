@@ -85,6 +85,17 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->null;
   }
 
+  static public function mdlInfoSalidasOtros()
+  {
+    $stmt = Conexion::conectar()->prepare("SELECT * from nota_salida_otros ORDER BY id_salida_otros DESC");
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+    $stmt->close();
+    $stmt->null;
+  }
+
   static public function mdlInfoIngresos()
   {
     $stmt1 = Conexion::conectar()->prepare("SELECT nro_comprobante_emp as codigo, fecha_empaque as fecha, observacion_empaque as observacion, personal.nombre_personal as personal, id_nota_empaque as id
@@ -309,6 +320,17 @@ CONSULTAS PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
   static public function mdlInfoNotaSalida($id)
   {
     $stmt = Conexion::conectar()->prepare("SELECT razon_social_cliente,nit_ci_cliente,direccion_cliente,codigo_venta,detalle_venta,total,venta.descuento as decventa, cliente.descuento as descuento,neto,fecha_emision, observacion, estado_venta, id_usuario  from venta JOIN cliente ON cliente.id_cliente=venta.id_cliente where id_venta=$id ");
+
+    $stmt->execute();
+    return $stmt->fetch();
+
+    $stmt->close();
+    $stmt->null;
+  }
+
+  static public function mdlInfoNotaSalidaOtros($id)
+  {
+    $stmt = Conexion::conectar()->prepare("SELECT * from nota_salida_otros where id_salida_otros=$id");
 
     $stmt->execute();
     return $stmt->fetch();

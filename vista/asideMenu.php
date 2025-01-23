@@ -238,8 +238,14 @@ function habilitado($idPermiso)
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="RNotaSalidaOtros" class="nav-link">
+                      <i class="far fa-circle nav-icon text-warning"></i>
+                      <p>Detalle Salida Otros</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="RNotaSalida" class="nav-link">
-                      <i class="far fa-circle nav-icon text-info"></i>
+                      <i class="far fa-circle nav-icon text-warning"></i>
                       <p>Detalle Ventas</p>
                     </a>
                   </li>
@@ -347,7 +353,7 @@ function habilitado($idPermiso)
 
                   <li class="nav-item">
                     <a href="RNotaIngreso" class="nav-link">
-                      <i class="far fa-circle nav-icon text-info"></i>
+                      <i class="far fa-circle nav-icon text-warning"></i>
                       <p>Reporte Notas de Ingreso</p>
                     </a>
                   </li>

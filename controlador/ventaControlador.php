@@ -110,6 +110,11 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
     $respuesta = ModeloVenta::mdlInfoNotaSalida($id);
     return $respuesta;
   }
+  static public function ctrInfoNotaSalidaOtros($id)
+  {
+    $respuesta = ModeloVenta::mdlInfoNotaSalidaOtros($id);
+    return $respuesta;
+  }
   /* -------------------------------------------- */
 
   static public function ctrInfoNotaVenta($id)
@@ -151,6 +156,12 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
   static public function ctrInfoSalidas()
   {
     $respuesta = ModeloVenta::mdlInfoSalidas();
+    return $respuesta;
+  }
+
+  static public function ctrInfoSalidasOtros()
+  {
+    $respuesta = ModeloVenta::mdlInfoSalidasOtros();
     return $respuesta;
   }
 
