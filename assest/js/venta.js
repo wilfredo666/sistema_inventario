@@ -9,33 +9,36 @@ var listaDetalleNV = document.getElementById("listaDetalleNV")
 function agregarCarritoNV() {
   const selectElement = document.getElementById('productoEmpaque');
   const idProd = selectElement.value;
-
+console.log(idProd)
   if (arregloCarritoNV.some(item => item.idProducto === idProd)) {
-      toastr.error('El Producto ya fue agregado, seleccione otro producto...!!!')
+    toastr.error('El Producto ya fue agregado, seleccione otro producto...!!!')
     return;
+  }else{
+    var obj = {
+      idProducto: idProd
+    }
+    $.ajax({
+      type: "POST",
+      url: "controlador/productoControlador.php?ctrBusProducto",
+      data: obj,
+      dataType: "json",
+      success: function (data) {
+        let objDetalle = {
+          idProducto: data["id_producto"],
+          descProducto: data["nombre_producto"],
+          costoProducto: parseFloat(document.getElementById("ventaProducto").value),
+          cantProdDocena: document.getElementById("ingDocenas").value,
+          cantProdUnidad: document.getElementById("ingUnidades").value,
+          descuentoCliente: document.getElementById("descuentoCliente").value
+        }
+        arregloCarritoNV.push(objDetalle)
+        dibujarTablaCarritoNV()
+      }
+    })
   }
 
-  var obj = {
-    idProducto: idProd
-  }
-  $.ajax({
-    type: "POST",
-    url: "controlador/productoControlador.php?ctrBusProducto",
-    data: obj,
-    dataType: "json",
-    success: function (data) {
-      let objDetalle = {
-        idProducto: data["id_producto"],
-        descProducto: data["nombre_producto"],
-        costoProducto: parseFloat(document.getElementById("ventaProducto").value),
-        cantProdDocena: document.getElementById("ingDocenas").value,
-        cantProdUnidad: document.getElementById("ingUnidades").value,
-        descuentoCliente: document.getElementById("descuentoCliente").value
-      }
-      arregloCarritoNV.push(objDetalle)
-      dibujarTablaCarritoNV()
-    }
-  })
+
+
 }
 /*=========================
 DINUJA EL CARRITO NOTA DE EMPAQUE
