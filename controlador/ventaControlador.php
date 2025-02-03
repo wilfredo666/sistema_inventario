@@ -429,12 +429,14 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     $data = array(
       "producto" => $producto,
       "fechaInicial" => $fechaInicial,
-      "fechaFinal" => $fechaFinal,
+      "fechaFinal" => $fechaFinal
     );
-    /* var_dump($data); */
+
     require_once "../modelo/ventaModelo.php";
     $respuesta = ModeloVenta::mdlRepMenorProd($data);
-    /* echo $respuesta; */
+
     echo json_encode($respuesta);
   }
+
+
 }

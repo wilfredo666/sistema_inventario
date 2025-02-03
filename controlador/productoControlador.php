@@ -9,6 +9,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrEliProducto" ||
     $ruta["query"] == "ctrRepClasificacion" ||
     $ruta["query"] == "ctrBuscarProducto" ||
+    $ruta["query"] == "ctrInfoStockProducto" ||
     $ruta["query"] == "ctrBusProducto"
   ) {
     $metodo = $ruta["query"];
@@ -183,7 +184,7 @@ class ControladorProducto
     return $respuesta;
   }
 
-/*=============================================
+  /*=============================================
 	MOSTRAR DEVOLUCIONES DE PRODUCTOS
 	=============================================*/
   static public function ctrMostrarDevolucion()
@@ -191,6 +192,7 @@ class ControladorProducto
     $respuesta = ModeloProducto::mdlMostrarDevolucion();
     return $respuesta;
   }
+
   static public function ctrMostrarUltimaND()
   {
     $respuesta = ModeloProducto::mdlMostrarUltimaND();
@@ -205,6 +207,7 @@ class ControladorProducto
     $respuesta = ModeloProducto::mdlMostrarIngProv();
     return $respuesta;
   }
+
   static public function ctrMostrarUltimaNPE()
   {
     $respuesta = ModeloProducto::mdlMostrarUltimaNPE();
@@ -218,6 +221,7 @@ class ControladorProducto
     $respuesta = ModeloProducto::mdlMostrarIngAjuste();
     return $respuesta;
   }
+
   static public function ctrMostrarUltimaNIA()
   {
     $respuesta = ModeloProducto::mdlMostrarUltimaNIA();
@@ -232,11 +236,36 @@ class ControladorProducto
     $respuesta = ModeloProducto::mdlMostrarOtrosIng();
     return $respuesta;
   }
+
   static public function ctrMostrarUltimaNOtrosIng()
   {
     $respuesta = ModeloProducto::mdlMostrarUltimaNOtrosIng();
     return $respuesta;
   }
-  
-  
+
+  static public function ctrInfoStockProducto(){
+    require "../modelo/productoModelo.php";
+    $id=1;
+    //todas las entradas y salidas de salida_stock y ingreso_stock
+    $respuesta = ModeloProducto::mdlInfoIngSalProducto($id);
+    
+    //trayendo los demas datos de sus tablas correspondientes, segun moviemiento y codigo    
+      //salidas
+    foreach($respuesta as $value){
+          $codigo=explode("-",$value["codigo"]);
+        switch($codigo[0]){
+          case "SO":
+            echo "es una salida por SO";
+            break;
+          case "SV":
+            echo "es una salida por SV";
+            break;
+        }
+    }
+
+    
+    
+    //return $respuesta;
+    //var_dump($respuesta);
+  }
 }

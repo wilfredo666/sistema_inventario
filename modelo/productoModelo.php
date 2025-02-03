@@ -278,4 +278,12 @@ class ModeloProducto
     $stmt->close();
     $stmt->null;
   }
+
+  static public function mdlInfoIngSalProducto($id){
+    $stmt = Conexion::conectar()->prepare("(SELECT id_salida_stock AS id, id_producto, cantidad, cod_salida AS codigo, 'salida' AS movimiento FROM salida_stock WHERE id_producto=$id) UNION (SELECT id_ingreso_stock AS id, id_producto, cantidad, cod_ingreso AS codigo, 'ingreso' AS movimiento FROM ingreso_stock WHERE id_producto=$id);");
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $stmt->close();
+    $stmt->null;
+  }
 }

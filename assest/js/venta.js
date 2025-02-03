@@ -1,22 +1,30 @@
 //********************* NOTA DE VENTA ********************
 
-/*======================
-carrito nota de VENTA
-========================*/
-var arregloCarritoNV = []
-var listaDetalleNV = document.getElementById("listaDetalleNV")
+var arregloCarritoNV = [];
+var listaDetalleNV = document.getElementById("listaDetalleNV");
 
 function agregarCarritoNV() {
   const selectElement = document.getElementById('productoEmpaque');
   const idProd = selectElement.value;
-console.log(idProd)
-  if (arregloCarritoNV.some(item => item.idProducto === idProd)) {
-    toastr.error('El Producto ya fue agregado, seleccione otro producto...!!!')
+
+  if (arregloCarritoNV.some(item => item.idProducto == idProd)) {
+    
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+      Toast.fire({
+        icon: 'error',
+        title: 'El producto ya fue agregado'
+      })
+
     return;
-  }else{
-    var obj = {
-      idProducto: idProd
-    }
+  } else {
+    var obj = { idProducto: idProd };
+
     $.ajax({
       type: "POST",
       url: "controlador/productoControlador.php?ctrBusProducto",
@@ -29,19 +37,20 @@ console.log(idProd)
           costoProducto: parseFloat(document.getElementById("ventaProducto").value),
           cantProdDocena: document.getElementById("ingDocenas").value,
           cantProdUnidad: document.getElementById("ingUnidades").value,
-          descuentoCliente: document.getElementById("descuentoCliente").value
-        }
-        arregloCarritoNV.push(objDetalle)
-        dibujarTablaCarritoNV()
+          descuentoCliente: parseFloat(document.getElementById("descuentoCliente").value)
+        };
+
+        arregloCarritoNV.push(objDetalle);
+        dibujarTablaCarritoNV();
+      },
+      error: function (xhr, status, error) {
+        console.error("Error en la solicitud AJAX: ", status, error);
       }
-    })
+    });
   }
-
-
-
 }
 /*=========================
-DINUJA EL CARRITO NOTA DE EMPAQUE
+DIBUJA EL CARRITO NOTA DE EMPAQUE
 ==========================*/
 function dibujarTablaCarritoNV() {
   listaDetalleNV.innerHTML = ""

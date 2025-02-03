@@ -60,6 +60,10 @@
 <!-- Date Range Picker JS -->
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
+<!-- jquery-validation -->
+<script src="assest/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="assest/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="assest/plugins/jquery-validation/localization/messages_es.js"></script>
 
 <script>
   $(document).ready(function() {
@@ -82,21 +86,21 @@
     });
   });
   $('#daterange-btn').daterangepicker({
-      ranges: {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      },
-      startDate: moment().subtract(29, 'days'),
-      endDate: moment()
+    ranges: {
+      'Today': [moment(), moment()],
+      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
     },
-    function(start, end) {
-      $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-    }
-  )
+    startDate: moment().subtract(29, 'days'),
+    endDate: moment()
+  },
+                                      function(start, end) {
+    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+  }
+                                     )
 </script>
 
 <script src="assest/js/usuario.js"></script>
@@ -166,11 +170,9 @@ seccion de modals
 </div>
 <!-- /.modal -->
 
-<!-- jquery-validation -->
-<script src="assest/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="assest/plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="assest/plugins/jquery-validation/localization/messages_es.js"></script>
-
+<!--====================
+seccion de DataTables
+=====================-->
 <script>
   /*dataTable generico*/
   $(function() {
@@ -307,6 +309,9 @@ seccion de modals
   })
 </script>
 
+<!--====================
+seccion de Validaciones
+=====================-->
 <script>
   //validacion para Nota de venta
   $(function() {
@@ -351,7 +356,9 @@ seccion de modals
 
     })
   })
+</script>
 
+<script> 
   //validacion para nota de ingreso
   $(function() {
     $.validator.setDefaults({
@@ -388,23 +395,27 @@ seccion de modals
 
     })
   })
+</script>
 
+<script>
   //validacion para nota de salida
   $(function() {
-    $.validator.setDefaults({
-      submitHandler: function() {
-        emitirNotaSalida()
-      }
-    });
-    $("#FNotaSalida").validate({
+   
+    $("#FSalidaVenta").validate({
       rules: {
-        codSalida: {
+        cliente: {
+          required: true,
+        },
+        productoEmpaque: {
+          required: true
+        },
+        ingDocenas: {
           required: true,
           minlength: 1
         },
-        conceptoSalida: {
+        ingUnidades: {
           required: true,
-          minlength: 3
+          minlength: 1
         }
       },
 
@@ -425,163 +436,15 @@ seccion de modals
 
     })
   })
+  
+  function validarFormularioSV() {
+    if ($("#FSalidaVenta").valid()) {
+      // Si el formulario es válido, realizar la acción deseada
+      agregarCarritoNV();
+    }
+  }
+  
 </script>
-<!-- ALERTAS TOAST -->
-<script>
-  $(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
-
-    $('.swalDefaultSuccess').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultInfo').click(function() {
-      Toast.fire({
-        icon: 'info',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultError').click(function() {
-      Toast.fire({
-        icon: 'error',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultWarning').click(function() {
-      Toast.fire({
-        icon: 'warning',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultQuestion').click(function() {
-      Toast.fire({
-        icon: 'question',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-
-    $('.toastrDefaultSuccess').click(function() {
-      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-    $('.toastrDefaultInfo').click(function() {
-      toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-    $('.toastrDefaultError').click(function() {
-      toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-    $('.toastrDefaultWarning').click(function() {
-      toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    });
-
-    $('.toastsDefaultDefault').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultTopLeft').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        position: 'topLeft',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultBottomRight').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        position: 'bottomRight',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultBottomLeft').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        position: 'bottomLeft',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultAutohide').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        autohide: true,
-        delay: 750,
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultNotFixed').click(function() {
-      $(document).Toasts('create', {
-        title: 'Toast Title',
-        fixed: false,
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultFull').click(function() {
-      $(document).Toasts('create', {
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        icon: 'fas fa-envelope fa-lg',
-      })
-    });
-    $('.toastsDefaultFullImage').click(function() {
-      $(document).Toasts('create', {
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        image: '../../dist/img/user3-128x128.jpg',
-        imageAlt: 'User Picture',
-      })
-    });
-    $('.toastsDefaultSuccess').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-success',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultInfo').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-info',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultWarning').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-warning',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultDanger').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-danger',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.toastsDefaultMaroon').click(function() {
-      $(document).Toasts('create', {
-        class: 'bg-maroon',
-        title: 'Toast Title',
-        subtitle: 'Subtitle',
-        body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-  });
-</script>
-
 
 
 </body>

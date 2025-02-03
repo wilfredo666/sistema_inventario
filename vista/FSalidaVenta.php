@@ -38,7 +38,7 @@
                     $cliente = ControladorCliente::ctrInfoClientes();
                     foreach ($cliente as $value) {
                     ?>
-                      <option value="<?php echo $value["id_cliente"]; ?>"><?php echo $value["razon_social_cliente"] ?></option>
+                    <option value="<?php echo $value["id_cliente"]; ?>"><?php echo $value["razon_social_cliente"] ?></option>
                     <?php
                     }
                     ?>
@@ -79,6 +79,7 @@
             <!-- </div> -->
             <div class="card-footer text-right">
               <button type="button" class="btn btn-default bg-dark" onclick="location.reload();"><i class="fas fa-times"></i> Anular Nota</button>
+
               <a id="btnGuardarNV" class="btn btn-primary" onclick="GuardarNotaVenta()"><i class="fas fa-download"></i> Guardar Nota</a>
             </div>
           </div>
@@ -114,7 +115,7 @@
                     $producto = ControladorProducto::ctrInfoProductos();
                     foreach ($producto as $value) {
                     ?>
-                      <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
+                    <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
                     <?php
                     }
                     ?>
@@ -163,7 +164,7 @@
             </div>
             <!-- </div> -->
             <div class="card-footer text-right">
-              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="agregarCarritoNV()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
+              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="validarFormularioSV()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
             </div>
           </div>
         </div>
@@ -243,57 +244,3 @@
   </section>
 </div>
 
-<script>
-  //validacion para nota de salida
-  $(function() {
-    /*    $.validator.setDefaults({
-      submitHandler: function() {
-        //GuardarNotaVenta()
-        agregarCarritoNV()
-      }
-
-    });*/
-    $("#FSalidaVenta").validate({
-      rules: {
-        cliente: {
-          required: true,
-        },
-        productoEmpaque: {
-          required: true
-        },
-        ingDocenas: {
-          required: true,
-          minlength: 1
-        },
-        ingUnidades: {
-          required: true,
-          minlength: 1
-        }
-      },
-
-      errorElement: "span",
-      errorPlacement: function(error, element) {
-        error.addClass("invalid-feedback")
-        element.closest(".input-group").append(error)
-      },
-      //destacar
-      highlight: function(element, errorClass, validClass) {
-        $(element).addClass("is-invalid")
-      },
-
-      //desmarcar
-      unhighlight: function(element, errorClass, validClass) {
-        $(element).removeClass("is-invalid")
-      }
-
-    })
-
-
-    $("#btnCarritoNV").click(function() {
-      if ($("#FSalidaVenta").valid()) {
-        agregarCarritoNV(); // Llama a la función para agregar al carrito
-      }
-    });
-
-  })
-</script>

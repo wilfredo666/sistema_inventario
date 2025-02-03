@@ -249,35 +249,6 @@ function habilitado($idPermiso)
                       <p>Detalle Ventas</p>
                     </a>
                   </li>
-
-
-
-                  <!-- ESTAS SON LAS 4 OPCIONES ANTIGUAS CON FUNCIONAMIENTO -->
-                  <!-- <li class="nav-item">
-                  <a href="FNotaVenta" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Nota de Venta</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="VFactura" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Reporte Ventas</p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="FNotaSalida" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Nota de Salida</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="RNotaSalida" class="nav-link">
-                    <i class="far fa-circle nav-icon text-info"></i>
-                    <p>Reporte Notas de Salida</p>
-                  </a>
-                </li> -->
                 </ul>
               </li>
             <?php } ?>

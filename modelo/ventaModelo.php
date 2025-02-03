@@ -779,4 +779,5 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->close();
     $stmt->null;
   }
+  
 }
