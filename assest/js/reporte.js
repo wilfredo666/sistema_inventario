@@ -101,7 +101,7 @@ function consultaMovimiento(){
 REPORTE MENOR POR PRODUCTO
 =======================================*/
 function consultaMovMenorProd() {
-  const picker = $('#daterange').data('daterangepicker');
+  const picker = $('#daterange-rmp').data('daterangepicker');
   const fechaInicial = picker.startDate.format('YYYY-MM-DD'); 
   const fechaFinal = picker.endDate.format('YYYY-MM-DD');
 
@@ -119,9 +119,7 @@ function consultaMovMenorProd() {
     data: obj,
     dataType: "json", 
     success: function (data) {
-      console.log(data);
-
-
+      
       if ($.fn.DataTable.isDataTable('#DataTable')) {
         $('#DataTable').DataTable().destroy();
       }

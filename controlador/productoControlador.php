@@ -244,6 +244,7 @@ class ControladorProducto
   }
 
   static public function ctrInfoStockProducto(){
+    $carritoSalida=[];
     require "../modelo/productoModelo.php";
     $id=1;
     //todas las entradas y salidas de salida_stock y ingreso_stock
@@ -251,17 +252,18 @@ class ControladorProducto
     
     //trayendo los demas datos de sus tablas correspondientes, segun moviemiento y codigo    
       //salidas
-    foreach($respuesta as $value){
+/*    foreach($respuesta as $value){
           $codigo=explode("-",$value["codigo"]);
         switch($codigo[0]){
           case "SO":
-            echo "es una salida por SO";
+            $salida=ModeloProducto::mdlDetalleSalidaPro("nota_salida_otros", $value["codigo"]);
+            $carritoSalida=
             break;
           case "SV":
             echo "es una salida por SV";
             break;
         }
-    }
+    }*/
 
     
     
