@@ -229,11 +229,30 @@ function kardexPro(){
 
   let producto = document.getElementById('producto').value;
 
-    // Construir la URL con parámetros
+  //validar datos
+    if(producto!=0 && producto!=0){
+         // Construir la URL con parámetros
     let url = `vista/kardexPro.php?producto=${producto}&fechaInicial=${fechaInicial}&fechaFinal=${fechaFinal}`;
     
     // Redirigir a la URL para iniciar la descarga
     window.location.href = url;
+      
+     }else{
+        var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+      Toast.fire({
+        icon: 'error',
+        title: 'Seleccione un producto'
+      })
+     }
+  
+
+
 }
 
 /* ====================================
@@ -364,7 +383,7 @@ function test(){
 
   $.ajax({
     type: "POST",
-    url: "controlador/productoControlador.php?ctrInfoStockProducto",
+    url: "controlador/productoControlador.php?ctrKardexFisico",
     data: obj,
     cache: false,
     contentType: false,

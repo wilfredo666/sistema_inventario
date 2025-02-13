@@ -153,7 +153,7 @@
             </div>
             <!-- </div> -->
             <div class="card-footer text-right">
-              <button type="button" class="btn btn-primary" onclick="agregarCarritoNE()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
+              <button type="button" class="btn btn-primary" onclick="validarFormularioNE()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
             </div>
           </div>
         </div>
@@ -241,41 +241,3 @@
 
   </section>
 </div>
-
-<script>
-  //validacion para nota de salida
-  $(function() {
-    $.validator.setDefaults({
-      submitHandler: function() {
-        emitirNotaEmpaque()
-      }
-    });
-    $("#FNotaEmpaque").validate({
-      rules: {
-        codEmpaque: {
-          required: true,
-          minlength: 1
-        },
-        personalEmpaque: {
-          required: true
-        }
-      },
-
-      errorElement: "span",
-      errorPlacement: function(error, element) {
-        error.addClass("invalid-feedback")
-        element.closest(".input-group").append(error)
-      },
-      //destacar
-      highlight: function(element, errorClass, validClass) {
-        $(element).addClass("is-invalid")
-      },
-
-      //desmarcar
-      unhighlight: function(element, errorClass, validClass) {
-        $(element).removeClass("is-invalid")
-      }
-
-    })
-  })
-</script>

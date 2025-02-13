@@ -49,22 +49,7 @@
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="">Nro de Comprobante</label>
-                  <?php
-                  $a;
-                  $item = null;
-                  $valor = null;
-                  $registros = ControladorVenta::ctrMostrarCantVentas();
-                  if ($registros == 0) {
-                    echo '<input type="text" class="form-control" id="nroComprobante" name="nroComprobante" value="SV-1" readonly>';
-                  } else {
-                    $notaRegistro = ControladorVenta::ctrUltimaVenta();
-                    $codigo = $notaRegistro["codigo_venta"];
-                    $dividirCodigo = explode("-", $codigo);
-                    $numeroCorrelativo = $dividirCodigo[1] + 1;
-                    echo '<input type="text" class="form-control" id="nroComprobante" name="nroComprobante" value="SV-' . $numeroCorrelativo . '" readonly>';
-                  }
-                  ?>
+                  
                   <p class="text-danger" id="aviso"></p>
                 </div>
               </div>

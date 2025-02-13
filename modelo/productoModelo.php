@@ -279,11 +279,75 @@ class ModeloProducto
     $stmt->null;
   }
 
-  static public function mdlInfoIngSalProducto($id){
-    $stmt = Conexion::conectar()->prepare("(SELECT id_salida_stock AS id, id_producto, cantidad, cod_salida AS codigo, 'salida' AS movimiento FROM salida_stock WHERE id_producto=$id) UNION (SELECT id_ingreso_stock AS id, id_producto, cantidad, cod_ingreso AS codigo, 'ingreso' AS movimiento FROM ingreso_stock WHERE id_producto=$id);");
+  static public function mdlInfoIngSalProducto($fechaInicial, $fechaFinal, $id){
+    $stmt = Conexion::conectar()->prepare("(SELECT cantidad, codigo, movimiento, costo, create_at, concepto 
+ FROM ingreso_producto 
+ WHERE id_producto = $id 
+ AND create_at BETWEEN '$fechaInicial 01:00:00' AND '$fechaFinal 23:59:59')
+UNION
+(SELECT cantidad, codigo, movimiento, costo, create_at, concepto  
+ FROM salida_producto 
+ WHERE id_producto = $id 
+ AND create_at BETWEEN '$fechaInicial 01:00:00' AND '$fechaFinal 23:59:59')");
     $stmt->execute();
     return $stmt->fetchAll();
     $stmt->close();
     $stmt->null;
   }
+
+  static public function mdlSaldoProducto($fecha, $id){
+    $stmt = Conexion::conectar()->prepare("(SELECT cantidad, costo, create_at, movimiento 
+ FROM ingreso_producto 
+ WHERE id_producto = $id 
+ AND create_at BETWEEN '2018-01-01 01:00:00' AND '$fecha 23:59:59')
+UNION
+(SELECT cantidad, costo, create_at, movimiento  
+ FROM salida_producto 
+ WHERE id_producto = $id 
+ AND create_at BETWEEN '2018-01-01 01:00:00' AND '$fecha 23:59:59')");
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $stmt->close();
+    $stmt->null;
+  }
+
+  // pendientes de uso
+  static public function mdlDetalleSalidaPro($tabla, $cod, $id){
+
+    switch($tabla){
+      case "nota_salida_otros":
+        $stmt = Conexion::conectar()->prepare("SELECT cod_salida, id_producto, cantidad, detalle_salida_otros, observacion_salida_otros, fecha_salida_otros FROM salida_stock JOIN nota_salida_otros ON nota_salida_otros.codigo_salida_otros=salida_stock.cod_salida WHERE cod_salida='$cod' AND id_producto=$id");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        break;
+      case "venta":
+        $stmt = Conexion::conectar()->prepare("SELECT cod_salida, id_producto, cantidad, detalle_venta, observacion, fecha_emision FROM salida_stock JOIN venta ON venta.codigo_venta=salida_stock.cod_salida WHERE cod_salida='$cod' AND id_producto=$id");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        break;
+    }
+
+    /*$stmt->close();
+    $stmt->null;*/
+
+  }
+
+  static public function mdlDetalleIngresoPro($tabla, $cod, $id){
+    switch($tabla){
+      case "nota_empaque":
+        $stmt = Conexion::conectar()->prepare("SELECT cod_ingreso, id_producto, cantidad, detalle_empaque, observacion_empaque, fecha_empaque FROM ingreso_stock JOIN nota_empaque ON nota_empaque.nro_comprobante_emp =ingreso_stock.cod_ingreso WHERE cod_ingreso='$cod' AND id_producto=$id");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        break;
+      case "nota_ingreso"://ojo empezar agregar el producto para evitar repetidos
+        $stmt = Conexion::conectar()->prepare("SELECT cod_ingreso, id_producto, cantidad, detalle_ingreso, concepto_ingreso, fecha_ingreso FROM ingreso_stock JOIN nota_ingreso ON nota_ingreso.cod_nota_ingreso=ingreso_stock.cod_ingreso WHERE cod_ingreso='$cod' AND id_producto=$id");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        break;
+    }
+
+    /*    $stmt->close();
+    $stmt->null;*/
+  }
+  //. fin pendientes de uso
 }

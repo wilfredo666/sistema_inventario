@@ -656,7 +656,7 @@ function GuardarNotaEmp() {
     data: obj,
     cache: false,
     success: function (data) {
-      //console.log(data)
+
       if (data == "ok") {
         Swal.fire({
           icon: 'success',

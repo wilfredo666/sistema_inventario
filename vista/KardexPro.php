@@ -14,18 +14,32 @@ $sheet = $spreadsheet->setActiveSheetIndex(0);
 
 $fechaHoraActual = date('Y-m-d H:i:s');
 
-//obtencion de datos de reporte.js -> kardexPro()
+// Obtención de datos de reporte.js -> kardexPro()
+$idProducto = isset($_GET["producto"]) ? $_GET["producto"] : null;
+$fechaInicial = isset($_GET["fechaInicial"]) ? $_GET["fechaInicial"] : null;
+$fechaFinal = isset($_GET["fechaFinal"]) ? $_GET["fechaFinal"] : null;
 
-  $producto = $_GET["producto"];
-  $fechaInicial = $_GET["fechaInicial"];
-  $fechaFinal = $_GET["fechaFinal"];
+// Obteniendo información del producto
+$producto = ControladorProducto::ctrInfoProducto($idProducto);
 
-//obteniendo informacion del producto
-$producto = ControladorProducto::ctrInfoProducto($producto);
+//obteniendo informacion del stock para kardex por inventario por ITE
+$stock_producto = ControladorProducto::ctrKardexFisico($fechaInicial, $fechaFinal, $idProducto);
 
-//obteniendo informacion del stock
-$stock_producto = ControladorProducto::ctrInfoStockProducto($producto);
+//obteniendo el saldo del producto segun la fecha indicada
+$saldo_producto = ControladorProducto::ctrSaldoProducto($fechaFinal, $idProducto);
 
+      //calculando el saldo
+$totIngresoSaldo=0;
+$totSalidaSaldo=0;
+foreach($saldo_producto as $val){
+  if($val["movimiento"]=="ingreso"){
+    $totIngresoSaldo=$totIngresoSaldo+$val["cantidad"];
+  }else{
+    $totSalidaSaldo=$totSalidaSaldo+$val["cantidad"];
+  }
+}
+
+$saldo=$totIngresoSaldo-$totSalidaSaldo;
 /*===========================
   inicio de datos en celdas
 ============================*/
@@ -39,7 +53,6 @@ $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENT
 $sheet->mergeCells('A3:J3');
 $sheet->setCellValue('A3', 'Periodo: '.$fechaInicial.' AL '.$fechaFinal);
 $sheet->getStyle('A3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-
 
 // Información del producto
 $sheet->mergeCells('A4:E4');
@@ -66,7 +79,11 @@ $sheet->mergeCells('A6:A7')
   ->setCellValue('H7', 'VALOR')
   ->setCellValue('I6', 'SALDOS')
   ->setCellValue('I7', 'CANTIDAD')
-  ->setCellValue('J7', 'VALOR');
+  ->setCellValue('J7', 'VALOR')
+  ->setCellValue('C8', 'Saldo anterior al '.$fechaFinal)
+  ->setCellValue('D8', '')//costo falta
+  ->setCellValue('I8', $saldo)//cantidad
+  ->setCellValue('J8', '');//valor falta
 
 // Alineación y bordes de encabezados
 $headerCells = 'A6:J7';
@@ -74,14 +91,40 @@ $sheet->getStyle($headerCells)->getAlignment()->setHorizontal(Alignment::HORIZON
 $sheet->getStyle($headerCells)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 $sheet->getStyle($headerCells)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
 
-// Datos de ejemplo
-$data = [
-  ['001', '12/12/2024 10:00:00', 'Compra inicial', '10.00', '100', '1000.00', '', '', '1000.00'],
-  ['002', '15/12/2024 14:30:00', 'Venta', '10.00', '', '', '50', '500.00', '500.00'],
-  // Agrega más filas según sea necesario
-];
+// Datos
+$data=[];
+foreach ($stock_producto as $value) {
+    if ($value["movimiento"] == "ingreso") {
+        $data[] = [
+            $value["codigo"],
+            $value["create_at"],
+            $value["concepto"],
+            $value["costo"],
+            $value["cantidad"],
+            $value["cantidad"] * $value["costo"],
+            '',
+            '',
+            '',
+            ''
+        ];
+    } else {
+        $data[] = [
+            $value["codigo"],
+            $value["create_at"],
+            $value["concepto"],
+            $value["costo"],
+            '',
+            '',
+            $value["cantidad"],
+            $value["cantidad"] * $value["costo"],
+            '',
+            ''
+        ];
+    }
+}
 
-$row = 8; // Empezar desde la fila 8 para los datos
+
+$row = 9; // Empezar desde la fila 8 para los datos
 foreach ($data as $item) {
   $sheet->setCellValue('A' . $row, $item[0])
     ->setCellValue('B' . $row, $item[1])
@@ -95,7 +138,7 @@ foreach ($data as $item) {
   $row++;
 }
 
-// Ajustar automáticamente el ancho de las columnas A a I
+// Ajustar automáticamente el ancho de las columnas A a J
 foreach (range('A', 'J') as $columnID) {
   $sheet->getColumnDimension($columnID)->setAutoSize(true);
 }
@@ -104,14 +147,12 @@ foreach (range('A', 'J') as $columnID) {
   fin de datos en celdas
 ============================*/
 
-
-/* Here there will be some code where you create $spreadsheet */
-//sirve para descargar el reporte
-// redirect output to client browser
+// Sirve para descargar el reporte
+$filename = str_replace([':', ' '], ['-', '_'], $fechaHoraActual) . '.xlsx';
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="'.$fechaHoraActual.'.xlsx"');
+header('Content-Disposition: attachment;filename="'.$filename.'"');
 header('Cache-Control: max-age=0');
 
 $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');
-
+?>

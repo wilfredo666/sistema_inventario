@@ -62,7 +62,7 @@ class ControladorVenta
     echo $respuesta;
   }
 
-  static public function ctrRegNotaVenta()
+  static public function ctrRegNotaVenta() //Se usa?
   {
     session_start(); //inicamos la sesion para obtener el id del usuario actual
     require_once "../modelo/ventaModelo.php";
@@ -85,7 +85,6 @@ class ControladorVenta
     $respuesta = ModeloVenta::mdlRegNotaVenta($data);
     echo $respuesta;
 
-    var_dump($data);
   }
 
   /* ==============================================
@@ -204,6 +203,7 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
       "nroEmpaque" => $_POST["nroEmpaque"],
       "observacionEmpaque" => $_POST["observacionEmpaque"],
       "detalle" => $_POST["detalle"],
+      "fechaHora" => $fecha . " " . $hora,
     );
     $respuesta = ModeloVenta::mdlRegEmpaque($data);
     echo $respuesta;
@@ -333,24 +333,37 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
 	=============================================*/
   static public function ctrRegVenta()
   {
-    session_start(); //inicamos la sesion para obtener el id del usuario actual
     require_once "../modelo/ventaModelo.php";
+    session_start(); //iniciamos la sesion para obtener el id del usuario actual
+
+    //obtener el ultimo numero de comprobante
+    $notaRegistro = ModeloVenta::mdlUltimaVenta();
+    $codigo = $notaRegistro["codigo_venta"];
+    $dividirCodigo = explode("-", $codigo);
+    $numeroCorrelativo = $dividirCodigo[1] + 1;
+    $nroComprobante="SV-".$numeroCorrelativo;
+
+
+
     date_default_timezone_set("America/La_Paz");
     $fecha = date("Y-m-d");
     $hora = date("H:i:s");
     $data = array(
       "fecha" => $fecha,
       "cliente" => $_POST["cliente"],
-      "nroComprobante" => $_POST["nroComprobante"],
+      "nroComprobante" => $nroComprobante,
       "observacion" => $_POST["observacion"],
       "detalle" => $_POST["detalle"],
       "subTotal" => $_POST["subTotal"],
       "totalNeto" => $_POST["totalNeto"],
       "totalDescuento" => $_POST["totalDescuento"],
       "usuario" => $_SESSION["idUsuario"],
+      "create_at"=>$fecha." ".$hora,
+      "update_at"=>$fecha." ".$hora
     );
+
     $respuesta = ModeloVenta::mdlRegistroVenta($data);
-    echo $respuesta;
+     echo $respuesta;
   }
 
   // Función para convertir "MM/DD/YYYY" a "YYYY-MM-DD"
@@ -414,6 +427,8 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
       "totalNeto" => $_POST["totalNeto"],
       "totalDescuento" => $_POST["totalDescuento"],
       "usuario" => $_SESSION["idUsuario"],
+      "create_at"=>$fecha.$fecha,
+      "update_at"=>$fecha.$fecha
     );
     /* var_dump($data); */
     $respuesta = ModeloVenta::mdlRegistroVentaOtros($data);
@@ -440,3 +455,5 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
 
 
 }
+
+

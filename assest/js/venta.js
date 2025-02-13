@@ -185,7 +185,7 @@ function GuardarNotaVenta() {
 
     let fecha = document.getElementById("fecha").value
     let cliente = document.getElementById("cliente").value
-    let nroComprobante = document.getElementById("nroComprobante").value
+    //let nroComprobante = document.getElementById("nroComprobante").value
     let observacion = document.getElementById("observacion").value
     let total = document.getElementById("totalCell").innerHTML
     let totalNeto = document.getElementById("totalNeto").innerHTML
@@ -194,7 +194,7 @@ function GuardarNotaVenta() {
     let obj = {
       "fecha": fecha,
       "cliente": cliente,
-      "nroComprobante": nroComprobante,
+      //"nroComprobante": nroComprobante,
       "observacion": observacion,
       "subTotal": total,
       "totalNeto": totalNeto,
@@ -208,7 +208,7 @@ function GuardarNotaVenta() {
       data: obj,
       cache: false,
       success: function (data) {
-        /* console.log(data) */
+
         if (data == "ok") {
           Swal.fire({
             icon: 'success',
@@ -231,6 +231,6 @@ function GuardarNotaVenta() {
       }
     })
   } else {
-    document.getElementById("aviso").innerHTML = "*Nada que enviar"
+    document.getElementById("aviso").innerHTML = "Nada que enviar"
   }
 }

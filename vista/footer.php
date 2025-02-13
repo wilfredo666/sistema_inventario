@@ -446,6 +446,55 @@ seccion de Validaciones
   
 </script>
 
+<script>
+  //validacion para nota de empaque
+  $(function() {
+   
+    $("#FNotaEmpaque").validate({
+      rules: {
+        personalEmpaque: {
+          required: true,
+        },
+        productoEmpaque: {
+          required: true
+        },
+        ingDocenas: {
+          required: true,
+          minlength: 1
+        },
+        ingUnidades: {
+          required: true,
+          minlength: 1
+        }
+      },
+
+      errorElement: "span",
+      errorPlacement: function(error, element) {
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error)
+      },
+      //destacar
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+  
+  function validarFormularioNE() {
+    if ($("#FNotaEmpaque").valid()) {
+      // Si el formulario es válido, realizar la acción deseada
+      agregarCarritoNE();
+    }
+  }
+  
+</script>
+
 
 </body>
 

@@ -9,7 +9,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrEliProducto" ||
     $ruta["query"] == "ctrRepClasificacion" ||
     $ruta["query"] == "ctrBuscarProducto" ||
-    $ruta["query"] == "ctrInfoStockProducto" ||
+    $ruta["query"] == "ctrKardexFisico" ||
     $ruta["query"] == "ctrBusProducto"
   ) {
     $metodo = $ruta["query"];
@@ -243,31 +243,21 @@ class ControladorProducto
     return $respuesta;
   }
 
-  static public function ctrInfoStockProducto(){
-    $carritoSalida=[];
-    require "../modelo/productoModelo.php";
-    $id=1;
-    //todas las entradas y salidas de salida_stock y ingreso_stock
-    $respuesta = ModeloProducto::mdlInfoIngSalProducto($id);
+  static public function ctrSaldoProducto($fecha, $id){
+    //restando 1 dia a la fecha indicada
+    $fecha=date_create($fecha);
+    date_sub($fecha, date_interval_create_from_date_string('1 days'));
+    $fecha=date_format($fecha, 'Y-m-d');
     
-    //trayendo los demas datos de sus tablas correspondientes, segun moviemiento y codigo    
-      //salidas
-/*    foreach($respuesta as $value){
-          $codigo=explode("-",$value["codigo"]);
-        switch($codigo[0]){
-          case "SO":
-            $salida=ModeloProducto::mdlDetalleSalidaPro("nota_salida_otros", $value["codigo"]);
-            $carritoSalida=
-            break;
-          case "SV":
-            echo "es una salida por SV";
-            break;
-        }
-    }*/
+    $respuesta = ModeloProducto::mdlSaldoProducto($fecha, $id);
+    return $respuesta;
+  }
 
-    
-    
-    //return $respuesta;
-    //var_dump($respuesta);
+  static public function ctrKardexFisico($fechaInicial, $fechaFinal, $id){
+    //todas las entradas y salidas de salida_stock y ingreso_stock
+    $respuesta = ModeloProducto::mdlInfoIngSalProducto($fechaInicial, $fechaFinal, $id);
+
+    return $respuesta;
+
   }
 }

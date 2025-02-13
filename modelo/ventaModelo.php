@@ -468,6 +468,7 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $nroEmpaque = $data["nroEmpaque"];
     $observacionEmpaque = $data["observacionEmpaque"];
     $detalle = $data["detalle"];
+    $fechaHora = $data["fechaHora"];
 
     $stmt = Conexion::conectar()->prepare("insert into nota_empaque(id_personal, fecha_empaque, nro_comprobante_emp, observacion_empaque, detalle_empaque) values($personalEmpaque, '$fechaEmpaque', '$nroEmpaque', '$observacionEmpaque', '$detalle')");
 
@@ -481,8 +482,9 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $cantDocena = $detalle[$i]["cantProdDocena"];
         $cantUnidad = $detalle[$i]["cantProdUnidad"];
         $cantTotalUnidades = ($cantDocena * 12) + $cantUnidad;
+        $costoProducto = $detalle[$i]["costoProducto"];
 
-        $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso) values($idProducto, $cantTotalUnidades, '$nroEmpaque')");
+        $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroEmpaque', '$fechaHora', '$fechaHora', '$costoProducto')");
         $ingreso_sql->execute();
       }
       return "ok";
@@ -688,9 +690,11 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $subTotal = $data["subTotal"];
     $totalNeto = $data["totalNeto"];
     $totalDescuento = $data["totalDescuento"];
+    $create_at = $data["create_at"];
+    $update_at = $data["update_at"];
     $usuario = $data["usuario"];
 
-    $stmt = Conexion::conectar()->prepare("insert into venta(codigo_venta, id_cliente, detalle_venta, total, descuento, neto, fecha_emision, observacion, id_usuario) values('$nroComprobante', $cliente, '$detalle', '$subTotal', '$totalDescuento', '$totalNeto', '$fecha', '$observacion', $usuario)");
+    $stmt = Conexion::conectar()->prepare("insert into venta(codigo_venta, id_cliente, detalle_venta, total, descuento, neto, fecha_emision, observacion, id_usuario, create_at, update_at) values('$nroComprobante', $cliente, '$detalle', '$subTotal', '$totalDescuento', '$totalNeto', '$fecha', '$observacion', $usuario, '$create_at', '$update_at')");
 
     if ($stmt->execute()) {
       //transformar de json a array
@@ -702,8 +706,8 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $cantDocena = $detalle[$i]["cantProdDocena"];
         $cantUnidad = $detalle[$i]["cantProdUnidad"];
         $cantTotalUnidades = ($cantDocena * 12) + $cantUnidad;
-
-        $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values($idProducto, $cantTotalUnidades, '$nroComprobante')");
+        $costoProducto=$detalle[$i]["costoProducto"];
+        $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$create_at', '$update_at', '$costoProducto')");
         $ingreso_sql->execute();
       }
       return "ok";
@@ -779,5 +783,5 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->close();
     $stmt->null;
   }
-  
+
 }
