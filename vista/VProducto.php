@@ -10,18 +10,18 @@
     <h5 class="table-title">
       Lista de Productos
     </h5>
-    <table id="DataTable_producto" class="table table-bordered table-striped">
+    <table id="DataTable_producto" class="table table-bordered">
       <thead>
         <tr>
           <th>Cod. Producto</th>
           <th>Nombre del Producto</th>
           <th>Talla</th>
           <th>Precio Venta</th>
+          <th>Costo</th>
           <th>Stock[D|U]</th>
-          <th>Imagen</th>
           <th>Estado</th>
-          <td>
-            <button class="btn btn-primary" onclick="MNuevoProducto()">Nuevo</button>
+          <td style="padding: 12px;">
+            <button class="btn btn-block btn-primary btn-xs" onclick="MNuevoProducto()">Nuevo</button>
           </td>
         </tr>
       </thead>
@@ -31,60 +31,48 @@
 
         foreach ($producto as $value) {
         ?>
-          <tr>
-            <td><?php echo $value["cod_producto"]; ?></td>
-            <td><?php echo $value["nombre_producto"]; ?></td>
-            <td><?php echo $value["desc_talla"]; ?></td>
-            <td><?php echo $value["precio_venta"]; ?></td>
-            <td><span class="badge badge-warning"> <?php $stock = ControladorProducto::ctrStockProducto($value["id_producto"]);
+        <tr>
+          <td><?php echo $value["cod_producto"]; ?></td>
+          <td><?php echo $value["nombre_producto"]; ?></td>
+          <td><?php echo $value["desc_talla"]; ?></td>
+          <td><?php echo $value["precio_venta"]; ?></td>
+          <td><?php echo $value["precio_costo"]; ?></td>
+          <td><span class="badge badge-warning"> <?php $stock = ControladorProducto::ctrStockProducto($value["id_producto"]);
+          if ($stock != false) {
+            echo $stock["docenas"] . " | " . $stock["unidades"];
+          } else {
+            echo "0|0";
+          }
 
-                                                    if ($stock != false) {
-                                                      echo $stock["docenas"] . " | " . $stock["unidades"];
-                                                    } else {
-                                                      echo "0|0";
-                                                    }
-
-                                                    ?>
-              </span></td>
-
-            <td><?php
-                if (empty($value["imagen_producto"]) || !preg_match("/\.(jpg|png)$/i", $value["imagen_producto"])) {
-                ?>
-                <img src="assest/dist/img/productos/product_default.png" width='50'>
-              <?php
-                } else {
-              ?>
-                <img src='assest/dist/img/productos/<?php echo $value["imagen_producto"]; ?>' width='50' height="50">
-              <?php
-                }
-              ?>
-            </td>
-            <?php
-            if ($value["estado"] == 1) {
             ?>
-              <td><span class="badge badge-success">Disponible</span></td>
-            <?php
-            } else {
-            ?>
-              <td><span class="badge badge-danger">No disponible</span></td>
-            <?php
-            }
-            ?>
+            </span></td>
 
-            <td>
-              <div class="btn-group">
-                <button class="btn btn-sm btn-info" onclick="MVerProducto(<?php echo $value["id_producto"]; ?>)">
-                  <i class="fas fa-eye"></i>
-                </button>
-                <button class="btn btn-sm btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"]; ?>)">
-                  <i class="fas fa-edit"></i>
-                </button>
-                <button class="btn btn-sm btn-danger" onclick="MEliProducto(<?php echo $value["id_producto"]; ?>)">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
+          <?php
+          if ($value["estado"] == 1) {
+          ?>
+          <td><span class="badge badge-success">Disponible</span></td>
+          <?php
+          } else {
+          ?>
+          <td><span class="badge badge-danger">No disponible</span></td>
+          <?php
+          }
+          ?>
+
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-xs btn-info" onclick="MVerProducto(<?php echo $value["id_producto"]; ?>)">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn btn-xs btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"]; ?>)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-xs btn-danger" onclick="MEliProducto(<?php echo $value["id_producto"]; ?>)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
 
         <?php
         }

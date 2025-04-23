@@ -784,4 +784,60 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->null;
   }
 
+  static public function mdlEliNotaIngreso($id, $codigo){
+    if (strpos($codigo, 'I') === 0 || strpos($codigo, 'O') === 0) {
+      $segundaLetra = substr($codigo, 1, 1);
+      switch ($segundaLetra) {
+        case 'I': //tabla: nota_otros_ingresos
+          $stmt = Conexion::conectar()->prepare("DELETE FROM nota_otros_ingresos WHERE id_otros_ingresos=$id");
+          if($stmt->execute()){
+            return "ok";
+          }else{
+            return "error";
+          }
+          break;
+        case 'E':
+          $stmt = Conexion::conectar()->prepare("DELETE FROM nota_empaque WHERE id_nota_empaque=$id");
+          if($stmt->execute()){
+            return "ok";
+          }else{
+            return "error";
+          }
+          break;
+        case 'A':
+          $stmt = Conexion::conectar()->prepare("DELETE FROM nota_ingreso_ajuste WHERE id_ingreso_ajuste=$id");
+          if($stmt->execute()){
+            return "ok";
+          }else{
+            return "error";
+          }
+          break;
+        case 'P':
+          $stmt = Conexion::conectar()->prepare("DELETE FROM nota_ingreso_prov WHERE id_ingreso_prov=$id");
+          if($stmt->execute()){
+            return "ok";
+          }else{
+            return "error";
+          }
+          break;
+        case 'D':
+          $stmt = Conexion::conectar()->prepare("DELETE FROM nota_devolucion WHERE id_devolucion=$id");
+          if($stmt->execute()){
+            return "ok";
+          }else{
+            return "error";
+          }
+          break;
+        default:
+          $tipo = 'Otros';
+          break;
+      }
+    } else {
+      $tipo = 'Otros';
+    }
+
+    $stmt->close();
+    $stmt->null;
+  }
+
 }

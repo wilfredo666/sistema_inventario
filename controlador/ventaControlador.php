@@ -17,6 +17,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrRepMenorProd" ||
     $ruta["query"] == "ctrRegVenta" ||
     $ruta["query"] == "ctrRegVentaOtros" ||
+    $ruta["query"] == "ctrEliNotaIngreso" ||
     $ruta["query"] == "ctrRegNotaSalida"
   ) {
     $metodo = $ruta["query"];
@@ -363,7 +364,7 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     );
 
     $respuesta = ModeloVenta::mdlRegistroVenta($data);
-     echo $respuesta;
+    echo $respuesta;
   }
 
   // Función para convertir "MM/DD/YYYY" a "YYYY-MM-DD"
@@ -451,6 +452,17 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     $respuesta = ModeloVenta::mdlRepMenorProd($data);
 
     echo json_encode($respuesta);
+  }
+
+  static public function ctrEliNotaIngreso(){
+    require_once "../modelo/ventaModelo.php";
+
+      $id = $_POST["id"];
+      $codigo = $_POST["codigo"];
+
+
+    $respuesta = ModeloVenta::mdlEliNotaIngreso($id, $codigo);
+    echo $respuesta;
   }
 
 

@@ -130,6 +130,7 @@ if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
       || $_GET["ruta"] == "FSalidaOtros"
       || $_GET["ruta"] == "VRepMenorProd"
       || $_GET["ruta"] == "RNotaSalidaOtros"
+      || $_GET["ruta"] == "KardexPro"
     ) {
       $ruta = $_GET["ruta"] . ".php";
     }

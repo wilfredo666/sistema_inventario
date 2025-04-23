@@ -18,6 +18,7 @@ if (isset($ruta["query"])) {
 class ControladorUsuario
 {
   static public function ctrIngresoUsuario()
+
   {
     if (isset($_POST["usuario"])) {
       $usuario = $_POST["usuario"];

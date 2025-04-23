@@ -134,25 +134,26 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Costo</label>
-                  <input type="text" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00">
+                  <input type="text" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00" readonly>
+                  <input type="hidden" class="form-control" name="ventaProducto" id="ventaProducto" placeholder="0.00">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Ingreso Docenas</label>
-                  <input type="text" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0" value="0">
+                  <input type="number" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0" value="0">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Ingreso Unidades</label>
-                  <input type="text" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0" value="0">
+                  <input type="number" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0" value="0">
                 </div>
               </div>
             </div>
             <!-- </div> -->
             <div class="card-footer text-right">
-              <button type="button" class="btn btn-dark" onclick="agregarCarritoNE()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
+              <button type="button" class="btn btn-dark" onclick="validarFormularioNE()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
             </div>
           </div>
         </div>
@@ -227,41 +228,3 @@
 
   </section>
 </div>
-
-<script>
-  //validacion para nota de salida
-  $(function() {
-    $.validator.setDefaults({
-      submitHandler: function() {
-        emitirNotaEmpaque()
-      }
-    });
-    $("#FNotaEmpaque").validate({
-      rules: {
-        codEmpaque: {
-          required: true,
-          minlength: 1
-        },
-        personalEmpaque: {
-          required: true
-        }
-      },
-
-      errorElement: "span",
-      errorPlacement: function(error, element) {
-        error.addClass("invalid-feedback")
-        element.closest(".input-group").append(error)
-      },
-      //destacar
-      highlight: function(element, errorClass, validClass) {
-        $(element).addClass("is-invalid")
-      },
-
-      //desmarcar
-      unhighlight: function(element, errorClass, validClass) {
-        $(element).removeClass("is-invalid")
-      }
-
-    })
-  })
-</script>

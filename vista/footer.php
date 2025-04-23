@@ -208,16 +208,12 @@ seccion de DataTables
   $(function() {
     $("#DataTable_producto").DataTable({
       "paging": true,
+      "ordering": false,
       "pageLength": 15,
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
       "processing": true,
-      //"serverSide": true, // Activar paginación del lado del servidor
-      /*"ajax": {
-        "url": "controlador/productoControlador.php?ctrInfoProductos", // Ruta al script del servidor que procesa la solicitud
-        "type": "POST" // o "GET", según corresponda
-      },*/
       "buttons": ["copy", "csv", "excel", "pdf", "print"],
       language: {
         "decimal": "",
@@ -400,7 +396,7 @@ seccion de Validaciones
 <script>
   //validacion para nota de salida
   $(function() {
-   
+
     $("#FSalidaVenta").validate({
       rules: {
         cliente: {
@@ -436,23 +432,26 @@ seccion de Validaciones
 
     })
   })
-  
+
   function validarFormularioSV() {
     if ($("#FSalidaVenta").valid()) {
       // Si el formulario es válido, realizar la acción deseada
       agregarCarritoNV();
     }
   }
-  
+
 </script>
 
 <script>
-  //validacion para nota de empaque
+  //validacion para nota de ingreso por empaque
   $(function() {
-   
+
     $("#FNotaEmpaque").validate({
       rules: {
         personalEmpaque: {
+          required: true,
+        },
+        personal: {
           required: true,
         },
         productoEmpaque: {
@@ -485,15 +484,65 @@ seccion de Validaciones
 
     })
   })
-  
+
   function validarFormularioNE() {
     if ($("#FNotaEmpaque").valid()) {
       // Si el formulario es válido, realizar la acción deseada
       agregarCarritoNE();
     }
   }
-  
+
 </script>
+
+<script>
+  //validacion para nota de ingreso por devolucion
+  $(function() {
+
+    $("#FNotaDevolucion").validate({
+      rules: {
+        personal: {
+          required: true,
+        },
+        productoEmpaque: {
+          required: true
+        },
+        ingDocenas: {
+          required: true,
+          minlength: 1
+        },
+        ingUnidades: {
+          required: true,
+          minlength: 1
+        }
+      },
+
+      errorElement: "span",
+      errorPlacement: function(error, element) {
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error)
+      },
+      //destacar
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+
+  function validarFormularioND() {
+    if ($("#FNotaDevolucion").valid()) {
+      // Si el formulario es válido, realizar la acción deseada
+      agregarCarritoNE();
+    }
+  }
+
+</script>
+
 
 
 </body>

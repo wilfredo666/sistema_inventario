@@ -135,19 +135,19 @@
                 <div class="form-group">
                   <label for="">Costo</label>
                   <input type="hidden" class="form-control" name="ventaProducto" id="ventaProducto" placeholder="0.00">
-                  <input type="text" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00">
+                  <input type="text" class="form-control" name="costoProducto" id="costoProducto" placeholder="0.00" readonly>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Ingreso Docenas</label>
-                  <input type="text" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0" value="0">
+                  <input type="number" class="form-control" name="ingDocenas" id="ingDocenas" placeholder="0" value="0">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Ingreso Unidades</label>
-                  <input type="text" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0" value="0">
+                  <input type="number" class="form-control" name="ingUnidades" id="ingUnidades" placeholder="0" value="0">
                 </div>
               </div>
             </div>
@@ -203,7 +203,6 @@
                     <th>Costo</th>
                     <th>Subtotal</th>
                     <th>Acciones</th>
-                    <!-- <th>&nbsp;</th> -->
                   </tr>
                 </thead>
                 <tbody class="text-center" id="listaDetalleNE">
@@ -219,17 +218,6 @@
                     <td></td>
                   </tr>
                 </tfoot>
-                <!--  <tfoot class="text-center">
-                  <tr style="margin-right: 200px; padding-right: 500px;">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <th class="text-right">TOTALES:</th>
-                    <td id="totalCell">0</td>
-                    <td></td>
-                  </tr>
-                </tfoot> -->
               </table>
 
             </div>

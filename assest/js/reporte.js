@@ -119,7 +119,7 @@ function consultaMovMenorProd() {
     data: obj,
     dataType: "json", 
     success: function (data) {
-      
+
       if ($.fn.DataTable.isDataTable('#DataTable')) {
         $('#DataTable').DataTable().destroy();
       }
@@ -230,27 +230,27 @@ function kardexPro(){
   let producto = document.getElementById('producto').value;
 
   //validar datos
-    if(producto!=0 && producto!=0){
-         // Construir la URL con parámetros
-    let url = `vista/kardexPro.php?producto=${producto}&fechaInicial=${fechaInicial}&fechaFinal=${fechaFinal}`;
-    
+  if(producto!=0 && producto!=0){
+    // Construir la URL con parámetros
+    let url = `vista/KardexPro.php?producto=${producto}&fechaInicial=${fechaInicial}&fechaFinal=${fechaFinal}`;
+    //let url='KardexPro'
     // Redirigir a la URL para iniciar la descarga
     window.location.href = url;
-      
-     }else{
-        var Toast = Swal.mixin({
+
+  }else{
+    var Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
       timer: 3000
     });
 
-      Toast.fire({
-        icon: 'error',
-        title: 'Seleccione un producto'
-      })
-     }
-  
+    Toast.fire({
+      icon: 'error',
+      title: 'Seleccione un producto'
+    })
+  }
+
 
 
 }
@@ -310,7 +310,55 @@ $('#daterange-btn').daterangepicker(
 
 
   }
-) 
+)
+
+//funcion para eliminar cualquier nota de ingreso de RNotaIngreso.php
+function EliNotaIngreso(id,codigo){
+
+  var obj={
+    id:id,
+    codigo:codigo
+  }
+
+  Swal.fire({
+    title: '¿Esta seguro de eliminar la nota de ingreso?',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: 'Confirmar',
+    denyButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: obj,
+        url: "controlador/ventaControlador.php?ctrEliNotaIngreso",
+        success: function (data) {
+
+          if (data == "ok") {
+            Swal.fire({
+              icon: 'success',
+              showConfirmButton: false,
+              title: 'Color eliminado',
+              timer: 1000
+            })
+            setTimeout(function () {
+              location.reload()
+            }, 1200)
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!!!',
+              text: 'El Color no puede ser eliminado, porque esta en uso',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        }
+      })
+
+    }
+  })
+}
 
 function graficoVentas(etiquetaX, etiquetaY){
 
@@ -379,7 +427,7 @@ function graficoVentas(etiquetaX, etiquetaY){
   }
 
 function test(){
-    let obj = ""
+  let obj = ""
 
   $.ajax({
     type: "POST",

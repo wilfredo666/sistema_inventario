@@ -70,7 +70,7 @@
                 <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
                   <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn btn-sm  btn-danger">
+                <button class="btn btn-sm  btn-danger" onclick="EliNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>
