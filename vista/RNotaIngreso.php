@@ -28,7 +28,7 @@
           $c = $c + 1;
         ?>
           <tr>
-            <td><?php echo $c ?></td>
+            <td><?php echo $c; ?></td>
             <td><?php echo $value["codigo"]; ?></td>
             <td><?php
                 $codigo = $value["codigo"];

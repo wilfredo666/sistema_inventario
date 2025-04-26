@@ -403,39 +403,6 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->null;
   }
 
-  static public function mdlRegNotaIngreso($data)
-  {
-    $codIngreso = $data["codIngreso"];
-    $conceptoIngreso = $data["conceptoIngreso"];
-    $usuario = $data["usuario"];
-    $fechaHora = $data["fechaHora"];
-    $productos = $data["productos"];
-
-
-    $stmt = Conexion::conectar()->prepare("insert into nota_ingreso(cod_nota_ingreso, concepto_ingreso, detalle_ingreso, fecha_ingreso, id_usuario) values('NI-$codIngreso', '$conceptoIngreso', '$productos', '$fechaHora', $usuario)");
-
-    if ($stmt->execute()) {
-
-      //transformar de json a array
-      $ingProductos = json_decode($data["productos"], true);
-
-      //registrar en la bd - tabla ingreso stock
-      for ($i = 0; $i < count($ingProductos); $i++) {
-        $idProducto = $ingProductos[$i]["idProducto"];
-        $cantProducto = $ingProductos[$i]["cantProducto"];
-
-        $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso) values($idProducto, $cantProducto, 'NI-$codIngreso')");
-        $ingreso_sql->execute();
-      }
-
-      return "ok";
-    } else {
-      return "n";
-    }
-
-    $stmt->close();
-    $stmt->null;
-  }
 
   static public function mdlCantidadVentas()
   {

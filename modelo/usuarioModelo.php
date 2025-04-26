@@ -9,8 +9,7 @@ class ModeloUsuario
     $stmt->execute();
     return $stmt->fetch();
 
-    $stmt->close();
-    $stmt->null;
+    $stmt->closeCursor();
   }
 
   static public function mdlInfoUsuarios()
