@@ -83,6 +83,21 @@ session_start();
       padding-left: 5px;
       color: #484848;
     }
+    
+    .brd-left {
+      border-left: 5px solid;
+      padding-left: 5px;
+    }
+    
+    /*estilos para una tabla comprimida*/
+    .table-compresed td{
+      padding: 3;
+      font-size: 13px;
+    }
+    .table-compresed th{
+      padding: 3;
+      font-size: 15px;
+    }
   </style>
 </head>
 

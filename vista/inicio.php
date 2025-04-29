@@ -18,7 +18,7 @@ $MontototalVentas = ControladorVenta::ctrMontoTotalVentas();
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Panel de Control</h1>
+          <h3 class="m-0 brd-left" style="border-left-color: #32a1ce;">Panel de Control</h3>
         </div><!-- /.col -->
         <div class="col-sm-6">
 
@@ -53,9 +53,8 @@ $MontototalVentas = ControladorVenta::ctrMontoTotalVentas();
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3><?php echo $MontototalVentas['totalVentas'] . " Bs."; ?></h3>
-
-              <p>Total Ventas</p>
+              <h4><?php echo $MontototalVentas['totalVentas'] . " Bs."; ?></h4>
+              <p style="margin-top:25px">Total Ventas</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>

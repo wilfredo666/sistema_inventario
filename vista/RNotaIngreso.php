@@ -7,8 +7,8 @@
   </section>
 
   <section class="content">
-    <h4>Lista de Ingresos</h4>
-    <table id="DataTable" class="table table-bordered table-striped">
+    <h4 class="table-title">Lista de Ingresos</h4>
+    <table id="DataTable_producto" class="table table-bordered table-striped table-compresed">
       <thead>
         <tr>
           <th>#</th>
@@ -67,12 +67,15 @@
             <td>
               <div class="btn-group">
                 <!-- funciones script en archivo reporte.js -->
-                <button class="btn btn-sm btn-info" onclick="MVerNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
+                <button class="btn btn-xs btn-info" onclick="MVerNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
                   <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn btn-sm  btn-danger" onclick="EliNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
+                <button class="btn btn-xs  btn-danger" onclick="EliNotaIngreso('<?php echo $value['id']; ?>', '<?php echo $value['codigo']; ?>')">
                   <i class="fas fa-trash"></i>
                 </button>
+                <a href="vista/reporte/repImpIngreso.php?id=<?php echo $value['id']; ?>&&cod=<?php echo $value['codigo']; ?>" class="btn btn-xs btn-dark" target="_blank">
+                  <i class="far fa-file-powerpoint"></i>
+                </a>
               </div>
             </td>
           </tr>
