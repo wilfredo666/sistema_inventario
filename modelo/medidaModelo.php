@@ -57,12 +57,12 @@ class ModeloMedida{
   }
 
   static public function mdlEliMedida($data){
-    $Medida=Conexion::conectar()->prepare("select * from factura where id_Medida=$data");
+    $Medida=Conexion::conectar()->prepare("select * from factura where id_medida=$data");
     $Medida->execute();
     if($Medida->fetch()>0){
       echo "error";
     }else{
-      $stmt=Conexion::conectar()->prepare("delete from unidad_medida where id_Medida=$data");
+      $stmt=Conexion::conectar()->prepare("delete from unidad_medida where id_medida=$data");
 
       if($stmt->execute()){
         return "ok";

@@ -25,37 +25,27 @@
 
         foreach ($salida as $value) {
         ?>
-          <tr>
-            <td><?php echo $value["codigo_salida_otros"]; ?></td>
-            <td><?php echo $value["concepto_salida_otros"]; ?></td>
-            <td><?php echo $value["neto_salida_otros"]; ?></td>
-            <td><?php echo $value["fecha_salida_otros"]; ?></td>
+        <tr>
+          <td><?php echo $value["codigo_salida_otros"]; ?></td>
+          <td><?php echo $value["concepto_salida_otros"]; ?></td>
+          <td><?php echo $value["neto_salida_otros"]; ?></td>
+          <td><?php echo $value["fecha_salida_otros"]; ?></td>
 
-            <!--  <?php
-                  if ($value["estado_salida_otros"] == 1) {
-                  ?>
-              <td><span class="badge badge-success">aceptado</span></td>
-            <?php
-                  } else {
-            ?>
-              <td><span class="badge badge-danger">rechazado</span></td>
-            <?php
-                  }
-            ?>
- -->
-
-            <td>
-              <!-- funciones script en archivo reporte.js -->
-              <div class="btn-group">
-                <button class="btn btn-sm btn-info" onclick="MVerNotaSalidaOtros(<?php echo $value['id_salida_otros']; ?>)">
-                  <i class="fas fa-eye"></i>
-                </button>
-                <button class="btn btn-sm  btn-danger">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
+          <td>
+            <!-- funciones script en archivo reporte.js -->
+            <div class="btn-group">
+              <button class="btn btn-sm btn-info" onclick="MVerNotaSalidaOtros(<?php echo $value['id_salida_otros']; ?>)">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="btn btn-sm  btn-danger" onclick="EliNotaSalidaOtros(<?php echo $value['id_salida_otros']; ?>)">
+                <i class="fas fa-trash"></i>
+              </button>
+              <a href="vista/reporte/repImSalida.php?id=<?php echo $value['id_salida_otros']?>" class="btn btn-sm btn-dark" target="_blank">
+                <i class="far fa-file-powerpoint"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
 
         <?php
         }

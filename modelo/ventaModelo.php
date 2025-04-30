@@ -685,21 +685,6 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
     $stmt->null;
   }
 
-  static public function mdlRepMovimiento($data)
-  {
-    var_dump($data);
-    /*    $stmt = Conexion::conectar()->prepare("select * from factura
-join cliente
-on cliente.id_cliente=factura.id_cliente
-JOIN usuario
-on usuario.id_usuario=factura.id_usuario");
-
-    $stmt->execute();
-    return $stmt->fetchAll();
-
-    $stmt->close();
-    $stmt->null;*/
-  }
 
   static public function mdlMontoTotalVentas()
   {
@@ -807,4 +792,12 @@ on usuario.id_usuario=factura.id_usuario");
     $stmt->null;
   }
 
+  static public function mdlEliNotaSalidaOtros($id){
+    $stmt = Conexion::conectar()->prepare("DELETE FROM nota_salida_otros WHERE id_salida_otros=$id");
+    if($stmt->execute()){
+      return "ok";
+    }else{
+      return "error";
+    }
+  }
 }

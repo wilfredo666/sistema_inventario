@@ -55,6 +55,53 @@ function MVerNotaEntrega(id) {
     }
   })
 }
+
+function EliNotaSalidaOtros(id){
+    var obj = {
+    id: id
+  }
+
+  Swal.fire({
+    title: '¿Esta seguro de eliminar esta nota?',
+    text: "Esta accion afectara el stock",
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: 'Confirmar',
+    denyButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: obj,
+        url: "controlador/ventaControlador.php?ctrEliNotaSalidaOtros",
+        success: function (data) {
+
+          if (data == "ok") {
+            Swal.fire({
+              icon: 'success',
+              showConfirmButton: false,
+              title: 'Nota eliminada',
+              timer: 1000
+            })
+            setTimeout(function () {
+              location.reload()
+            }, 1200)
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!!!',
+              text: 'La nota no puede ser eliminado debido a estar en uso',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        }
+      })
+
+    }
+  })
+}
+
 /* ====================================
 REPORTE POR CLASIFICACIÓN
 =======================================*/

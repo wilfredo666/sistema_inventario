@@ -10,7 +10,7 @@ $productos = json_decode($notaSalida["detalle_salida_otros"], true);
 
 ?>
 <div class="modal-header">
-  <h4 class="modal-title">Información detalle de Venta</h4>
+  <h4 class="modal-title">Información de Nota de Salida</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -20,7 +20,7 @@ $productos = json_decode($notaSalida["detalle_salida_otros"], true);
     <div class="col-sm-12">
       <table class="table">
         <tr>
-          <th>#Cod. Nota de Venta</th>
+          <th>#Cod. Nota de Salida</th>
           <td><?php echo $notaSalida["codigo_salida_otros"]; ?></td>
         </tr>
 
@@ -61,7 +61,6 @@ $productos = json_decode($notaSalida["detalle_salida_otros"], true);
         <th>Unidades</th>
         <th>P/Docena</th>
         <th>SubTotal</th>
-        <th>Descuento</th>
         <th>Liq.Pagable</th>
       </thead>
       <tbody>
@@ -80,7 +79,6 @@ $productos = json_decode($notaSalida["detalle_salida_otros"], true);
             <td><?php echo $producto['cantProdUnidad'] ?></td>
             <td><?php echo $producto['costoProducto'] ?></td>
             <td><?php echo number_format(round($subTotal, 2), 2) ?></td>
-            <td><?php echo $producto['descuentoCliente'] . " %" ?></td>
             <td><?php echo number_format(round($liquidoNeto, 2), 2) ?></td>
           </tr>
         <?php
