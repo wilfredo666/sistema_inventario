@@ -702,17 +702,18 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
   static public function mdlRegistroVentaOtros($data)
   {
     $fecha = $data["fecha"];
-    $cliente = $data["cliente"];
     $nroComprobante = $data["nroComprobante"];
-    $observacion = $data["observacion"];
-    $concepto_salida = $data["concepto_salida"];
     $detalle = $data["detalle"];
     $subTotal = $data["subTotal"];
-    $totalNeto = $data["totalNeto"];
     $totalDescuento = $data["totalDescuento"];
+    $totalNeto = $data["totalNeto"];
     $usuario = $data["usuario"];
+    $observacion = $data["observacion"];
+    $concepto_salida = $data["concepto_salida"];
+    $create_at = $data["create_at"];
+    $update_at = $data["update_at"];
 
-    $stmt = Conexion::conectar()->prepare("insert into nota_salida_otros(codigo_salida_otros, id_cliente, detalle_salida_otros, total_salida_otros, descuento_salida_otros, neto_salida_otros, fecha_salida_otros, observacion_salida_otros, id_usuario, concepto_salida_otros) values('$nroComprobante', '$cliente', '$detalle', '$subTotal', '$totalDescuento', '$totalNeto', '$fecha', '$observacion', $usuario, '$concepto_salida')");
+    $stmt = Conexion::conectar()->prepare("insert into nota_salida_otros(codigo_salida_otros, detalle_salida_otros, total_salida_otros, descuento_salida_otros, neto_salida_otros, fecha_salida_otros, observacion_salida_otros, id_usuario, concepto_salida_otros) values('$nroComprobante', '$detalle', '$subTotal', '$totalDescuento', '$totalNeto', '$fecha', '$observacion', $usuario, '$concepto_salida')");
 
     if ($stmt->execute()) {
       //transformar de json a array
@@ -724,8 +725,9 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $cantDocena = $detalle[$i]["cantProdDocena"];
         $cantUnidad = $detalle[$i]["cantProdUnidad"];
         $cantTotalUnidades = ($cantDocena * 12) + $cantUnidad;
+        $costoProducto=$detalle[$i]["costoProducto"];
 
-        $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values($idProducto, $cantTotalUnidades, '$nroComprobante')");
+        $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$create_at', '$update_at', '$costoProducto')");
         $ingreso_sql->execute();
       }
       return "ok";

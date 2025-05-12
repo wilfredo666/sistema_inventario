@@ -388,7 +388,6 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     $hora = date("H:i:s");
     $data = array(
       "fecha" => $fecha,
-      "cliente" => $_POST["cliente"],
       "nroComprobante" => $_POST["nroComprobante"],
       "observacion" => $_POST["observacion"],
       "concepto_salida" => $_POST["concepto_salida"],
@@ -397,10 +396,10 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
       "totalNeto" => $_POST["totalNeto"],
       "totalDescuento" => $_POST["totalDescuento"],
       "usuario" => $_SESSION["idUsuario"],
-      "create_at"=>$fecha.$fecha,
-      "update_at"=>$fecha.$fecha
+      "create_at"=>$fecha." ".$hora,
+      "update_at"=>$fecha." ".$hora
     );
-    /* var_dump($data); */
+
     $respuesta = ModeloVenta::mdlRegistroVentaOtros($data);
     echo $respuesta;
   }
@@ -426,18 +425,18 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
   static public function ctrEliNotaIngreso(){
     require_once "../modelo/ventaModelo.php";
 
-      $id = $_POST["id"];
-      $codigo = $_POST["codigo"];
+    $id = $_POST["id"];
+    $codigo = $_POST["codigo"];
 
 
     $respuesta = ModeloVenta::mdlEliNotaIngreso($id, $codigo);
     echo $respuesta;
   }
-  
+
   static public function ctrEliNotaSalidaOtros(){
     require_once "../modelo/ventaModelo.php";
 
-      $id = $_POST["id"];
+    $id = $_POST["id"];
 
     $respuesta = ModeloVenta::mdlEliNotaSalidaOtros($id);
     echo $respuesta;

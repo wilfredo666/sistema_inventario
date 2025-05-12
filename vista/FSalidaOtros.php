@@ -5,7 +5,7 @@
   <section class="content">
 
     <!--encabezado-->
-    <form id="FSalidaVenta">
+    <form id="FSalidaOtros">
       <div class="row">
         <div class="col-sm-6">
           <div class="card card-info card-outline">
@@ -26,40 +26,9 @@
                 <div class="form-group">
                   <label for="">Fecha:</label>
                   <input type="date" class="form-control" name="fecha" id="fecha" value="<?php date_default_timezone_set('America/La_Paz');
-                                                                                          echo date('Y-m-d'); ?>" readonly>
+                                                                                         echo date('Y-m-d'); ?>" readonly>
                 </div>
               </div>
-
-              <!-- <div class="col-md-8">
-                <div class="form-group">
-                  <label>Cliente</label>
-                  <select class="form-control select2bs4" name="cliente" id="cliente" onchange="datosClientes();">
-                    <option value="">-- Seleccionar cliente --</option>
-                    <?php
-                    $cliente = ControladorCliente::ctrInfoClientes();
-                    foreach ($cliente as $value) {
-                    ?>
-                      <option value="<?php echo $value["id_cliente"]; ?>"><?php echo $value["razon_social_cliente"] ?></option>
-                    <?php
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div> -->
-
-              <!--  <div class="col-md-8">
-                <div class="form-group">
-                  <label>Cliente</label>
-                  <select class="form-control select2bs4" name="cliente" id="cliente">
-                    <option value="">-- Seleccionar --</option>
-                    <option value="Persona Natural">Persona Natural</option>
-                    <option value="Persona Jurídica">Persona Jurídica</option>
-                    <option value="Otros">Otros</option>
-                  </select>
-                </div>
-              </div> -->
-
-              <input type="hidden" id="cliente" name="cliente" value="null">
 
               <div class="col-md-8">
                 <div class="form-group">
@@ -144,7 +113,7 @@
                     $producto = ControladorProducto::ctrInfoProductos();
                     foreach ($producto as $value) {
                     ?>
-                      <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
+                    <option value="<?php echo $value["id_producto"]; ?>"><?php echo $value["nombre_producto"]; ?></option>
                     <?php
                     }
                     ?>
@@ -172,12 +141,6 @@
                 </div>
               </div>
 
-              <!-- <div class="col-md-4">
-                <div class="form-group">
-                  <label for="">% Descuento</label>
-                  <input type="text" class="form-control" name="descuentoCliente" id="descuentoCliente" value=0>
-                </div>
-              </div> -->
               <input type="hidden" name="descuentoCliente" id="descuentoCliente" value=0>
 
               <div class="col-md-6">
@@ -195,7 +158,7 @@
             </div>
             <!-- </div> -->
             <div class="card-footer text-right">
-              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="agregarCarritoNV()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
+              <button type="button" class="btn btn-dark" id="btnCarritoNV" onclick="validarFormularioSO()"><i class="fas fa-plus-circle"></i> Agregar Item</button>
             </div>
           </div>
         </div>
@@ -274,58 +237,3 @@
 
   </section>
 </div>
-
-<script>
-  //validacion para nota de salida
-  $(function() {
-    /*    $.validator.setDefaults({
-      submitHandler: function() {
-        //GuardarNotaVenta()
-        agregarCarritoNV()
-      }
-
-    });*/
-    $("#FSalidaVenta").validate({
-      rules: {
-        cliente: {
-          required: true,
-        },
-        productoEmpaque: {
-          required: true
-        },
-        ingDocenas: {
-          required: true,
-          minlength: 1
-        },
-        ingUnidades: {
-          required: true,
-          minlength: 1
-        }
-      },
-
-      errorElement: "span",
-      errorPlacement: function(error, element) {
-        error.addClass("invalid-feedback")
-        element.closest(".input-group").append(error)
-      },
-      //destacar
-      highlight: function(element, errorClass, validClass) {
-        $(element).addClass("is-invalid")
-      },
-
-      //desmarcar
-      unhighlight: function(element, errorClass, validClass) {
-        $(element).removeClass("is-invalid")
-      }
-
-    })
-
-
-    $("#btnCarritoNV").click(function() {
-      if ($("#FSalidaVenta").valid()) {
-        agregarCarritoNV(); // Llama a la función para agregar al carrito
-      }
-    });
-
-  })
-</script>

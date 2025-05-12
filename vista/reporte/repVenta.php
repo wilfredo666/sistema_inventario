@@ -87,9 +87,9 @@ $pdf->Cell(100, 8, "T O T A L E S ", 1, 0, "C");
 $pdf->Cell(12, 8, $totalDoc, 1, 0, "C");
 $pdf->Cell(12, 8, $totalUni, 1, 0, "C");
 $pdf->Cell(20, 8, "", 1, 0, "C");
-$pdf->Cell(20, 8, $notaSalida["total"], 1, 0, "C");
-$pdf->Cell(18, 8, $notaSalida["decventa"], 1, 0, "C");
-$pdf->Cell(20, 8, $notaSalida["neto"], 1, 0, "C");
+$pdf->Cell(20, 8, number_format(round($notaSalida["total"],2),2), 1, 0, "C");
+$pdf->Cell(18, 8, number_format(round($notaSalida["decventa"],2),2), 1, 0, "C");
+$pdf->Cell(20, 8, number_format(round($notaSalida["neto"],2),2), 1, 0, "C");
 $pdf->Cell(20, 35, "", 0, 1, "C");
 
 $pdf->setX(25);

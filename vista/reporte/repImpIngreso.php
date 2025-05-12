@@ -82,7 +82,7 @@ foreach ($productos as $producto) {
     $pdf->Cell(75, 8, utf8_decode($descripcionTruncada), 1, 0, "");
     $pdf->Cell(18, 8, $producto['cantProdDocena'], 1, 0, "C");
     $pdf->Cell(18, 8, $producto['cantProdUnidad'], 1, 0, "C");
-    $pdf->Cell(23, 8, $producto['costoProducto'], 1, 0, "C");
+    $pdf->Cell(23, 8, number_format(round($producto['costoProducto'],2),2), 1, 0, "C");
     $pdf->Cell(23, 8, number_format(round($total, 2), 2), 1, 1, "C");
 }
 
@@ -94,7 +94,7 @@ $pdf->Cell(103, 8, "T O T A L E S ", 1, 0, "C");
 $pdf->Cell(18, 8, $totalDocenas, 1, 0, "C");
 $pdf->Cell(18, 8, $totalUnidades, 1, 0, "C");
 $pdf->Cell(23, 8, "", 1, 0, "C");
-$pdf->Cell(23, 8, $totalCosto, 1, 0, "C");
+$pdf->Cell(23, 8, number_format(round($totalCosto,2),2), 1, 0, "C");
 
 $pdf->Cell(20, 35, "", 0, 1, "C");
 

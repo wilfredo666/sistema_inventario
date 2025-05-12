@@ -67,9 +67,9 @@ foreach ($productos as $value) {
   $pdf->Cell(14, 8, $value["cantProducto"], 1, 0, "C");
   $pdf->Cell(14, 8, $value["cantProducto"], 1, 0, "C");
   $pdf->Cell(15, 8, $value["preUnitario"], 1, 0, "C");
-  $pdf->Cell(15, 8, $value["preTotal"] . " Bs.", 1, 0, "C");
+  $pdf->Cell(15, 8, number_format(round($value["preTotal"],2),2) . " Bs.", 1, 0, "C");
   $pdf->Cell(15, 8,  "0", 1, 0, "C");
-  $pdf->Cell(22, 8, $value["preTotal"] . " Bs.", 1, 1, "C");
+  $pdf->Cell(22, 8, number_format(round($value["preTotal"],2),2) . " Bs.", 1, 1, "C");
 }
 $pdf->SetX(10);
 $pdf->SetFont("times", "B", 11);
@@ -82,7 +82,7 @@ $pdf->Cell(15, 8, "", 1, 0, "C");
 $pdf->Cell(15, 8, "", 1, 0, "C");
 $pdf->Cell(15, 8, "", 1, 0, "C");
 $pdf->SetFont("times", "", 11);
-$pdf->Cell(22, 8, $NotaVenta["total"] . " Bs.", 1, 1, "C");
+$pdf->Cell(22, 8, number_format(round($NotaVenta["total"],2),2) . " Bs.", 1, 1, "C");
 $pdf->Cell(188, 8, "SON:", 1, 1, "L");
 $pdf->Cell(188, 8, utf8_decode("Observación:"), 1, 1, "L");
 

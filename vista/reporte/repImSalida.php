@@ -89,10 +89,10 @@ foreach ($productos as $producto) {
 $pdf->setX(15);
 $pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(103, 8, "T O T A L E S ", 1, 0, "C");
-$pdf->Cell(18, 8, $totalDocenas, 1, 0, "C");
-$pdf->Cell(18, 8, $totalUnidades, 1, 0, "C");
+$pdf->Cell(18, 8, number_format(round($totalDocenas,2),2), 1, 0, "C");
+$pdf->Cell(18, 8, number_format(round($totalUnidades,2),2), 1, 0, "C");
 $pdf->Cell(23, 8, "", 1, 0, "C");
-$pdf->Cell(23, 8, $totalCosto, 1, 0, "C");
+$pdf->Cell(23, 8, number_format(round($totalCosto,2),2), 1, 0, "C");
 
 $pdf->Cell(20, 35, "", 0, 1, "C");
 

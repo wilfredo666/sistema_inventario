@@ -308,51 +308,6 @@ seccion de DataTables
 <!--====================
 seccion de Validaciones
 =====================-->
-<script>
-  //validacion para Nota de venta
-  $(function() {
-    $.validator.setDefaults({
-      submitHandler: function() {
-        emitirFactura()
-      }
-    });
-    $("#FNotaVenta").validate({
-      rules: {
-        nitCliente: {
-          required: true
-        },
-        rsCliente: {
-          required: true
-        },
-      },
-      messages: {
-        nitCliente: {
-          required: "Inserte o seleccione un nit/ci"
-        },
-        rsCliente: {
-          required: "El campo no puede estar vacio"
-        },
-      },
-
-      //se crea el elemento span donde se escribira el mensaje
-      errorElement: "span",
-      errorPlacement: function(error, element) {
-        error.addClass("invalid-feedback")
-        element.closest(".input-group").append(error) //cambiar a .imput-group ya que es el elemento padre del input
-      },
-      //destacar
-      highlight: function(element, errorClass, validClass) {
-        $(element).addClass("is-invalid")
-      },
-
-      //desmarcar
-      unhighlight: function(element, errorClass, validClass) {
-        $(element).removeClass("is-invalid")
-      }
-
-    })
-  })
-</script>
 
 <script> 
   //validacion para nota de ingreso
@@ -435,6 +390,55 @@ seccion de Validaciones
 
   function validarFormularioSV() {
     if ($("#FSalidaVenta").valid()) {
+      // Si el formulario es válido, realizar la acción deseada
+      agregarCarritoNV();
+    }
+  }
+
+</script>
+
+<script>
+  //validacion para nota de salida por otros conceptos
+  $(function() {
+
+    $("#FSalidaOtros").validate({
+      rules: {
+        concepto_salida: {
+          required: true,
+        },
+        productoEmpaque: {
+          required: true
+        },
+        ingDocenas: {
+          required: true,
+          minlength: 1
+        },
+        ingUnidades: {
+          required: true,
+          minlength: 1
+        }
+      },
+
+      errorElement: "span",
+      errorPlacement: function(error, element) {
+        error.addClass("invalid-feedback")
+        element.closest(".input-group").append(error)
+      },
+      //destacar
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass("is-invalid")
+      },
+
+      //desmarcar
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass("is-invalid")
+      }
+
+    })
+  })
+
+  function validarFormularioSO() {
+    if ($("#FSalidaOtros").valid()) {
       // Si el formulario es válido, realizar la acción deseada
       agregarCarritoNV();
     }

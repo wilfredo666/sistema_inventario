@@ -6,7 +6,6 @@ function GuardarNotaVentaOtros() {
     if(arregloCarritoNV.length!=0){
   
       let fecha = document.getElementById("fecha").value
-      let cliente = document.getElementById("cliente").value
       let nroComprobante = document.getElementById("nroComprobante").value
       let observacion = document.getElementById("observacion").value
       let concepto_salida = document.getElementById("concepto_salida").value
@@ -16,7 +15,6 @@ function GuardarNotaVentaOtros() {
   
       let obj = {
         "fecha": fecha,
-        "cliente": cliente,
         "nroComprobante": nroComprobante,
         "observacion": observacion,
         "concepto_salida": concepto_salida,
