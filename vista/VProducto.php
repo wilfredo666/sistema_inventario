@@ -26,59 +26,6 @@
         </tr>
       </thead>
       <tbody>
-        <?php
-        $producto = ControladorProducto::ctrInfoProductos();
-
-        foreach ($producto as $value) {
-        ?>
-        <tr>
-          <td><?php echo $value["cod_producto"]; ?></td>
-          <td><?php echo $value["nombre_producto"]; ?></td>
-          <td><?php echo $value["desc_talla"]; ?></td>
-          <td><?php echo $value["precio_venta"]; ?></td>
-          <td><?php echo $value["precio_costo"]; ?></td>
-          <td><span class="badge badge-warning"> <?php $stock = ControladorProducto::ctrStockProducto($value["id_producto"]);
-          if ($stock != false) {
-            echo $stock["docenas"] . " | " . $stock["unidades"];
-          } else {
-            echo "0|0";
-          }
-
-            ?>
-            </span></td>
-
-          <?php
-          if ($value["estado"] == 1) {
-          ?>
-          <td><span class="badge badge-success">Disponible</span></td>
-          <?php
-          } else {
-          ?>
-          <td><span class="badge badge-danger">No disponible</span></td>
-          <?php
-          }
-          ?>
-
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-xs btn-info" onclick="MVerProducto(<?php echo $value["id_producto"]; ?>)">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button class="btn btn-xs btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"]; ?>)">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button class="btn btn-xs btn-danger" onclick="MEliProducto(<?php echo $value["id_producto"]; ?>)">
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <?php
-        }
-        ?>
-
-
       </tbody>
     </table>
 

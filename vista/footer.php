@@ -207,13 +207,56 @@ seccion de DataTables
 
   $(function() {
     $("#DataTable_producto").DataTable({
+      "processing": true,
+      //"serverSide": true,
+      ajax: {
+        url: "vista/producto/ajaxProducto.php",
+        dataSrc: "data"
+      },
+      columns:[
+        {data: 'cod_producto'},
+        {data: 'nombre_producto'},
+        {data: 'desc_talla'},
+        {data: 'precio_venta'},
+        {data: 'precio_costo'},
+        { 
+          data: null, // No usar un campo específico
+          render: function(data, type, row) {
+            let docenas = row.docenas ? row.docenas : 0
+            let unidades = row.unidades ? row.unidades : 0
+            return docenas + '|' + unidades;
+          }
+        },
+        {data: 'estado',
+         render: function(data, type, row){
+           return row.estado == 1
+             ?'<span class="badge badge-success">Disponible</span>'
+           :'<span class="badge badge-danger">No Disponible</span>'
+         }
+        },
+        { 
+            data: 'id_producto',
+            render: function(data, type, row) {
+                return `<div class="btn-group">
+                            <button class="btn btn-xs btn-info" onclick="MVerProducto(${row.id_producto})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-xs btn-secondary" onclick="MEditProducto(${row.id_producto})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-xs btn-danger" onclick="MEliProducto(${row.id_producto})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>`;
+            }
+        }
+      ],
       "paging": true,
       "ordering": false,
       "pageLength": 15,
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
-      "processing": true,
       "buttons": ["copy", "csv", "excel", "pdf", "print"],
       language: {
         "decimal": "",

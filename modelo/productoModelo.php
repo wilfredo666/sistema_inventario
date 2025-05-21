@@ -6,15 +6,11 @@ class ModeloProducto
 
   static public function mdlInfoProductos()
   {
-    $stmt = Conexion::conectar()->prepare("select * from producto left join unidad_medida on unidad_medida.id_medida=producto.id_medida 
-      left join talla on talla.id_talla=producto.id_talla
-      left join color on color.id_color=producto.id_color
-      left join grupo on grupo.id_grupo=producto.id_grupo
-      left join diseno on diseno.id_diseno=producto.id_diseno");
+    $stmt = Conexion::conectar()->prepare("SELECT producto.id_producto, cod_producto, nombre_producto, precio_costo, precio_venta, desc_talla, docenas, unidades, producto.estado FROM producto LEFT JOIN unidad_medida ON unidad_medida.id_medida = producto.id_medida LEFT JOIN stock_producto ON stock_producto.id_producto = producto.id_producto LEFT JOIN talla ON talla.id_talla = producto.id_talla");
     $stmt->execute();
-    return $stmt->fetchAll();
-    $stmt->close();
-    $stmt->null;
+    $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $resultado;
   }
 
 

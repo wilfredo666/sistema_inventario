@@ -32,13 +32,13 @@
         $talla = ControladorTalla::ctrInfoTallas();
         foreach ($talla as $value) {
         ?>
-          <option value="<?php echo $value["id_talla"]; ?>"><?php echo $value["desc_talla"]; ?></option>
+        <option value="<?php echo $value["id_talla"]; ?>"><?php echo $value["desc_talla"]; ?></option>
         <?php
         }
         ?>
       </select>
     </div>
-    
+
     <div class="form-group col-md-4">
       <label for="">Grupo</label>
       <select class="form-control select2bs4" name="grupoProducto" id="grupoProducto">
@@ -49,7 +49,7 @@
         $grupo = ControladorGrupo::ctrInfoGrupos();
         foreach ($grupo as $value) {
         ?>
-          <option value="<?php echo $value["id_grupo"]; ?>"><?php echo $value["desc_grupo"]; ?></option>
+        <option value="<?php echo $value["id_grupo"]; ?>"><?php echo $value["desc_grupo"]; ?></option>
         <?php
         }
         ?>
@@ -65,7 +65,7 @@
         $diseno = ControladorDiseno::ctrInfoDisenos();
         foreach ($diseno as $value) {
         ?>
-          <option value="<?php echo $value["id_diseno"]; ?>"><?php echo $value["desc_diseno"]; ?></option>
+        <option value="<?php echo $value["id_diseno"]; ?>"><?php echo $value["desc_diseno"]; ?></option>
         <?php
         }
         ?>
@@ -81,8 +81,8 @@
         $color = ControladorColor::ctrInfoColores();
         foreach ($color as $value) {
         ?>
-          <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"];?>"><?php echo $value["desc_color"]; ?></option>
-          <!-- <option value="<?php echo $value["id_color"]; ?>" type="button" style="background-color:<?php echo $value['img_color'] ?>; width: 60px;" ></option> -->
+        <option value="<?php echo $value["id_color"]; ?>" style="background-color:<?php echo $value["img_color"];?>"><?php echo $value["desc_color"]; ?></option>
+        <!-- <option value="<?php echo $value["id_color"]; ?>" type="button" style="background-color:<?php echo $value['img_color'] ?>; width: 60px;" ></option> -->
         <?php
         }
         ?>
@@ -99,7 +99,7 @@
         $categoria = ControladorCategoria::ctrInfoCategorias();
         foreach ($categoria as $value) {
         ?>
-          <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["desc_categoria"]; ?></option>
+        <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["desc_categoria"]; ?></option>
         <?php
         }
         ?>
@@ -115,20 +115,23 @@
         $medida = ControladorMedida::ctrInfoMedidas();
         foreach ($medida as $value) {
         ?>
-          <option value="<?php echo $value["id_medida"]; ?>"><?php echo $value["desc_medida"]; ?></option>
+        <option value="<?php echo $value["id_medida"]; ?>"><?php echo $value["desc_medida"]; ?></option>
         <?php
         }
         ?>
       </select>
     </div>
-    
-    <div class="form-group">
-      <label for="">Imagen del Producto</label>
-      <input type="file" class="form-control" id="ImgProducto" name="ImgProducto" onchange="previsualizar()" >
 
-      <img src="assest/dist/img/productos/product_default.png" class="img-thumbnail previsualizar" width="200">
+      <div class="form-group col-md-6">
+        <label for="">Imagen del Producto</label>
+        <input type="file" class="form-control" id="ImgProducto" name="ImgProducto" onchange="previsualizar()">
+      </div>
+
+      <div class="form-group col-md-6" style="text-align: center;">
+        <img src="assest/dist/img/productos/product_default.png" class="img-thumbnail previsualizar" width="200">
+      </div>
     </div>
-  </div>
+
   <div class="modal-footer justify-content-between">
     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
     <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>

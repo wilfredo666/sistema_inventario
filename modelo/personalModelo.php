@@ -7,32 +7,43 @@ class ModeloPersonal{
     $stmt=Conexion::conectar()->prepare("select * from personal");
     $stmt->execute();
 
-    return $stmt->fetchAll();
+    $resultado = $stmt->fetchAll();
 
-    $stmt->close();
-    $stmt->null;
+    $stmt->closeCursor();
+    return $resultado;
   }
 
   static public function mdlRegPersonal($data){
-    $nomPersonal=$data["nomPersonal"];
-    $patPersonal=$data["patPersonal"];
-    $matPersonal=$data["matPersonal"];
-    $ciPersonal=$data["ciPersonal"];
-    $nacPersonal=$data["nacPersonal"];
-    $cargoPersonal=$data["cargoPersonal"];
-    $telPersonal=$data["telPersonal"];
-    $dirPersonal=$data["dirPersonal"];
+    $stmt = Conexion::conectar()->prepare("
+        INSERT INTO personal(
+            nombre_personal, ap_pat_personal, ap_mat_personal,
+            ci_personal, nacimiento_personal, cargo_personal,
+            direccion_personal, contactos_personal
+        ) VALUES (
+            :nombre, :paterno, :materno, :ci, :nacimiento,
+            :cargo, :direccion, :contacto
+        )
+    ");
 
-    $stmt=Conexion::conectar()->prepare("insert into personal(nombre_personal, ap_pat_personal, ap_mat_personal, ci_personal, nacimiento_personal, cargo_personal, direccion_personal, contactos_personal) values('$nomPersonal', '$patPersonal', '$matPersonal', '$ciPersonal',  '$nacPersonal', '$cargoPersonal', '$dirPersonal', '$telPersonal')");
+    $stmt->bindParam(":nombre", $data["nomPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":paterno", $data["patPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":materno", $data["matPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":ci", $data["ciPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":nacimiento", $data["nacPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":cargo", $data["cargoPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":direccion", $data["dirPersonal"], PDO::PARAM_STR);
+    $stmt->bindParam(":contacto", $data["telPersonal"], PDO::PARAM_STR);
 
     if($stmt->execute()){
       return "ok";
-    }else{
-      return "error";
+    } else {
+
+      return $stmt->errorInfo();
     }
-    $stmt->close();
-    $stmt->null;
+
+    $stmt = null;
   }
+
 
   static public function mdlInfoPersonal($id){
     $stmt=Conexion::conectar()->prepare("select * from personal where id_personal=$id");

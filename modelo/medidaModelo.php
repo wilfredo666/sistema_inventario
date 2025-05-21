@@ -57,22 +57,24 @@ class ModeloMedida{
   }
 
   static public function mdlEliMedida($data){
-    $Medida=Conexion::conectar()->prepare("select * from factura where id_medida=$data");
-    $Medida->execute();
-    if($Medida->fetch()>0){
-      echo "error";
-    }else{
-      $stmt=Conexion::conectar()->prepare("delete from unidad_medida where id_medida=$data");
 
-      if($stmt->execute()){
-        return "ok";
-      }else{
-        return "error";
+    try {
+      $stmt = Conexion::conectar()->prepare("DELETE FROM unidad_medida WHERE id_medida = :id");
+      $stmt->bindParam(":id", $data, PDO::PARAM_INT);
+      $stmt->execute();
+
+      echo json_encode(["status" => "ok", "message" => "Medida eliminada correctamente"]);
+    } catch (PDOException $e) {
+      if ($e->getCode() == 23000) {
+        echo json_encode([
+          "status" => "error",
+          "message" => "No se puede eliminar porque hay dependencias en otra tabla"
+        ]);
+      } else {
+        echo json_encode(["status" => "error", "message" => $e->getMessage()]);
       }
     }
 
-    $stmt->close();
-    $stmt->null;
   }
 
   static public function mdlBusMedida($nitMedida){
@@ -83,7 +85,7 @@ class ModeloMedida{
     $stmt->close();
     $stmt->null;
   }
-  
+
   static public function mdlCantidadMedidas(){
     $stmt=Conexion::conectar()->prepare("select count(*) as unidad_medida from Medida");
     $stmt->execute();

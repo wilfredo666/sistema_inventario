@@ -127,14 +127,15 @@ function MEliMedida(id) {
       $.ajax({
         type: "POST",
         data: obj,
-        url: "controlador/MedidaControlador.php?ctrEliMedida",
+        dataType: "json", //importante indicar que se traen datos json
+        url: "controlador/medidaControlador.php?ctrEliMedida",
         success: function (data) {
 
-          if (data == "ok") {
+          if (data["status"] == "ok") {
             Swal.fire({
               icon: 'success',
               showConfirmButton: false,
-              title: 'Medida eliminado',
+              title: data["message"],
               timer: 1000
             })
             setTimeout(function () {
@@ -144,7 +145,7 @@ function MEliMedida(id) {
             Swal.fire({
               icon: 'error',
               title: 'Error!!!',
-              text: 'El Medida no puede ser eliminado, porque esta en uso',
+              text: data["message"],
               showConfirmButton: false,
               timer: 1500
             })

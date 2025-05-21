@@ -29,13 +29,10 @@
             <td><?php echo $value["desc_medida"]; ?></td>
             <td>
               <div class="btn-group">
-                <!-- <button class="btn btn-sm btn-info" onclick="MVerMedida(<?php echo $value["id_medida"]; ?>)">
-                  <i class="fas fa-eye"></i>
-                </button> -->
                 <button class="btn btn-sm btn-secondary" onclick="MEditMedida(<?php echo $value["id_medida"]; ?>)">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger" onclick="MEliMedida(<?php echo $value["id_medida"]; ?>)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

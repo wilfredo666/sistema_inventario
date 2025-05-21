@@ -53,17 +53,17 @@ class ControladorMedida{
   }
 
   static public function ctrEliMedida(){
-    require "../modelo/MedidaModelo.php";
+    require "../modelo/medidaModelo.php";
     $data=$_POST["id"];
 
-    $respuesta=ModeloMedida::mdlEliMedida($data);
+    ModeloMedida::mdlEliMedida($data);
 
-    echo $respuesta;
+    //echo $respuesta;
 
   }
 
   static public function ctrBusMedida(){
-    require "../modelo/MedidaModelo.php";
+    require "../modelo/medidaModelo.php";
     $nitMedida=$_POST["nitMedida"];
 
     $respuesta=ModeloMedida::mdlBusMedida($nitMedida);
