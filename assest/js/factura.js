@@ -771,7 +771,7 @@ function GuardarNotaDev() {
     data: obj,
     cache: false,
     success: function (data) {
-      console.log(data)
+
       if (data == "ok") {
         Swal.fire({
           icon: 'success',
@@ -865,7 +865,7 @@ function GuardarNotaIngAjuste() {
     data: obj,
     cache: false,
     success: function (data) {
-      console.log(data)
+    
       if (data == "ok") {
         Swal.fire({
           icon: 'success',

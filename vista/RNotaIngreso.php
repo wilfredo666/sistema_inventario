@@ -8,11 +8,11 @@
 
   <section class="content">
     <h4 class="table-title">Lista de Ingresos</h4>
-    <table id="DataTable_producto" class="table table-bordered table-striped table-compresed">
+    <table id="DataTable" class="table table-bordered table-striped table-compresed">
       <thead>
         <tr>
           <th>#</th>
-          <th>#Código Ingreso</th>
+          <th>Código Ingreso</th>
           <th>Ingreso Por:</th>
           <th>Personal</th>
           <th>Fecha</th>

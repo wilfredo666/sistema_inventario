@@ -26,13 +26,13 @@ $pdf->Cell(50, 9, 'HERMEN LTDA INDUSTRIA', 0, 1, 'C');
 $pdf->Cell(50, 0, 'TEXTIL', 0, 1, 'C');
 $pdf->Cell(55, 8, 'Tel: 2833403    Fax:2836087', 0, 0, 'C');
 $pdf->SetFont('Arial', 'B', 24);
-$pdf->Cell(95, 3, 'NOTA DE SALIDA', 0, 1, 'C');
+$pdf->Cell(95, 3, utf8_decode($notaSalida['concepto_salida_otros']), 0, 1, 'C');
 $pdf->SetFont('Arial', '', 11);
 $pdf->Cell(55, 10, 'La Paz - Bolivia', 0, 1, 'C');
 $pdf->Cell(70, 5, '', 0, 1);
 
 //$pdf->Cell(140, 8, 'Nombre: ' . " " . $notaSalida['observacion'], 0, 0);
-$pdf->Cell(70, 8, 'Nota:' . " " . $notaSalida['codigo_salida_otros'], 0, 1);
+$pdf->Cell(70, 8, 'Nota de Salida:' . " " . $notaSalida['codigo_salida_otros'], 0, 1);
 $pdf->Multicell(140, 5, utf8_decode('Observación:') . " " . utf8_decode($notaSalida['observacion_salida_otros']), 0, 0);
 $pdf->SetFont('Arial', '', 11);
 $pdf->setY(45);

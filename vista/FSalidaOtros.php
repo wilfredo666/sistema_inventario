@@ -25,8 +25,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Fecha:</label>
-                  <input type="date" class="form-control" name="fecha" id="fecha" value="<?php date_default_timezone_set('America/La_Paz');
-                                                                                         echo date('Y-m-d'); ?>" readonly>
+                  <input type="date" class="form-control" name="fecha" id="fecha" value="<?php date_default_timezone_set('America/La_Paz'); 
+                echo date('Y-m-d'); ?>" readonly>
                 </div>
               </div>
 

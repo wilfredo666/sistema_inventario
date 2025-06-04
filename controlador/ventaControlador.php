@@ -205,7 +205,7 @@ PARA LAS VISTAS MODAL VER DE SALIDAS E INGRESOS
       "nroEmpaque" => $_POST["nroEmpaque"],
       "observacionEmpaque" => $_POST["observacionEmpaque"],
       "detalle" => $_POST["detalle"],
-      "fechaHora" => $fecha . " " . $hora,
+      "fechaHora" => $fecha . " " . $hora
     );
     $respuesta = ModeloVenta::mdlRegEmpaque($data);
     echo $respuesta;
@@ -237,6 +237,7 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
       "nroDevolucion" => $_POST["nroDevolucion"],
       "observacion" => $_POST["observacion"],
       "detalle" => $_POST["detalle"],
+      "fechaHora" => $fecha . " " . $hora
     );
     $respuesta = ModeloVenta::mdlRegDevolucion($data);
     echo $respuesta;
@@ -249,14 +250,15 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
   {
     require_once "../modelo/ventaModelo.php";
     date_default_timezone_set("America/La_Paz");
-    $fechas = date("Y-m-d");
+    $fecha = date("Y-m-d");
     $hora = date("H:i:s");
     $data = array(
-      "fecha" => $fechas,
+      "fecha" => $fecha,
       "personal" => $_POST["personal"],
       "nroComprobante" => $_POST["nroComprobante"],
       "observacion" => $_POST["observacion"],
       "detalle" => $_POST["detalle"],
+      "fechaHora" => $fecha . " " . $hora
     );
 
     $respuesta = ModeloVenta::mdlRegProvExterno($data);
@@ -270,14 +272,15 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
   {
     require_once "../modelo/ventaModelo.php";
     date_default_timezone_set("America/La_Paz");
-    $fechas = date("Y-m-d");
+    $fecha = date("Y-m-d");
     $hora = date("H:i:s");
     $data = array(
-      "fecha" => $fechas,
+      "fecha" => $fecha,
       "personal" => $_POST["personal"],
       "nroComprobante" => $_POST["nroComprobante"],
       "observacion" => $_POST["observacion"],
       "detalle" => $_POST["detalle"],
+      "fechaHora" => $fecha . " " . $hora
     );
 
     $respuesta = ModeloVenta::mdlRegAjusteInventario($data);
@@ -291,14 +294,15 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
   {
     require_once "../modelo/ventaModelo.php";
     date_default_timezone_set("America/La_Paz");
-    $fechas = date("Y-m-d");
+    $fecha = date("Y-m-d");
     $hora = date("H:i:s");
     $data = array(
-      "fecha" => $fechas,
+      "fecha" => $fecha,
       "personal" => $_POST["personal"],
       "nroComprobante" => $_POST["nroComprobante"],
       "observacion" => $_POST["observacion"],
       "detalle" => $_POST["detalle"],
+      "fechaHora" => $fecha . " " . $hora
     );
 
     $respuesta = ModeloVenta::mdlRegOtrosIngresos($data);
