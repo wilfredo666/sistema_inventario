@@ -33,10 +33,13 @@ class ModeloVenta
         $cantProducto = $salProductos[$i]["cantProducto"];
 
         $salida_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values('$idProducto', $cantProducto, 'NV-$numFactura')");
-        $salida_sql->execute();
+       if (!$salida_sql->execute()) {
+          return "error";
+        }
       }
 
       return "ok";
+
     } else {
       return "n";
     }
@@ -403,12 +406,15 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $cantProducto = $salProductos[$i]["cantProducto"];
 
         $salida_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida) values($idProducto, $cantProducto, 'NS-$codSalida')");
-        $salida_sql->execute();
+       if (!$salida_sql->execute()) {
+          return "error";
+        }
       }
 
       return "ok";
+
     } else {
-      return "n";
+      return "error";
     }
 
     $stmt->close();
@@ -464,14 +470,15 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $costoProducto = $detalle[$i]["costoProducto"];
 
         $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroEmpaque', '$fechaHora', '$fechaHora', '$costoProducto')");
-        
-      if($ingreso_sql->execute()){
-          return "ok";
-        } else{
+
+        if (!$ingreso_sql->execute()) {
           return "error";
         }
       }
-      
+
+      return "ok";
+
+
     } else {
       return "error";
     }
@@ -507,13 +514,12 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
 
         $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroDevolucion', '$fechaHora', '$fechaHora', '$costoProducto')");
 
-        if($ingreso_sql->execute()){
-          return "ok";
-        } else{
+         if (!$ingreso_sql->execute()) {
           return "error";
         }
-
       }
+
+      return "ok";
 
     } else {
       return "error";
@@ -550,13 +556,13 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $costoProducto = $detalle[$i]["costoProducto"];
 
         $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$fechaHora', '$fechaHora', '$costoProducto')");
-        
-         if($ingreso_sql->execute()){
-          return "ok";
-        } else{
+
+         if (!$ingreso_sql->execute()) {
           return "error";
         }
       }
+
+      return "ok";
 
     } else {
       return "error";
@@ -593,13 +599,13 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $costoProducto = $detalle[$i]["costoProducto"];
 
         $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$fechaHora', '$fechaHora', '$costoProducto')");
-        
-        if($ingreso_sql->execute()){
-          return "ok";
-        } else{
+
+         if (!$ingreso_sql->execute()) {
           return "error";
         }
       }
+
+      return "ok";
 
     } else {
       return "error";
@@ -636,13 +642,14 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $costoProducto = $detalle[$i]["costoProducto"];
 
         $ingreso_sql = Conexion::conectar()->prepare("insert into ingreso_stock(id_producto, cantidad, cod_ingreso, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$fechaHora', '$fechaHora', '$costoProducto')");
-          
-        if($ingreso_sql->execute()){
-          return "ok";
-        } else{
+
+         if (!$ingreso_sql->execute()) {
           return "error";
         }
       }
+
+      return "ok";
+
 
     } else {
       return "error";
@@ -721,9 +728,13 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $cantTotalUnidades = ($cantDocena * 12) + $cantUnidad;
         $costoProducto=$detalle[$i]["costoProducto"];
         $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$create_at', '$update_at', '$costoProducto')");
-        $ingreso_sql->execute();
+         if (!$ingreso_sql->execute()) {
+          return "error";
+        }
       }
+
       return "ok";
+
     } else {
       return "error";
     }
@@ -774,9 +785,13 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
         $costoProducto=$detalle[$i]["costoProducto"];
 
         $ingreso_sql = Conexion::conectar()->prepare("insert into salida_stock(id_producto, cantidad, cod_salida, create_at, update_at, costo) values($idProducto, $cantTotalUnidades, '$nroComprobante', '$create_at', '$update_at', '$costoProducto')");
-        $ingreso_sql->execute();
+         if (!$ingreso_sql->execute()) {
+          return "error";
+        }
       }
+
       return "ok";
+
     } else {
       return "error";
     }
