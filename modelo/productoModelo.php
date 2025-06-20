@@ -306,5 +306,13 @@ UNION
     $stmt->close();
     $stmt->null;
   }
+  
+  static public function mdlListaIds(){
+    $stmt = Conexion::conectar()->prepare("SELECT id_producto FROM producto LIMIT 10");
+    $stmt->execute();
+    $resultado= $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+    return $resultado;
+  }
 
 }

@@ -43,7 +43,7 @@
           </div>
 
           <select class="form-control select2bs4" name="producto" id="producto">
-            <option value="0">Todos</option>
+            <option value="0">Seleccionar</option>
             <?php
             require_once "controlador/productoControlador.php";
             require_once "modelo/productoModelo.php";
@@ -87,7 +87,7 @@
         </tbody>
       </table>
 
- </div>
+    </div>
 
   </section>
 </div>

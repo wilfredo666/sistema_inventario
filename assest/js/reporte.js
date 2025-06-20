@@ -270,14 +270,16 @@ Kardex de VRepMenorPro
 es para sacar el inventario de productos por ITE
 =======================================*/
 function kardexPro(){
-  const picker = $('#daterange-rmp').data('daterangepicker');
+  const picker = $('#daterange-rmp').data('daterangepicker'); //captura el elemento con fechas
+  
+  //tomara por default los ultimos 30 dias como fecha inicial y final; tal como se muestra al desplegar el select de seleccion de fecha
   const fechaInicial = picker.startDate.format('YYYY-MM-DD'); 
   const fechaFinal = picker.endDate.format('YYYY-MM-DD');
 
   let producto = document.getElementById('producto').value;
 
   //validar datos
-  if(producto!=0 && producto!=0){
+  if(producto!=0){//cambiar a "x" en el caso se quisiera para todos
     // Construir la URL con parámetros
     let url = `vista/KardexPro.php?producto=${producto}&fechaInicial=${fechaInicial}&fechaFinal=${fechaFinal}`;
     //let url='KardexPro'
@@ -297,8 +299,6 @@ function kardexPro(){
       title: 'Seleccione un producto'
     })
   }
-
-
 
 }
 

@@ -260,4 +260,9 @@ class ControladorProducto
     return $respuesta;
 
   }
+  
+  static public function ctrListaIds(){
+    $respuesta = ModeloProducto::mdlListaIds();
+    return $respuesta;
+  }
 }

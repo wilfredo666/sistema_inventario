@@ -19,6 +19,7 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrRegVentaOtros" ||
     $ruta["query"] == "ctrEliNotaIngreso" ||
     $ruta["query"] == "ctrEliNotaSalidaOtros" ||
+    $ruta["query"] == "ctrEliNotaVenta" ||
     $ruta["query"] == "ctrRegNotaSalida"
   ) {
     $metodo = $ruta["query"];
@@ -443,6 +444,15 @@ PARA REGISTRAR LAS NOTAS DE INGRESO POR DEVOLUCION
     $id = $_POST["id"];
 
     $respuesta = ModeloVenta::mdlEliNotaSalidaOtros($id);
+    echo $respuesta;
+  }
+  
+  static public function ctrEliNotaVenta(){
+    require_once "../modelo/ventaModelo.php";
+    
+    $id = $_POST["id"];
+
+    $respuesta = ModeloVenta::mdlEliNotaVenta($id);
     echo $respuesta;
   }
 

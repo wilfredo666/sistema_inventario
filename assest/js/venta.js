@@ -234,3 +234,48 @@ function GuardarNotaVenta() {
     document.getElementById("aviso").innerHTML = "Nada que enviar"
   }
 }
+
+function MEliNotaVenta(id){
+      var obj={
+      id:id
+    }
+  
+    Swal.fire({
+      title:'¿Esta seguro de eliminar esta nota de venta?',
+      showDenyButton:true,
+      showCancelButton:false,
+      confirmButtonText:'Confirmar',
+      denyButtonText:'Cancelar'    
+    }).then((result)=>{
+      if(result.isConfirmed){
+        $.ajax({
+          type:"POST",
+          data:obj,
+          url:"controlador/ventaControlador.php?ctrEliNotaVenta",
+          success:function(data){
+  
+            if(data=="ok"){
+              Swal.fire({
+                icon: 'success',
+                showConfirmButton: false,
+                title: 'Nota eliminada',
+                timer: 1000
+              })
+              setTimeout(function(){
+                location.reload()
+              },1200)
+            }else{
+              Swal.fire({
+                icon:'error',
+                title:'Error!!!',
+                text:'La nota no puede ser eliminado',
+                showConfirmButton:false,
+                timer:1900
+              })
+            }
+          }
+        })
+  
+      }
+    })
+}

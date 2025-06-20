@@ -863,4 +863,14 @@ where id_personal=$idPersonal and fecha_emision BETWEEN '$fecha' AND '$fecha 23:
       return "error";
     }
   }
+  
+  static public function mdlEliNotaVenta($id){
+     $stmt = Conexion::conectar()->prepare("DELETE FROM venta WHERE id_venta=$id");
+    if($stmt->execute()){
+      return "ok";
+    }else{
+      return "error";
+    }
+  }
+  
 }
